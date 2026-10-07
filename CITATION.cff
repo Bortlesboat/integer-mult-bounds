@@ -11,11 +11,11 @@ type: software
 repository-code: "https://github.com/CrocSwap/integer-mult-bounds"
 url: "https://github.com/CrocSwap/integer-mult-bounds"
 abstract: >-
-  Exact rational certificates, source patches, and a research note for a
-  conditional parameter improvement to OpenAI's integer-multiplication
-  manuscript. The strongest supplied witness is kappa = 5.8e-33. A separate
-  bound limits the stated network-counting and seven-margin parameter family
-  to kappa < 5.838e-33. The complete upstream algorithmic theorem is assumed.
+  Exact rational certificates, source patches, and research notes for conditional
+  improvements to OpenAI's integer-multiplication manuscript. Direct nonadjacent
+  axis routing reduces the layout cost and supports kappa = 2^-78. An earlier
+  parameter-only witness gives kappa = 5.8e-33, near a certified ceiling under
+  the original cost accounting. The complete upstream algorithmic theorem is assumed.
 keywords:
   - integer multiplication
   - computational complexity

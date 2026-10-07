@@ -1,7 +1,7 @@
 # Reproducing the result
 
-The primary artifacts are the [research note](../artifacts/parameter-note.pdf),
-[strongest patch](../patches/h46-rational.patch), and exact JSON certificates.
+The primary artifacts are the [routing note](../artifacts/nonadjacent-axis-note.pdf),
+[strongest patch](../patches/h46-nonadjacent-78.patch), and exact JSON certificates.
 They are conditional on the algorithmic interfaces identified in the
 [dependency audit](audit.md).
 
@@ -56,7 +56,7 @@ existing one. It leaves the bundled source untouched:
 mkdir -p build
 mkdir build/review
 cp -R upstream/build build/review/build
-git apply --directory=build/review patches/h46-rational.patch
+git apply --directory=build/review patches/h46-nonadjacent-78.patch
 ```
 
 Read `build/review/build/main.tex` and its included sections. The other patches

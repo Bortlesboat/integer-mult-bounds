@@ -2,77 +2,78 @@
 
 **Research draft by Douglas Colkitt — conditional on the underlying manuscript.**
 
-This repository gives a parameter improvement to OpenAI's
+This repository improves the parameters and axis-routing schedule in OpenAI's
 [*Integer multiplication below n log n*](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026)
 (result family #109). Subject to its algorithmic interfaces and the construction
-changes audited here, the improved bound is
+changes audited here, the strongest supplied bound is
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\boxed{\kappa=\frac{29}{5\cdot10^{33}}=5.8\times10^{-33}}.
+\boxed{\kappa=2^{-78}\approx3.309\times10^{-24}}.
 $$
 
 The computational model is the manuscript's fixed finite-alphabet Turing machine
 with a fixed finite number of one-dimensional tapes. The original manuscript
-uses `kappa = 2^-182`; our exponent saving lies between `2^-108` and `2^-107`.
-This is an asymptotic exponent improvement, not a measured practical speedup.
+uses `kappa = 2^-182`. The new witness increases the exponent saving by about
+570 million times over our earlier parameter-only witness `kappa = 5.8e-33`.
+These are asymptotic exponent comparisons, not measured practical speedups.
 
-**[Read the research note (PDF)](artifacts/parameter-note.pdf)** ·
-[Review the parameter-only patch](patches/h46-rational.patch) ·
-[Inspect the proof audit](docs/audit.md) ·
+**[Read the routing note (PDF)](artifacts/nonadjacent-axis-note.pdf)** ·
+[Review the 2^-78 patch](patches/h46-nonadjacent-78.patch) ·
+[Inspect the routing audit](docs/nonadjacent-axis-audit.md) ·
 [Reproduce the checks](docs/reproducibility.md)
 
 ## What changes
 
-The construction keeps the manuscript's conceptual algorithm and changes four
-ingredients: its finite-network parameter to `h = 46`, its common recurrence
-saving to `a = 9/500000000000`, its stopping exponent to `beta = 999/1000`,
-and its final absorption argument to use any fixed positive margin.
+The new routing schedules use direct nonadjacent swaps already supported by
+the manuscript. CRT axis reversal needs floor(d/2) field interchanges; exposing
+and restoring all resampling axes needs at most 2(d-1). This replaces the
+original O(d^2) count of adjacent moves by O(d) full-field interchanges.
+The finite network and numerical operations remain the same as in our earlier
+h = 46 construction. The exact sequence of data-movement operations changes.
 
-The remaining explicit choices are
+The normalized layout cost improves from `d^2(1 + ell^tau)` to
+`d(1 + ell^tau)`. Its exponent margin therefore becomes
 
 $$
-\epsilon=\frac{999a}{1000},\quad c=\frac{998a}{1000},\quad
-\tau=\sigma=1-a,\quad \lambda'=1-ac,\quad
-\lambda=\frac{\lambda'+(1-a)(1+c/\beta)}{2}.
+g_4=(1-\tau)(1-\epsilon),
+$$
+
+which permits a fixed dimension exponent `epsilon = 1/40`. With
+`a = 9/500000000000`, the other choices are
+
+$$
+\tau=\sigma=1-a,\quad \beta=\frac12,\quad c=\frac a2,\quad
+\lambda=1-\frac{3a^2}{4},\quad \lambda'=1-\frac{a^2}{2},\quad
+\delta=\frac1{16},\quad C_1=20.
 $$
 
 Exact rational arithmetic gives
 
 $$
-\min_i g_i=5.814515664\times10^{-33}>\kappa.
+\min_i g_i=\frac{a^2}{80}=4.05\times10^{-24}>2^{-78}.
 $$
 
-The [note, Sections 7–8](artifacts/parameter-note.pdf) proves the variable-stopping
-extension, checks the witness, and explains the limit of further tuning.
+The [routing audit](docs/nonadjacent-axis-audit.md) checks coordinate order,
+padding, coefficient records, fixed tapes, descriptor costs, precision, and
+all remaining parameter dependencies. The routing change itself uses primitives
+already present in the source. With OpenAI's original network and recurrence
+exponents unchanged, it also supports the simpler bound **kappa = 2^-107**.
 
-## How much room remains?
+## The earlier parameter-only result and its ceiling
 
-Within the stated network-counting family and seven-margin cost accounting,
-we establish `kappa < 5.838e-33`, even allowing variable `beta` and unequal
-`tau` and `sigma`. The supplied witness exceeds 99% of this upper bound.
-The search covers every admissible integer `h`, using exact logarithm intervals
-for `h < 200` and a decreasing bound for the infinite tail.
+Our [first note](artifacts/parameter-note.pdf) gives `kappa = 5.8e-33` under
+the original layout cost accounting. Within the stated network-counting
+family and those cost inequalities, it establishes `kappa < 5.838e-33`, even
+allowing variable `beta` and unequal `tau` and `sigma`. The exact search covers
+every admissible integer h, using a decreasing bound for the infinite tail.
 
-This ceiling limits what these estimates can certify. It is not a lower bound
-for integer multiplication or an obstruction to other finite networks or
-sharper cost analyses. See the [scope and derivation](docs/audit.md#rational-saving-variable-beta-and-strict-final-slack).
-
-## Follow-up audit: nonadjacent axis routing
-
-A separate [routing audit](docs/nonadjacent-axis-audit.md) changes the layout
-cost assumption behind the parameter-only ceiling above. The source already
-provides nonadjacent swaps, allowing O(d) field interchanges for CRT reversal
-and axis exposure instead of O(d^2) adjacent moves. With the other dependencies
-audited, exact witnesses support **kappa = 2^-78** using h = 46, or **2^-107**
-with the original network and recurrence exponents unchanged.
-
-Read the [follow-up note](artifacts/nonadjacent-axis-note.pdf),
-[routing-only patch](patches/nonadjacent-layout.patch), or
-[combined 2^-78 patch](patches/h46-nonadjacent-78.patch). These bounds remain
-conditional on the upstream algorithmic interfaces. The earlier note and
-its ceiling are retained as results about the original cost accounting.
-The follow-up does not claim optimality for the revised accounting.
+That ceiling remains valid for its stated assumptions. The original layout
+cost forced `epsilon < a`, yielding a cubic constraint `kappa < a^3`.
+The new schedules improve that cost and remove the restriction. With a fixed
+epsilon, the supplied saving instead scales quadratically in a. We do not
+claim that quadratic dependence is unavoidable or that 2^-78 is optimal for
+the revised accounting.
 
 ## What has been checked
 
@@ -80,7 +81,7 @@ The follow-up does not claim optimality for the revised accounting.
 | --- | --- |
 | Parameter inequalities and logarithm bounds | Exact rational certificates |
 | Network-counting search and its infinite tail | Exact rational certificates |
-| Variable stopping exponent and parameter dependencies | Written mathematical audit |
+| Nonadjacent routing, parameter dependencies, and earlier variable-beta extension | Written mathematical audits |
 | Selected finite identities | Exhaustive small cases and deterministic sampled tests |
 | Source patch application | All ten alternatives checked |
 | Full upstream multiplication theorem | Assumed; not independently established here |
@@ -109,7 +110,8 @@ files should have no changes:
 git diff --exit-code -- certificates patches
 ```
 
-To rebuild the PDF, install Tectonic and run `make note`. Its first run may
+To rebuild the routing PDF, install Tectonic and run `make audit-note`;
+`make note` rebuilds the earlier parameter-only note. The first run may
 download TeX resources. See [reproducibility details](docs/reproducibility.md)
 for individual commands and how to apply a patch in a disposable copy.
 [GitHub Actions](.github/workflows/verify.yml) runs the numerical and patch checks.
@@ -126,10 +128,13 @@ Each patch applies independently to the unmodified pinned source.
 | [h46-111](patches/h46-111.patch) | `2^-111` | Smaller network, dyadic parameters |
 | [h46-109](patches/h46-109.patch) | `2^-109` | Rational recurrence saving, strict final margin |
 | [h46-108](patches/h46-108.patch) | `2^-108` | Variable stopping exponent |
-| **[h46-rational](patches/h46-rational.patch)** | **`5.8e-33`** | **Strongest parameter-only witness** |
+| [h46-rational](patches/h46-rational.patch) | `5.8e-33` | Strongest supplied parameter-only witness |
+| [nonadjacent-layout](patches/nonadjacent-layout.patch) | Original parameters retained | Routing proof and revised layout cost only |
+| [frozen-nonadjacent-107](patches/frozen-nonadjacent-107.patch) | `2^-107` | Direct routing, original network and recurrence exponents |
+| **[h46-nonadjacent-78](patches/h46-nonadjacent-78.patch)** | **`2^-78`** | **Direct routing with the h = 46 network** |
 
-Machine-readable results are in [parameters.json](certificates/parameters.json)
-and [network-search.json](certificates/network-search.json). The note also gives
+Machine-readable results are in [parameters.json](certificates/parameters.json), [network-search.json](certificates/network-search.json), and
+[nonadjacent-axis.json](certificates/nonadjacent-axis.json). The first note also gives
 a closed-form supremum for the earlier fixed-`beta` parameter problem.
 
 ## Attribution, citation, and license

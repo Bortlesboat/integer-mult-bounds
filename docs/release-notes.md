@@ -1,39 +1,46 @@
-# Draft initial GitHub release
+# Draft routing-improvement release
 
 Repository: [CrocSwap/integer-mult-bounds](https://github.com/CrocSwap/integer-mult-bounds)
 
 Suggested description:
 
-> Conditional exponent improvement for integer multiplication, with exact rational certificates, source patches, and a proof dependency audit.
+> Conditional exponent improvements for integer multiplication, with exact rational certificates, source patches, and proof dependency audits.
 
-Suggested release title: **Initial research draft: conditional exponent saving 5.8e-33**
+Suggested release title: **Direct axis routing: conditional exponent saving 2^-78**
 
 ## Release body
 
-This research draft gives a conditional parameter improvement to OpenAI's
+This research draft improves the axis-routing schedule in OpenAI's
 *Integer multiplication below n log n*. Its strongest supplied witness is
-`kappa = 29/(5 * 10^33) = 5.8e-33` in `O(n (log n)^(1-kappa))`, for the
-manuscript's fixed-alphabet, fixed-tape Turing-machine model.
+`kappa = 2^-78` in `O(n (log n)^(1-kappa))`, for the manuscript's
+fixed-alphabet, fixed-tape Turing-machine model.
 
-Included artifacts:
+Direct nonadjacent swaps reduce the number of layout interchanges from O(d²)
+to O(d). The revised cost permits a fixed dimension exponent, removing the
+cubic constraint behind our earlier parameter-only ceiling. The finite
+network and numerical operations are retained from our h = 46 construction.
 
-- A research note with the parameter substitution and variable-beta argument.
-- Seven alternative patches against an immutable upstream revision.
-- Exact rational certificates and a network search with an infinite-tail bound.
-- A dependency audit that separates checked implications from assumed interfaces.
-- Automated numerical, finite-identity, source-integrity, and patch checks.
+New artifacts:
 
-The stated network-counting and seven-margin family has a certified ceiling
-below `5.838e-33`. This restricts the current estimates, not other algorithms.
-The full upstream multiplication theorem remains an assumption.
+- A routing research note and dependency audit.
+- An exact rational certificate for the 2^-78 witness, plus a 2^-107 witness
+  using the original network and recurrence exponents.
+- Three independent source patches, including a routing-only alternative.
+- Finite checks of coordinate permutations, padding, coefficient records,
+  CRT order, and parameter constraints.
+
+The earlier parameter-only note, certificates, and seven patches remain
+available. Its ceiling applies to the original cost accounting. No ceiling
+or optimality claim is established for the revised accounting.
+
+The full upstream multiplication theorem remains an assumption. The exponent
+comparison does not imply a practical speedup. Independent review is welcome.
 
 Author: Douglas Colkitt, with assistance from OpenAI Codex. Apache-2.0 licensed.
 
 ## Publication details
 
-Attach `artifacts/parameter-note.pdf` to the release. The repository URL is recorded in `CITATION.cff`; add a release version and
-date when a release is actually published. A DOI can be added later if an archived release receives one.
-
-The preparation itself does not create a remote repository, publish a release,
-or claim independent review. The short public announcement is drafted in
-[announcement.md](announcement.md).
+Attach `artifacts/nonadjacent-axis-note.pdf` if publishing a release. Add a
+release version and date to citation metadata when a release is actually
+published. This draft does not create a GitHub release or post an announcement.
+Suggested thread: [announcement.md](announcement.md).
