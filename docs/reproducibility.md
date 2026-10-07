@@ -28,8 +28,10 @@ This command performs these steps:
 2. `scripts/search_network.py` encloses logarithms with exact rational arithmetic,
    checks finite candidates and the infinite tail, and writes
    `certificates/network-search.json`.
-3. `scripts/make_patch.py` regenerates seven alternative patches against the
+3. `scripts/make_patch.py` regenerates seven parameter-only patches against the
    unchanged upstream files.
+   `scripts/nonadjacent.py` and `scripts/make_nonadjacent_patch.py` additionally
+   generate the follow-up routing certificate and three scheduling patches.
 4. The standard-library unittest suite checks certificate boundaries, selected
    finite identities, network counts, patch dependencies, and search bounds.
 5. Git checks that each alternative patch applies to the pinned source.
@@ -68,7 +70,9 @@ With Tectonic installed:
 make note
 ```
 
-The result is `artifacts/parameter-note.pdf`. The first run may download fonts
+The result is `artifacts/parameter-note.pdf`. Build the separate routing audit
+with `make audit-note`, producing `artifacts/nonadjacent-axis-note.pdf`.
+The first run may download fonts
 and TeX packages; the numerical verification does not use them. PDF builds may
 differ in metadata or typesetting across TeX environments. The exact-byte
 reproducibility check covers JSON certificates and patches, not the PDF.

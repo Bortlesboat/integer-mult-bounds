@@ -1,5 +1,9 @@
 # Proof dependency audit
 
+This document records the original parameter-only audit. See the separate
+[nonadjacent-axis audit](nonadjacent-axis-audit.md) for the scheduling change
+that improves one cost term and escapes the original cubic ceiling.
+
 The frozen-network parameter substitutions pass the numerical and asymptotic
 dependency audit against commit `adc7f1241b42e322a6451854ab7e4b4c146bf78a`.
 No contradiction was found in the reviewed main proof chain. This is a first

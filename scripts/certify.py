@@ -86,7 +86,12 @@ def pushed(variant):
     return Parameters(1-a, 1-a, e, c, lam, lamp, Q(58, 10**34), beta=beta)
 
 
-def constraints(p):
+def layout_degree(layout_model):
+    require(layout_model in ("adjacent", "nonadjacent"), "Unknown layout model")
+    return 2 if layout_model == "adjacent" else 1
+
+
+def constraints(p, *, layout_model="adjacent"):
     """Positive slacks, transcribed from the cited labelled source statements."""
     e, c, t, s, b = p.epsilon, p.c, p.tau, p.sigma, p.beta
     return {
@@ -109,7 +114,7 @@ def constraints(p):
         "guard_width": 1-e*p.C1,
         # eq:fixed-parameters and setup proof in sec:assembly.
         "dimension_upper_bound": Q(1, 12)-e,
-        "crt_layout": 1-t-e*(2-t),
+        "crt_layout": 1-t-e*(layout_degree(layout_model)-t),
         "gaussian_cost": Q(1, 4)-p.delta-Q(3, 2)*e,
         "prefix_cost": 1-e*(1+c),
         "scalar_cost": 1-p.delta-e,
@@ -126,28 +131,29 @@ def constraints(p):
     }
 
 
-def margins(p):
+def margins(p, *, layout_model="adjacent"):
     e, c, t = p.epsilon, p.c, p.tau
     return {
         "g1": 1-e*(1+c),
         "g2": e*c*(1-t),
         "g3": e*(1-p.lamp),
-        "g4": 1-t-e*(2-t),
+        "g4": 1-t-e*(layout_degree(layout_model)-t),
         "g5": Q(1, 4)-p.delta-Q(3, 2)*e,
         "g6": 1-p.delta-e,
         "g7": e,
     }
 
 
-def certify_parameters(p, *, generalized_beta=False, strict_margin=False):
+def certify_parameters(p, *, generalized_beta=False, strict_margin=False,
+                       layout_model="adjacent"):
     require(generalized_beta or p.beta == Q(1, 2),
             "Upstream layer proof fixes beta=1/2; select the audited generalization")
     require(0 < p.beta < 1, "Beta must lie strictly between zero and one")
     require(p.C1 >= 20, "C1 must cover the upstream guard bound")
-    slacks = constraints(p)
+    slacks = constraints(p, layout_model=layout_model)
     for name, slack in slacks.items():
         require(slack > 0, f"Failed strict constraint: {name} ({slack})")
-    gs = margins(p)
+    gs = margins(p, layout_model=layout_model)
     if strict_margin:
         require(min(gs.values()) > p.kappa, "Need a positive absorption gap")
     else:

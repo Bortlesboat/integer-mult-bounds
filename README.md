@@ -18,7 +18,7 @@ uses `kappa = 2^-182`; our exponent saving lies between `2^-108` and `2^-107`.
 This is an asymptotic exponent improvement, not a measured practical speedup.
 
 **[Read the research note (PDF)](artifacts/parameter-note.pdf)** ·
-[Review the strongest patch](patches/h46-rational.patch) ·
+[Review the parameter-only patch](patches/h46-rational.patch) ·
 [Inspect the proof audit](docs/audit.md) ·
 [Reproduce the checks](docs/reproducibility.md)
 
@@ -58,6 +58,22 @@ This ceiling limits what these estimates can certify. It is not a lower bound
 for integer multiplication or an obstruction to other finite networks or
 sharper cost analyses. See the [scope and derivation](docs/audit.md#rational-saving-variable-beta-and-strict-final-slack).
 
+## Follow-up audit: nonadjacent axis routing
+
+A separate [routing audit](docs/nonadjacent-axis-audit.md) changes the layout
+cost assumption behind the parameter-only ceiling above. The source already
+provides nonadjacent swaps, allowing O(d) field interchanges for CRT reversal
+and axis exposure instead of O(d^2) adjacent moves. With the other dependencies
+audited, exact witnesses support **kappa = 2^-78** using h = 46, or **2^-107**
+with the original network and recurrence exponents unchanged.
+
+Read the [follow-up note](artifacts/nonadjacent-axis-note.pdf),
+[routing-only patch](patches/nonadjacent-layout.patch), or
+[combined 2^-78 patch](patches/h46-nonadjacent-78.patch). These bounds remain
+conditional on the upstream algorithmic interfaces. The earlier note and
+its ceiling are retained as results about the original cost accounting.
+The follow-up does not claim optimality for the revised accounting.
+
 ## What has been checked
 
 | Component | Status |
@@ -66,7 +82,7 @@ sharper cost analyses. See the [scope and derivation](docs/audit.md#rational-sav
 | Network-counting search and its infinite tail | Exact rational certificates |
 | Variable stopping exponent and parameter dependencies | Written mathematical audit |
 | Selected finite identities | Exhaustive small cases and deterministic sampled tests |
-| Source patch application | All seven alternatives checked |
+| Source patch application | All ten alternatives checked |
 | Full upstream multiplication theorem | Assumed; not independently established here |
 
 The scripts do not constitute a formal proof of the complete algorithm. This
@@ -110,7 +126,7 @@ Each patch applies independently to the unmodified pinned source.
 | [h46-111](patches/h46-111.patch) | `2^-111` | Smaller network, dyadic parameters |
 | [h46-109](patches/h46-109.patch) | `2^-109` | Rational recurrence saving, strict final margin |
 | [h46-108](patches/h46-108.patch) | `2^-108` | Variable stopping exponent |
-| **[h46-rational](patches/h46-rational.patch)** | **`5.8e-33`** | **Strongest supplied witness** |
+| **[h46-rational](patches/h46-rational.patch)** | **`5.8e-33`** | **Strongest parameter-only witness** |
 
 Machine-readable results are in [parameters.json](certificates/parameters.json)
 and [network-search.json](certificates/network-search.json). The note also gives
