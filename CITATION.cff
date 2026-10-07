@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: >-
+  Please cite this project and the upstream manuscript. This is a conditional
+  research draft; include the repository commit used until a release is archived.
+title: "A sharper exponent for integer multiplication"
+authors:
+  - family-names: Colkitt
+    given-names: Douglas
+license: Apache-2.0
+type: software
+repository-code: "https://github.com/CrocSwap/integer-mult-bounds"
+url: "https://github.com/CrocSwap/integer-mult-bounds"
+abstract: >-
+  Exact rational certificates, source patches, and a research note for a
+  conditional parameter improvement to OpenAI's integer-multiplication
+  manuscript. The strongest supplied witness is kappa = 5.8e-33. A separate
+  bound limits the stated network-counting and seven-margin parameter family
+  to kappa < 5.838e-33. The complete upstream algorithmic theorem is assumed.
+keywords:
+  - integer multiplication
+  - computational complexity
+  - exact arithmetic
+  - parameter optimization
+  - reproducible research
+references:
+  - type: unpublished
+    title: "Integer multiplication below n log n"
+    authors:
+      - name: OpenAI
+    year: 2026
+    url: "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026"

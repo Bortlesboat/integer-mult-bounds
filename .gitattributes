@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.pdf binary
+# Unified diffs require a leading space on blank context lines.
+*.patch -whitespace
+# Preserve the exact upstream bytes, including original whitespace.
+upstream/** -whitespace

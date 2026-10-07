@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+build/
+!upstream/build/
+!upstream/build/**
+.DS_Store
+.env
+.env.*
+*.aux
+*.log
+*.blg
+*.bbl
+*.toc
+*.out
+*.synctex.gz
