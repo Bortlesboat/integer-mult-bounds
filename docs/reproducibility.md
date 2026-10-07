@@ -1,7 +1,7 @@
 # Reproducing the result
 
-The primary artifacts are the [routing note](../artifacts/nonadjacent-axis-note.pdf),
-[strongest patch](../patches/h46-nonadjacent-78.patch), and exact JSON certificates.
+The primary artifacts are the [paired-network note](../artifacts/paired-note.pdf),
+[strongest patch](../patches/h50-paired-59.patch), and exact JSON certificates.
 They are conditional on the algorithmic interfaces identified in the
 [dependency audit](audit.md).
 
@@ -32,6 +32,26 @@ This command performs these steps:
    unchanged upstream files.
    `scripts/nonadjacent.py` and `scripts/make_nonadjacent_patch.py` additionally
    generate the follow-up routing certificate and three scheduling patches.
+   `scripts/tune_routing.py` generates the tuned 2^-76 certificate and combined patch.
+   `scripts/reuse_network.py` and `scripts/make_reuse_patch.py` generate the
+   stage-sharing 2^-75 certificate and standalone combined patch.
+   `scripts/incidence_network.py` and `scripts/make_incidence_patch.py` generate
+   the incidence-circuit 2^-67 certificate and standalone combined patch, including
+   exhaustive verification of the underlying ordered-pair rectangle partition.
+   `scripts/dag_network.py` and `scripts/make_dag_patch.py` generate the
+   shared-computation 2^-63 certificate and standalone combined patch. They
+   check the exact symbolic linear map and both support-frame directions of
+   the reversible circuit compiled by `scripts/exclusion_circuit.py`.
+   `scripts/shared_point_network.py` and `scripts/make_shared_point_patch.py`
+   generate the cross-group sharing certificate and independent patch for
+   kappa=13*2^-66. They check exact supports and both frame directions in the
+   global graph compiled by `scripts/shared_point_circuit.py`.
+   `scripts/paired_network.py` and `scripts/make_paired_patch.py` generate the
+   h=50 paired-network certificate and independent patch for kappa=2^-59. They
+   also check the stopped guard constants and revised Gaussian inequalities;
+   these proof models are selected explicitly in the parameter checker.
+   `scripts/research_networks.py` and `scripts/search_network_variants.py`
+   record scoped family bounds and clearly marked exploratory scores.
 4. The standard-library unittest suite checks certificate boundaries, selected
    finite identities, network counts, patch dependencies, and search bounds.
 5. Git checks that each alternative patch applies to the pinned source.
@@ -43,8 +63,11 @@ that the checked-in outputs reproduce exactly, run on a clean checkout:
 git diff --exit-code -- certificates patches
 ```
 
-Certificate comparisons use `fractions.Fraction`; no floating-point result
-controls acceptance. Sampled finite identity tests use fixed random seeds.
+The theorem certificates and all-h bound comparisons use `fractions.Fraction`;
+no floating-point result controls their acceptance. The separate exploratory
+higher-subset screen uses floating point to select candidates, then encloses
+their scores exactly; it certifies neither a new construction nor optimality.
+Sampled finite identity tests use fixed random seeds.
 Passing these checks does not prove the full multiplication-machine theorem.
 
 ## Apply one patch for review
@@ -56,7 +79,7 @@ existing one. It leaves the bundled source untouched:
 mkdir -p build
 mkdir build/review
 cp -R upstream/build build/review/build
-git apply --directory=build/review patches/h46-nonadjacent-78.patch
+git apply --directory=build/review patches/h46-dag-63.patch
 ```
 
 Read `build/review/build/main.tex` and its included sections. The other patches
@@ -72,6 +95,13 @@ make note
 
 The result is `artifacts/parameter-note.pdf`. Build the separate routing audit
 with `make audit-note`, producing `artifacts/nonadjacent-axis-note.pdf`.
+Build the tuning note with `make tuned-note`, producing
+`artifacts/routing-tuned-note.pdf`. Build the preserved stage-sharing note with
+`make reuse-note`, producing `artifacts/stage-reuse-note.pdf`.
+Build the rectangle-circuit note with `make incidence-note`, producing
+`artifacts/incidence-note.pdf`.
+Build the latest shared-computation note with `make dag-note`, producing
+`artifacts/dag-note.pdf`.
 The first run may download fonts
 and TeX packages; the numerical verification does not use them. PDF builds may
 differ in metadata or typesetting across TeX environments. The exact-byte
@@ -98,3 +128,6 @@ commit pins for the official [checkout](https://github.com/actions/checkout)
 and [setup-python](https://github.com/actions/setup-python) actions, with
 read-only repository permissions. The PDF is supplied for readers and can be
 rebuilt locally using the command above.
+
+Build the latest note with `make paired-note`. The earlier notes and
+patches remain available as independent witnesses.

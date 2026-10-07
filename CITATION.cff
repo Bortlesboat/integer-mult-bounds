@@ -13,7 +13,8 @@ url: "https://github.com/CrocSwap/integer-mult-bounds"
 abstract: >-
   Exact rational certificates, source patches, and research notes for conditional
   improvements to OpenAI's integer-multiplication manuscript. Direct nonadjacent
-  axis routing reduces the layout cost and supports kappa = 2^-78. An earlier
+  axis routing, shared finite circuits, auxiliary role sharing, an early-stopping
+  guard bound, and tighter Gaussian setup support kappa = 2^-59. An earlier
   parameter-only witness gives kappa = 5.8e-33, near a certified ceiling under
   the original cost accounting. The complete upstream algorithmic theorem is assumed.
 keywords:

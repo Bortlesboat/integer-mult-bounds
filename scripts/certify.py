@@ -91,8 +91,10 @@ def layout_degree(layout_model):
     return 2 if layout_model == "adjacent" else 1
 
 
-def constraints(p, *, layout_model="adjacent"):
+def constraints(p, *, layout_model="adjacent", assembly_model="original"):
     """Positive slacks, transcribed from the cited labelled source statements."""
+    require(assembly_model in ("original", "tight-gaussian"), "Unknown assembly model")
+    tight = assembly_model == "tight-gaussian"
     e, c, t, s, b = p.epsilon, p.c, p.tau, p.sigma, p.beta
     return {
         # prop:simultaneous-layer and its recurrence proof.
@@ -113,17 +115,17 @@ def constraints(p, *, layout_model="adjacent"):
         "lambda_prime_below_one": 1-p.lamp,
         "guard_width": 1-e*p.C1,
         # eq:fixed-parameters and setup proof in sec:assembly.
-        "dimension_upper_bound": Q(1, 12)-e,
+        "dimension_upper_bound": (Q(1, 3) if tight else Q(1, 12))-e,
         "crt_layout": 1-t-e*(layout_degree(layout_model)-t),
-        "gaussian_cost": Q(1, 4)-p.delta-Q(3, 2)*e,
+        "gaussian_cost": Q(1, 4)-p.delta-(Q(5, 4) if tight else Q(3, 2))*e,
         "prefix_cost": 1-e*(1+c),
         "scalar_cost": 1-p.delta-e,
         "delta_positive": p.delta,
         "delta_below_one_eighth": Q(1, 8)-p.delta,
         # Derived conditions used outside the final displayed system.
         "prime_interval_growth": 1-2*e,
-        "alpha_below_sqrt_p": Q(1, 4)-e/2,
-        "gamma_sublinear": Q(1, 2)-2*e,
+        "alpha_below_sqrt_p": Q(1, 4)-(e/4 if tight else e/2),
+        "gamma_sublinear": Q(1, 2)-(Q(3, 2) if tight else 2)*e,
         "K_smaller_than_ell": 1-e-e*c,
         "K_dominates_log_p": e*c,
         "r_superpolynomial": 1-e,
@@ -131,35 +133,43 @@ def constraints(p, *, layout_model="adjacent"):
     }
 
 
-def margins(p, *, layout_model="adjacent"):
+def margins(p, *, layout_model="adjacent", assembly_model="original"):
+    require(assembly_model in ("original", "tight-gaussian"), "Unknown assembly model")
     e, c, t = p.epsilon, p.c, p.tau
     return {
         "g1": 1-e*(1+c),
         "g2": e*c*(1-t),
         "g3": e*(1-p.lamp),
         "g4": 1-t-e*(layout_degree(layout_model)-t),
-        "g5": Q(1, 4)-p.delta-Q(3, 2)*e,
+        "g5": Q(1, 4)-p.delta-(Q(5, 4) if assembly_model == "tight-gaussian" else Q(3, 2))*e,
         "g6": 1-p.delta-e,
         "g7": e,
     }
 
 
 def certify_parameters(p, *, generalized_beta=False, strict_margin=False,
-                       layout_model="adjacent"):
+                       layout_model="adjacent", assembly_model="original",
+                       guard_model="original"):
     require(generalized_beta or p.beta == Q(1, 2),
             "Upstream layer proof fixes beta=1/2; select the audited generalization")
     require(0 < p.beta < 1, "Beta must lie strictly between zero and one")
-    require(p.C1 >= 20, "C1 must cover the upstream guard bound")
-    slacks = constraints(p, layout_model=layout_model)
+    require(guard_model in ("original", "stopping"), "Unknown guard model")
+    if guard_model == "original":
+        require(p.C1 >= 20, "C1 must cover the upstream guard bound")
+    else:
+        # Caller must also certify m>=3 and 2<=s_c<m^5 for its complex network.
+        require(p.C1 >= 2 and p.beta >= Q(9, 10),
+                "Stopping guard requires C1>=2 and beta>=9/10")
+    slacks = constraints(p, layout_model=layout_model, assembly_model=assembly_model)
     for name, slack in slacks.items():
         require(slack > 0, f"Failed strict constraint: {name} ({slack})")
-    gs = margins(p, layout_model=layout_model)
+    gs = margins(p, layout_model=layout_model, assembly_model=assembly_model)
     if strict_margin:
         require(min(gs.values()) > p.kappa, "Need a positive absorption gap")
     else:
         require(min(gs.values()) >= 2*p.kappa,
                 "The proposed patch requires every g_i >= 2*kappa")
-    return {"parameters": {k: str(v) for k, v in vars(p).items()},
+    result = {"parameters": {k: str(v) for k, v in vars(p).items()},
             "constraint_slacks": {k: str(v) for k, v in slacks.items()},
             "margins": {k: str(v) for k, v in gs.items()},
             "minimum_margin": str(min(gs.values())),
@@ -168,6 +178,9 @@ def certify_parameters(p, *, generalized_beta=False, strict_margin=False,
             "absorption_gap": str(min(gs.values())-p.kappa),
             "slack_rule": "strict" if strict_margin else "half",
             "generalized_beta": generalized_beta}
+    if assembly_model != "original" or guard_model != "original":
+        result.update(assembly_model=assembly_model, guard_model=guard_model)
+    return result
 
 
 def network(h):

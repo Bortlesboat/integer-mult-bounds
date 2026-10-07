@@ -1,5 +1,9 @@
 # Audit: nonadjacent axis routing
 
+**Follow-up:** [Parameter tuning](../artifacts/routing-tuned-note.pdf) combines this
+routing audit with the existing variable-beta extension to support 2^-76.
+The original 2^-78 witness and routing proof below are retained.
+
 **October 7, 2026 — conditional mathematical audit by Douglas Colkitt, with
 assistance from OpenAI Codex.** The audit supports replacing the manuscript's
 quadratic count of axis moves by a linear count, using primitives already
