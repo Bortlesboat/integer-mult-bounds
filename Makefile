@@ -1,4 +1,4 @@
-.PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note fetch
+.PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note aligned-paired-note fetch
 
 verify:
 	python3 scripts/certify.py
@@ -22,6 +22,8 @@ verify:
 	python3 scripts/make_shared_point_patch.py
 	python3 scripts/paired_network.py
 	python3 scripts/make_paired_patch.py
+	python3 scripts/aligned_paired_network.py
+	python3 scripts/make_aligned_paired_patch.py
 	python3 scripts/audit_scratch_pooling.py
 	python3 scripts/reuse_network.py
 	python3 scripts/make_reuse_patch.py
@@ -42,6 +44,7 @@ verify:
 	git apply --check --directory=upstream patches/h46-dag-63.patch
 	git apply --check --directory=upstream patches/h46-shared-point.patch
 	git apply --check --directory=upstream patches/h50-paired-59.patch
+	git apply --check --directory=upstream patches/h50-aligned-paired.patch
 
 note:
 	mkdir -p artifacts
@@ -74,6 +77,10 @@ shared-point-note:
 paired-note:
 	mkdir -p artifacts
 	tectonic --outdir artifacts notes/paired-note.tex
+
+aligned-paired-note:
+	mkdir -p artifacts
+	tectonic --outdir artifacts notes/aligned-paired-note.tex
 
 fetch:
 	python3 scripts/fetch_upstream.py

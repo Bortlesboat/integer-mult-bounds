@@ -9,22 +9,37 @@ changes audited here, the strongest supplied bound is
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\boxed{\kappa=2^{-59}\approx1.7347\times10^{-18}}.
+\boxed{\kappa=17\cdot2^{-63}\approx1.8431\times10^{-18}}.
 $$
 
 The computational model is the manuscript's fixed finite-alphabet Turing machine
 with a fixed finite number of one-dimensional tapes. The original manuscript
-uses `kappa = 2^-182`. The latest witness improves the preceding `13*2^-66`
-bound by a factor of 128/13 (about 9.85), giving a 2^123-fold increase in
-exponent saving over the original.
+uses `kappa = 2^-182`. Aligning the paired circuit's common-point groups
+improves the preceding `2^-59` headline by a factor of 17/16 (6.25%), giving
+a `17*2^119`-fold increase in exponent saving over the original.
 These are asymptotic exponent comparisons, not measured practical speedups.
 
-**[Read the 2^-59 proof note (PDF)](artifacts/paired-note.pdf)** ·
-[Review the latest patch](patches/h50-paired-59.patch) ·
+**[Read the aligned paired proof note (PDF)](artifacts/aligned-paired-note.pdf)** ·
+[Review the latest patch](patches/h50-aligned-paired.patch) ·
 [Inspect the routing audit](docs/nonadjacent-axis-audit.md) ·
 [Reproduce the checks](docs/reproducibility.md)
 
-## Latest improvement: paired sums and tighter downstream estimates
+## Latest improvement: align the common-point pair groups
+
+Using the same local paired circuit in coordinates whose complete root pairs
+agree across common-point groups removes **14,944 additions**. At `h=50`,
+side roles fall from **509,194 to 494,250**, with the absolute rank deficit
+unchanged. The retained parameter recipe now supports `a_b=305/10^11` and
+
+$$G=\frac{739738521}{400000000000000000000000000}>17\cdot2^{-63}.$$
+
+The [construction and dependency ledger](docs/research/aligned-paired-network.md)
+explains the relabelling and the unchanged frame transfer, complex motif,
+guard and Gaussian estimates. The [certificate](certificates/aligned-paired-network.json)
+checks every full-size coefficient and both frame directions. This changes
+the finite graph; it complements parameter-only refinements of the preceding graph.
+
+## Preserved paired sums and tighter downstream estimates
 
 Three changes combine to reach `2^-59`:
 
@@ -240,7 +255,7 @@ the revised accounting.
 | Nonadjacent routing, parameter dependencies, and earlier variable-beta extension | Written mathematical audits |
 | Selected finite identities | Exhaustive small cases and deterministic sampled tests |
 | Stage-sharing construction | Written frame proof, complete matching and finite scalar checks |
-| Source patch application | All twelve alternatives checked |
+| Source patch application | All seventeen alternatives checked |
 | Full upstream multiplication theorem | Assumed; not independently established here |
 
 The scripts do not constitute a formal proof of the complete algorithm. This
@@ -297,13 +312,16 @@ Each patch applies independently to the unmodified pinned source.
 | [h46-shared-side-75](patches/h46-shared-side-75.patch) | `2^-75` | Stage-1/stage-3 side-role sharing, routing, and parameter tuning |
 | [h46-incidence-67](patches/h46-incidence-67.patch) | `2^-67` | Rectangle incidence circuits, full auxiliary sharing, routing, and parameter tuning |
 | **[h46-dag-63](patches/h46-dag-63.patch)** | **`2^-63`** | **Shared intermediate sums, reversible role allocation, full auxiliary sharing, routing, and parameter tuning** |
+| [h50-paired-59](patches/h50-paired-59.patch) | `2^-59` | Paired sums, stopped guard and tighter Gaussian width |
+| [h50-aligned-paired](patches/h50-aligned-paired.patch) | `17*2^-63` | Aligned common-point pairs, unchanged paired recursion and downstream recipe |
 
 Machine-readable results are in [parameters.json](certificates/parameters.json), [network-search.json](certificates/network-search.json),
 [nonadjacent-axis.json](certificates/nonadjacent-axis.json), and
 [routing-tuned.json](certificates/routing-tuned.json), and
 [stage-reuse.json](certificates/stage-reuse.json), and
 [incidence-network.json](certificates/incidence-network.json), and
-[dag-network.json](certificates/dag-network.json). The first note also gives
+[dag-network.json](certificates/dag-network.json), and
+[aligned-paired-network.json](certificates/aligned-paired-network.json). The first note also gives
 a closed-form supremum for the earlier fixed-`beta` parameter problem.
 
 ## Attribution, citation, and license

@@ -1,7 +1,7 @@
 # Reproducing the result
 
-The primary artifacts are the [paired-network note](../artifacts/paired-note.pdf),
-[strongest patch](../patches/h50-paired-59.patch), and exact JSON certificates.
+The primary artifacts are the [aligned paired note](../artifacts/aligned-paired-note.pdf),
+[strongest patch](../patches/h50-aligned-paired.patch), and exact JSON certificates.
 They are conditional on the algorithmic interfaces identified in the
 [dependency audit](audit.md).
 
@@ -20,6 +20,11 @@ configuration is not a claim that those hosted runs have already passed.
 ```sh
 make verify
 ```
+
+The aligned paired generators additionally write
+`certificates/aligned-paired-network.json` and the independent
+`patches/h50-aligned-paired.patch`, with exact full-size support and frame
+checks. Rebuild its proof note with `make aligned-paired-note`.
 
 This command performs these steps:
 
@@ -129,5 +134,5 @@ and [setup-python](https://github.com/actions/setup-python) actions, with
 read-only repository permissions. The PDF is supplied for readers and can be
 rebuilt locally using the command above.
 
-Build the latest note with `make paired-note`. The earlier notes and
+Build the latest note with `make aligned-paired-note`. The earlier notes and
 patches remain available as independent witnesses.
