@@ -39,6 +39,11 @@ guard and Gaussian estimates. The [certificate](certificates/aligned-paired-netw
 checks every full-size coefficient and both frame directions. This changes
 the finite graph; it complements parameter-only refinements of the preceding graph.
 
+The [focused review packet](docs/research/aligned-paired-review.md)
+([PDF](artifacts/aligned-paired-review.pdf)) gives the precise finite claim,
+conditional hypotheses, proof dependencies and runnable checks. Independent
+review of the rank transfer and fixed-tape recurrence is requested.
+
 ## Preserved paired sums and tighter downstream estimates
 
 Three changes combine to reach `2^-59`:

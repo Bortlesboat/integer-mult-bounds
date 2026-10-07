@@ -14,6 +14,10 @@ Artifacts: [certificate](../../certificates/aligned-paired-network.json),
 [independent patch](../../patches/h50-aligned-paired.patch), and
 [proof note](../../artifacts/aligned-paired-note.pdf).
 
+The [focused review packet](aligned-paired-review.md) separates the finite
+claim from its conditional consequence and identifies the rank, fixed-tape
+recurrence and downstream obligations for independent review.
+
 ## Construction and frame transfer
 
 Fix global pairs `{0,1}, {2,3}, ..., {48,49}`. For common point `i`, list all
