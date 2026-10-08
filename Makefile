@@ -383,3 +383,13 @@ skip-suffix-check:
 	cd research/skip-suffix && python3 -m unittest discover -s ../../tests -p 'test_skip_suffix.py' -v
 
 skip-suffix-verify: skip-suffix-producer skip-suffix-check
+
+.PHONY: skip-clones-verify skip-clones-producer skip-clones-check
+skip-clones-producer:
+	python3 research/skip-clones/producer.py
+
+skip-clones-check:
+	python3 research/skip-clones/witness.py --output research/skip-clones/certificate.json
+	python3 -m unittest discover -s tests -p 'test_skip_clones.py' -v
+
+skip-clones-verify: skip-clones-producer skip-clones-check

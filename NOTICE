@@ -263,3 +263,11 @@ specialization and PR43/46/48 checking interfaces. RaD/hipotures: PR51
 whole-chain/source-partition cloning and earlier producer/interfaces.
 Rohan Arun: PR44 weighted matching and earlier fixed/reversed work, with all
 stated historical AI assistance. All predecessor notices remain applicable.
+
+Original-envelope whole-chain clones on skip-prefix strips (research/skip-clones):
+Chafik Boukhalfa, prepared with OpenAI Codex assistance. The complete-chain
+source-partition clone operation is adapted from RaD / hipotures, PR #51,
+with original envelopes retained here. The scalar base is Avi Eisenberg's
+PR #53 skip-prefix layout, prepared with Anthropic Claude assistance.
+All credited PR #43/#46/#48, PR #44 and earlier code/proof notices remain
+in force. This extension is provided under the repository's Apache-2.0 terms.
