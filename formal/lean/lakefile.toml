@@ -1,5 +1,5 @@
 name = "KappaCheck"
-defaultTargets = ["KappaCheck"]
+defaultTargets = ["KappaCheck", "PRChecksA", "PRChecksB", "PRChecksC"]
 
 [[require]]
 name = "mathlib"
@@ -8,3 +8,13 @@ rev = "v4.21.0"
 
 [[lean_lib]]
 name = "KappaCheck"
+
+# Certificate arithmetic of open upstream PRs #3-#12 (see formal/open-prs/README.md)
+[[lean_lib]]
+name = "PRChecksA"
+
+[[lean_lib]]
+name = "PRChecksB"
+
+[[lean_lib]]
+name = "PRChecksC"

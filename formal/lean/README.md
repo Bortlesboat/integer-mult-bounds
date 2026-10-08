@@ -9,6 +9,10 @@ lake exe cache get   # prebuilt Mathlib
 lake build
 ```
 
+The same project also builds `PRChecksA`, `PRChecksB` and `PRChecksC`: the certificate
+arithmetic of the open upstream PRs #3–#12, described in
+[../open-prs/README.md](../open-prs/README.md).
+
 **[SOURCES.md](SOURCES.md)** pairs every Lean theorem and definition with the exact
 lines of the notes and of the pinned upstream paper that it formalizes, and with the
 certificate values it restates. `python3 formal/lean/sources.py` (also run as
