@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Replay the PR55/PR57 joint-frame words, actual fixed profiles and assembly.
+"""Replay the PR55 joint-frame words with ranked reclamation and exact profiles.
 
 Every new XOR word, dirty basis column, frame incidence and fixed-basis
 profile is checked. Unchanged data geometry and general transfer proofs

@@ -6,22 +6,21 @@ supports
 
 $$
  T(n)=O\bigl(n(\log n)^{1-\kappa}\bigr),\qquad
- \kappa=\frac{4764513337}{10^{14}}=4.764513337\times10^{-5}.
+ \kappa=\frac{475073569}{10^{13}}=4.75073569\times10^{-5}.
 $$
 
 The exact bit saving is
-$a_b=2382370177/50000000000000=4.764740354\times10^{-5}$.
-The unchanged complex saving is $717/10^7$. This improves PR58's
-$475073569/10^{13}$ by approximately 0.290011%, and lies strictly between
+$a_b=1187740349/25000000000000=4.750961396\times10^{-5}$.
+The unchanged complex saving is $717/10^7$. This improves PR57's stated
+$4669442391/10^{14}$ by approximately 1.740964%, and lies strictly between
 $2^{-15}$ and $2^{-14}$. These are comparisons of conditional asymptotic
 exponents, not measured running times.
 
-The contribution changes the order in which the PR58 composition considers
-retired physical slots: larger current frame ranks first, then slot ID. The
-PR55 scalar graph, matching algorithm, containment and signal-span tests, and
-literal XOR semantics remain unchanged. The dedicated compiler preserves the
-original shared PR57 compiler and its baseline. Neither a new frame family
-nor a new general transfer theorem is asserted.
+The new contribution is a checked composition: PR55's dual-suffix scalar
+producer is supplied to PR57's joint frame compiler. Both algorithms are
+retained with attribution. Neither a new frame family nor a new general
+transfer theorem is asserted. The finite argument and its remaining general
+obligations are separated below.
 
 ## 1. Pinned ingredients and scalar identities
 
@@ -33,12 +32,6 @@ word replay, transition extraction, bounded-minor profiler, and rational
 arithmetic are PR57's files at
 `cd350f76c9bc01489ec83568bded532cb69be938`. The retained PR57 witness supplies
 a complete comparison network; it is not overwritten by this witness.
-The complete PR58 certificate and its original source/proof provenance are
-preserved under `references/frame-compiler/pr58`, pinned to
-`bc2f7ed4c20dc18898305ab17165c0c995cbb804`. Its full child list is used for the
-strict comparison at the new bit saving. The only algorithm change in the
-dedicated `joint_dual_reclaim_compiler.py` is the retired-slot ordering line;
-an explicit runtime guard also rejects Python that disables assertions.
 
 For an ordered vector $v_1,\ldots,v_k$, let
 $A_i=\sum_{r\le i}v_r$ and $B_i=\sum_{r\ge i}v_r$, with empty sums zero.
@@ -109,14 +102,6 @@ compatible available signals. It emits the XORs that remove that signal.
 Those XORs, including their frame incidences, are part of the word. Clearing a
 signal is not an assertion that the physical slot becomes zero.
 
-The priority examines a snapshot of retired slots in decreasing current frame
-rank, with ascending slot ID for equal ranks. Every candidate still passes
-the same frame-containment and signal-span tests. All clearing operations
-remain literal invertible XORs, and successful reclamation immediately
-returns, so no later candidate uses a stale rank after a frame change. The
-order is a finite selection rule, not an assertion that greedy reclamation
-is globally optimal.
-
 Let $L$ denote the entire invertible auxiliary mixer, $V$ the source
 injection, and $J$ the read-only scatter. The finite scalar and terminal
 checks establish $JLV=I$ on the intended source coordinates. For source
@@ -143,12 +128,12 @@ sums, and all physical frame inclusions. In this witness:
 | Quantity | h=23 | h=25 |
 |---|---:|---:|
 | Sources $v_h$ | 1,771 | 2,300 |
-| Auxiliary roles $R_h$ | 30,688 | 40,338 |
-| Basis columns $2v_h+R_h$ | 34,230 | 44,938 |
-| XORs in $L$ | 112,534 | 148,820 |
-| Signal-clearing XORs, included above | 4,284 | 5,714 |
-| Full wrapped word length | 474,930 | 627,480 |
-| Copied local rank mass | 706,330 | 1,009,050 |
+| Auxiliary roles $R_h$ | 30,790 | 40,446 |
+| Basis columns $2v_h+R_h$ | 34,332 | 45,046 |
+| XORs in $L$ | 112,498 | 149,289 |
+| Signal-clearing XORs, included above | 4,248 | 6,183 |
+| Full wrapped word length | 474,786 | 629,356 |
+| Copied local rank mass | 708,676 | 1,011,750 |
 
 The full word lengths equal $4|L|+14v_h$. These are fixed finite scalar
 costs at the fixed dimensions; they are neither omitted cleanup work nor a
@@ -193,7 +178,7 @@ $N=\binom{23}3\binom{25}3=4,073,300$. Replicate the two auxiliary profiles
 2,300 and 1,771 times respectively. The physical width is
 
 $$
- W=2N+2300R_{23}+1771R_{25}=150,167,598.
+ W=2N+2300R_{23}+1771R_{25}=150,593,466.
 $$
 
 Retain the inherited all-pairs data profile: two copies of
@@ -207,7 +192,7 @@ new certificate.
 With $L=2,226,400$, the complete rank mass is
 
 $$
- s=mW-N+L=86,344,521,950,\qquad mW-s=1,846,900.
+ s=mW-N+L=86,589,396,050,\qquad mW-s=1,846,900.
 $$
 
 Every child width is positive and smaller than 575; the maximum is 529.
@@ -218,12 +203,12 @@ $$
 $$
 
 The exact rational certificate proves $F(a_b)<1$, with gap exceeding
-$1.59\times10^{-15}$. Logarithms use a 32-term atanh series with explicit
+$2.47\times10^{-15}$. Logarithms use a 32-term atanh series with explicit
 remainder and outward rational rounding. Exponentials use rigorous rational
 lower and upper inequalities. No floating-point search value is admitted as a
 proof bound. The next bit-saving grid point $a_b+10^{-14}$ has exact lower
-moment greater than one. At $a_b$, the complete pinned PR57 and PR58 networks also have
-lower moments greater than one, so the improvement is a physical-word change.
+moment greater than one. At $a_b$, the complete pinned PR57 network also has
+lower moment greater than one, so the improvement is a construction change.
 
 ## 6. Balanced assembly and conditional scope
 
@@ -234,7 +219,7 @@ $q=a_b(1-2\eta)$, and
 $\epsilon=(1-\eta)/(1+q)$. The new certificate checks all 47 strict assembly
 conditions and all seven final margins against the displayed $\kappa$, and
 recomputes the eventual cutoff inequalities. The smallest margin exceeds
-$\kappa$ by more than $2.96\times10^{-15}$. The next $10^{-14}$ kappa grid
+$\kappa$ by more than $3.67\times10^{-15}$. The next $10^{-14}$ kappa grid
 point fails the assembly check. Combining these inequalities with the inherited
 transfer theorem yields the conditional bound stated at the start.
 
@@ -263,8 +248,8 @@ Rohan Gupta / gupt1156 with Anthropic Claude assistance supplied PR55's dual
 suffix layout. Eumemic with OpenAI Codex assistance supplied PR57's joint frame
 compiler, reclamation, and independent word/profile machinery. Avi Eisenberg /
 ikeboy with Anthropic Claude assistance supplied PR53's skip-prefix framework.
-Chafik Boukhalfa with OpenAI Codex assistance supplied this composition,
-reclamation priority and independent checks, and the earlier PR43/46/48 original-envelope pipeline and
+Chafik Boukhalfa with OpenAI Codex assistance supplied this composition and
+independent checks, and the earlier PR43/46/48 original-envelope pipeline and
 exact data recovery. Rohan Arun with Anthropic Claude assistance, RaD /
 hipotures with OpenAI Codex assistance, icekylinx, Dominik Scholz, James Chang,
 Zhihao Chen, Aurel Prosz / Paureel, Swapnil Jain, Douglas Colkitt, OpenAI,
