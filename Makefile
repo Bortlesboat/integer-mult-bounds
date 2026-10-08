@@ -1,6 +1,7 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note fetch
 
 verify:
+	$(MAKE) copied-fixed-verify
 	$(MAKE) copied-centers-verify
 	$(MAKE) structured-bulk-verify
 	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
@@ -190,3 +191,14 @@ copied-centers-certificate:
 	python3 scripts/copied_centers_network.py
 
 copied-centers-verify: copied-centers-producer copied-centers-certificate
+
+.PHONY: copied-fixed-verify copied-fixed-producer copied-fixed-check
+copied-fixed-producer:
+	python3 research/copied-fixed/producer.py
+
+copied-fixed-check:
+	python3 research/copied-fixed/audit.py
+	python3 research/copied-fixed/verify.py --output research/copied-fixed/certificate.json
+	python3 -m unittest discover -s tests -p 'test_copied_fixed.py' -v
+
+copied-fixed-verify: copied-fixed-producer copied-fixed-check

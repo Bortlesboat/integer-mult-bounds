@@ -1,0 +1,52 @@
+{
+  "Lean_extension": "not implemented",
+  "artifact_sha256": {
+    "PROOF.md": "58d28ee6bebfb180db7f6ea861001e4234bdf221121de76c538be58a86de3c70",
+    "SOURCE.json": "a129353f05e25911f2795291bea0dc9e55555b1d4f567e6c72c794e2d9812cf7",
+    "certificate.json": "20a42eac07ef9b7428e3ea8564aafc0b1d3233b49e41d7ddae3c9c523081c3d8",
+    "changed_graph.py": "acd5d177b7cec686e7eb9872e95a44c69f46a8b1edc90f40d1b70a5ad4a0df8e",
+    "data_corners.cpp": "d134f43d31b896daf504511991be8608c6ba9d20a6606c57e2e12d4b203b7d44",
+    "original_timeline.py": "cf152459e080f556931122bc0afa3417835ea4a6d14e541be12c67f317e25f60",
+    "producer.py": "5a27a35df8d63984cc3bec084628e3713f276d60f13c42e71bb02184bebc5daa",
+    "profiles.cpp": "2335fa2f1a88d44ec3f4e18647307550da5231c671e72d1024785d190a2704c3",
+    "timeline-23.json": "61d7f311b6e1f751032e17beeb0ec918873c9bbd42b208db2f519b5a1690ffc1",
+    "timeline-25.json": "03fb58baec2b7e3a909e363d8923eec27a4922c03ea9ea6b264edb58849f02fb",
+    "verify.py": "35f448cc31f7695de60b71cb725f0a6711283a1180b0a6cb1bb6fd94c2847d74"
+  },
+  "base_commit": "11817ccacb564bb7f98789c20dc11d3fece207e3",
+  "bit_saving": "40997/1000000000",
+  "charged_fallbacks": 10,
+  "data_pairs": 4073300,
+  "final_PR42_comparison_check": {
+    "command": "make copied-fixed-check",
+    "exit_code": 0,
+    "focused_tests": 14,
+    "log_sha256": "953a2ea2ffe2594eafee50c91c3df874e97b34c2f3987f036ee1fe172aa233c0"
+  },
+  "full_dirty_basis": {
+    "23": 40227,
+    "25": 53079,
+    "orientations": [
+      "forward",
+      "reverse-complement"
+    ]
+  },
+  "full_make_verify": {
+    "exit_code": 0,
+    "focused_tests": 14,
+    "historical_patch_checks": 18,
+    "log_sha256": "3495e590b2dbc7d63743e577e624b077afce7a16a17e54d0ba1d37844281a501",
+    "tests": 184
+  },
+  "kappa": "409953/10000000000",
+  "margins": 7,
+  "profile_matrices": {
+    "23": 68462,
+    "25": 92107
+  },
+  "scope": "Conditional on OpenAI base theorem and inherited analytic, all-size physical/tape, routing, prime/native setup and eventual-threshold interfaces; no full formal verification or external acceptance.",
+  "status": "PASS conditional finite witness and exact arithmetic",
+  "strict_constraints": 47,
+  "timestamp_utc": "2026-10-08T13:55:12.250413+00:00",
+  "verification_sequence": "Full make verify passed. Subsequent changes added the PR42 exact comparison and updated prose; the complete focused check, including all 14 tests and independent projector audit, then passed again. Producer, graph, profile, data geometry and full dirty-basis witness values are unchanged."
+}
