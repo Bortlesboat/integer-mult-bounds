@@ -26,10 +26,12 @@ from structured_bulk_assembly import js
 sys.path.insert(0,str(HERE))
 from balanced_assembly import assembly, cutoffs
 
-AB = Q(410079761, 10**13)
+AB = Q(82375901, 2*10**12)
 AC = Q(717, 10000000)
 # Strictly below the recomputed balanced assembly margin.
-KAPPA = Q(410062945, 10**13)
+KAPPA = Q(411862541, 10**13)
+PR47_KAPPA = Q(4105106623,10**14)
+PR46_KAPPA = Q(410062945,10**13)
 PR44_KAPPA = Q(2050314627,5*10**13)
 PR37_KAPPA = Q(3850771033, 10**14)
 PR38_KAPPA = Q(242889, 6250000000)
@@ -237,8 +239,8 @@ def profile():
         axes.append(dict(original=row,fixed=f,copied_blocks=blocks,exactness=exactness(h)))
     hist = sum(parts.values(),Counter())
     s = sum(t*n for t,n in hist.items())
-    require(s == W*m-N+L == 102565738275, 'Complete rank mass')
-    require((m,N,W,L) == (575,4073300,178378409,2226400), 'Physical constants')
+    require(s == W*m-N+L == 102078397025, 'Complete rank mass')
+    require((m,N,W,L) == (575,4073300,177530859,2226400), 'Physical constants')
     require(max(hist) == 529 and all(0<t<m and n>0 for t,n in hist.items()), 'Proper children')
     return dict(m=m,N=N,W=W,L=L,total_rank=s,deficit=W*m-s,maxchild=max(hist),
                 child_multiplicities=dict(sorted(hist.items())),parts=parts,axes=axes)
@@ -261,45 +263,55 @@ def run():
     require(forward_at_new['lower']>1,'PR40 network not excluded at new saving')
     rad=read(HERE/'comparison-pr41.json')
     rad_rows={int(t):n for t,n in rad['child_multiplicities'].items()}
-    require(sum(t*n for t,n in rad_rows.items())==rad['total_rank']==p['total_rank'],'PR41 rank mismatch')
+    require(sum(t*n for t,n in rad_rows.items())==rad['total_rank']==102565738275,'PR41 rank mismatch')
     rad_at_new=moment(rad['m'],rad['W'],rad_rows,AB)
     require(rad_at_new['lower']>1,'PR41 alternating network not excluded at new saving')
     newest=read(HERE/'comparison-pr42.json')
     newest_rows={int(t):n for t,n in newest['child_multiplicities'].items()}
-    require(sum(t*n for t,n in newest_rows.items())==newest['total_rank']==p['total_rank'],'PR42 rank mismatch')
+    require(sum(t*n for t,n in newest_rows.items())==newest['total_rank']==102565738275,'PR42 rank mismatch')
     newest_at_new=moment(newest['m'],newest['W'],newest_rows,AB)
     require(newest_at_new['lower']>1,'PR42 network not excluded at new saving')
     previous=read(HERE/'comparison-pr43.json')
     previous_rows={int(t):n for t,n in previous['child_multiplicities'].items()}
-    require(sum(t*n for t,n in previous_rows.items())==previous['total_rank']==p['total_rank'],'PR43 rank mismatch')
+    require(sum(t*n for t,n in previous_rows.items())==previous['total_rank']==102565738275,'PR43 rank mismatch')
     previous_at_new=moment(previous['m'],previous['W'],previous_rows,AB)
     require(previous_at_new['lower']>1,'PR43 network not excluded at new saving')
     frontier=read(HERE/'comparison-pr44.json')
     frontier_rows={int(t):n for t,n in frontier['child_multiplicities'].items()}
-    require(sum(t*n for t,n in frontier_rows.items())==p['total_rank'],'PR44 rank mismatch')
+    require(sum(t*n for t,n in frontier_rows.items())==frontier['total_rank']==102565738275,'PR44 rank mismatch')
     frontier_at_new=moment(frontier['m'],frontier['W'],frontier_rows,AB)
     require(frontier_at_new['lower']>1,'PR44 network not excluded at new saving')
+    parent=read(HERE/'comparison-pr46.json')
+    parent_rows={int(t):n for t,n in parent['child_multiplicities'].items()}
+    require(sum(t*n for t,n in parent_rows.items())==parent['total_rank']==102565738275,'PR46 rank mismatch')
+    parent_at_new=moment(parent['m'],parent['W'],parent_rows,AB)
+    require(parent_at_new['lower']>1,'PR46 network not excluded at new saving')
+    latest=read(HERE/'comparison-pr47.json')
+    latest_rows={int(t):n for t,n in latest['child_multiplicities'].items()}
+    require(sum(t*n for t,n in latest_rows.items())==latest['total_rank']==latest['W']*latest['m']-1846900,'PR47 rank mismatch')
+    latest_at_new=moment(latest['m'],latest['W'],latest_rows,AB)
+    require(latest_at_new['lower']>1,'PR47 network not excluded at new saving')
     phase = prior['complex']['counts']
     phase_row = read(ROOT / 'certificates/copied-centers-complex-input.json')
     bridge = baseline.finite_bridge(p,phase,[phase_row,phase_row])
     require(all(js(bridge[k])==js(prior['finite_bridge'][k]) for k in ('complex','semantic','rows')), 'Unexpected phase or stock change')
     final = assembly(bridge,AB,KAPPA,a_complex=AC)
     eventual = cutoffs(bridge,final)
-    require(KAPPA > PR44_KAPPA > PR43_KAPPA > PR42_KAPPA > PR41_KAPPA > PR40_KAPPA > PR39_KAPPA > PR38_KAPPA > PR37_KAPPA > prior['kappa'] > Q(1,2**15), 'Comparison failed')
+    require(KAPPA > PR47_KAPPA > PR46_KAPPA > PR44_KAPPA > PR43_KAPPA > PR42_KAPPA > PR41_KAPPA > PR40_KAPPA > PR39_KAPPA > PR38_KAPPA > PR37_KAPPA > prior['kappa'] > Q(1,2**15), 'Comparison failed')
     require(KAPPA < Q(1,2**14), 'Unexpected power-of-two bracket')
     own_files = sorted(HERE.glob('*.py'))+sorted(HERE.glob('*.cpp'))+[HERE/'PROOF.md',HERE/'SOURCE.json']
     own_files += [HERE/f'{kind}-{h}.json' for h in (23,25) for kind in ('profiles','original','scalar')]
-    own_files += [HERE/'data-corners.json',HERE/'comparison-pr40.json',HERE/'comparison-pr41.json',HERE/'comparison-pr42.json',HERE/'comparison-pr43.json',HERE/'comparison-pr44.json',HERE/'links-23.uses',HERE/'links-25.uses']
+    own_files += [HERE/'data-corners.json',HERE/'comparison-pr40.json',HERE/'comparison-pr41.json',HERE/'comparison-pr42.json',HERE/'comparison-pr43.json',HERE/'comparison-pr44.json',HERE/'comparison-pr46.json',HERE/'comparison-pr47.json',HERE/'search-record.json',HERE/'links-23.uses',HERE/'links-25.uses']
     return dict(status='Conditional exact arithmetic witness; general transfer proofs are dependencies',
                 kappa=KAPPA,bit=dict(counts=p,**exact),complex=prior['complex'],
                 geometry=geo,finite_bridge=bridge,assembly=final,eventual_bounds=eventual,sources=sources,
-                comparison=dict(PR44=PR44_KAPPA,ratio_PR44=KAPPA/PR44_KAPPA,PR36=prior['kappa'],PR37=PR37_KAPPA,PR38=PR38_KAPPA,PR39=PR39_KAPPA,PR40=PR40_KAPPA,PR41=PR41_KAPPA,PR42=PR42_KAPPA,PR43=PR43_KAPPA,
+                comparison=dict(PR47=PR47_KAPPA,ratio_PR47=KAPPA/PR47_KAPPA,PR46=PR46_KAPPA,ratio_PR46=KAPPA/PR46_KAPPA,PR44=PR44_KAPPA,ratio_PR44=KAPPA/PR44_KAPPA,PR36=prior['kappa'],PR37=PR37_KAPPA,PR38=PR38_KAPPA,PR39=PR39_KAPPA,PR40=PR40_KAPPA,PR41=PR41_KAPPA,PR42=PR42_KAPPA,PR43=PR43_KAPPA,
                     ratio_PR36=KAPPA/prior['kappa'],ratio_PR37=KAPPA/PR37_KAPPA,
                     ratio_PR38=KAPPA/PR38_KAPPA,ratio_PR39=KAPPA/PR39_KAPPA,ratio_PR40=KAPPA/PR40_KAPPA,ratio_PR41=KAPPA/PR41_KAPPA,ratio_PR42=KAPPA/PR42_KAPPA,ratio_PR43=KAPPA/PR43_KAPPA,
                     dyadic_corollary='2^-15',next_dyadic_not_reached='2^-14'),
-                controls=dict(PR44_bit_at_new_lower=frontier_at_new['lower'],old_bit_at_new_lower=old_at_new['lower'],PR40_bit_at_new_lower=forward_at_new['lower'],PR41_bit_at_new_lower=rad_at_new['lower'],PR42_bit_at_new_lower=newest_at_new['lower'],PR43_bit_at_new_lower=previous_at_new['lower']),
+                controls=dict(PR47_bit_at_new_lower=latest_at_new['lower'],PR46_bit_at_new_lower=parent_at_new['lower'],PR44_bit_at_new_lower=frontier_at_new['lower'],old_bit_at_new_lower=old_at_new['lower'],PR40_bit_at_new_lower=forward_at_new['lower'],PR41_bit_at_new_lower=rad_at_new['lower'],PR42_bit_at_new_lower=newest_at_new['lower'],PR43_bit_at_new_lower=previous_at_new['lower']),
                 local_sha256={str(p.relative_to(ROOT)):sha256(p.read_bytes()).hexdigest() for p in own_files},
-                scope='RaD alternating graphs, PR44 pinned weighted carrier matching and fixed-basis internal blocks at (23,25); '
+                scope='Changed leave-one-out graphs with RaD alternating point order, newly pinned weighted carrier matching and fixed-basis internal blocks at (23,25); '
                       'all actual data pairs checked for 9 singletons +21+17+481; '
                       'ten failed modular tests are recovered by exact rational elimination. Exact scalar/label/'
                       'matching/profile reconstruction is producer.py. OpenAI base theorem, '

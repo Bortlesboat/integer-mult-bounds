@@ -1,49 +1,69 @@
 {
+  "PR47_benchmark_commit": "117caf164e3b235ef20188aa2dc1b49617e9255c",
   "adversarial": {
-    "duplicate_carrier": {
-      "reason": "Matching collision",
-      "rejected": true
+    "23": {
+      "R": 36432,
+      "matched": 6002,
+      "order": [
+        1,
+        3,
+        2,
+        0
+      ],
+      "original_output_index_oracle": true,
+      "rejected_matching_mutations": {
+        "duplicate_carrier": "Matching collision",
+        "inactive_donor": "Invalid donor",
+        "trailing_bytes": "Matching record format",
+        "wrong_node_count": "Matching record format"
+      },
+      "sorted_index_return_would_fail": true
     },
-    "inactive_donor": {
-      "reason": "Invalid donor",
-      "rejected": true
-    },
-    "rational_pivot_order_matches_geometry": true,
-    "trailing_bytes": {
-      "reason": "Matching record format",
-      "rejected": true
-    },
-    "wrong_node_count": {
-      "reason": "Matching record format",
-      "rejected": true
+    "25": {
+      "R": 48329,
+      "matched": 7715,
+      "order": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "original_output_index_oracle": true,
+      "rejected_matching_mutations": {
+        "duplicate_carrier": "Matching collision",
+        "inactive_donor": "Invalid donor",
+        "trailing_bytes": "Matching record format",
+        "wrong_node_count": "Matching record format"
+      },
+      "sorted_index_return_would_fail": true
     }
   },
   "checks": [
-    "full scalar reconstruction and exact global support audit",
-    "all pinned carrier uses independently recounted",
-    "complete dirty formal basis replay in both orientations at h23 and h25",
-    "full CRT-certified fixed-I+J profile replay",
-    "all 4073300 data pairs at primary prime plus exact rational recovery of all ten failures",
-    "90 exact rational envelope projector cases",
-    "47 strict assembly inequalities and all seven margins",
-    "exact lower bounds exclude PR36 and PR40-44 at the new bit saving"
+    "exact original-index scalar identities and every disjoint source support",
+    "every new pinned carrier use independently recounted",
+    "full dirty formal basis and reverse-complement physical timeline in both dimensions",
+    "complete CRT-certified fixed-I+J profiles",
+    "all 4073300 primary data pairs and exact rational recovery of all ten failed pairs",
+    "90 rational envelope projector cases",
+    "47 strict assembly inequalities and seven margins",
+    "exact lower bounds reject PR36 and PR40-44,46,47 at the new bit saving"
   ],
   "command": "make verify",
-  "completed_utc": "2026-10-08T14:43:26.616683+00:00",
+  "completed_utc": "2026-10-08T15:14:34.925226+00:00",
   "exit_code": 0,
-  "focused_tests": 16,
-  "full_suite_tests": 186,
-  "generated_drift": "endpoint-gauge-network.json changed key order only; semantic equality proved before restoring parent bytes",
+  "final_focused_log_sha256": "473b48e03aa89a20823423d1eb088559304331f9a7cd36ef164cd8d6ee205aa7",
+  "focused_tests": 17,
+  "full_suite_tests": 187,
+  "generated_drift": "endpoint-gauge-network.json changed JSON key order only; semantic equality proved before restoring parent bytes",
   "historical_patch_checks": 18,
   "limitations": [
-    "conditional on inherited all-size physical and analytic transfer interfaces",
+    "conditional on inherited all-size physical and analytic interfaces",
+    "no global optimality or practical speedup claim",
     "not a formal theorem verification",
     "optional Lean extension not implemented"
   ],
-  "log_sha256": "65ad2d718b805611ad26bc76301b194f5730bf7549867579029714a47fee3b98",
-  "parent_commit": "c0fbfd3cc4fd6e95cef54ab307dfb50c69dd96f6",
-  "pr44_construction_commit": "061414a529f1123668872db44d737e362fbe066f",
-  "pr44_latest_reviewed_commit": "1a21794eb5384db0e96d7bc2b11aa6f28cff7a85",
-  "source_scope": "The C++ attribution comment was clarified during the full run; executable code was unchanged. Certificate source hashes were regenerated before the integrated unittest stage. A final focused run verifies the final hashes and exact certificate.",
+  "log_sha256": "ba088aa45c37662cc20f9658e5e35ec198000661a12fc9e03f5ff64a2939f7a8",
+  "parent_commit": "71b6c960c89295e952522dd44111df9cfc51ae90",
+  "source_scope": "The construction and replay code remained unchanged during full make verify. The contemporaneous PR47 comparison was added during the run; search-record explanation metadata was clarified afterward. The final focused run verifies every final source hash, all comparisons and the exact frozen certificate.",
   "status": "passed"
 }

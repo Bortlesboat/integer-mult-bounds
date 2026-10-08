@@ -1,23 +1,24 @@
-# Conditional saving 4.10062945e-5 from weighted matching and exact data recovery
+# Conditional saving 4.11862541e-5 from reordered exclusion sums
 
 The [proof and reproduction note](research/copied-fixed/PROOF.md) gives
-**κ = 82012589/2000000000000 > 2^-15**, conditional on OpenAI's base theorem
-and retained analytic and fixed-tape interfaces. This is **6.6292252%**
-above PR #36, **0.0268189%** above PR #43, and **0.00000477975%** above #44.
+**κ = 411862541/10000000000000 > 2^-15**, conditional on OpenAI's base theorem
+and retained analytic and fixed-tape interfaces. This is **7.0971766%**
+above PR #36 and **0.4388585%** above our previous PR #46.
 
-Compose Rohan Arun's PR #44 weighted carrier matching with exact rational
-recovery of its ten conservative data-corner fallbacks. The matching,
-complete fixed profiles and dirty physical timelines are replayed locally.
-Every data pair now uses 9 singletons plus blocks of widths 21, 17 and 481.
-Exact bounds show the #44 network fails at the new bit saving while this
-network passes. PR #40/#42 previously recovered the same pairs by another
-prime; no new matching algorithm or global optimality is claimed here.
+Reorder the prefix/suffix construction of leave-one-out sums, restore their
+original output indices, and recompute the weighted carrier matching.
+The changed graphs retain 403 more carriers across the two local networks,
+reducing the physical wire count by **847,550** to **177,530,859**.
+Exact bounds show #46's network fails at the new bit saving while this
+network passes. Complete scalar, fixed-profile and dirty-basis replay
+checks the changed construction. All paid copies and data blocks remain.
 
 Run `make copied-fixed-verify` for full scalar, label, matching, fixed-profile,
 physical timeline, exhaustive data-pair and exact-fraction checks.
-`make verify` includes these and the inherited suite. The proof, source
-credits and limitations are included. Finite certification is not formal
-verification or external acceptance of the full theorem.
+`make verify` includes these and the inherited suite. The proof, exact
+search scores, source credits and limitations are included. Finite
+certification is not formal verification or external acceptance of the
+full theorem; no global optimality or measured speedup is claimed.
 The original PR #36 result follows for comparison.
 
 # Integer multiplication with conditional saving 3.84569e-5

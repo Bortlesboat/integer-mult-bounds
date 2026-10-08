@@ -45,6 +45,8 @@ class CopiedFixedTests(unittest.TestCase):
         self.assertGreater(result['controls']['PR42_bit_at_new_lower'],1)
         self.assertGreater(result['controls']['PR43_bit_at_new_lower'],1)
         self.assertGreater(result['controls']['PR44_bit_at_new_lower'],1)
+        self.assertGreater(result['controls']['PR46_bit_at_new_lower'],1)
+        self.assertGreater(result['controls']['PR47_bit_at_new_lower'],1)
 
     def test_recovery_and_every_pair_charged(self):
         c=v.data_corners()
@@ -54,6 +56,13 @@ class CopiedFixedTests(unittest.TestCase):
         self.assertEqual(data[21],2*c['good'])
         self.assertEqual(data[17],2*c['good'])
         self.assertEqual(sum(t*n for t,n in data.items()),2*p['N']*528)
+
+    def test_changed_graphs_reduce_physical_roles(self):
+        p=v.profile()
+        self.assertEqual([axis['original']['R'] for axis in p['axes']],[36432,48329])
+        self.assertEqual([axis['original']['matched'] for axis in p['axes']],[6002,7715])
+        self.assertEqual(p['W'],178378409-253*2300-150*1771)
+        self.assertEqual(p['deficit'],1846900)
 
     def test_exact_recovery_explains_primary_modular_failures(self):
         c=v.data_corners();prime=c['prime']

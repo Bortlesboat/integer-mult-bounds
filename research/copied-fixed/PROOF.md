@@ -1,4 +1,4 @@
-# Weighted carrier matching with exact recovery of every data block
+# Reordered exclusion sums reduce retained scratch roles
 
 Conditional witness, prepared locally on 8 October 2026 with OpenAI Codex assistance.
 
@@ -7,56 +7,75 @@ fixed multitape interfaces, the construction below gives
 
 \[
 T(n)=O\bigl(n(\log n)^{1-\kappa}\bigr),\qquad
-\boxed{\kappa=\frac{82012589}{2000000000000}=0.0000410062945>2^{-15}.}
+\boxed{\kappa=\frac{411862541}{10000000000000}=0.0000411862541>2^{-15}.}
 \]
 
-This is **6.6292252%** above icekylinx's PR #36 witness,
-**0.0268189%** above our published PR #43 witness, and
-**0.00000477975%** above Rohan Arun's contemporaneous PR #44 witness
-4.100629254e-5. The increment over #44 is small: 1.96e-12 in kappa.
+This is **7.0971766%** above icekylinx's PR #36 witness,
+**0.4657951%** above our published PR #43 witness, and
+**0.4388585%** above our published PR #46 witness 4.10062945e-5.
+It is also **0.3293163%** above Rohan Arun's contemporaneous PR #47
+hill-climbed witness 4.105106623e-5, pinned at
+117caf164e3b235ef20188aa2dc1b49617e9255c for comparison only.
 The power-of-two corollary remains 2^-15; 2^-14 is not reached.
 These compare asymptotic exponent savings, not running times. Finite
 certification does not formally verify the full multiplication theorem.
 
-## Increment and provenance
+## Increment and exact local identity
 
-Use the weighted carrier matching published by Rohan Arun in PR #44,
-at commit 061414a529f1123668872db44d737e362fbe066f, with Anthropic Claude
-assistance. Its binary carrier-use lists are pinned and fully replayed.
-The floating-point discovery optimizer is retained for attribution only;
-no optimizer result, optimality claim or floating-point value is trusted
-by the certificate. Both scalar graphs use support-right summation trees.
-At h=25 this changes PR #43's input-order left association; h=23 is unchanged.
+Change the construction of each local leave-one-out vector in both
+exclusion graphs. Sort the input summands by increasing source-support
+size, breaking ties by increasing support bitmask at h=23 and decreasing
+support bitmask at h=25. Build the existing prefix/suffix sums in that
+order, then restore the original indexing of the leave-one-out outputs.
+At h=23 also fold ordinary totals in reverse input order; h=25 retains
+PR #46's decreasing (support size, support bitmask) total ordering.
 
-The additional saving comes from removing all ten conservative data-corner
-fallbacks in #44. PR #40/#42 had already resolved these primary-prime
-failures by a second-prime test. This composition uses a separate exact
-rational elimination of all ten pairs, proving every ordered pivot and
-required zero directly. Each of the two macros per pair replaces 38
-singletons by blocks of widths 21 and 17. Globally the child multiplicities
-change by -760 at width 1, +20 at width 21, and +20 at width 17, with
-no change in total rank, physical roles, copies or overhead interfaces.
+For disjoint source sums v_0,...,v_(n-1), let pi be the chosen permutation.
+The prefix/suffix construction returns, at sorted position i,
+P_i+S_i = sum_{j<i} v_(pi(j)) + sum_{j>i} v_(pi(j)). Returning that value
+at original position pi(i) is exactly sum_{k != pi(i)} v_k. The total
+is unchanged. All additions have disjoint source supports; interning equal
+supports only reuses equal sums. The restored indexing is essential.
+This establishes the local linear identity independently of which sort
+order happens to improve the cost. The full scalar audit checks every
+original-index output and every disjoint addition after global sharing.
 
-An exact lower moment bound excludes the complete #44 network at the new
-bit saving; the new network's exact upper moment is below one. This is a
-finite-construction improvement, rather than parameter tuning alone.
-The novelty claimed here is this checked composition and rational recovery,
-not the weighted matching or the already known possibility of recovering
-these ten pairs. No global optimality claim is made.
+The two addition counts stay 37098 and 49119. New weighted carrier
+matchings retain 6002 and 7715 carriers, versus 5749 and 7565 in #46.
+Consequently R_23 falls by 253 to 36432, R_25 falls by 150 to 48329,
+and the physical wire count falls by 253*2300+150*1771=847550 to 177530859.
+This is a changed finite network, not an adjustment of assembly parameters.
+Every selected carrier is checked for actual operand use, uniqueness,
+causal order and nested frames, and its complete physical timeline is replayed.
+
+A bounded search examined 80 graph configurations and two matching objectives
+per graph: first-order block entropy and the recursive cost at #46's bit
+saving. `search-record.json` records the exact rational candidate scores.
+Rohan Arun's #44 weighted matching method, with his disclosed Anthropic
+Claude assistance, supplies the discovery optimizer and replay profiler.
+The newly selected carrier-use lists belong to the changed graphs here;
+#44's lists are not substituted into them. Floating-point search only
+proposes finite lists; no floating-point value or optimality assertion is
+trusted by the exact certificate. No global optimality claim is made.
+
+The exact lower moment of #46's complete network exceeds one at the new
+bit saving, while the changed network's exact upper moment is below one.
+The bit-network recurrence remains the binding component; the inherited
+complex saving 717/10^7 retains headroom. The assembly margin is slightly
+below the bit saving because of its strict balancing constraints.
 
 ## What changes, and what is reused
 
 Use RaD / hipotures's PR #41 alternating pair order: in the h-point graph,
 form consecutive pairs excluding the common point, reverse the pair list
-for odd common points, and append leftover points. At both h=23 and h=25, sort summands
-by decreasing (support size, support bitmask) before left association. These are deterministic changes to
-the scalar computation DAG. `changed_graph.py` is a minimal specialization
-of the pinned PR #41 producer and its linked RaD checkpoint. The h23 scalar hash is unchanged from PR #41/#43; the h25 specialization
-has the new scalar hash recorded in `scalar-25.json`. No sampled search statistic
-is a certificate input.
+for odd common points, and append leftover points. The changed total and
+leave-one-out rules above modify both scalar DAGs; their exact hashes are
+recorded in `scalar-23.json` and `scalar-25.json`. `changed_graph.py` remains
+a specialization of the pinned original generators. No sampled search
+statistic is a certificate input.
 
 Use the **original envelope labels**, both fixed local bases I+J, and our
-pinned PR #44 weighted matching. Original labels have the
+new pinned weighted matching. Original labels have the
 explicit low-rank projector formula from icekylinx PR #32 and Dominik
 Scholz PR #35. The pinned selected carriers satisfy every legality check; all selected uses are independently
 recounted. Both complete fixed profiles are recomputed from these changed
@@ -113,8 +132,8 @@ consumer. This is the compiler's retained terminal contract.
 
 | h | triples v | additions c | output uses q | matches | roles R | loss ell |
 |---|---:|---:|---:|---:|---:|---:|
-| 25 | 2300 | 49119 | 6925 | 7565 | 48479 | 600 |
-| 23 | 1771 | 37098 | 5336 | 5749 | 36685 | 506 |
+| 25 | 2300 | 49119 | 6925 | 7715 | 48329 | 600 |
+| 23 | 1771 | 37098 | 5336 | 6002 | 36432 | 506 |
 
 Here \(R=c+q-\mathrm{matches}\), \(\ell=h(h-1)\).
 
@@ -124,8 +143,8 @@ use records. Original rational envelope bases replace positive-label
 inputs. It checks all input/output coefficients, frame containments,
 terminal-role uniqueness, reverse-complement incidences and the copied
 rank histogram. Its actual XOR word is then applied to the **complete
-formal basis** of inputs, outputs and all dirty auxiliaries: 40,227 basis
-vectors at h=23 and 53,079 at h=25, with 312,842 and 413,392 elementary
+formal basis** of inputs, outputs and all dirty auxiliaries: 39,974 basis
+vectors at h=23 and 52,929 at h=25, with 311,830 and 412,792 elementary
 operations respectively. Both forward and reverse-complement words give
 the required shear and restore every auxiliary exactly. This is full
 finite linear verification over F2, not random dirty-state sampling.
@@ -277,16 +296,16 @@ over Q. This certifies zeros as well as nonzeros, without a probabilistic
 rank assumption. Consecutive increasing pivots are compiled by the retained
 lower-triangular partial-swap conjugation into one contiguous recursive call.
 
-The profiler reconstructs 68,229 distinct matrices at h=23 and 91,834 at
-h=25. Of these, 5,555 and 7,179 respectively use all three primes; no
+The profiler reconstructs 68,025 distinct matrices at h=23 and 91,415 at
+h=25. Of these, 5,379 and 7,186 respectively use all three primes; no
 modular profiles disagree. The checked-in complete block lists have old
-rank masses 844767 and 1213175. Subtract h full h-blocks and add h
-singletons for copied centers; the new masses are 844261 and 1212575.
+rank masses 838948 and 1209425. Subtract h full h-blocks and add h
+singletons for copied centers; the new masses are 838442 and 1208825.
 
 ## Complete cost and exact witness
 
-Put \(N=v_av_b=4073300\), \(B_a=v_bR_a=84375500\),
-\(B_b=v_aR_b=85856309\), \(W=2N+B_a+B_b=178378409\),
+Put \(N=v_av_b=4073300\), \(B_a=v_bR_a=83793600\),
+\(B_b=v_aR_b=85590659\), \(W=2N+B_a+B_b=177530859\),
 \(L=v_b\ell_a+v_a\ell_b=2226400\), m=575.
 The disjoint classes are:
 
@@ -302,16 +321,16 @@ The disjoint classes are:
 | Paid endpoint correction | N | 1 |
 
 Their weighted rank is exactly
-\(s=Wm-N+L=102565738275\); the deficit is 1846900.
+\(s=Wm-N+L=102078397025\); the deficit is 1846900.
 Every width is at most 529<m. Every copied transform is included once,
 and every original role still undergoes full interchange. Node overhead
 is linear in current volume, under the inherited complete-row, remainder,
 spectator, ordered-affine and fixed-tape contracts.
 
-For \(a_b=410079761/10000000000000\), the checker proves
+For \(a_b=82375901/2000000000000\), the checker proves
 
 \[
-\sum_t\frac{n_t t}{Wm}\exp(a_b\log(m/t))<1-3.4558\cdot10^{-14}.
+\sum_t\frac{n_t t}{Wm}\exp(a_b\log(m/t))<1-3.9870\cdot10^{-14}.
 \]
 
 It range-reduces logarithms to [1,2], uses the 32-term atanh series with
@@ -320,7 +339,7 @@ For 0≤u<1 it uses
 \(e^u\le1+u+u^2/[2(1-u/3)]\); the factorial inequality
 \(k!\ge2\cdot3^{k-2}\) for k≥2 proves this bound.
 The first four exponential terms give a rigorous lower bound. Those lower
-bounds reject the old PR #36 profile and the complete PR #40--#44 profiles
+bounds reject the old PR #36 profile and the complete PR #40--#44, #46 and #47 profiles
 at this new saving. These are scoped
 checks, not global optimality claims.
 
@@ -358,8 +377,8 @@ All 47 strict constraints hold. The seven margins are
 Their minimum is g, the first is g+eta, and
 
 \[
-g-\kappa=\frac{147321738734203716270751}
-{10000410079760999179840478000000000000}>1.4731\cdot10^{-14}.
+g-\kappa=\frac{74937627730682908927817}
+{3333470626501666392080330000000000000}>2.2480\cdot10^{-14}.
 \]
 
 The geometric requirement is still positive:
@@ -384,7 +403,7 @@ existence/setup arguments, not materialized here. The optional Lean extension wa
 formal verification is claimed.
 
 Direct construction credits: **Rohan Arun, PR #44, with Anthropic Claude
-assistance** (weighted carrier matching, pinned links and profiler); **RaD / hipotures, PR #41** (changed scalar
+assistance** (weighted matching discovery method and replay profiler); **RaD / hipotures, PR #41** (changed scalar
 DAGs, alternating point order, and independent role-compiler checker), **icekylinx, PR #36** (copied centers, complex
 network, assembly integration), **Dominik Scholz, PR #35** (two fixed factors,
 tree argument, dimension-specific CRT method), **icekylinx, PR #32**
@@ -409,6 +428,6 @@ All original notices, licenses and assistance disclosures are retained.
 
 Source pins are in `SOURCE.json`. Run `make copied-fixed-verify` for full
 new producer, independent algebra and exact-certificate checks, and
-`make verify` for the integrated repository suite. This increment targets PR #43 commit
-`c0fbfd3cc4fd6e95cef54ab307dfb50c69dd96f6`; its full inherited base is pinned
+`make verify` for the integrated repository suite. This increment targets PR #46 commit
+`71b6c960c89295e952522dd44111df9cfc51ae90`; its full inherited base is pinned
 PR #36 commit `11817ccacb564bb7f98789c20dc11d3fece207e3`.
