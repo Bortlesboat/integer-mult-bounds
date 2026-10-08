@@ -14,7 +14,7 @@ PR #48 reordered the leave-one-out `vector()` construction and kept 403 more
 carriers. PR #47 showed that climbing summand orders removes roles. These act
 on different calls, so they stack. Starting from PR #48's exact orders, we
 pin adjacent-swap bits for both `total()` calls (`tbits`) and `vector()`
-calls (`vbits`), and climb greedily with the exact optimal carrier matching
+calls (`vbits`), and climb greedily with numerically weighted carrier matching
 in the loop. With all bits zero, PR #48's DAGs are reproduced
 byte-for-byte.
 
@@ -53,11 +53,11 @@ Everything else is PR #48, unchanged:
 make climbed-48-verify
 ```
 
-A greedy finite search is not a claim of global optimality.
+The matching search uses floating-point logarithmic weights and SciPy assignment.
+Exact replay checks the selected pinned output; neither exact weighted-matching
+optimality nor global optimality of the graph search is claimed.
 
-**Validation status:** the focused producer replay, the exact certificate and
-5 tests pass. A full `make verify` has not been run yet. On Linux/GCC, use
-`CXX="c++ -include algorithm"`.
+Full `make verify` passed at research commit `9c9c198656c5b926de951292c111e81ccf191634`: **192 tests**, five new focused tests, fresh producer/profile and complete physical dirty-basis checks, inherited data geometry with exact fallback recovery, and **18 historical patch checks**. See [validation.json](validation.json) for timing and the full log hash. The result remains conditional on inherited interfaces requiring mathematical review.
 
 ## Attribution
 
@@ -65,6 +65,9 @@ Chafik Boukhalfa (PR #43/#46/#48: compositions, reordered exclusion sums,
 checkers, exact data recovery). RaD / hipotures (PR #41). icekylinx, James
 Chang, Dominik Scholz, Zhihao Chen, Aurel Prosz / Paureel, Swapnil Jain,
 eumemic, Douglas Colkitt, OpenAI, Harvey–van der Hoeven, and all retained
-predecessors. Optimal matching (PR #44), climbed orders (PR #47) and this
+predecessors. Weighted matching (PR #44), climbed orders (PR #47) and this
 composition by Rohan Arun with Anthropic Claude assistance; searches ran on
 Daytona sandboxes.
+
+OpenAI Codex independently ran the complete local verification and recorded
+the validation receipt.
