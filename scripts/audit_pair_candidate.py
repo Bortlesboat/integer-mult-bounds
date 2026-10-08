@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Maintainer cross-check of PR60's finite profile and PR61's refinement.
+"""Maintainer cross-check of PR62's stacked finite profile and PR61's refinement.
 
 Reconstructs the complete child list from the two replayed axis profiles.
 Uses the maintainer's independent rational log/exp enclosures. Finite physical
@@ -22,27 +22,27 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def run():
-    native = json.loads((ROOT/'certificates/joint-dual-kappa.json').read_text())
-    package = ROOT/'research/matrix-exponent-synthesis/history/pr60'
+    native = json.loads((ROOT/'research/pair-assembly/frame/frame-certificate.json').read_text())
+    package = ROOT/'research/matrix-exponent-synthesis'
     refined = json.loads((package/'candidate/arithmetic.json').read_text())
-    pinned = package/'candidate/pinned60-certificate.json'
-    require(sha256(pinned.read_bytes()).hexdigest() == refined['source_certificate_sha256'], 'PR60 pin')
+    pinned = package/'candidate/pinned62-certificate.json'
+    require(sha256(pinned.read_bytes()).hexdigest() == refined['source_certificate_sha256'], 'PR62 pin')
     require(refined['source_profile'] == native['bit'] == json.loads(pinned.read_text())['bit'], 'unchanged finite profile')
     N, m = 4073300, 575
     W, loss = 2*N, 0
     rows = Counter({1: 19*N, 21: 2*N, 17: 2*N, 481: 2*N})
     for h in (23, 25):
-        f = json.loads((ROOT/f'certificates/joint-dual-profiles-{h}.json').read_text())
+        f = json.loads((ROOT/f'research/pair-assembly/frame/frame-profiles-{h}.json').read_text())
         rep = N//f['v']
         require(f['v']*rep == N and f['loss'] == h*(h-1), 'axis dimensions')
         require(f['blocks'][h] == 0 and sum(t*n for t,n in enumerate(f['blocks'])) == h*f['R']+f['loss'], 'paid copied centers')
         bank = rep*f['R']; W += bank; loss += rep*f['loss']
         rows.update({t: n*rep for t,n in enumerate(f['blocks']) if t and n})
         rows.update({h: bank, m-2*h: bank, 1: 2*N, h-2: 2*N})
-    require((W, loss, m*W-sum(t*n for t,n in rows.items())) == (150167598,2226400,1846900), 'complete rank ledger')
+    require((W, loss, m*W-sum(t*n for t,n in rows.items())) == (137151806,2226400,1846900), 'complete rank ledger')
     require(dict(rows) == {int(t):n for t,n in native['bit']['child_multiplicities'].items()}, 'complete child list')
     results = {}
-    for name, certificate in [('pr60',native),('pr61',refined)]:
+    for name, certificate in [('pr62',native),('pr61_on_pr62',refined)]:
         a, kappa = Q(certificate['bit_saving']), Q(certificate['kappa'])
         lo, hi = moment(m,W,rows.items(),a)
         require(hi < 1, name+' independent moment')
@@ -81,7 +81,7 @@ def run():
         require(Q(row['log_upper']) >= log_bounds(Q(m,row['width']))[1], 'independent logarithm bound')
     with tempfile.TemporaryDirectory(prefix='frontier-lean-binding-') as directory:
         generated = Path(directory)/'RefinedFrontierCertificate.lean'
-        subprocess.run([sys.executable,str(package/'candidate/generate_frontier_case.py'),str(package/'candidate/weighted-lean-input.json'),'--output',str(generated),'--label','PR60 inherited construction; parameter arithmetic refinement','--source-pin',refined['source_commit']],check=True,capture_output=True,text=True)
+        subprocess.run([sys.executable,str(package/'candidate/generate_frontier_case.py'),str(package/'candidate/weighted-lean-input.json'),'--output',str(generated),'--label','PR62 inherited construction; parameter arithmetic refinement','--source-pin',refined['source_commit']],check=True,capture_output=True,text=True)
         require(generated.read_text() == (package/'RefinedFrontierCertificate.lean').read_text(), 'kernel source generation')
     return dict(status='PASS',counts=dict(m=m,W=W,N=N,L=loss,deficit=1846900,maxchild=max(rows)),candidates=results,lean_profile_bound=True,scope='Independent moments and direct assembly identities; exact retained 47-row interface and source-bound finite Lean arithmetic. General transfer and physical realization are reviewed separately.')
 
@@ -93,4 +93,4 @@ if __name__ == '__main__':
     args = parser.parse_args(); result = run()
     if args.check: require(result == json.loads(args.check.read_text()), 'receipt mismatch')
     if args.output: args.output.write_text(json.dumps(result,indent=2)+'\n')
-    print('PASS independent PR60/61 moments, complete child ledger, assembly and Lean source binding')
+    print('PASS independent PR62/61 moments, complete child ledger, assembly and Lean source binding')

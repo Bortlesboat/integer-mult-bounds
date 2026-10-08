@@ -22,6 +22,7 @@ verify:
 	$(MAKE) verify-clones
 	$(MAKE) verify-positive
 	$(MAKE) verify-joint
+	$(MAKE) verify-pair
 	$(MAKE) verify-tests
 
 verify-community: community-audit-check community-followup-check copied-reversed-producer copied-reversed-check copied-fixed-reversed-producer copied-fixed-reversed-check
@@ -82,7 +83,7 @@ verify-ternary:
 	python3 scripts/make_ternary_patch.py
 
 verify-tests:
-	python3 -m unittest discover -s tests -v
+	python3 scripts/run_isolated_tests.py
 	git apply --check --directory=upstream patches/frozen-154.patch
 	git apply --check --directory=upstream patches/balanced-153.patch
 	git apply --check --directory=upstream patches/same-network-129.patch
@@ -405,10 +406,12 @@ verify-joint: skip-frame-verify joint-dual-verify
 
 formal-verify: formal-matrix-verify
 formal-matrix-verify:
+	mkdir -p build
 	cd research/matrix-exponent-synthesis && lake build
 	python3 scripts/check_lean_axioms.py --project research/matrix-exponent-synthesis --audit research/matrix-exponent-synthesis/AuditAll.lean
-	python3 research/matrix-exponent-synthesis/run_checks.py --work build/matrix-synthesis
+	python3 research/matrix-exponent-synthesis/run_checks.py --work "$$(mktemp -d build/matrix-synthesis.XXXXXX)"
 	python3 scripts/audit_joint_candidate.py --check docs/research/community-round2-arithmetic.json
+	python3 scripts/audit_pair_candidate.py --check docs/research/community-pair-arithmetic.json
 
 .PHONY: pair-assembly-verify pair-assembly-producer pair-assembly-check
 pair-assembly-producer:
@@ -421,3 +424,7 @@ pair-assembly-check:
 	cd research/pair-assembly && python3 -m unittest discover -s ../../tests -p 'test_pair_assembly.py' -v
 
 pair-assembly-verify: pair-assembly-producer pair-assembly-check
+
+.PHONY: verify-pair
+verify-pair: pair-assembly-verify
+	python3 scripts/audit_pair_candidate.py --check docs/research/community-pair-arithmetic.json

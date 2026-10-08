@@ -11,7 +11,7 @@ def main():
     if sys.flags.optimize:raise SystemExit('Run without -O')
     ap=argparse.ArgumentParser();ap.add_argument('--work',type=Path,default=ROOT/'work')
     ap.add_argument('--include-lean',action='store_true');ap.add_argument('--lake',default='lake')
-    args=ap.parse_args();args.work.mkdir(parents=True,exist_ok=True)
+    args=ap.parse_args();args.work=args.work.resolve();args.work.mkdir(parents=True,exist_ok=True)
     base=ROOT/'openmath-source/personal-matrix-hybrid-2026-10-07'
     circuit=base/'circuit/flat16_2208_integer_circuit.json'
     outer=base/'input/outer48_exact_rational_and_integer_data.json'

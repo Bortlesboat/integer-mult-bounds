@@ -11,7 +11,7 @@ the expanded tests also run in `make verify-tests`.
 ## Requirements
 
 The verification path needs Python 3.11 or newer, Git, Make, and a C++17 compiler supporting
-unsigned 128-bit integers (GCC or Clang), with no
+unsigned 128-bit integers and OpenMP (GCC, or Clang with libomp), with no
 third-party Python packages. The enlarged-frame profiler additionally needs Boost
 multiprecision headers (`libboost-dev` on Ubuntu); the ordinary joint-frame
 witness does not use Boost. Run commands from the repository root. All input

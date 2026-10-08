@@ -7,33 +7,36 @@ The reviewed community witness gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\boxed{\kappa=\frac{59556416720821}{1250000000000000000}
-=4.76451333766568\times10^{-5}>2^{-15}}.
+\boxed{\kappa=\frac{25508460085039}{500000000000000000}
+=5.1016920170078\times10^{-5}>2^{-15}}.
 $$
 
-This is **15.54% above the preceding PR #49 release** and remains below 2^-14.
+This is **23.71% above the preceding PR #49 release** and remains below 2^-14.
 It is an improvement in the asymptotic exponent saving, not a measured runtime
 speedup. The model and general reduction are inherited from OpenAI's
 [*Integer multiplication below n log n*](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026).
 
 **[Maintainer review and contribution ledger](docs/research/community-round2-review.md)** ·
-[Finite circuit proof](research/joint-dual/PROOF.md) ·
+[Finite circuit proof](research/pair-assembly/PROOF.md) ·
 [Selected parameter certificate](research/matrix-exponent-synthesis/candidate/arithmetic.json) ·
-[Independent arithmetic check](docs/research/community-round2-arithmetic.json)
+[Independent arithmetic check](docs/research/community-pair-arithmetic.json)
 
 ## What changed
 
-**Avi Eisenberg's skip-strip framework (#53)** enables more compatible storage
-reuse. **Rohan Gupta's dual-suffix layout (#55)** combines with **eumemic's joint
-frame compiler (#57)**, which compiles equal-frame regions together and pays for
-clearing retired signals. **Chafik Boukhalfa's composition and reclamation order
-(#58/#60)** improve that combination. **Alejandro Zarzuelo Urdiales's exact
-parameter refinement and scoped Lean certificate (#61)** supply the final value.
+**Avi Eisenberg's interval strips and core-aware pair assembly (#62)** arrange
+additions to allow more physical wire reuse. Combined with **eumemic's joint
+frame compiler (#57)**, this yields the strongest finite network in this batch.
+**Alejandro Zarzuelo Urdiales's exact parameter refinement and scoped Lean
+certificate (#61)** supply the selected numerical value.
 
-The bit network has m=575 and 150,167,598 physical roles; its certified recursive
-saving is 476474035435537/10^19. The complex network retains saving 717/10^7.
-All recursive children, workspace restoration, copied centers and endpoint costs
-remain charged. The seven final exponent margins are strictly positive.
+The bit network has m=575 and 137,151,806 physical roles; its certified recursive
+saving is 102039046058023/2000000000000000000. The complex network retains saving
+717/10^7. All recursive children, workspace restoration, copied centers and
+endpoint costs remain charged. The seven final exponent margins are strictly positive.
+
+The preceding combination of Avi's skip-prefix strips (#53), **Rohan Gupta's
+dual-suffix layout (#55)**, eumemic's compiler and **Chafik Boukhalfa's composition
+and ranked reclamation (#58/#60)** is also fully retained and reviewed.
 
 Other reviewed contributions are retained even when their numerical witnesses
 are superseded: **RaD's enlarged-frame and clone machinery (#51)**, **Rohan Arun's
@@ -45,7 +48,7 @@ split-pair recursion (#59)**. The review records the exact validation scope of e
 
 The names below identify GitHub contributors; they are not verified Twitter handles.
 
-- **[Avi Eisenberg (ikeboy)](https://github.com/ikeboy):** skip-prefix strips ([#53](https://github.com/CrocSwap/integer-mult-bounds/pull/53)).
+- **[Avi Eisenberg (ikeboy)](https://github.com/ikeboy):** skip-prefix and interval strips, core-aware pair assembly ([#53](https://github.com/CrocSwap/integer-mult-bounds/pull/53), [#62](https://github.com/CrocSwap/integer-mult-bounds/pull/62)).
 - **[Rohan Gupta (gupt1156)](https://github.com/gupt1156):** dual-suffix strips and parallel order improvements ([#50](https://github.com/CrocSwap/integer-mult-bounds/pull/50), [#55](https://github.com/CrocSwap/integer-mult-bounds/pull/55)).
 - **[eumemic](https://github.com/eumemic):** joint frame compilation and paid reclamation ([#57](https://github.com/CrocSwap/integer-mult-bounds/pull/57)); earlier complex circuits, Gaussian resampling and source frames.
 - **[Chafik Boukhalfa (chafreaky)](https://github.com/chafreaky):** exact recovery, independent checkers, reordered sums, paid clones and joint-compiler composition/refinement ([#43/#46/#48/#54/#58/#60](docs/research/community-round2-review.md)).
@@ -86,12 +89,13 @@ They do not formalize the whole multiplication algorithm.
 
 The [review receipt](docs/research/community-round2-validation.json) distinguishes
 fresh maintainer checks from contributor-supplied evidence. Earlier witnesses,
-patches and attribution remain available. New submissions after #61, including
-#62, are outside this checkpoint's review.
+patches and attribution remain available. Submissions after #62 are outside this checkpoint's review; exact reviewed heads
+are recorded in the ledger.
 
 ## Reproduce
 
 ```sh
+make verify-pair
 make verify-joint
 make verify-positive
 make formal-matrix-verify

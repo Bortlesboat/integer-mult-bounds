@@ -17770,7 +17770,7 @@
   "kappa": "4541011/100000000000",
   "local_sha256": {
     "research/skip-suffix/PROOF.md": "bea58ed69d13dfff4603ecb2fa7e2cab8b187f96768eff0a37507041e4126981",
-    "research/skip-suffix/SOURCE.json": "5cae23859745d8b7b90a2ee40cf2c3e90a6c247a0b60ad17e75c8084b9339610",
+    "research/skip-suffix/SOURCE.json": "04aba786febc1994b4a66fbeb05eb1d9bfd19de60d198754b55e973c51e00663",
     "research/skip-suffix/audit.py": "dd369a7a6e0be4354c05560d0e1d9750c14839928459f43beeb55970f86e0631",
     "research/skip-suffix/balanced_assembly.py": "4d27575dcad2b45a281a34054d311409ecd954f373c0c3a62c29bcc843f06a86",
     "research/skip-suffix/comparison-pr40.json": "3cf55a63468df230b57089f66c4a97dbee25ca5a0771f53ef23c972774718060",
@@ -17938,13 +17938,14 @@
       "research/skip-strips/timeline-25.json": "1e7a692e2e73465ecd0138cfe3429dec5a91f8c87998a6318d689ff600213441",
       "scripts/copied_centers/physical.py": "837345d1f8753eab0e70f105b1d1bb0db965b993da037b1825ddef3672609d7d",
       "scripts/copied_centers_network.py": "409ebfbd8a41c4c4d089aa0949fcf5a949415dc26f57440ffd48b7bd8881e6a9",
-      "scripts/partial_swap/binary_io.hpp": "7e143eb75bb342ac8f0c82a60005e7c35c9ec827de479bf6fb773151f3af5fa1",
+      "scripts/partial_swap/binary_io.hpp": "d0be783f61ac4b7981e7e48a8c1139b52572302ba76c191c0e9a1b16a1a05e0e",
       "scripts/partial_swap/graph.py": "fd8c567759e26a10d2bad05508fd0355eb70fb116664d4e06e1858d0d8cb2ef9",
       "scripts/partial_swap/paired.py": "ddcecace3a8e04d690914cbd64873ab8dde8c0c3477a255767b0ed6f639bb0c7",
       "scripts/partial_swap/shared.py": "81e9af92cdf38243a540cdcff2062778e449467848d444da37a9553c12ca4c34",
       "scripts/partial_swap_network.py": "acdd81b4dea2815f8838a0c3ea8ac4968f2bc13fd7c99173473d865779096782",
       "scripts/structured_bulk_assembly.py": "e99467e14211fba699878ed036e1e2362eb8e395dc22f9ecdcecc7fbf2cc736d"
-    }
+    },
+    "integration_note": "Reconciled with main d55bcd6: retain the self-contained binary I/O header (six standard includes only), and the already reviewed skip-strips source manifest. Finite graph, geometry and selected matching are unchanged."
   },
   "status": "Conditional exact arithmetic witness; general transfer proofs are dependencies"
 }
