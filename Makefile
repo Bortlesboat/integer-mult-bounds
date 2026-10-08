@@ -202,3 +202,16 @@ copied-reversed-producer:
 	python3 scripts/copied_centers_producer.py --work-dir build/copied-reversed/producer --output build/copied-reversed/producer.json
 
 verify: copied-reversed-producer copied-reversed-check
+
+.PHONY: copied-fixed-reversed-check copied-fixed-reversed-producer
+copied-fixed-reversed-check:
+	python3 research/copied-fixed-reversed/geometry.py --full
+	python3 research/copied-fixed-reversed/witness.py
+	python3 -m unittest discover -s tests -p 'test_copied_fixed_reversed.py'
+
+copied-fixed-reversed-producer:
+	mkdir -p build/copied-fixed-reversed/producer
+	python3 research/copied-fixed-reversed/producer.py --work-dir build/copied-fixed-reversed/producer --output build/copied-fixed-reversed/producer.json
+	python3 research/copied-fixed-reversed/review/fixed25_copied_crt_audit.py --work-dir build/copied-fixed-reversed/producer --record build/copied-fixed-reversed/producer.json --profiler-source research/copied-fixed-reversed/full_profiles25.cpp --output build/copied-fixed-reversed/crt-audit.json
+
+verify: copied-fixed-reversed-producer copied-fixed-reversed-check
