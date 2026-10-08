@@ -11,31 +11,9 @@ license is retained at upstream/LICENSE. The exact source URLs and hashes
 are recorded in upstream/manifest.json. Proposed modifications are supplied
 as separate files under patches/; upstream source files remain unchanged.
 
-The original local research note, scripts, certificates, patches, and
-documentation were prepared by Douglas Colkitt with assistance from OpenAI
-Codex. The community release incorporates work by the contributors identified
-in the notices below; it is not solely Douglas Colkitt's work.
+The new research note, scripts, certificates, patches, and documentation
+were prepared by Douglas Colkitt with assistance from OpenAI Codex.
 This project is not an official OpenAI release or an OpenAI endorsement.
-
-Related contributions (not imported in this checkpoint):
-Zhihao Chen (jacklightChen), PR #7, supplied an earlier ternary five-subset
-motif, finite-alphabet transfer and a different compressed producer:
-https://github.com/CrocSwap/integer-mult-bounds/pull/7
-The present checkpoint claims no priority for that motif. Related compressed
-complex-network work was submitted by eumemic in PR #3:
-https://github.com/CrocSwap/integer-mult-bounds/pull/3
-The pending contributions and their stronger bounds require their own review;
-this notice does not represent adoption or verification of their claims.
-
-Additional community work, including parallel and superseded submissions, is
-acknowledged in CONTRIBUTORS.md, with pinned submission metadata in
-docs/research/contribution-snapshot.json. These acknowledgements do not imply
-joint authorship of the checkpoint, incorporation of pending code, or verification
-of submitted mathematical claims. Original source-specific notices remain in force.
-
-Community release (accepted by conditional maintainer audit):
-The following original contributor notices apply to the imported PR #39 chain.
-The preceding non-import statements describe the preserved 2^-30 checkpoint.
 
 Ternary five-subset construction and common-four-point resynthesis
 Copyright 2026 Zhihao Chen (jacklightChen)
@@ -154,23 +132,6 @@ Codex, GPT-6 Astra and Anthropic Claude Opus 5.5 assistance is credited to
 the respective imported sources. Existing PR #21/#23 and RaD attribution,
 licenses and the Gaussian correction remain in force.
 
-Copied centers with reversed (23,25) data corners, 2026-10-08
-Rohan Arun with substantial OpenAI Codex assistance supplies the composition,
-exact dimension23 controls and cost/assembly integration. James Chang's PR34
-supplies the reversed boundary family; icekylinx's PR36 supplies copied retained
-centers and the selected complex graph. The balanced assembly remains attributed
-to RaD/hipotures and its PR34 specialization. Retain Dominik Scholz PR33, Rohan
-Arun PR31, Zhihao Chen PR29/21/23, Paureel/Aurel Prosz, Swapnil Jain, icekylinx,
-eumemic, Douglas Colkitt, OpenAI and all earlier notices and hypotheses.
-This is not a claim of formal verification, new foundational rank identities,
-global optimality or measured runtime speedup.
-
-Fixed middle basis with copied reversed corners (2026-10-08):
-Rohan Arun, with substantial OpenAI Codex assistance. Composition and
-simultaneous-basis proof retain icekylinx PR32/36, James Chang PR34,
-Dominik Scholz PR35/38, Zhihao Chen, Paureel, Swapnil Jain, RaD/hipotures,
-eumemic and all preceding attribution and licenses. See research/copied-fixed-reversed.
-
 Changed-graph composition with copied centers and fixed bases, 8 October 2026
 Prepared with OpenAI Codex assistance.
 The new composition uses icekylinx PR36 copied centers and PR32 fixed-I+J
@@ -186,56 +147,3 @@ retained predecessors.
 Complete attribution and the conditional proof boundary are recorded in
 research/copied-fixed/PROOF.md; imported originals and source pins are retained.
 Original Apache-2.0 and CC0 notices remain applicable.
-
-Community follow-up integration (PRs #49, #45 and #26), 8 October 2026:
-Rohan Arun contributes weighted carrier matching and climbed summand/leave-one-out
-orders (PRs #44/#47/#49), with Anthropic Claude assistance. The final construction
-composes Chafik Boukhalfa's changed-graph checks, exact rational data recovery and
-reordered exclusion sums (PRs #43/#46/#48, OpenAI Codex assistance) with RaD /
-hipotures's alternating pair order and independent physical role compiler (#41).
-All predecessor attribution and conditional proof interfaces remain in force.
-
-Alejandro Zarzuelo Urdiales contributes Gaussian parity and canonical arithmetic
-proofs, finite tensor execution, profile precision accounting and mixed-center
-reference checks (#45), with substantial OpenAI Codex assistance. See
-research/gaussian-parity-synthesis/PROVENANCE.md for his full attribution.
-Ryan S / princezuda contributes historical Lean certificate arithmetic, algebraic
-frame/movement/guard lemmas and independent paired-circuit checks (#26). Original
-source notices and historical snapshots are preserved. Neither formal package
-claims a full formal proof of the multiplication algorithm or a new kappa.
-
-Joint frame compilation of skip-prefix strips
-
-The local compiler and exact finite witnesses were prepared by eumemic with
-substantial OpenAI Codex assistance. Avi Eisenberg / ikeboy with Anthropic
-Claude assistance supplied the unmodified PR #53 skip-prefix producer.
-The pinned PR #48 pipeline is Chafik Boukhalfa's contribution, incorporating
-Rohan Arun, RaD / hipotures, icekylinx, Dominik Scholz, James Chang,
-Zhihao Chen, Aurel Prosz / Paureel, Swapnil Jain, eumemic, Douglas Colkitt,
-OpenAI, David Harvey, Joris van der Hoeven and the earlier contributors
-credited in the retained sources. See references/frame-compiler/pr48/NOTICE
-and references/frame-compiler/pr53/NOTICE for their original attribution.
-No authorship or review by those predecessors is claimed for this compiler.
-
-Joint dual-skip/frame-compiler composition (2026-10-08)
----------------------------------------------------
-Rohan Gupta / gupt1156 with Anthropic Claude assistance: PR55 dual-skip
-scalar graph; original LICENSE and NOTICE are retained under
-references/frame-compiler/pr55. eumemic with substantial OpenAI Codex
-assistance: PR57 joint reversible frame compiler, serialized physical-word
-replay and profile reconstruction. Chafik Boukhalfa with OpenAI Codex
-assistance: this composition, independent integration and exact certificate.
-Avi Eisenberg / ikeboy, Rohan Arun, RaD / hipotures, icekylinx, and all
-predecessor authors retain the notices above and in pinned source files.
-No original copyright or Apache-2.0 notice is removed.
-
-Ranked reclamation after the PR58 joint-dual composition (2026-10-08)
-----------------------------------------------------------------
-Chafik Boukhalfa with OpenAI Codex assistance: prioritize retired physical
-slots by descending current frame rank, retaining slot ID as the tie-breaker;
-complete replay, exact profiles, comparison and adversarial controls.
-The dedicated joint_dual_reclaim_compiler.py is derived from eumemic's PR57
-compiler. Its original shared compiler remains byte-identical. The PR55
-producer and all preceding attribution remain unchanged. The complete PR58
-comparison certificate and its original source/proof provenance are retained
-under references/frame-compiler/pr58.

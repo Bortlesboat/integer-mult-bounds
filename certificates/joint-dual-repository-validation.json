@@ -1,0 +1,43 @@
+{
+  "base_pr58_commit": "bc2f7ed4c20dc18898305ab17165c0c995cbb804",
+  "base_pr58_head": "96c52fb81cab6e714768e00ca33ca7f004ebcac4",
+  "bit_saving": "2382370177/50000000000000",
+  "focused": {
+    "actual_word_transitions_and_exact_CRT_profiles": true,
+    "certificate_sha256": "b6e1f3208886ac4c2c84de95d83cd079321206ac8cc79470857529403134c7f8",
+    "command": "make joint-dual-verify",
+    "completed_utc": "2026-10-08T17:39:32.208100+00:00",
+    "exit_code": 0,
+    "focused_tests": 10,
+    "log_sha256": "9f8bb5016c86fd784a1adf44fe0abc1fd73488de2bc03d8b42bbdc886f011c0f",
+    "margins": 7,
+    "next_bit_and_kappa_grid_rejected": true,
+    "producer_words_regenerated_and_matched": true,
+    "scalar_and_dirty_basis_both_orientations": true,
+    "strict_constraints": 47,
+    "validation_receipt_sha256": "273865ad29d513a9267c8f3e2ffdcb41be6a8875668603296f44c4248b7be28a"
+  },
+  "full_repository_verification": {
+    "command": "make verify",
+    "source_manifest_sha256": "65540a35ed4642cd444eb5ec1b20834f9f0dc3ee740f3cdbdbd7b7e514bd5146",
+    "started_utc": "2026-10-08T17:39:32.208619+00:00",
+    "status": "RUNNING"
+  },
+  "independent_audit": {
+    "arithmetic-receipt.json": "28bad78602a1c2552a2a7a3e2bdf6e5eae822a596f43db430eda35e647da0f43",
+    "final-adversarial-receipt.json": "d047c20e72d4e0cc2c281e0c76663ce8188f90136cd48bbdf9d6b55e7fe9f86e",
+    "final-integration-receipt.json": "128684cf244dffcc101beaea381f570cf732ca36f5f703e85178b02614036d55",
+    "pair-receipt.json": "aca295dfd53ce21d7ed0be3e97a034022ba8d323e7ba0dd503e873a157cea842",
+    "physical-receipt.json": "edad963d9f8b0aa54ae87aae26b05a2f4ba9b5114f9c197692f0dd15adb20692"
+  },
+  "kappa": "4764513337/100000000000000",
+  "optimization_controls": {
+    "entry_points": 4,
+    "included_in_focused_tests": true,
+    "rejected": true
+  },
+  "prepared_utc": "2026-10-08T17:34:55.040687+00:00",
+  "scope": "Finite conditional witness; inherited all-size analytic, residual, routing, recovery and fixed-tape interfaces remain mathematical dependencies.",
+  "source_manifest_sha256": "65540a35ed4642cd444eb5ec1b20834f9f0dc3ee740f3cdbdbd7b7e514bd5146",
+  "status": "PASS focused producer regeneration, independent complete replay, exact arithmetic and adversarial controls; full repository verification RUNNING"
+}

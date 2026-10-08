@@ -328,3 +328,15 @@ verify-research:
 	python3 scripts/audit_positive_side.py
 	python3 scripts/audit_parity_side.py
 	python3 scripts/audit_prime_subset_limits.py
+.PHONY: skip-frame-verify
+skip-frame-verify:
+	python3 scripts/experiments/verify_skip_frame.py
+
+verify-community: skip-frame-verify
+
+.PHONY: joint-dual-verify
+joint-dual-verify:
+	python3 scripts/experiments/verify_joint_dual.py
+	python3 -m unittest discover -s tests -p 'test_joint_reclaim.py' -v
+
+verify-community: joint-dual-verify
