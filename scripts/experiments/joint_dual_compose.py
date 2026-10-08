@@ -1,4 +1,4 @@
-"""Exact conditional assembly of the PR55 dual-skip producer and frame compiler.
+"""Exact conditional assembly of the PR55 graph with ranked reclamation.
 
 Uses the unchanged fixed-I+J profiles and balanced assembly interfaces from
 PR48. All auxiliary counts come from complete serialized new physical words.
@@ -25,11 +25,12 @@ OUT = ROOT / 'certificates'
 INHERITED = ROOT / 'references/frame-compiler/pr48'
 OLD = INHERITED / 'research/copied-fixed'
 PRODUCER = ROOT / 'references/frame-compiler/pr55'
-AB = Q(1187740349, 25000000000000)
-KAPPA = Q(475073569, 10**13)
+AB = Q(2382370177, 50000000000000)
+KAPPA = Q(4764513337, 10**14)
 GRID = Q(1, 10**14)
 EXCLUDED_ABOVE = AB + GRID
 PR57_KAPPA = Q(4669442391, 10**14)
+PR58_KAPPA = Q(475073569, 10**13)
 PR53_KAPPA = Q(4498144, 10**11)
 PR54_CLAIMED_KAPPA = Q(4529040672, 10**14)
 
@@ -40,7 +41,7 @@ spec.loader.exec_module(balanced)
 
 def check_sources():
     manifests = []
-    for directory in (INHERITED, PRODUCER):
+    for directory in (INHERITED, PRODUCER, ROOT/'references/frame-compiler/pr58'):
         path = directory / 'SOURCE.json'
         document = json.loads(path.read_text())
         for name, digest in document['files'].items():
@@ -52,6 +53,7 @@ def check_sources():
     local = json.loads((ROOT/'research/joint-dual/SOURCE.json').read_text())
     required = {'scripts/experiments/joint_dual_compiler.py', 'scripts/experiments/joint_dual_compose.py',
                 'scripts/experiments/verify_joint_dual.py', 'scripts/experiments/binary_frame_compiler.py',
+                'scripts/experiments/joint_dual_reclaim_compiler.py', 'tests/test_joint_reclaim.py',
                 'scripts/experiments/binary_frame_replay.py', 'scripts/experiments/binary_frame_profile_prepare.py',
                 'scripts/experiments/binary_frame_profiles.cpp', 'scripts/experiments/binary_frame_math.py',
                 'research/joint-dual/PROOF.md', 'research/joint-dual/README.md'}
@@ -59,6 +61,10 @@ def check_sources():
                     for h in (23,25) for kind, extension in (('word','json.gz'),('profiles','json'),('transitions','json')))
     required.update(('certificates/joint-dual-compiler.json', 'certificates/skip-frame-kappa.json',
                      'scripts/experiments/pin_joint_dual_sources.py', 'Makefile', 'README.md', 'NOTICE'))
+    comparison = ROOT/'references/frame-compiler/pr58'
+    required.add('references/frame-compiler/pr58/SOURCE.json')
+    required.update('references/frame-compiler/pr58/'+name
+                    for name in json.loads((comparison/'SOURCE.json').read_text())['files'])
     assert required <= set(local['files']), 'Incomplete local source/finite-input closure'
     for name, digest in local['files'].items():
         assert sha256((ROOT/name).read_bytes()).hexdigest() == digest, name
@@ -105,7 +111,7 @@ def profile():
     rows = sum(parts.values(), Counter())
     mass = sum(t*n for t, n in rows.items())
     assert mass == m*W-N+L and max(rows) == 529 and all(0 < t < m for t in rows)
-    assert (W, mass, m*W-mass) == (150593466, 86589396050, 1846900)
+    assert (W, mass, m*W-mass) == (150167598, 86344521950, 1846900)
     return dict(m=m, N=N, W=W, L=L, total_rank=mass, deficit=m*W-mass,
                 maxchild=max(rows), child_multiplicities=dict(sorted(rows.items())),
                 parts=parts, axes=profiles, words=receipts)
@@ -125,6 +131,11 @@ def compose():
     previous_rows = {int(t): n for t,n in previous['bit']['child_multiplicities'].items()}
     prior_lower = arithmetic.moment(previous['bit']['m'], previous['bit']['W'], previous_rows, AB)['lower']
     assert prior_lower > 1 and KAPPA > PR57_KAPPA
+    previous58 = json.loads((ROOT/'references/frame-compiler/pr58/certificates/joint-dual-kappa.json').read_text())
+    assert Q(previous58['kappa']) == PR58_KAPPA
+    previous58_rows = {int(t): n for t,n in previous58['bit']['child_multiplicities'].items()}
+    prior58_lower = arithmetic.moment(previous58['bit']['m'], previous58['bit']['W'], previous58_rows, AB)['lower']
+    assert prior58_lower > 1 and KAPPA > PR58_KAPPA
     prior = json.loads((OLD / 'certificate.json').read_text())
     bridge = prior['finite_bridge']
     bridge['bit']['W'] = p['W']
@@ -141,6 +152,7 @@ def compose():
         raise ValueError('Next kappa grid point unexpectedly accepted')
     local_sources = [HERE / name for name in (
         'joint_dual_compiler.py', 'joint_dual_compose.py', 'verify_joint_dual.py',
+        'joint_dual_reclaim_compiler.py',
         'binary_frame_compiler.py', 'binary_frame_math.py', 'binary_frame_replay.py',
         'binary_frame_profile_prepare.py', 'binary_frame_profiles.cpp', 'pin_joint_dual_sources.py')]
     result = dict(
@@ -151,6 +163,9 @@ def compose():
         assembly=assembled, eventual_bounds=balanced.cutoffs(bridge, assembled), finite_bridge=bridge,
         comparison=dict(pr57_kappa=PR57_KAPPA, ratio_pr57=KAPPA/PR57_KAPPA,
                         absolute_gain_pr57=KAPPA-PR57_KAPPA, pr57_exclusion_lower=prior_lower,
+                        pr58_kappa=PR58_KAPPA, ratio_pr58=KAPPA/PR58_KAPPA,
+                        absolute_gain_pr58=KAPPA-PR58_KAPPA, pr58_exclusion_lower=prior58_lower,
+                        pr58_commit='bc2f7ed4c20dc18898305ab17165c0c995cbb804',
                         next_kappa_grid_rejected=True, pr48_kappa=Q(prior['kappa']), pr53_kappa=PR53_KAPPA,
                         ratio_pr53=KAPPA/PR53_KAPPA, pr54_claimed_kappa=PR54_CLAIMED_KAPPA,
                         ratio_pr54=KAPPA/PR54_CLAIMED_KAPPA,
@@ -159,7 +174,7 @@ def compose():
         local_source_sha256={str(p.relative_to(ROOT)): sha256(p.read_bytes()).hexdigest() for p in local_sources},
         dependencies=dict(
             data_profile='Unchanged inherited all-pairs data profile: 9 singletons +21+17+481; ten exact rational recoveries',
-            producer='PR55 dual-skip graph with exact original-envelope block compilation; complete serialized physical words',
+            producer='Unchanged PR55 dual-skip graph; PR58 joint compilation with descending current frame rank for retired-slot selection; complete serialized physical words',
             geometry='Unchanged fixed-I+J original-envelope projector and CRT formulas',
             proof_scope='Ordered affine residual compiler, fixed-tape recursion, finite scalar overhead, balanced transfer, analytic/routing/recovery interfaces remain inherited.'))
     (OUT / 'joint-dual-kappa.json').write_text(json.dumps(arithmetic.js(result), indent=2, sort_keys=True)+'\n')

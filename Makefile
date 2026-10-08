@@ -305,5 +305,6 @@ verify-community: skip-frame-verify
 .PHONY: joint-dual-verify
 joint-dual-verify:
 	python3 scripts/experiments/verify_joint_dual.py
+	python3 -m unittest discover -s tests -p 'test_joint_reclaim.py' -v
 
 verify-community: joint-dual-verify

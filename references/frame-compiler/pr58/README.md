@@ -1,12 +1,3 @@
-## PR #58 parameter refinement: conditional κ = 4.75073569093336e-5
-
-The [new exact certificate and 11 concrete Lean proofs](research/matrix-exponent-synthesis/README.md)
-give a strict `9.3336e-15` improvement over PR #58's reported κ, reusing its
-verified construction and refining rational parameters. The
-[paper source](research/matrix-exponent-synthesis/matrix-exponent-synthesis.tex)
-also develops the author's matrix/parity tools and certified matching search.
-Inherited analytic and fixed-tape hypotheses remain explicit.
-
 # A sharper exponent for integer multiplication
 
 **Community research maintained by Douglas Colkitt — conditional on the original
@@ -40,15 +31,14 @@ AI-assistance disclosures remain credited in the source notices.
 ## Additional conditional composition: dual-skip strips with joint frames
 
 The [joint-dual proof and reproduction guide](research/joint-dual/README.md)
-gives **κ=4764513337/10^14=4.764513337e-5**, approximately **0.2900108%**
-above PR58's conditional saving. It retains **Rohan Gupta's PR55 dual-skip
-graph** and **eumemic's PR57 joint frame compiler** while prioritizing retired
-slots by descending current frame rank. The dedicated variant preserves the
-original shared compiler, exact recovery and all predecessor credits.
+gives **κ=475073569/10^13=4.75073569e-5**, approximately **1.7409637424%**
+above PR57's stated conditional saving. It composes **Rohan Gupta's PR55
+dual-skip graph** with **eumemic's PR57 joint frame compiler**, retaining the
+original-envelope pipeline, exact recovery and all predecessor credits.
 This is an additional conditional witness; it does not extend the scope
 of the maintainer-reviewed community result above.
 
-The physical roles are R23=30688 and R25=40338, giving W=150167598. The
+The physical roles are R23=30790 and R25=40446, giving W=150593466. The
 [exact certificate](certificates/joint-dual-kappa.json) checks the complete
 recursive child list and all 47 strict assembly inequalities/seven margins.
 `make joint-dual-verify` regenerates both physical words, replays every dirty

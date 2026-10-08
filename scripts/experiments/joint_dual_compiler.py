@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Joint PR57 frame synthesis on the pinned PR55 dual-skip producer.
+"""Joint frame synthesis with descending-rank reclamation on the PR55 producer.
 
 The source graph is unmodified and hash-pinned, including its original credits.
 The circuit dependencies are byte-identical to the pinned PR48 files. This
-wrapper changes only the graph supplied to the existing binary frame compiler.
+dedicated compiler changes only retired-slot selection priority relative to
+PR58. The original shared PR57 compiler remains unchanged for its baseline.
 Every generated word checks the full input and dirty basis in both orientations;
 verify_joint_dual.py separately replays the word, profiles, and conditional bound.
 """
@@ -20,7 +21,7 @@ import importlib.util
 import json
 from pathlib import Path
 
-import binary_frame_compiler as compiler
+import joint_dual_reclaim_compiler as compiler
 
 ROOT = Path(__file__).resolve().parents[2] / 'references/frame-compiler/pr55'
 MANIFEST = json.loads((ROOT / 'SOURCE.json').read_text())
@@ -44,6 +45,8 @@ def compile_axis(h):
     result['scalar'] = producer.graph(h).verify()
     result['source_pr55_head'] = MANIFEST['commit']
     result['baseline_pr57_roles'] = {23: 31416, 25: 41264}[h]
+    result['baseline_pr58_roles'] = {23: 30790, 25: 40446}[h]
+    result['reclamation_order'] = 'descending current frame rank, then slot ID'
     return result, word
 
 
