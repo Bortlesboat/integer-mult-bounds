@@ -48,6 +48,10 @@ R = 509194 circuit has exact outputs and a common point at every node.
 parity identity, the later-source double pass, the no-carry guard with exact packed
 digit updates, and the repair permutation (`TS⁻¹` fixes good addresses, permutes bad).
 
+`KappaCheck/Layout.lean` proves the layout's row counting: `2^(q0 K) ≥ W^k0`, padding at
+most doubles the rows, each role gets exactly `1/W` of them with the divisibility
+invariant preserved, and `q_F + q_B ≤ 6d^(1-c)G + 2`.
+
 Everything depends only on `propext`, `Classical.choice` and `Quot.sound`:
 no `sorry`, no `native_decide`.
 
