@@ -32,6 +32,113 @@
     "log_sha256": "7f99daad7df965b3733d7818a6c72528358fa2cac02dd5cf03cc3f6abada2dbc"
   },
   "kappa": "141532521/3125000000000",
+  "merge_validation": {
+    "bit_saving_unchanged": "1132311451/25000000000000",
+    "certificate_changes": {
+      "skip-clones": [
+        {
+          "current_sha256": "f80930a97396003d6bf400596b7fb781d5b01168c0964b55524afc5876deaa26",
+          "path": [
+            "local_sha256",
+            "research/skip-clones/SOURCE.json"
+          ],
+          "previous_sha256": "9908a7eeba68cc2560c2c6e8418fb25d86ffb1bb163c5dfd0e9e721ea5e52578"
+        }
+      ],
+      "skip-strips": [
+        {
+          "current_sha256": "00677e810cfc107f788853c3e9c4994272e6f0d1edd6449564d970a8d583e980",
+          "path": [
+            "local_sha256",
+            "research/skip-strips/SOURCE.json"
+          ],
+          "previous_sha256": "5cae23859745d8b7b90a2ee40cf2c3e90a6c247a0b60ad17e75c8084b9339610"
+        },
+        {
+          "current_sha256": "d0be783f61ac4b7981e7e48a8c1139b52572302ba76c191c0e9a1b16a1a05e0e",
+          "path": [
+            "sources",
+            "files",
+            "scripts/partial_swap/binary_io.hpp"
+          ],
+          "previous_sha256": "7e143eb75bb342ac8f0c82a60005e7c35c9ec827de479bf6fb773151f3af5fa1"
+        }
+      ]
+    },
+    "certificate_numeric_changes": 0,
+    "completed_utc": "2026-10-08T17:11:08.702344+00:00",
+    "conflicts_resolved": [
+      "Makefile",
+      "NOTICE",
+      "README.md"
+    ],
+    "focused_tests": {
+      "command": "python3 -m unittest discover -s tests -p 'test_skip_clones.py' -v",
+      "log_sha256": "ab8b40a864019615dd467596b6909c8f13c06863f7c6ecd62163295d2f9fb59c",
+      "passed": 11
+    },
+    "followup_changes": "This merge_validation receipt only; all tracked source, inputs, certificates and patches remained byte-identical to the tested merge commit after complete verification.",
+    "full_repository_verification": {
+      "command": "make verify",
+      "exit_code": 0,
+      "historical_patch_checks": 20,
+      "integrated_tests": 277,
+      "log_sha256": "f7149674168053105c19275344d5d1bb1fb9211049259c4177f529b85d4badb4",
+      "tested_commit": "03aff8b1981a17257ebab00effd1ec2d7db57e3f",
+      "tested_tree": "3357043c7280117456453a7e37b034203ca3a720",
+      "tracked_regeneration_byte_clean": true
+    },
+    "independent_static_audit": {
+      "receipt_sha256": "e91e37628b7ca59d80834fff075b6a1db0ac07621b43fa7fb05502d95c06809c",
+      "status": "PASS",
+      "tested_tree": "3357043c7280117456453a7e37b034203ca3a720"
+    },
+    "integration": {
+      "added_skip_leaf_commands": 7,
+      "ci_groups": [
+        "community",
+        "skip",
+        "producers",
+        "certificates",
+        "ternary",
+        "tests"
+      ],
+      "ci_python_versions_preserved": [
+        "3.11",
+        "3.13",
+        "3.14"
+      ],
+      "existing_make_verify_leaf_commands_preserved": 94,
+      "formal_ci_jobs_preserved": true,
+      "local_formal_lean_builds_performed": false,
+      "main_notices_and_reviewed_status_preserved": true
+    },
+    "kappa_unchanged": "141532521/3125000000000",
+    "merged_main": "64ed4cbf872b86b81c22f104967b88d24b8e4548",
+    "previous_published_head": "84eb0b067741dc2690da837743fda06d133da865",
+    "proof_scope": "Conditional on the inherited base theorem and mathematical interfaces; no Lean proof of the new bound or exact/global optimization claim.",
+    "python": "3.14.8",
+    "source_pin_checks": {
+      "copied-fixed": {
+        "entries": 56,
+        "mismatches": 0,
+        "source_sha256": "2432832310377091f4bef6fc3bf2a334830af34ec26447ae256cdfa24977eff3"
+      },
+      "skip-clones": {
+        "entries": 113,
+        "mismatches": 0,
+        "source_sha256": "f80930a97396003d6bf400596b7fb781d5b01168c0964b55524afc5876deaa26"
+      },
+      "skip-strips": {
+        "entries": 70,
+        "mismatches": 0,
+        "source_sha256": "00677e810cfc107f788853c3e9c4994272e6f0d1edd6449564d970a8d583e980"
+      }
+    },
+    "status": "PASS: merged current main, complete make verify, reproducible generated artifacts, unchanged exact bound",
+    "tested_commit": "03aff8b1981a17257ebab00effd1ec2d7db57e3f",
+    "tested_tree": "3357043c7280117456453a7e37b034203ca3a720"
+  },
   "proof_scope": "Conditional on the inherited base theorem and mathematical interfaces; no Lean or exact optimization claim",
   "scalar_dense_carrier_fixed_profile_and_complete_dirty_basis": "PASS on both axes, including weighted selected uses",
   "status": "PASS: complete make verify and independent finite/adversarial replay",
