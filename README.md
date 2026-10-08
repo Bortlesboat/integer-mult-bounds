@@ -35,9 +35,12 @@ stronger contributions are pending review. See the
 
 This branch combines checkpoint `1a74950` with the submitted PR #39 chain at
 `70ae24129649f6d6d4ec6360962a80c3c42a38f1`. Its stronger conditional claim
-(kappa = 3.886675852e-5 > 2^-15) is **under maintainer review**; the checkpoint
-above remains the independently reproduced release baseline. Importing the
-candidate does not certify its complete analytic or tape arguments.
+(kappa = 3.886675852e-5 > 2^-15) has **passed the maintainer's conditional
+mathematical audit**. The [final assessment](docs/research/community-final-audit.md)
+records the proof dependencies, exact cross-check and source-restoration fix.
+The original #109 framework remains assumed; this is not formal verification
+or independent human peer review. The checkpoint above remains the published
+release baseline until this integration branch is released.
 
 Start with the [integration ledger](docs/research/community-integration.md),
 [contributor record](CONTRIBUTORS.md), and

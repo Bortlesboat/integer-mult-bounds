@@ -1,5 +1,8 @@
 # Maintainer review: batched transfer and semantic guard
 
+Historical first pass. The remaining selected-instance and analytic gates
+listed here are addressed by the [final audit](community-final-audit.md).
+
 Review date: 2026-10-08. Candidate pinned to PR #39 at
 `70ae24129649f6d6d4ec6360962a80c3c42a38f1`; integration `fd8c563`.
 This is a bounded mathematical review by the project's Codex assistant,

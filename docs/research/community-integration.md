@@ -7,8 +7,11 @@
   `70ae24129649f6d6d4ec6360962a80c3c42a38f1`.
 - Contributor's tested research commit: `50e54ece17afa4bd3cccd1927e9cdea5098038c2`.
 - Submitted saving: `971668963/25000000000000`, approximately `3.886675852e-5`.
-- Status: imported on a separate integration branch; full maintainer mathematical
-  review pending. No stronger release claim follows from the import alone.
+- Status: **conditionally accepted after maintainer mathematical audit**.
+  The [final report](community-final-audit.md) accepts the written extensions
+  under the retained original #109 interfaces. This is not formal verification
+  or independent human peer review. The stronger integration has not replaced
+  the published main checkpoint.
 
 The merge preserves contributor Git history and scientific source files.
 The regenerated `endpoint-gauge-network.json` differs from its incoming snapshot
@@ -31,19 +34,22 @@ credit to the people who supplied its constituent ideas or earlier checkpoints.
 
 | Gate | Required evidence | Maintainer status |
 | --- | --- | --- |
-| Combined repository | Fresh producer rebuilds, both checkpoint/candidate tests, source hashes and all independent patch checks | Passed: 217 tests, 20 patch checks |
-| Fast Gaussian resampling | Correlation packing, shifted input enclosure, Neumann bound and sequential tape cost | Initial text inspection only |
-| Batched transfer | One common controlled basis, contiguous physical blocks, exact child widths/volumes, remainders and dependency-path guard | Generic primitive/recurrence/row extension checked conditionally; selected basis pending |
-| Semantic/bulk interface | Completed-child error induction, scalar charge, routing, precision, prime selection and product row reserves | Larger-child semantic induction checked conditionally; actual charge and bulk dependencies pending |
-| Two-stage/copy schedules | Arbitrary scratch restoration, paid endpoint corrections, copied-center transforms and both orientations | Initial text inspection only |
-| Selected basis/rank profile | Rational nonvanishing, universal zeros, bounded-minor CRT and all physical transitions | Executable replay passed; proof review pending |
-| Final assembly | Strict exact margins using reviewed interfaces and constructive eventual cutoffs | Executable replay passed; proof review pending |
+| Combined repository | Fresh producer rebuilds, both checkpoint/candidate tests, source hashes and all independent patch checks | Passed: 218 tests, 20 patch checks; Docker and three-version Linux CI |
+| Fast Gaussian resampling | Correlation packing, shifted input enclosure and sequential tape cost | Accepted; new phase-cell inverse replaces the old restricted Neumann-count argument |
+| Batched transfer | One common controlled basis, contiguous physical blocks, exact child widths/volumes and remainders | Accepted under retained elementary-stream interfaces |
+| Semantic/bulk interface | Completed-child induction, scalar charge, routing, precision, primes and product row reserves | Accepted; normalization, seam cuts, locality and factor-page traffic included |
+| Two-stage/copy schedules | Arbitrary scratch restoration, paid endpoint corrections, copied-center transforms and both orientations | Accepted; terminal-use and paid-copy conditions tied to the selected schedule |
+| Selected basis/rank profile | Rational nonvanishing, universal zeros, bounded-minor CRT and all physical transitions | Accepted; modular nonvanishing distinguished from universal-zero and CRT proofs |
+| Final assembly | Strict exact margins using reviewed interfaces and constructive eventual cutoffs | Accepted; additional independent moment/margin cross-check agrees |
 
 A failed gate should isolate the strongest surviving earlier checkpoint rather
 than trigger an unsupported all-or-nothing acceptance of the latest number.
 The independent 2^-30 checkpoint remains available throughout review.
 
 ## Bounded mathematical inspection
+
+The sections below retain the history of the initial review. Their pending
+items are superseded by the final report and gate statuses above.
 
 The projector-batching argument explicitly obtains a contiguous identity Schur
 block from the idempotent equation, rather than treating every matrix of a given

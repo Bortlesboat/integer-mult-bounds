@@ -1,6 +1,11 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note complex-note ternary-note fetch
+.DEFAULT_GOAL := verify
 
-verify:
+.PHONY: community-audit-check
+community-audit-check:
+	python3 scripts/audit_community_candidate.py --check docs/research/community-audit-arithmetic.json
+
+verify: community-audit-check
 	$(MAKE) copied-centers-verify
 	$(MAKE) structured-bulk-verify
 	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
