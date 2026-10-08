@@ -361,3 +361,14 @@ positive-skip-check:
 	python3 -m unittest discover -s tests -p 'test_positive_skip.py' -v
 
 positive-skip-verify: positive-skip-build positive-skip-check
+
+.PHONY: split-skip-producer split-skip-check split-skip-verify
+split-skip-producer:
+	python3 research/split-skip/producer.py --work-dir build/split-skip --output build/split-skip-receipt.json
+
+split-skip-check:
+	python3 research/split-skip/witness.py
+	python3 research/split-skip/independent_arithmetic.py
+	python3 -m unittest discover -s tests -p 'test_split_skip.py' -v
+
+split-skip-verify: split-skip-producer split-skip-check
