@@ -1,13 +1,12 @@
-# Conditional saving 4.123863984e-5 from climbed orders on reordered exclusion sums
+# Conditional saving 4.13406297e-5 from longer climbs on reordered exclusion sums
 
-**κ = 4123863984/10^14 = 4.123863984×10⁻⁵ > 2^-15**, conditional on OpenAI's
-base theorem and retained analytic and fixed-tape interfaces: **0.12719% above
-PR #48**. Pinned adjacent swaps in both the summand and the leave-one-out
-orders of PR #48's graphs remove more roles: R falls to 36,382 at h=23
-and 48,255 at h=25, each with numerically selected carrier matching checked by exact replay. See
+**κ = 4134062970/10^14 = 4.13406297×10⁻⁵ > 2^-15**, conditional on OpenAI's
+base theorem and retained analytic and fixed-tape interfaces: **0.37482% above
+PR #48** and 0.24733% above PR #49. Longer parallel climbs of the summand and
+leave-one-out orders on PR #48's graphs lower R to 36,223 at h=23 and
+48,173 at h=25, each with an exact optimal carrier matching. See
 [research/climbed-48](research/climbed-48/README.md) and run
-`make climbed-48-verify`. Full `make verify` passed: 192 tests and 18 historical patch checks;
-see the [validation receipt](research/climbed-48/validation.json).
+`make climbed-48-verify`.
 
 # Conditional saving 4.11862541e-5 from reordered exclusion sums
 

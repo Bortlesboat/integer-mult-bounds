@@ -25,12 +25,12 @@ class OptimalMatchingTests(unittest.TestCase):
         self.assertEqual(len(a['constraints']), 47)
         self.assertEqual(len(a['margins']), 7)
         self.assertTrue(all(x > 0 for x in a['constraints'].values()))
-        self.assertGreater(w.KAPPA, w.PR48_KAPPA)
+        self.assertGreater(w.KAPPA, w.PR49_KAPPA)
         self.assertGreater(w.KAPPA, Q(1, 2**15))
         self.assertLess(w.KAPPA, Q(1, 2**14))
 
     def test_fewer_roles_than_pr48(self):
-        for h, R in ((23, 36382), (25, 48255)):
+        for h, R in ((23, 36223), (25, 48173)):
             ours = w.read(HERE/f'original-{h}.json')
             theirs = w.read(ROOT/f'research/copied-fixed/original-{h}.json')
             self.assertEqual(ours['R'], R)
@@ -38,7 +38,7 @@ class OptimalMatchingTests(unittest.TestCase):
             self.assertEqual(ours['loss'], theirs['loss'])
 
     def test_matching_differs_from_pr43_and_is_injective(self):
-        for h, expected in ((23, 6077), (25, 7809)):
+        for h, expected in ((23, 6384), (25, 7969)):
             raw = (HERE/f'links-{h}.uses').read_bytes()
             n, k = struct.unpack_from('<2I', raw)
             edges = [struct.unpack_from('<2I', raw, 8+8*i) for i in range(k)]
