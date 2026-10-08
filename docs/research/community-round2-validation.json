@@ -13,7 +13,7 @@
     "57": "47916b3bf2895c117f8b53ffff4732f67178a132",
     "58": "be5d3e6e39ad9a11372f168e37466af412e51e53",
     "59": "641f22e52913db784f3b6ff1176b0c2945aae45b",
-    "60": "e7a492dd8bee4e6f574ced784a62af2ce735edc4",
+    "60": "21a121960644b8c6fdf9c06fe39dea1944dd2231",
     "61": "afb7cb67d1858641315cfbf4ac768ee64a8eff3a",
     "62": "ad0f25ff7b23cff7f08ad237c2254e6ecf74257e"
   },
@@ -231,5 +231,9 @@
   ],
   "tests": "All test modules pass in isolated processes on Python 3.11, 3.13 and 3.14; all 20 historical patch checks also pass.",
   "attribution": "README.md, CONTRIBUTORS.md, NOTICE and community-round2-review.md",
-  "local_logs_note": "Some development logs retain diagnosed integration failures; successful reruns and the clean Linux matrix establish the final result."
+  "local_logs_note": "Some development logs retain diagnosed integration failures; successful reruns and the clean Linux matrix establish the final result.",
+  "reviewed_construction_heads": {
+    "60": "e7a492dd8bee4e6f574ced784a62af2ce735edc4"
+  },
+  "late_pr60_update": "Latest head changes provenance/validation only; compiler, both words, exact profiles and mathematical certificate byte/structure compared to the reviewed construction. Its main-sync ancestry is merged while retaining the verified combined tree."
 }

@@ -46,7 +46,7 @@ changes were reviewed and tested on separate pinned worktrees, then their heads
 were integrated with the `ours` merge strategy. Main deliberately retains the
 #49 baseline files so existing historical audits remain reproducible. Their
 stronger numerical witnesses are superseded by the later construction, rather
-than falsely presented as dependencies of its graph. The late #54/#58 main-sync
+than falsely presented as dependencies of its graph. The late #54/#58/#60 main-sync
 heads preserve receipts and ancestry without reverting the combined integration.
 
 ## Why the new finite constructions fit the interface
@@ -165,4 +165,4 @@ receipt was extracted from the freshly compiled, independently replayed and
 profiled words in this review. This scoped negative result does not rule out a
 better graph, different compiler or stronger recurrence analysis.
 
-All **36 jobs passed** on the [integrated code commit 0d235fe](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/37824092076): eleven arithmetic groups on three Python versions, plus three pinned Lean packages. The subsequent release-documentation commit changes no code or mathematical certificate.
+All **36 jobs passed** on the [integrated code commit 0d235fe](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/37824092076): eleven arithmetic groups on three Python versions, plus three pinned Lean packages. The subsequent release-documentation and late #60 provenance commits change no code or mathematical certificate.
