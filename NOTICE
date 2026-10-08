@@ -147,3 +147,13 @@ retained predecessors.
 Complete attribution and the conditional proof boundary are recorded in
 research/copied-fixed/PROOF.md; imported originals and source pins are retained.
 Original Apache-2.0 and CC0 notices remain applicable.
+
+Multi-threaded hill-climbed orders on reordered exclusion sums, 8 October 2026
+Copyright 2026 Rohan Gupta
+
+The parallelized multi-round hill climbing on PR #48 and PR #49 exclusion DAGs,
+expanded carrier matchings, wire reductions to W=176,993,671, and certified
+witness for kappa=4.129418696e-5 were prepared by Rohan Gupta with assistance
+from Google DeepMind Antigravity. Predecessor contributions from Chafik Boukhalfa,
+Rohan Arun, icekylinx, RaD (hipotures), Dominik Scholz, and all retained predecessors
+are acknowledged. Apache-2.0 license applies.

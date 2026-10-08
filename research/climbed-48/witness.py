@@ -29,9 +29,10 @@ _spec.loader.exec_module(base)
 from balanced_assembly import assembly, cutoffs  # noqa: E402  (PR #43 / PR #34 audit)
 
 require, read, moment, js = base.require, base.read, base.moment, base.js
-AB = Q(4124034054, 10**14)
-KAPPA = Q(4123863984, 10**14)
+AB = Q(4129589225, 10**14)
+KAPPA = Q(4129418696, 10**14)
 AC = base.AC
+PR49_KAPPA = Q(4123863984, 10**14)
 PR48_KAPPA = Q(411862541, 10**13)
 PR47_KAPPA = Q(4105106623, 10**14)
 PR46_KAPPA = Q(82012589, 2000000000000)
@@ -107,7 +108,7 @@ def run():
     controls.update({name: excluded('../copied-fixed/'+name) for name in
                      ('comparison-pr40.json', 'comparison-pr41.json', 'comparison-pr42.json',
                       'comparison-pr43.json', 'comparison-pr44.json', 'comparison-pr46.json', 'comparison-pr47.json')})
-    require(KAPPA > PR48_KAPPA > PR47_KAPPA > PR46_KAPPA > Q(1, 2**15), 'Comparison failed')
+    require(KAPPA > PR49_KAPPA > PR48_KAPPA > PR47_KAPPA > PR46_KAPPA > Q(1, 2**15), 'Comparison failed')
     require(KAPPA < Q(1, 2**14), 'Unexpected power-of-two bracket')
     own = sorted(HERE.glob('*.py'))+sorted(HERE.glob('*.cpp'))+sorted(HERE.glob('*.uses'))
     own += [HERE/f'{k}-{h}.json' for h in (23, 25) for k in ('original', 'profiles')]
@@ -115,8 +116,8 @@ def run():
     return dict(status='Conditional exact arithmetic witness; general transfer proofs are inherited dependencies',
                 kappa=KAPPA, bit=dict(counts=p, **exact), next_bit_grid_lower=nxt['lower'],
                 complex=prior['complex'], finite_bridge=bridge, assembly=final, eventual_bounds=eventual,
-                comparison=dict(PR48=PR48_KAPPA, PR47=PR47_KAPPA, PR46=PR46_KAPPA,
-                                ratio_PR48=KAPPA/PR48_KAPPA, ratio_PR47=KAPPA/PR47_KAPPA, ratio_PR46=KAPPA/PR46_KAPPA,
+                comparison=dict(PR49=PR49_KAPPA, PR48=PR48_KAPPA, PR47=PR47_KAPPA, PR46=PR46_KAPPA,
+                                ratio_PR49=KAPPA/PR49_KAPPA, ratio_PR48=KAPPA/PR48_KAPPA, ratio_PR47=KAPPA/PR47_KAPPA, ratio_PR46=KAPPA/PR46_KAPPA,
                                 dyadic_corollary='2^-15', next_dyadic_not_reached='2^-14'),
                 exclusion_lower_moments=controls,
                 local_sha256={str(f.relative_to(ROOT)): sha256(f.read_bytes()).hexdigest() for f in own},
