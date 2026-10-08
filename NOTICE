@@ -186,3 +186,20 @@ retained predecessors.
 Complete attribution and the conditional proof boundary are recorded in
 research/copied-fixed/PROOF.md; imported originals and source pins are retained.
 Original Apache-2.0 and CC0 notices remain applicable.
+
+Community follow-up integration (PRs #49, #45 and #26), 8 October 2026:
+Rohan Arun contributes weighted carrier matching and climbed summand/leave-one-out
+orders (PRs #44/#47/#49), with Anthropic Claude assistance. The final construction
+composes Chafik Boukhalfa's changed-graph checks, exact rational data recovery and
+reordered exclusion sums (PRs #43/#46/#48, OpenAI Codex assistance) with RaD /
+hipotures's alternating pair order and independent physical role compiler (#41).
+All predecessor attribution and conditional proof interfaces remain in force.
+
+Alejandro Zarzuelo Urdiales contributes Gaussian parity and canonical arithmetic
+proofs, finite tensor execution, profile precision accounting and mixed-center
+reference checks (#45), with substantial OpenAI Codex assistance. See
+research/gaussian-parity-synthesis/PROVENANCE.md for his full attribution.
+Ryan S / princezuda contributes historical Lean certificate arithmetic, algebraic
+frame/movement/guard lemmas and independent paired-circuit checks (#26). Original
+source notices and historical snapshots are preserved. Neither formal package
+claims a full formal proof of the multiplication algorithm or a new kappa.

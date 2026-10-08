@@ -5,7 +5,11 @@
 community-audit-check:
 	python3 scripts/audit_community_candidate.py --check docs/research/community-audit-arithmetic.json
 
-verify: community-audit-check
+.PHONY: community-followup-check
+community-followup-check:
+	python3 scripts/audit_followup_candidate.py --candidate-root . --check docs/research/community-followup-arithmetic.json
+
+verify: community-audit-check community-followup-check
 	$(MAKE) copied-fixed-verify
 	$(MAKE) climbed-48-verify
 	$(MAKE) copied-centers-verify
@@ -257,3 +261,21 @@ climbed-48-check:
 	python3 -m unittest discover -s tests -p 'test_climbed_48.py' -v
 
 climbed-48-verify: climbed-48-producer climbed-48-check
+
+.PHONY: formal-verify formal-historical-verify formal-gaussian-verify
+formal-verify: formal-historical-verify formal-gaussian-verify
+
+formal-historical-verify:
+	cd formal/lean && lake build
+	python3 scripts/check_lean_axioms.py --project formal/lean --audit formal/lean/AuditAll.lean
+	python3 formal/lean/sources.py
+	python3 formal/open-prs/drift_A.py
+	python3 formal/open-prs/drift_B.py --selftest
+	python3 formal/open-prs/drift_C.py
+	mkdir -p build/formal
+	python3 formal/circuit/export_paired.py build/formal/paired50.json
+	python3 -I formal/circuit/check_paired.py build/formal/paired50.json
+
+formal-gaussian-verify:
+	$(MAKE) -C research/gaussian-parity-synthesis verify
+	python3 scripts/check_lean_axioms.py --project research/gaussian-parity-synthesis --audit research/gaussian-parity-synthesis/AuditAll.lean

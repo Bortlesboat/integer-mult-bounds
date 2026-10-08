@@ -1,19 +1,21 @@
-# Current release: community witness conditionally accepted
+# Current release: community follow-up witness
 
-The tested 2^-30 checkpoint is preserved at `1a74950`. This integration branch
-imports the community chain through PR #39, pinned at
-`70ae24129649f6d6d4ec6360962a80c3c42a38f1`. The maintainer audit accepts
-`kappa=971668963/25000000000000=3.886675852e-5 > 2^-15` as a conditional
-research witness. The [final audit](community-final-audit.md) distinguishes
-the checked new arguments from the assumed original #109 framework and
-records the exact arithmetic cross-check. This is neither formal verification
-nor independent human peer review. The community release supersedes the 2^-30 headline while preserving that
-checkpoint and all earlier artifacts. See the
-[integration ledger](community-integration.md) and [community credits](../../CONTRIBUTORS.md).
-Do not treat a successful finite replay as verification of the full theorem.
+The selected conditional witness is **κ=4123863984/10^14=4.123863984e-5 > 2^-15**,
+from PR #49 at `f95d2910e027495983b53cae1693cf535abf2569`. It improves the
+previous PR #39 release by 6.10%, retaining its analytic and fixed-tape contracts.
+See the [follow-up review](community-followup-review.md),
+[integration record](community-followup-integration.md),
+[exact certificate](../../research/climbed-48/certificate.json), and
+[contributor record](../../CONTRIBUTORS.md).
 
-The remainder is the historical checkpoint baseline; its uses of “latest”
-and “current” refer to that checkpoint, not the accepted integration witness.
+PR #45 (Gaussian parity and finite tensor execution) and PR #26 (historical
+arithmetic and algebraic contracts) are incorporated as scoped formal verification.
+Their Lean builds and axiom audits do not prove the complete multiplication theorem.
+The original #109 framework remains assumed; no independent human peer review is claimed.
+
+The previous PR #39 release and tested 2^-30 checkpoint at `1a74950` remain
+preserved. Everything below is historical: “latest” and “current” refer to the
+checkpoint, not the selected community follow-up witness.
 
 # Current contracts and research status
 
