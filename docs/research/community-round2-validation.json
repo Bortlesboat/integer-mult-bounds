@@ -1,5 +1,5 @@
 {
-  "status": "Fresh native finite, arithmetic and scoped formal checks completed; full Linux matrix required before promotion",
+  "status": "PASS: fresh finite/arithmetic checks and all 36 clean Linux/formal CI jobs",
   "baseline": "d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0",
   "selected_kappa": "25508460085039/500000000000000000",
   "reviewed_heads": {
@@ -63,7 +63,157 @@
       "sha256": "bcce4bb0c94c4b17652cf7f42e12b18ebe88ea66a78e73bc0e6368b16ed3718d"
     }
   ],
-  "linux_evidence": "GitHub Actions Verify research artifacts workflow for the release commit; 33 arithmetic and 3 formal jobs",
+  "linux_evidence": {
+    "commit": "0d235fe5fa56bbaa574e59cfa47b166271936bf2",
+    "url": "https://github.com/CrocSwap/integer-mult-bounds/actions/runs/37824092076",
+    "jobs": [
+      {
+        "name": "formal (historical)",
+        "conclusion": "success"
+      },
+      {
+        "name": "formal (gaussian)",
+        "conclusion": "success"
+      },
+      {
+        "name": "formal (matrix)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, clones)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, community)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, positive)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, certificates)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, ternary)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, research)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, tests)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, producers)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, strips)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, positive)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, pair)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, community)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, strips)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, research)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, clones)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, producers)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, pair)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.11, joint)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, positive)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, tests)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, certificates)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, research)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, producers)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, tests)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, clones)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, joint)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, ternary)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, community)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, pair)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.13, ternary)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, certificates)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, strips)",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (3.14, joint)",
+        "conclusion": "success"
+      }
+    ],
+    "scope": "Exact integrated code and certificates. Subsequent commit changes only validation documentation and contributor announcement links."
+  },
   "scope": {
     "pr51": "Standalone arithmetic replay only; consumed machinery fully replayed through PR56",
     "pr50_pr52": "Full pinned replay; source history merged while PR49 baseline implementation retained",
@@ -79,6 +229,7 @@
     "Resolve matrix tool work directory",
     "Require sufficient-prime exact positive-frame profiler"
   ],
-  "tests": "516 distinct tests exercised; pair source-provenance failures resolved and its 22 tests rerun successfully. Clean full replay required by CI.",
-  "attribution": "README.md, CONTRIBUTORS.md, NOTICE and community-round2-review.md"
+  "tests": "All test modules pass in isolated processes on Python 3.11, 3.13 and 3.14; all 20 historical patch checks also pass.",
+  "attribution": "README.md, CONTRIBUTORS.md, NOTICE and community-round2-review.md",
+  "local_logs_note": "Some development logs retain diagnosed integration failures; successful reruns and the clean Linux matrix establish the final result."
 }

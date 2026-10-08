@@ -164,3 +164,5 @@ Reproduce with `python3 scripts/experiments/probe_pair_ranked.py`. The recorded
 receipt was extracted from the freshly compiled, independently replayed and
 profiled words in this review. This scoped negative result does not rule out a
 better graph, different compiler or stronger recurrence analysis.
+
+All **36 jobs passed** on the [integrated code commit 0d235fe](https://github.com/CrocSwap/integer-mult-bounds/actions/runs/37824092076): eleven arithmetic groups on three Python versions, plus three pinned Lean packages. The subsequent release-documentation commit changes no code or mathematical certificate.

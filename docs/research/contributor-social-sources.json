@@ -155,13 +155,23 @@
       "social_accounts": []
     }
   ],
-  "verified_post": {
-    "url": "https://x.com/RohanArun/status/2108125292342444442",
-    "author": "RohanArun",
-    "pr": 14,
-    "discovery": "https://trendshift.io/repositories/286834",
-    "public_mirror": "https://api.fxtwitter.com/RohanArun/status/2108125292342444442",
-    "mirror_response_sha256": "c62f5794eba96a099635631d6568746104b3224cbc84e8318e3f79ac9e2791d7"
-  },
-  "scope": "Public profile associations; one contributor announcement located. No inference that similarly named accounts belong to these authors; no messages sent."
+  "scope": "Public profile associations; two announcements from one contributor located. No inference that similarly named accounts belong to these authors; no messages sent.",
+  "verified_posts": [
+    {
+      "url": "https://x.com/RohanArun/status/2108125292342444442",
+      "author": "RohanArun",
+      "pr": 14,
+      "discovery": "https://trendshift.io/repositories/286834",
+      "public_mirror": "https://api.fxtwitter.com/RohanArun/status/2108125292342444442",
+      "mirror_response_sha256": "c62f5794eba96a099635631d6568746104b3224cbc84e8318e3f79ac9e2791d7"
+    },
+    {
+      "url": "https://x.com/RohanArun/status/2108190499941065193",
+      "author": "RohanArun",
+      "pr": 40,
+      "discovery": "https://x.com/0xdoug/status/2108218367962124423",
+      "public_mirror": "https://api.fxtwitter.com/0xdoug/status/2108218367962124423",
+      "mirror_response_sha256": "d8c232135f5152b2d308445cc471d0294388af162918dfa7e89564ac537de68c"
+    }
+  ]
 }
