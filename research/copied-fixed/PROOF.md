@@ -1,4 +1,4 @@
-# Changed scalar graphs with copied centers and fixed local bases
+# Weighted carrier matching with exact recovery of every data block
 
 Conditional witness, prepared locally on 8 October 2026 with OpenAI Codex assistance.
 
@@ -7,42 +7,58 @@ fixed multitape interfaces, the construction below gives
 
 \[
 T(n)=O\bigl(n(\log n)^{1-\kappa}\bigr),\qquad
-\boxed{\kappa=\frac{409953}{10000000000}=0.0000409953>2^{-15}.}
+\boxed{\kappa=\frac{82012589}{2000000000000}=0.0000410062945>2^{-15}.}
 \]
 
-This is **6.6006360%** above icekylinx's PR #36 witness and
-**1.6202070%** above the stronger published PR #41 alternating candidate
-1008542031/25000000000000. Our original-envelope/fixed-basis variant
-passes the explicit complete scalar, frame, carrier and dirty-basis checks
-below. PR #41 has since reported its own independent finite checks complete;
-our checks do not substitute for review of its distinct positive-label
-implementation. The smaller association witness in PR #41 is also exceeded.
-During final verification, Rohan Arun's PR #42 published the same broad
-fixed/alternating composition, with different carrier matching, at
-4099494519/10^14. Our witness is **0.0008654970%** larger. Its full child
-list is likewise excluded at our new bit saving by an exact lower bound.
-This modest latest-frontier gain is distinct from the larger gain over #36.
-The dyadic corollary remains 2^-15; 2^-14 is not reached. These compare
-asymptotic exponent savings, not running times. The finite certificate does
-not formally verify the complete multiplication theorem.
+This is **6.6292252%** above icekylinx's PR #36 witness,
+**0.0268189%** above our published PR #43 witness, and
+**0.00000477975%** above Rohan Arun's contemporaneous PR #44 witness
+4.100629254e-5. The increment over #44 is small: 1.96e-12 in kappa.
+The power-of-two corollary remains 2^-15; 2^-14 is not reached.
+These compare asymptotic exponent savings, not running times. Finite
+certification does not formally verify the full multiplication theorem.
+
+## Increment and provenance
+
+Use the weighted carrier matching published by Rohan Arun in PR #44,
+at commit 061414a529f1123668872db44d737e362fbe066f, with Anthropic Claude
+assistance. Its binary carrier-use lists are pinned and fully replayed.
+The floating-point discovery optimizer is retained for attribution only;
+no optimizer result, optimality claim or floating-point value is trusted
+by the certificate. Both scalar graphs use support-right summation trees.
+At h=25 this changes PR #43's input-order left association; h=23 is unchanged.
+
+The additional saving comes from removing all ten conservative data-corner
+fallbacks in #44. PR #40/#42 had already resolved these primary-prime
+failures by a second-prime test. This composition uses a separate exact
+rational elimination of all ten pairs, proving every ordered pivot and
+required zero directly. Each of the two macros per pair replaces 38
+singletons by blocks of widths 21 and 17. Globally the child multiplicities
+change by -760 at width 1, +20 at width 21, and +20 at width 17, with
+no change in total rank, physical roles, copies or overhead interfaces.
+
+An exact lower moment bound excludes the complete #44 network at the new
+bit saving; the new network's exact upper moment is below one. This is a
+finite-construction improvement, rather than parameter tuning alone.
+The novelty claimed here is this checked composition and rational recovery,
+not the weighted matching or the already known possibility of recovering
+these ten pairs. No global optimality claim is made.
 
 ## What changes, and what is reused
 
 Use RaD / hipotures's PR #41 alternating pair order: in the h-point graph,
 form consecutive pairs excluding the common point, reverse the pair list
-for odd common points, and append leftover points. At h=23, sort summands
-by decreasing (support size, support bitmask) before left association;
-at h=25 use ordinary left association. These are deterministic changes to
+for odd common points, and append leftover points. At both h=23 and h=25, sort summands
+by decreasing (support size, support bitmask) before left association. These are deterministic changes to
 the scalar computation DAG. `changed_graph.py` is a minimal specialization
-of the pinned PR #41 producer and its linked RaD checkpoint. It reproduces
-their exact published scalar circuit hashes. No sampled search statistic
+of the pinned PR #41 producer and its linked RaD checkpoint. The h23 scalar hash is unchanged from PR #41/#43; the h25 specialization
+has the new scalar hash recorded in `scalar-25.json`. No sampled search statistic
 is a certificate input.
 
 Use the **original envelope labels**, both fixed local bases I+J, and our
-descending donor traversal for carrier matching. Original labels have the
+pinned PR #44 weighted matching. Original labels have the
 explicit low-rank projector formula from icekylinx PR #32 and Dominik
-Scholz PR #35. Reversing the donor traversal changes the retained carriers
-but preserves every legality check; all selected uses are independently
+Scholz PR #35. The pinned selected carriers satisfy every legality check; all selected uses are independently
 recounted. Both complete fixed profiles are recomputed from these changed
 DAGs and actual matching uses, rather than substituting PR #40's profiles.
 
@@ -50,11 +66,10 @@ Retain icekylinx PR #36's copied centers, paid endpoint correction and
 complex circuit. Use James Chang PR #34 / Rohan Arun PR #37's reversed
 dimensions (23,25) and balanced transfer. Rohan Arun PR #39/#40 supplies
 the modular data-corner method and the contemporaneous both-fixed baseline.
-For 4,073,290 actual triple pairs our full data profile is **9 singletons
-+21+17+481**. For ten primary-prime failures we conservatively charge
-**47 singletons +481**, without claiming rational singularity. Every pair
-and every paid endpoint is included. PR #40 instead resolves the ten
-failures at another prime; that improvement is not needed here.
+For all 4,073,300 actual triple pairs our full data profile is **9 singletons
++21+17+481**. The primary prime certifies 4,073,290 pairs and direct rational
+elimination certifies the remaining ten. Every pair and every paid endpoint
+is included.
 
 An exact lower moment bound rejects the complete PR #40 network and the
 stronger published PR #41 generic alternating network at our new bit
@@ -174,13 +189,20 @@ x_in=3(h+1)/(2(3(h+1)-10)), x_out=-(h+1)/5.
 The imported exact all-weight rank cuts prove the zeros for the prescribed
 ordered pivots. Our C++ replay then tests every actual source pair modulo
 the trial-division-proved prime 1000003. A nonzero pivot proves rational
-nonvanishing; modular zero triggers the conservative fallback. Arithmetic
-is entirely integral with 64-bit products bounded by prime squared.
+nonvanishing. Arithmetic in that sweep is entirely integral with 64-bit
+products bounded by prime squared. For each of the ten failures,
+`data_recovery.py` starts again from the rational corner entries and
+performs exact Fraction elimination through all 47 prescribed pivots.
+Every pivot is nonzero and all 346 required ordered zeros hold for each
+pair. The certificate includes all 470 rational pivot values. The row and
+column restrictions are explicitly compared with the inherited geometry.
+A residue zero therefore does not become a rational-zero assertion.
 
 All 47 prescribed pivots succeed on 4,073,290 pairs. The two contiguous
 blocks occupy rows 1..21 / columns 553..573 and rows 28..44 / columns
-530..546. The remaining nine pivots are singletons. For the ten fallback
-pairs, tree invertibility supplies 47 singleton pivots. In all cases the
+530..546. The remaining nine pivots are singletons. The exact rational
+recovery certifies the same two contiguous blocks for the ten other pairs.
+In all cases the
 large-projector Schur identity supplies the middle block 47..527 of width
 481. No separated pivots are gathered and no source pair is discarded.
 The full producer independently regenerates and compares every record;
@@ -255,8 +277,8 @@ over Q. This certifies zeros as well as nonzeros, without a probabilistic
 rank assumption. Consecutive increasing pivots are compiled by the retained
 lower-triangular partial-swap conjugation into one contiguous recursive call.
 
-The profiler reconstructs 68,462 distinct matrices at h=23 and 92,107 at
-h=25. Of these, 5,599 and 7,234 respectively use all three primes; no
+The profiler reconstructs 68,229 distinct matrices at h=23 and 91,834 at
+h=25. Of these, 5,555 and 7,179 respectively use all three primes; no
 modular profiles disagree. The checked-in complete block lists have old
 rank masses 844767 and 1213175. Subtract h full h-blocks and add h
 singletons for copied centers; the new masses are 844261 and 1212575.
@@ -272,8 +294,7 @@ The disjoint classes are:
 |---|---:|---|
 | First auxiliary exterior | B_a | 23,529 |
 | Second auxiliary exterior | B_b | 25,525 |
-| Successful data macro | 2*4073290 | 9 singletons,21,17,481 |
-| Fallback data macro | 2*10 | 47 singletons,481 |
+| Every data macro | 2*4073300 | 9 singletons,21,17,481 |
 | h=25 internals | v_a | Complete certified copied fixed profile |
 | h=23 internals | v_b | Complete certified copied fixed profile |
 | h=25 data growth | 2N | 1,23 |
@@ -287,10 +308,10 @@ and every original role still undergoes full interchange. Node overhead
 is linear in current volume, under the inherited complete-row, remainder,
 spectator, ordered-affine and fixed-tape contracts.
 
-For \(a_b=40997/1000000000\), the checker proves
+For \(a_b=410079761/10000000000000\), the checker proves
 
 \[
-\sum_t\frac{n_t t}{Wm}\exp(a_b\log(m/t))<1-2.8072\cdot10^{-11}.
+\sum_t\frac{n_t t}{Wm}\exp(a_b\log(m/t))<1-3.4558\cdot10^{-14}.
 \]
 
 It range-reduces logarithms to [1,2], uses the 32-term atanh series with
@@ -299,7 +320,8 @@ For 0≤u<1 it uses
 \(e^u\le1+u+u^2/[2(1-u/3)]\); the factorial inequality
 \(k!\ge2\cdot3^{k-2}\) for k≥2 proves this bound.
 The first four exponential terms give a rigorous lower bound. Those lower
-bounds reject the old PR #36 profile at this new saving. These are scoped
+bounds reject the old PR #36 profile and the complete PR #40--#44 profiles
+at this new saving. These are scoped
 checks, not global optimality claims.
 
 The complete-row induction therefore gives bit exponent τ=1-a_b.
@@ -336,8 +358,8 @@ All 47 strict constraints hold. The seven margins are
 Their minimum is g, the first is g+eta, and
 
 \[
-g-\kappa=\frac{261021120437315793381}
-{13514067527027025919000000000000}>1.9314\cdot10^{-11}.
+g-\kappa=\frac{147321738734203716270751}
+{10000410079760999179840478000000000000}>1.4731\cdot10^{-14}.
 \]
 
 The geometric requirement is still positive:
@@ -361,7 +383,8 @@ address prime and full all-size machine are specified by the retained
 existence/setup arguments, not materialized here. The optional Lean extension was not implemented; no Lean build or full
 formal verification is claimed.
 
-Direct construction credits: **RaD / hipotures, PR #41** (changed scalar
+Direct construction credits: **Rohan Arun, PR #44, with Anthropic Claude
+assistance** (weighted carrier matching, pinned links and profiler); **RaD / hipotures, PR #41** (changed scalar
 DAGs, alternating point order, and independent role-compiler checker), **icekylinx, PR #36** (copied centers, complex
 network, assembly integration), **Dominik Scholz, PR #35** (two fixed factors,
 tree argument, dimension-specific CRT method), **icekylinx, PR #32**
@@ -386,5 +409,6 @@ All original notices, licenses and assistance disclosures are retained.
 
 Source pins are in `SOURCE.json`. Run `make copied-fixed-verify` for full
 new producer, independent algebra and exact-certificate checks, and
-`make verify` for the integrated repository suite. The patch targets PR #36
-commit `11817ccacb564bb7f98789c20dc11d3fece207e3`.
+`make verify` for the integrated repository suite. This increment targets PR #43 commit
+`c0fbfd3cc4fd6e95cef54ab307dfb50c69dd96f6`; its full inherited base is pinned
+PR #36 commit `11817ccacb564bb7f98789c20dc11d3fece207e3`.

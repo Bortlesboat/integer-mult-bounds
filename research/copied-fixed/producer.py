@@ -146,7 +146,11 @@ def run(work):
         degree,ranks,outputs,audit = dense_audit(c)
         dag,links = work/f'h{h}.bin',work/f'h{h}.uses'
         export(c,dag)
-        original = json.loads(subprocess.check_output([str(exe),str(dag),str(links)],text=True))
+        original = json.loads(subprocess.check_output([str(exe),str(dag),str(links)],text=True,
+                    env=dict(os.environ,LINKS_IN=str(HERE/f'links-{h}.uses'))))
+        require(sorted(struct.iter_unpack('<2I',links.read_bytes()[8:])) ==
+                sorted(struct.iter_unpack('<2I',(HERE/f'links-{h}.uses').read_bytes()[8:])),
+                'Pinned matching changed')
         independent = recount(c,degree,ranks,outputs,links)
         require(original == independent == read(HERE/f'original-{h}.json'), 'Independent physical recount failed')
         actual = read(Path(str(dag)+'.round3_rankone_certified_profiles.json'))
@@ -175,7 +179,11 @@ def run(work):
     require(actual_data==read(HERE/'data-corners.json'),'Full data-corner replay mismatch')
     receipt['data_corners']=dict(pairs=actual_data['pairs'],good=actual_data['good'],
                                 fallback=actual_data['fallback'],nonzero_pivots=actual_data['nonzero_pivots'])
-    print('PASS all data pairs, including ten charged fallbacks',flush=True)
+    from verify import data_corners
+    recovered=data_corners()
+    require(recovered['good']==4073300 and recovered['fallback']==0,'Incomplete recovery')
+    receipt['exact_recovery']=recovered['exact_recovery']
+    print('PASS all data pairs; ten primary-prime failures recovered over Q',flush=True)
     return receipt
 
 

@@ -26,12 +26,14 @@ from structured_bulk_assembly import js
 sys.path.insert(0,str(HERE))
 from balanced_assembly import assembly, cutoffs
 
-AB = Q(409970, 10**10)
+AB = Q(410079761, 10**13)
 AC = Q(717, 10000000)
 # Strictly below the recomputed balanced assembly margin.
-KAPPA = Q(409953, 10**10)
+KAPPA = Q(410062945, 10**13)
+PR44_KAPPA = Q(2050314627,5*10**13)
 PR37_KAPPA = Q(3850771033, 10**14)
 PR38_KAPPA = Q(242889, 6250000000)
+PR43_KAPPA = Q(409953,10**10)
 PR42_KAPPA = Q(4099494519,10**14)
 PR41_KAPPA = Q(1008542031,25000000000000)
 PR40_KAPPA = Q(1959367447,50000000000000)
@@ -120,7 +122,13 @@ def data_corners():
             'Wrong exhaustive pair count')
     require(c['nonzero_pivots'] == 47*c['good']+sum(r[6] for r in failures),
             'Wrong complete nonvanishing coverage')
-    return c
+    from data_recovery import recover
+    recovery=recover(tuple(tuple(pair) for pair in failures))
+    require(len(recovery)==len(failures)==10,'Incomplete exact recovery')
+    require(all(len(row['pivots'])==47 and all(Q(x) for x in row['pivots'])
+                for row in recovery),'Incomplete rational pivot proof')
+    return dict(c, primary_good=c['good'],primary_fallback=c['fallback'],
+                good=c['pairs'],fallback=0,exact_recovery=recovery)
 
 
 def geometry():
@@ -130,6 +138,10 @@ def geometry():
     g=inherited.run()  # Exact all-weight cuts and actual common-basis contractions.
     c=data_corners()
     require(g['dimensions']==[23,25] and g['profile']==[1]*9+[21,17,481], 'Reversed family')
+    require(g['rows']==[(r,i%25) for i,r in enumerate(list(range(23))+[22]+list(range(23)))],
+            'Rational recovery row geometry mismatch')
+    require(g['columns']==[(r,(528+i)%25) for i,r in enumerate(list(range(23))+[0]+list(range(23)))],
+            'Rational recovery column geometry mismatch')
     coordinates={}
     for h in (23,25):
         primal=[Q(3),Q(4)]
@@ -142,8 +154,8 @@ def geometry():
                 accepted_profile=dict(singletons=9,blocks=[21,17,481]),
                 fallback_profile=dict(singletons=47,blocks=[481]),
                 scope='Nonzero modular pivots certify rational nonvanishing at the actual two fixed bases; '
-                      'zeros follow separate exact rank cuts. Failed modular tests use a paid fallback, '
-                      'and do not claim rational singularity.')
+                      'zeros follow separate exact rank cuts. Ten primary-prime failures are replayed '
+                      'with exact rational elimination, yielding the same profile for every pair.')
 
 
 @lru_cache(None)
@@ -257,29 +269,39 @@ def run():
     require(sum(t*n for t,n in newest_rows.items())==newest['total_rank']==p['total_rank'],'PR42 rank mismatch')
     newest_at_new=moment(newest['m'],newest['W'],newest_rows,AB)
     require(newest_at_new['lower']>1,'PR42 network not excluded at new saving')
+    previous=read(HERE/'comparison-pr43.json')
+    previous_rows={int(t):n for t,n in previous['child_multiplicities'].items()}
+    require(sum(t*n for t,n in previous_rows.items())==previous['total_rank']==p['total_rank'],'PR43 rank mismatch')
+    previous_at_new=moment(previous['m'],previous['W'],previous_rows,AB)
+    require(previous_at_new['lower']>1,'PR43 network not excluded at new saving')
+    frontier=read(HERE/'comparison-pr44.json')
+    frontier_rows={int(t):n for t,n in frontier['child_multiplicities'].items()}
+    require(sum(t*n for t,n in frontier_rows.items())==p['total_rank'],'PR44 rank mismatch')
+    frontier_at_new=moment(frontier['m'],frontier['W'],frontier_rows,AB)
+    require(frontier_at_new['lower']>1,'PR44 network not excluded at new saving')
     phase = prior['complex']['counts']
     phase_row = read(ROOT / 'certificates/copied-centers-complex-input.json')
     bridge = baseline.finite_bridge(p,phase,[phase_row,phase_row])
     require(all(js(bridge[k])==js(prior['finite_bridge'][k]) for k in ('complex','semantic','rows')), 'Unexpected phase or stock change')
     final = assembly(bridge,AB,KAPPA,a_complex=AC)
     eventual = cutoffs(bridge,final)
-    require(KAPPA > PR42_KAPPA > PR41_KAPPA > PR40_KAPPA > PR39_KAPPA > PR38_KAPPA > PR37_KAPPA > prior['kappa'] > Q(1,2**15), 'Comparison failed')
+    require(KAPPA > PR44_KAPPA > PR43_KAPPA > PR42_KAPPA > PR41_KAPPA > PR40_KAPPA > PR39_KAPPA > PR38_KAPPA > PR37_KAPPA > prior['kappa'] > Q(1,2**15), 'Comparison failed')
     require(KAPPA < Q(1,2**14), 'Unexpected power-of-two bracket')
     own_files = sorted(HERE.glob('*.py'))+sorted(HERE.glob('*.cpp'))+[HERE/'PROOF.md',HERE/'SOURCE.json']
     own_files += [HERE/f'{kind}-{h}.json' for h in (23,25) for kind in ('profiles','original','scalar')]
-    own_files += [HERE/'data-corners.json',HERE/'comparison-pr40.json',HERE/'comparison-pr41.json',HERE/'comparison-pr42.json']
+    own_files += [HERE/'data-corners.json',HERE/'comparison-pr40.json',HERE/'comparison-pr41.json',HERE/'comparison-pr42.json',HERE/'comparison-pr43.json',HERE/'comparison-pr44.json',HERE/'links-23.uses',HERE/'links-25.uses']
     return dict(status='Conditional exact arithmetic witness; general transfer proofs are dependencies',
                 kappa=KAPPA,bit=dict(counts=p,**exact),complex=prior['complex'],
                 geometry=geo,finite_bridge=bridge,assembly=final,eventual_bounds=eventual,sources=sources,
-                comparison=dict(PR36=prior['kappa'],PR37=PR37_KAPPA,PR38=PR38_KAPPA,PR39=PR39_KAPPA,PR40=PR40_KAPPA,PR41=PR41_KAPPA,PR42=PR42_KAPPA,
+                comparison=dict(PR44=PR44_KAPPA,ratio_PR44=KAPPA/PR44_KAPPA,PR36=prior['kappa'],PR37=PR37_KAPPA,PR38=PR38_KAPPA,PR39=PR39_KAPPA,PR40=PR40_KAPPA,PR41=PR41_KAPPA,PR42=PR42_KAPPA,PR43=PR43_KAPPA,
                     ratio_PR36=KAPPA/prior['kappa'],ratio_PR37=KAPPA/PR37_KAPPA,
-                    ratio_PR38=KAPPA/PR38_KAPPA,ratio_PR39=KAPPA/PR39_KAPPA,ratio_PR40=KAPPA/PR40_KAPPA,ratio_PR41=KAPPA/PR41_KAPPA,ratio_PR42=KAPPA/PR42_KAPPA,
+                    ratio_PR38=KAPPA/PR38_KAPPA,ratio_PR39=KAPPA/PR39_KAPPA,ratio_PR40=KAPPA/PR40_KAPPA,ratio_PR41=KAPPA/PR41_KAPPA,ratio_PR42=KAPPA/PR42_KAPPA,ratio_PR43=KAPPA/PR43_KAPPA,
                     dyadic_corollary='2^-15',next_dyadic_not_reached='2^-14'),
-                controls=dict(old_bit_at_new_lower=old_at_new['lower'],PR40_bit_at_new_lower=forward_at_new['lower'],PR41_bit_at_new_lower=rad_at_new['lower'],PR42_bit_at_new_lower=newest_at_new['lower']),
+                controls=dict(PR44_bit_at_new_lower=frontier_at_new['lower'],old_bit_at_new_lower=old_at_new['lower'],PR40_bit_at_new_lower=forward_at_new['lower'],PR41_bit_at_new_lower=rad_at_new['lower'],PR42_bit_at_new_lower=newest_at_new['lower'],PR43_bit_at_new_lower=previous_at_new['lower']),
                 local_sha256={str(p.relative_to(ROOT)):sha256(p.read_bytes()).hexdigest() for p in own_files},
-                scope='RaD alternating graphs, descending carrier matching and fixed-basis internal blocks at (23,25); '
+                scope='RaD alternating graphs, PR44 pinned weighted carrier matching and fixed-basis internal blocks at (23,25); '
                       'all actual data pairs checked for 9 singletons +21+17+481; '
-                      'failed modular tests use 47 singletons +481. Exact scalar/label/'
+                      'ten failed modular tests are recovered by exact rational elimination. Exact scalar/label/'
                       'matching/profile reconstruction is producer.py. OpenAI base theorem, '
                       'written residual compiler, fixed-tape recursion, analytic/semantic/'
                       'routing/recovery and eventual-threshold interfaces remain assumed.')

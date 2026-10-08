@@ -43,15 +43,37 @@ class CopiedFixedTests(unittest.TestCase):
         self.assertGreater(result['controls']['PR40_bit_at_new_lower'],1)
         self.assertGreater(result['controls']['PR41_bit_at_new_lower'],1)
         self.assertGreater(result['controls']['PR42_bit_at_new_lower'],1)
+        self.assertGreater(result['controls']['PR43_bit_at_new_lower'],1)
+        self.assertGreater(result['controls']['PR44_bit_at_new_lower'],1)
 
-    def test_fallbacks_and_every_pair_charged(self):
+    def test_recovery_and_every_pair_charged(self):
         c=v.data_corners()
-        self.assertEqual((c['good'],c['fallback'],c['pairs']),(4073290,10,4073300))
+        self.assertEqual((c['good'],c['fallback'],c['pairs']),(4073300,0,4073300))
         p=v.profile();data=p['parts']['data']
         self.assertEqual(data[1],2*(9*c['good']+47*c['fallback']))
         self.assertEqual(data[21],2*c['good'])
         self.assertEqual(data[17],2*c['good'])
         self.assertEqual(sum(t*n for t,n in data.items()),2*p['N']*528)
+
+    def test_exact_recovery_explains_primary_modular_failures(self):
+        c=v.data_corners();prime=c['prime']
+        self.assertEqual((c['primary_good'],c['primary_fallback']),(4073290,10))
+        self.assertEqual(len(c['exact_recovery']),10)
+        for row in c['exact_recovery']:
+            self.assertEqual(len(row['pivots']),47)
+            self.assertEqual(row['ordered_zero_checks'],346)
+            for i,value in enumerate(row['pivots']):
+                q=Q(value)
+                self.assertNotEqual(q,0)
+                if i<=row['primary_failed_row']:
+                    self.assertNotEqual(q.denominator%prime,0)
+                    self.assertEqual(q.numerator%prime==0,i==row['primary_failed_row'])
+
+    def test_zero_recovered_pivot_rejected(self):
+        import data_recovery
+        bad=deepcopy(v.data_corners()['exact_recovery']);bad[0]['pivots'][0]='0'
+        with patch.object(data_recovery,'recover',return_value=bad):
+            with self.assertRaisesRegex(ValueError,'Incomplete rational pivot proof'):v.data_corners()
 
     def test_corrupted_pair_coverage_rejected(self):
         original_read=v.read

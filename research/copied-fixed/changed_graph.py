@@ -1,9 +1,9 @@
 """Exact specialization of RaD / hipotures PR41 changed producer.
 
 Alternating global pair order: point_order_search.py at rad checkpoint
-7e488e6b25dc1713c1f41baaf1cefbf677507cf3. Trees: support-right at23,
-left at25. Original envelope frames and descending donor matching are
-certified separately. Underlying scalar generators: icekylinx PR18/36.
+7e488e6b25dc1713c1f41baaf1cefbf677507cf3. Both dimensions use support-right
+trees; h25 changes from PR43. Original envelope frames and deterministic
+donor matching are certified separately. Underlying scalar generators: icekylinx PR18/36.
 """
 from partial_swap.paired import PairedExclusionCircuit
 from partial_swap.shared import SharedPointCircuit
@@ -23,8 +23,7 @@ def graph(h):
         base_threshold=2
         def total(self,values):
             values=[x for x in values if x]
-            if h==23:
-                values.sort(key=lambda node:(self.support[node].bit_count(),self.support[node]),reverse=True)
+            values.sort(key=lambda node:(self.support[node].bit_count(),self.support[node]),reverse=True)
             result=0
             for node in values:
                 result=self.add(result,node)

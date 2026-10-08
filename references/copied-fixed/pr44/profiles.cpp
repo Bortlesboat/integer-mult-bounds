@@ -1,12 +1,10 @@
-#include <algorithm>
 // Optimal-matching variant of research/copied-fixed/profiles.cpp (PR #43, Chafik
 // Boukhalfa), itself adapted from Dominik Scholz PR35 and icekylinx PR32.
 // Change: with LINKS_IN=<file>, the carrier matching is read from a pinned file
 // instead of Hopcroft-Karp. Every pinned edge must lie in the same admissible
 // adjacency (causal order and frame inclusion); donors and uses are distinct.
-// This replay-only adaptation omits the discovery edge dumper. The original
-// optimizer and profiler are preserved in references/copied-fixed/pr44.
-// Replay-only adaptation prepared with OpenAI Codex assistance.
+// DUMP_EDGES=<file> writes every admissible edge with its exact signed block
+// change, used only by optimize_matching.py. All profile code is unchanged.
 // Prepared by Rohan Arun with Anthropic Claude assistance. Apache-2.0.
 // Adapted at h=23,25; original PR35 by Dominik Scholz, PR32 by icekylinx.
 // Dimension adaptation at 45/47; extra primes for all source-growth cases.
@@ -42,7 +40,6 @@ std::vector<U>donors;for(U x=1;x<n;x++)if(active[x]&&args[x][0]&&adjacency(x,[](
 const char* rev=getenv("DONOR_REVERSE"); if(!rev||rev[0]!='0') std::reverse(donors.begin(),donors.end());
 std::vector<U>leftmatch(n),rightmatch(uses.size()),distance(n,UINT32_MAX),queue;V matches=0;U phase=0,inf=UINT32_MAX,shortest=inf;
 const char* lin=getenv("LINKS_IN");
-assert(lin && "A pinned carrier matching is required");
 if(lin){std::ifstream lf(lin,std::ios::binary);U hd[2];read_array(lf,hd);assert(hd[0]==n);std::vector<U>isdonor(n);for(U x:donors)isdonor[x]=1;for(U i=0;i<hd[1];i++){U ed[2];read_array(lf,ed);U x=ed[0],e=ed[1];assert(isdonor[x]&&!leftmatch[x]);U jj=UINT32_MAX;for(U value:args[x])for(U j=begin[value];j<begin[value+1];j++)if(uses[j]==e)jj=j;assert(jj!=UINT32_MAX);bool ok=false;adjacency(x,[&](U j){if(j==jj)ok=true;return ok;});assert(ok);assert(!rightmatch[jj]);leftmatch[x]=jj+1;rightmatch[jj]=x;matches++;}}
 else while(true){queue.clear();shortest=inf;for(U x:donors){if(!leftmatch[x]){distance[x]=0;queue.push_back(x);}else distance[x]=inf;}for(U at=0;at<queue.size();at++){U x=queue[at];if(distance[x]>=shortest)continue;adjacency(x,[&](U j){U y=rightmatch[j];if(!y)shortest=distance[x]+1;else if(distance[y]==inf){distance[y]=distance[x]+1;queue.push_back(y);}return false;});}if(shortest==inf)break;
 auto aug=[&](auto&&self,U x)->bool{bool ok=adjacency(x,[&](U j){U y=rightmatch[j];if((!y&&distance[x]+1==shortest)||(y&&distance[y]==distance[x]+1&&self(self,y))){leftmatch[x]=j+1;rightmatch[j]=x;return true;}return false;});if(!ok)distance[x]=inf;return ok;};V gained=0;for(U x:donors)if(!leftmatch[x]&&aug(aug,x)){matches++;gained++;}std::cerr<<"h="<<h<<" phase "<<++phase<<" length "<<shortest<<" gained "<<gained<<" total "<<matches<<"\n";assert(gained);}
@@ -73,6 +70,29 @@ auto matrix=[&](U id)->const std::vector<V>&{auto&A=matrix_cache[id];if(!A.empty
   V num=(mul(s*oi,zj)+3*(h+1)*s*wi*oj+mul(nn*wi,zj))%p;num=sub(num,3*(h+1)*(c-1)*oi*oj);A[i*h+j]=(V(i==j&&oi)+mul(num,inv))%p;
  }return A;};
 
+auto prof_pair=[&](U aa,U bb)->std::vector<U>{std::vector<U> out;if(aa==bb)return out;assert(frames[bb].rank>=frames[aa].rank);U rr=frames[bb].rank-frames[aa].rank;if(!rr)return out;
+ if(rr<=2){for(U k=0;k<rr;k++)out.push_back(1);return out;}if(aa==0&&bb==1){out.push_back(h);return out;}
+ const auto&A=matrix(aa);const auto&B=matrix(bb);std::vector<V>M(h*h);for(U x=0;x<h*h;x++)M[x]=sub(B[x],A[x]);std::vector<std::pair<U,U>>pivots;
+ for(U i=0;i<h;i++){int j=h-1;while(j>=0&&!M[i*h+j])j--;if(j<0)continue;pivots.push_back({i,U(j)});V inv=power(M[i*h+j],p-2);for(U k=i+1;k<h;k++){V z=mul(M[k*h+j],inv);if(z)for(U col=0;col<=U(j);col++)M[k*h+col]=sub(M[k*h+col],mul(z,M[i*h+col]));}}
+ assert(pivots.size()==rr);
+ if(aa>1&&bb>1&&(popcount64(frames[aa].core)==3||(popcount64(frames[aa].core)==2&&popcount64(frames[bb].core)==1))){
+  matrix_cache[aa].clear();matrix_cache[bb].clear();std::vector<std::vector<std::pair<U,U>>> all{pivots};
+  for(V extra:{2147483647ULL,524287ULL}){p=extra;matrix_cache[aa].clear();matrix_cache[bb].clear();const auto&C=matrix(aa);const auto&D=matrix(bb);std::vector<V>Y(h*h);for(U z=0;z<h*h;z++)Y[z]=sub(D[z],C[z]);std::vector<std::pair<U,U>> pp;
+   for(U i=0;i<h;i++){int j=h-1;while(j>=0&&!Y[i*h+j])j--;if(j<0)continue;pp.push_back({i,U(j)});V inv=power(Y[i*h+j],p-2);for(U k=i+1;k<h;k++){V z=mul(Y[k*h+j],inv);if(z)for(U col=0;col<=U(j);col++)Y[k*h+col]=sub(Y[k*h+col],mul(z,Y[i*h+col]));}}
+   all.push_back(std::move(pp));}
+  p=2305843009213693951ULL;matrix_cache[aa].clear();matrix_cache[bb].clear();
+  std::vector<int> corner((h+1)*(h+1));for(U i=0;i<h;i++)for(U j=0;j<h;j++){int best=0;for(auto&pp:all){int rank=0;for(auto [row,col]:pp)rank+=row<=i&&col>=j;best=std::max(best,rank);}corner[(i+1)*(h+1)+j]=best;}
+  pivots.clear();for(U i=0;i<h;i++)for(U j=0;j<h;j++){int z=corner[(i+1)*(h+1)+j]-corner[i*(h+1)+j]-corner[(i+1)*(h+1)+j+1]+corner[i*(h+1)+j+1];assert(z==0||z==1);if(z)pivots.push_back({i,j});}assert(pivots.size()==rr);}
+ U run=0;for(U j=0;j<pivots.size();j++){if(j&&pivots[j].first==pivots[j-1].first+1&&pivots[j].second==pivots[j-1].second+1)run++;else{if(run)out.push_back(run);run=1;}}if(run)out.push_back(run);
+ matrix_cache[aa].clear();matrix_cache[bb].clear();return out;};
+if(const char* dp=getenv("DUMP_EDGES")){
+ std::map<std::pair<U,U>,std::vector<U>> pc;auto get=[&](U a,U b)->const std::vector<U>&{auto k=std::make_pair(a,b);auto it=pc.find(k);if(it!=pc.end())return it->second;return pc[k]=prof_pair(a,b);};
+ std::ofstream de(dp);V ne=0;
+ for(U x:donors){adjacency(x,[&](U j){U e=uses[j],target=nd(e),value=e>>31?target:args[target][e&1];
+   // signed multiset of block widths: +(x,t) -(x,1) -(0,value) -(value,target)
+   std::map<U,int64_t> d;for(U t:get(fi[x],fi[target]))d[t]++;for(U t:get(fi[x],1))d[t]--;for(U t:get(0,fi[value]))d[t]--;for(U t:get(fi[value],fi[target]))d[t]--;
+   de<<x<<' '<<e<<' '<<j;for(auto&[t,c]:d)if(c)de<<' '<<t<<':'<<c;de<<'\n';ne++;return false;});}
+ std::cerr<<"dumped edges "<<ne<<" pairs "<<pc.size()<<"\n";return 0;}
 std::vector<int64_t>blocks(h+1);blocks[1]=singles;V done=0,matrices=0,crt_matrices=0,crt_disagreements=0;U longest=0;std::map<U,V>correction_hist;
 for(auto&[key,count]:transitions){if(!count)continue;assert(count>0);U aa=key.first,bb=key.second;U rr=frames[bb].rank-frames[aa].rank;assert(frames[bb].rank>=frames[aa].rank);if(!rr)continue;
  if(rr<=2){blocks[1]+=count*rr;continue;}if(aa==0&&bb==1){blocks[h]+=count;continue;}
