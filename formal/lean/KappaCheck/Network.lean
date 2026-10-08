@@ -6,7 +6,7 @@ import Mathlib.Tactic
 All quantities are functions of the ground-set size `h`.  We check
 
 * the paper's closed forms for `h = 100` (so the formulas below are the paper's);
-* the new choice `h = 46` used for the improved constant;
+* the `h = 46` counts and deficits of `notes/parameter-note.tex` (a second data point);
 * the per-wire rank bookkeeping of Lemma 7 / Proposition 8 as polynomial
   identities, which is where `s = W m - N + 2L` (bit) and
   `s = W m - 2N + 2L` (complex) come from.
@@ -49,20 +49,21 @@ theorem paper_h100_deficits :
   simp only [N, m, I, zb, zc, Wb, Wc, Lb, Lc, sb, sc, v]
   norm_num [Nat.choose]
 
-/-! ## The new choice h = 46 -/
+/-! ## The `h = 46` values of `notes/parameter-note.tex` -/
 
-theorem new_h46 :
-    v 46 = 15180 ∧ m 46 = 97336 ∧
+theorem parameter_note_h46 :
+    v 46 = 15180 ∧ m 46 = 97336 ∧ N 46 = 3497963832000 ∧ I 46 = 691297200 ∧
+    zb 46 = 2709 ∧ zc 46 = 12470 ∧ Lb 46 = 1462784875200 ∧ Lc 46 = 1494584546400 ∧
     Wb 46 = 28434979789999200 ∧ sb 46 = 2767747192266968049600 ∧
     Wc 46 = 130865855373752400 ∧ sc 46 = 12737958894652805035200 := by
+  refine ⟨by decide, ?_⟩
   simp only [N, m, I, zb, zc, Wb, Wc, Lb, Lc, sb, sc, v]
   norm_num [Nat.choose]
 
 /-- exact relative rank deficits of the two `h = 46` networks -/
-theorem new_h46_deficits :
+theorem parameter_note_h46_deficits :
     ((Wb 46 * m 46 - sb 46 : ℕ) : ℚ) / (Wb 46 * m 46) = 9 / 43518487588 ∧
-    ((Wc 46 * m 46 - sc 46 : ℕ) : ℚ) / (Wc 46 * m 46) =
-      (Wc 46 * m 46 - sc 46 : ℕ) / (Wc 46 * m 46) ∧
+    ((Wc 46 * m 46 - sc 46 : ℕ) : ℚ) / (Wc 46 * m 46) = 7 / 22253827054 ∧
     sb 46 < Wb 46 * m 46 ∧ sc 46 < Wc 46 * m 46 := by
   simp only [N, m, I, zb, zc, Wb, Wc, Lb, Lc, sb, sc, v]
   norm_num [Nat.choose]

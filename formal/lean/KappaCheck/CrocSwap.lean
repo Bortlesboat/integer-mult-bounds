@@ -1,6 +1,7 @@
 import Mathlib.Tactic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Data.Nat.Size
+import Mathlib.Data.Complex.ExponentialBounds
 import KappaCheck.Network
 import KappaCheck.Certificates
 
@@ -67,6 +68,12 @@ theorem log_15625 : Real.log 15625 < (L25 : ℝ) := by
   rw [show (2 : ℝ) ^ 14 * (15625 / 16384) = 15625 by norm_num] at this
   unfold L25; push_cast; linarith
 
+/-- the note's stated bound `log m_c < 966/100` -/
+theorem log_15625_note : Real.log 15625 < 966 / 100 := by
+  have h := log_15625
+  have : (L25 : ℝ) < 966 / 100 := by unfold L25; norm_num
+  linarith
+
 /-- their bound `log 125000 < 11.737`, with `125000 = 2^17 · 15625/16384` -/
 theorem log_125000 : Real.log 125000 < 11737 / 1000 := by
   have := log_split 17
@@ -89,9 +96,9 @@ theorem complex25_exponent :
     ((sc 25 : ℕ) : ℝ) / (Wc 25 : ℕ) < (15625 : ℝ) ^ (1 - (418 / 10 ^ 12 : ℝ)) := by
   obtain ⟨-, -, -, hW, hs, -, -⟩ := complex25_counts
   rw [hs, hW]
-  apply exponent_certificate 15625 (L25 : ℝ) (418 / 10 ^ 12) (14 / 3464399375) _
-    (by norm_num) (by norm_num) log_15625
-  · unfold L25; norm_num
+  apply exponent_certificate 15625 (966 / 100) (418 / 10 ^ 12) (14 / 3464399375) _
+    (by norm_num) (by norm_num) log_15625_note
+  · norm_num
   · norm_num
 
 /-! ## B. The paired bit network at `h = 50`
@@ -358,6 +365,38 @@ theorem exponents_below_layer :
     τ < σ ∧ internal < lam ∧ leaf < lamp ∧ lam < lamp := by
   norm_num [τ, σ, internal, leaf, lam, lamp, β]
 
+/-- the displayed comparisons of `notes/compact-control-note.tex`, lines 79-99 -/
+theorem note_parameter_lines :
+    1 - c = 4 / 5 ∧ max (max τ σ) internal < lam ∧ lam < lamp ∧ lamp < 1 ∧
+    max leaf (1 - c) < lamp ∧ ε * C1 = 99872039 / 10 ^ 8 ∧ ε * C1 < 1 ∧
+    1 / 4 + ε / 4 = 11999 / 40000 ∧ 1 / 2 + 3 * ε / 2 = 15997 / 20000 ∧
+    ε < 1 / 5 ∧ (184 : ℚ) < 2 ^ 8 ∧ 1 - 2 * ε = 3001 / 5000 ∧ ε * (1 + c) < 1 := by
+  norm_num [τ, σ, ε, c, lam, lamp, C1, internal, leaf, β]
+
+/-- note line 94-95: since `ε < 1/5`, `b ≥ 2^40` implies `46 b^((1+3ε)/2) ≤ b/4`,
+with `(1+3ε)/2 = 15997/20000` -/
+theorem gaussian_cutoff (b : ℝ) (hb : (2 : ℝ) ^ 40 ≤ b) :
+    46 * b ^ ((15997 : ℝ) / 20000) ≤ b / 4 := by
+  have hb0 : 0 < b := lt_of_lt_of_le (by norm_num) hb
+  have hsplit : b ^ ((15997 : ℝ) / 20000) = b / b ^ ((4003 : ℝ) / 20000) := by
+    rw [show (15997 : ℝ) / 20000 = 1 - 4003 / 20000 by norm_num, Real.rpow_sub hb0,
+      Real.rpow_one]
+  have hX : (184 : ℝ) ≤ b ^ ((4003 : ℝ) / 20000) := by
+    have h1 : ((2 : ℝ) ^ 40) ^ ((4003 : ℝ) / 20000) ≤ b ^ ((4003 : ℝ) / 20000) :=
+      Real.rpow_le_rpow (by positivity) hb (by norm_num)
+    have h2 : ((2 : ℝ) ^ 40) ^ ((4003 : ℝ) / 20000) = (2 : ℝ) ^ ((40 : ℝ) * (4003 / 20000)) := by
+      rw [← Real.rpow_natCast, ← Real.rpow_mul (by norm_num)]; norm_num
+    have h3 : (2 : ℝ) ^ ((8 : ℕ) : ℝ) ≤ (2 : ℝ) ^ ((40 : ℝ) * (4003 / 20000)) :=
+      Real.rpow_le_rpow_of_exponent_le (by norm_num) (by norm_num)
+    rw [Real.rpow_natCast] at h3
+    norm_num at h3
+    linarith
+  have hXpos : 0 < b ^ ((4003 : ℝ) / 20000) := Real.rpow_pos_of_pos hb0 _
+  rw [hsplit]
+  calc 46 * (b / b ^ ((4003 : ℝ) / 20000)) ≤ 46 * (b / 184) := by
+        gcongr
+    _ = b / 4 := by ring
+
 /-! ## G. The scoped ceiling for this complex network
 
 Their remark that no parameters reach `2^-33` with the `h = 25` complex motif and the
@@ -532,8 +571,9 @@ theorem scoped_ceiling_exact (σ' ε' δ' β' lamp' κ' : ℝ)
     rw [div_le_div_iff₀ (by norm_num) (by positivity)]; nlinarith
   linarith
 
-/-- the ceiling is below `2^-33`, and their witness `κ = 83/10¹²` reaches over 99% of it -/
-theorem ceiling_facts : Uceil < 1 / 2 ^ 33 ∧ (99 : ℚ) / 100 * Uceil < 83 / 10 ^ 12 := by
+/-- the ceiling is below `8.369598075e-11` and `2^-33`, and their witness `κ = 83/10¹²` reaches over 99% of it -/
+theorem ceiling_facts :
+    Uceil < 8369598075 / 10 ^ 20 ∧ Uceil < 1 / 2 ^ 33 ∧ (99 : ℚ) / 100 * Uceil < 83 / 10 ^ 12 := by
   norm_num [Uceil]
 
 /-- non-vacuity: their own witness satisfies every hypothesis of the ceiling theorem -/
