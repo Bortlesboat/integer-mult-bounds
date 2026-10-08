@@ -3,11 +3,11 @@
 Under the inherited analytic and fixed finite-alphabet multitape hypotheses,
 
 $$T(n)=O(n(\log n)^{1-\kappa}),\qquad
-\kappa=\frac{4134062970}{10^{14}}=4.13406297\times10^{-5}>2^{-15}.$$
+\kappa=\frac{4136014808}{10^{14}}=4.136014808\times10^{-5}>2^{-15}.$$
 
-This is **0.37482% above PR #48** (`411862541/10^13`) and 0.24733% above PR #49
-(this branch's earlier snapshot, `4123863984/10^14`). The bit saving is
-`4134233882/10^14`.
+This is **0.15973% above PR #50** (Rohan Gupta, `4129418696/10^14`),
+0.29455% above PR #49 and 0.42221% above PR #48 (`411862541/10^13`). The bit
+saving is `4136185882/10^14`.
 
 ## Idea
 
@@ -21,9 +21,9 @@ byte-for-byte.
 
 | | PR #48 | This |
 |---|---:|---:|
-| h=23 roles R (matched) | 36,432 | **36,223 (6,384)**, 58+27 swaps |
-| h=25 roles R (matched) | 48,329 | **48,173 (7,969)**, 51+28 swaps |
-| Width W | 177,530,859 | **176,773,883** |
+| h=23 roles R (matched) | 36,432 | **36,203 (6,396)**, 76+40 swaps |
+| h=25 roles R (matched) | 48,329 | **48,148 (8,000)**, 59+32 swaps |
+| Width W | 177,530,859 | **176,683,608** |
 
 Everything else is PR #48, unchanged:
 - RaD's point order and original-envelope labels
@@ -47,7 +47,7 @@ Everything else is PR #48, unchanged:
   - exact moment at the new bit saving
   - all 47 constraints and seven margins
   - the next bit-saving and κ grid points are rejected
-  - the PR #40–#49 child lists are excluded at the new bit saving by exact
+  - the PR #40–#50 child lists are excluded at the new bit saving by exact
     lower bounds
 
 ```sh

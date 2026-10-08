@@ -29,9 +29,10 @@ _spec.loader.exec_module(base)
 from balanced_assembly import assembly, cutoffs  # noqa: E402  (PR #43 / PR #34 audit)
 
 require, read, moment, js = base.require, base.read, base.moment, base.js
-AB = Q(4134233882, 10**14)
-KAPPA = Q(4134062970, 10**14)
+AB = Q(4136185882, 10**14)
+KAPPA = Q(4136014808, 10**14)
 AC = base.AC
+PR50_KAPPA = Q(4129418696, 10**14)
 PR49_KAPPA = Q(4123863984, 10**14)
 PR48_KAPPA = Q(411862541, 10**13)
 PR47_KAPPA = Q(4105106623, 10**14)
@@ -71,7 +72,7 @@ def profile():
     hist = sum(parts.values(), Counter())
     s = sum(t*n for t, n in hist.items())
     require(s == W*m-N+L, 'Complete rank mass')
-    require((m, N, L) == (575, 4073300, 2226400) and W < 177284805, 'Physical constants; fewer roles than PR #49')
+    require((m, N, L) == (575, 4073300, 2226400) and W < 176993671, 'Physical constants; fewer roles than PR #50')
     require(max(hist) == 529 and all(0 < t < m and n > 0 for t, n in hist.items()), 'Proper children')
     return dict(m=m, N=N, W=W, L=L, total_rank=s, deficit=W*m-s, maxchild=max(hist),
                 child_multiplicities=dict(sorted(hist.items())), parts=parts)
@@ -104,19 +105,19 @@ def run():
         pass
     else:
         raise ValueError('Next kappa grid point unexpectedly accepted')
-    controls = {name: excluded(name) for name in ('comparison-pr48.json', 'comparison-pr49.json')}
+    controls = {name: excluded(name) for name in ('comparison-pr48.json', 'comparison-pr49.json', 'comparison-pr50.json')}
     controls.update({name: excluded('../copied-fixed/'+name) for name in
                      ('comparison-pr40.json', 'comparison-pr41.json', 'comparison-pr42.json',
                       'comparison-pr43.json', 'comparison-pr44.json', 'comparison-pr46.json', 'comparison-pr47.json')})
-    require(KAPPA > PR49_KAPPA > PR48_KAPPA > PR47_KAPPA > PR46_KAPPA > Q(1, 2**15), 'Comparison failed')
+    require(KAPPA > PR50_KAPPA > PR49_KAPPA > PR48_KAPPA > PR47_KAPPA > PR46_KAPPA > Q(1, 2**15), 'Comparison failed')
     require(KAPPA < Q(1, 2**14), 'Unexpected power-of-two bracket')
     own = sorted(HERE.glob('*.py'))+sorted(HERE.glob('*.cpp'))+sorted(HERE.glob('*.uses'))
     own += [HERE/f'{k}-{h}.json' for h in (23, 25) for k in ('original', 'profiles')]
-    own += [HERE/'comparison-pr48.json', HERE/'comparison-pr49.json', HERE/'bits-23.json', HERE/'bits-25.json']
+    own += [HERE/'comparison-pr48.json', HERE/'comparison-pr49.json', HERE/'comparison-pr50.json', HERE/'bits-23.json', HERE/'bits-25.json']
     return dict(status='Conditional exact arithmetic witness; general transfer proofs are inherited dependencies',
                 kappa=KAPPA, bit=dict(counts=p, **exact), next_bit_grid_lower=nxt['lower'],
                 complex=prior['complex'], finite_bridge=bridge, assembly=final, eventual_bounds=eventual,
-                comparison=dict(PR49=PR49_KAPPA, ratio_PR49=KAPPA/PR49_KAPPA, PR48=PR48_KAPPA, PR47=PR47_KAPPA, PR46=PR46_KAPPA,
+                comparison=dict(PR50=PR50_KAPPA, ratio_PR50=KAPPA/PR50_KAPPA, PR49=PR49_KAPPA, ratio_PR49=KAPPA/PR49_KAPPA, PR48=PR48_KAPPA, PR47=PR47_KAPPA, PR46=PR46_KAPPA,
                                 ratio_PR48=KAPPA/PR48_KAPPA, ratio_PR47=KAPPA/PR47_KAPPA, ratio_PR46=KAPPA/PR46_KAPPA,
                                 dyadic_corollary='2^-15', next_dyadic_not_reached='2^-14'),
                 exclusion_lower_moments=controls,
@@ -135,4 +136,4 @@ if __name__ == '__main__':
     if args.output:
         args.output.write_text(json.dumps(js(result), indent=2, sort_keys=True)+'\n')
     print('PASS conditional kappa='+str(KAPPA)+'; bit saving='+str(AB))
-    print('47 strict inequalities; seven margins; next grid points rejected; PR40-49 networks excluded')
+    print('47 strict inequalities; seven margins; next grid points rejected; PR40-50 networks excluded')

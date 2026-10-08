@@ -1,12 +1,12 @@
-# Conditional saving 4.13406297e-5 from longer climbs on reordered exclusion sums
+# Conditional saving 4.136014808e-5 from longer climbs on reordered exclusion sums
 
-**κ = 4134062970/10^14 = 4.13406297×10⁻⁵ > 2^-15**, conditional on OpenAI's
-base theorem and retained analytic and fixed-tape interfaces: **0.37482% above
-PR #48** and 0.24733% above PR #49. Longer parallel climbs of the summand and
-leave-one-out orders on PR #48's graphs lower R to 36,223 at h=23 and
-48,173 at h=25, each with an exact optimal carrier matching. See
-[research/climbed-48](research/climbed-48/README.md) and run
-`make climbed-48-verify`.
+**κ = 4136014808/10^14 = 4.136014808×10⁻⁵ > 2^-15**, conditional on OpenAI's
+base theorem and retained analytic and fixed-tape interfaces: **0.15973% above
+PR #50**, 0.29455% above PR #49 and 0.42221% above PR #48. Longer parallel
+climbs of the summand and leave-one-out orders on PR #48's graphs lower R to
+36,203 at h=23 and 48,148 at h=25, each with an exact optimal
+carrier matching. See [research/climbed-48](research/climbed-48/README.md) and
+run `make climbed-48-verify`.
 
 # Conditional saving 4.11862541e-5 from reordered exclusion sums
 

@@ -1,12 +1,12 @@
 {
-  "additions": 49217,
+  "additions": 49223,
   "all_additions_disjoint": true,
   "all_partial_outputs_exact": true,
-  "circuit_sha256": "3d9638836019d10757e712064430dfa477e0fac8468c0befeb4149fa688fac45",
+  "circuit_sha256": "f02005b521c59275e2cd77fb60752d1cf15c00fd20a01221dac371d1e4f7a656",
   "every_node_has_common_point": true,
   "h": 25,
   "inputs": 2300,
-  "merged_additions": 5794,
+  "merged_additions": 5786,
   "partial_outputs": 6925,
-  "roles": 56142
+  "roles": 56148
 }
