@@ -329,6 +329,8 @@ ROWS = [
      'helpers: 26-digit enclosures of log 15625 and −log(1 − η_c)',
      [Line(NC, 139, 140, r'approximately $4.1847990372\cdot10^{-10}$')],
      'Helpers; Nhi/Llo is the note\'s saving enclosure.'),
+    ('CrocSwap', ['enclosure_gt_U_shrunk'], 'negative control: the enclosure exceeds U·(1 − 10⁻²⁴)',
+     [], 'Shows the check against U is tight; no source line.'),
     ('CrocSwap', ['ηc'], 'η_c as a real', [Line(NI, 44, 44, r'=\frac{14}{3464399375}>0')], ''),
     ('CrocSwap', ['Uceil'], 'the certificate\'s exact ceiling U',
      [Key(CJ, ('scoped_ceiling', 'upper'), '__UCEIL__')], ''),

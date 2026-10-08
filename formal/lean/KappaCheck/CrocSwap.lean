@@ -535,6 +535,16 @@ theorem enclosure_le_U : Nhi / (5 * Llo) ≤ (Uceil : ℝ) := by
   simp only [Finset.sum_range_succ, Finset.sum_range_zero]
   norm_num
 
+/-- negative control: the same enclosure does not fit under `U·(1 - 10⁻²⁴)`, so the
+check above is tight and not passing by a wide margin -/
+theorem enclosure_gt_U_shrunk : (Uceil : ℝ) * (1 - 1 / 10 ^ 24) < Nhi / (5 * Llo) := by
+  have hL : 0 < Llo := by
+    unfold Llo ps; simp only [Finset.sum_range_succ, Finset.sum_range_zero]; norm_num
+  rw [lt_div_iff₀ (by positivity)]
+  unfold Nhi Llo ps ηc Uceil
+  simp only [Finset.sum_range_succ, Finset.sum_range_zero]
+  norm_num
+
 /-- `(1 - σ) log m ≤ -log(s/(W m))` for any certified `σ` -/
 theorem certified_saving_log (m r σ' : ℝ) (hm : 1 < m) (hr : 0 < r)
     (hcert : r ≤ m ^ σ') : (1 - σ') * Real.log m ≤ -Real.log (r / m) := by
