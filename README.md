@@ -148,7 +148,9 @@ rebuilds. See [reproduction details](docs/reproducibility.md).
 Each patch applies independently to the **unmodified** pinned source; they are
 alternatives, not a sequence to apply together. The
 [result history](docs/research/result-history.md) records the earlier mechanisms
-and scoped ceilings.
+and scoped ceilings. The [preserved research index](docs/research/preserved-research.md)
+collects the intermediate compression, routing, Fano, and core searches, including
+scoped negative results and reproducible certificates.
 
 | Patch | Conditional saving | Scope |
 | --- | --- | --- |

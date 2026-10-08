@@ -836,7 +836,7 @@
     "scripts/experiments/pin_joint_dual_sources.py": "d1fc5094580ca8ea5fdec3c869c8092bdbf8c544336833becd212f99a242c912",
     "scripts/experiments/verify_joint_dual.py": "4e53a7e7f173eeb611f10aa3e9f7b7581cb9611d69c70f63a556570e19248f2d"
   },
-  "source_manifest_sha256": "7af117467d06baf9b073a081e62f928e4a06b074c1274f2479587e3400b428d8",
+  "source_manifest_sha256": "70bfb892d14521162a1ee7b89b5458f1575a9734776487d433e4477c1b50f0a8",
   "sources": [
     {
       "files": {
