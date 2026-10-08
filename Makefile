@@ -17,6 +17,7 @@ verify:
 	$(MAKE) verify-producers
 	$(MAKE) verify-certificates
 	$(MAKE) verify-ternary
+	$(MAKE) verify-research
 	$(MAKE) verify-tests
 
 verify-community: community-audit-check community-followup-check copied-reversed-producer copied-reversed-check copied-fixed-reversed-producer copied-fixed-reversed-check
@@ -295,3 +296,35 @@ formal-historical-verify:
 formal-gaussian-verify:
 	$(MAKE) -C research/gaussian-parity-synthesis verify
 	python3 scripts/check_lean_axioms.py --project research/gaussian-parity-synthesis --audit research/gaussian-parity-synthesis/AuditAll.lean
+
+.PHONY: verify-research
+# Historical finite searches; no current witness or production certificates change.
+verify-research:
+	python3 scripts/audit_bit_compression.py
+	python3 scripts/audit_mixed_point.py
+	python3 scripts/audit_early_sharing.py
+	python3 scripts/audit_split_centers.py
+	python3 scripts/audit_stage_pair.py
+	python3 scripts/audit_block_carry.py
+	python3 scripts/audit_joint_return.py
+	python3 scripts/audit_cyclic_topology.py
+	python3 scripts/audit_fano_completion.py
+	python3 scripts/audit_fano_permutation.py
+	python3 scripts/audit_rank_product_core.py
+	python3 scripts/audit_stronger_screens.py
+	python3 scripts/audit_subset_cores.py
+	python3 scripts/audit_cube_cores.py
+	python3 scripts/audit_single_intersection.py
+	python3 scripts/audit_shared_core.py
+	python3 scripts/audit_general_guard.py
+	python3 scripts/audit_disjoint_tensor.py
+	python3 scripts/audit_core_limits.py
+	python3 scripts/audit_affine_vectors.py
+	python3 scripts/audit_block_core.py
+	python3 scripts/audit_complex_centers.py
+	python3 scripts/audit_inplace_side.py
+	python3 scripts/audit_quadratic_affine.py
+	python3 scripts/audit_signed_sparse.py
+	python3 scripts/audit_positive_side.py
+	python3 scripts/audit_parity_side.py
+	python3 scripts/audit_prime_subset_limits.py

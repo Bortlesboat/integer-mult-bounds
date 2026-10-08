@@ -1,10 +1,12 @@
 # Reproducing the result
 
-The current artifacts are the [PR39 proof/reproduction guide](../research/copied-fixed-reversed/README.md),
-[exact certificate](../research/copied-fixed-reversed/certificate.json), and
-[completed maintainer audit](research/community-final-audit.md). The bound is
-conditional on the retained original #109 framework. The earlier notes and
-patches below remain historical reproduction targets.
+The selected release is documented in the [community follow-up integration record](research/community-followup-integration.md)
+and [current status](research/current-status.md), with the
+[exact PR49 certificate](../research/climbed-48/certificate.json).
+The bound is conditional on the retained original #109 framework. Earlier notes,
+patches, and the [preserved research](research/preserved-research.md) are historical
+reproduction targets. Run `make verify-research` to regenerate its certificates;
+the expanded tests also run in `make verify-tests`.
 
 ## Requirements
 

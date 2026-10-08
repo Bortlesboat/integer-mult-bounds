@@ -13,6 +13,9 @@ arithmetic and algebraic contracts) are incorporated as scoped formal verificati
 Their Lean builds and axiom audits do not prove the complete multiplication theorem.
 The original #109 framework remains assumed; no independent human peer review is claimed.
 
+The [preserved research index](preserved-research.md) collects the earlier
+compression and topology searches, with scoped exclusions and reproduction commands.
+
 The previous PR #39 release and tested 2^-30 checkpoint at `1a74950` remain
 preserved. Everything below is historical: “latest” and “current” refer to the
 checkpoint, not the selected community follow-up witness.
