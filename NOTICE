@@ -131,3 +131,14 @@ snapshots are preserved in references/copied-centers. Historical OpenAI
 Codex, GPT-6 Astra and Anthropic Claude Opus 5.5 assistance is credited to
 the respective imported sources. Existing PR #21/#23 and RaD attribution,
 licenses and the Gaussian correction remain in force.
+
+Copied centers with reversed (23,25) data corners, 2026-10-08
+Rohan Arun with substantial OpenAI Codex assistance supplies the composition,
+exact dimension23 controls and cost/assembly integration. James Chang's PR34
+supplies the reversed boundary family; icekylinx's PR36 supplies copied retained
+centers and the selected complex graph. The balanced assembly remains attributed
+to RaD/hipotures and its PR34 specialization. Retain Dominik Scholz PR33, Rohan
+Arun PR31, Zhihao Chen PR29/21/23, Paureel/Aurel Prosz, Swapnil Jain, icekylinx,
+eumemic, Douglas Colkitt, OpenAI and all earlier notices and hypotheses.
+This is not a claim of formal verification, new foundational rank identities,
+global optimality or measured runtime speedup.

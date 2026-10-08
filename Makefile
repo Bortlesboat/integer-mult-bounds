@@ -190,3 +190,15 @@ copied-centers-certificate:
 	python3 scripts/copied_centers_network.py
 
 copied-centers-verify: copied-centers-producer copied-centers-certificate
+
+.PHONY: copied-reversed-check copied-reversed-producer
+copied-reversed-check:
+	python3 research/copied-reversed/geometry.py
+	python3 research/copied-reversed/witness.py
+	python3 -m unittest discover -s tests -p 'test_copied_reversed.py' -v
+
+copied-reversed-producer:
+	mkdir -p build/copied-reversed/producer
+	python3 scripts/copied_centers_producer.py --work-dir build/copied-reversed/producer --output build/copied-reversed/producer.json
+
+verify: copied-reversed-producer copied-reversed-check

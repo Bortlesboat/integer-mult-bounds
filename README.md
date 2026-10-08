@@ -1,3 +1,14 @@
+# Conditional multiplication saving 3.850771033 × 10^-5
+
+Reversed two-stage corners composed with copied retained centers give
+**κ = 3850771033/10^14 > 2^-15**, under the retained analytic and fixed-tape
+hypotheses. This is approximately **0.1321% above PR #36**.
+
+See the [proof and reproduction guide](research/copied-reversed/README.md).
+Focused checks precede publication; the full repository rerun is pending and
+this contribution is initially a draft. Earlier results below are retained
+as dependencies and historical records.
+
 # Integer multiplication with conditional saving 3.84569e-5
 
 $$
