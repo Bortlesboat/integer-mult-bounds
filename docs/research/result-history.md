@@ -6,6 +6,15 @@ refer to their historical stage. The [current status](current-status.md) and
 [repository overview](../../README.md) supersede numerical targets and open
 obligations that the compact-control construction has since addressed.
 
+## Community release through PR #39
+
+The reviewed community composition gives conditional
+`kappa=971668963/25000000000000 > 2^-15`. Rohan Arun supplies the final
+fixed-middle-basis contribution, building on the community work credited in
+[the release notes](../releases/community-kappa-15.md). The
+[maintainer audit](community-final-audit.md) records acceptance and limits.
+The earlier checkpoints below remain preserved.
+
 ## Ternary checkpoint
 
 The [ternary construction](ternary-review.md) supplies conditional kappa=2^-30

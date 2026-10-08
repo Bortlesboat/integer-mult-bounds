@@ -10,8 +10,8 @@
 - Status: **conditionally accepted after maintainer mathematical audit**.
   The [final report](community-final-audit.md) accepts the written extensions
   under the retained original #109 interfaces. This is not formal verification
-  or independent human peer review. The stronger integration has not replaced
-  the published main checkpoint.
+  or independent human peer review. The community release adopts this witness and preserves the prior
+  checkpoint.
 
 The merge preserves contributor Git history and scientific source files.
 The regenerated `endpoint-gauge-network.json` differs from its incoming snapshot
@@ -20,7 +20,8 @@ generator's serialization makes the combined CI reproducibility check pass.
 Root documentation distinguishes checkpoint evidence from candidate claims.
 The Makefile takes the union of both verification suites and patch checks.
 Original notices, Apache-2.0/CC0 files and AI-assistance disclosures are retained.
-No incoming PR has been closed or commented on by this integration operation.
+No separate contributor comments or manual bulk PR closures are part of this
+release; publishing the preserved ancestry may mark incorporated PRs merged.
 
 ## Attribution and parallel work
 

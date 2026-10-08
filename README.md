@@ -1,126 +1,120 @@
 # A sharper exponent for integer multiplication
 
-**Research draft maintained by Douglas Colkitt, with community contributions — conditional on the upstream manuscript
-and the written extensions supplied here.**
+**Community research maintained by Douglas Colkitt — conditional on the original
+OpenAI #109 framework.**
 
-This checkpoint supplies
+The reviewed community witness gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\boxed{\kappa=2^{-30}\approx9.31323\times10^{-10}}
+\boxed{\kappa=\frac{971668963}{25000000000000}
+=3.886675852\times10^{-5}>2^{-15}}.
 $$
 
-in the fixed finite-alphabet Turing-machine model with a fixed number of
-one-dimensional tapes used by OpenAI's
-[*Integer multiplication below n log n*](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026)
-(result family #109). It doubles the exponent saving of this repository's
-preceding local `2^-31` checkpoint. The original manuscript uses `2^-182`;
-this is a `2^152` ratio of exponent savings, not a runtime speedup.
+This uses the fixed finite-alphabet Turing-machine model with a fixed number of
+one-dimensional tapes in OpenAI's
+[*Integer multiplication below n log n*](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026).
+The saving is approximately **27.36% above 2^-15**. These numbers compare
+asymptotic exponent savings, not practical running times.
 
-**[Proof note (PDF)](artifacts/ternary-note.pdf)** ·
-[Independent manuscript patch](patches/ternary-30.patch) ·
-[Exact construction certificate](certificates/ternary-side.json) ·
-[Review guide](docs/research/ternary-review.md)
+**Final contribution: [Rohan Arun (@rohanarun), PR #39](https://github.com/CrocSwap/integer-mult-bounds/pull/39).**
+Rohan supplies the fixed-middle-basis composition, simultaneous-basis proof,
+complete profile certificates and final integration, with substantial OpenAI
+Codex assistance. This result builds on a substantial community dependency
+chain, credited below and in the original source notices.
 
-**Related contributions:** Zhihao Chen's earlier
-[PR #7](https://github.com/CrocSwap/integer-mult-bounds/pull/7) introduces the
-same ternary five-subset motif with a different circuit and stronger claimed
-bound. This release records a separate implementation and conditional
-checkpoint; it makes no priority or strongest-known-bound claim. Additional
-stronger contributions are pending review. See the
-[community contribution record](CONTRIBUTORS.md) and
-[contribution-review index](docs/research/contribution-review.md).
-
-## Community integration branch
-
-This branch combines checkpoint `1a74950` with the submitted PR #39 chain at
-`70ae24129649f6d6d4ec6360962a80c3c42a38f1`. Its stronger conditional claim
-(kappa = 3.886675852e-5 > 2^-15) has **passed the maintainer's conditional
-mathematical audit**. The [final assessment](docs/research/community-final-audit.md)
-records the proof dependencies, exact cross-check and source-restoration fix.
-The original #109 framework remains assumed; this is not formal verification
-or independent human peer review. The checkpoint above remains the published
-release baseline until this integration branch is released.
-
-Start with the [integration ledger](docs/research/community-integration.md),
-[contributor record](CONTRIBUTORS.md), and
-[candidate proof/reproduction guide](research/copied-fixed-reversed/README.md).
-Original source notices and licenses are retained. `make verify` covers both
-the checkpoint and the candidate chain.
+**[Proof and reproduction guide](research/copied-fixed-reversed/README.md)** ·
+[Exact certificate](research/copied-fixed-reversed/certificate.json) ·
+[Completed maintainer audit](docs/research/community-final-audit.md) ·
+[Release notes](docs/releases/community-kappa-15.md)
 
 ## What changed
 
-The bit interchange circuit now computes over **F3**, while its address
-frames remain rational matrices. The fixed-alphabet extension preserves the
-interchange recurrence: recursive calls move whole symbols, and completed
-calls return the original bit data.
+The community work combines recursive batching and partial-swap frames with
+semantic precision bounds, arbitrary-coordinate routing and bulk Gaussian
+resampling. Two-stage circuits, paid copied-center operations and improved
+contiguous blocks further strengthen the finite networks. The final PR fixes
+one factor's basis and certifies its complete physical transition profile while
+retaining a compatible generic basis for the other factor.
 
-Five-subsets of 29 points label the circuit. Pair incidence over F3 supplies
-the central map; shared common-pair sums supply its correction. Exact support
-identification merges equal sums across groups. Their rational source spans
-are nondegenerate, and a signed transparent schedule restores every arbitrary
-auxiliary input. A final sign correction and first/third-stage sharing satisfy
-the complete permutation and endpoint contract.
+The selected bit network has m=575 and 188181929 roles. Its exact recursive
+saving is 3886826921/10^14; the complex network supplies 717/10^7. The final
+assembly retains all seven strict exponent margins, including numerical,
+movement and normalization costs. See the [audit](docs/research/community-final-audit.md)
+for the general arguments and their acceptance boundary.
 
-The bit saving is `a_b=467/10^11`. The retained complex network has
-`a_c=5/10^9`; its precision guard and the compact-control movement proofs
-remain unchanged. All final margins are strict, with minimum
+## Attribution
 
-$$
-G_* = \frac{2332833}{2500000000000000} > 2^{-30}.
-$$
+This is a community result. Principal incorporated contributions include:
 
-The full construction is regenerated as an integer DAG; small complete
-instances check every coefficient, arbitrary-input restoration, and rational
-frame transition. The general proofs, rather than extrapolation from those
-small tests, establish the larger construction. The full upstream theorem
-remains assumed, and the new arguments have not received independent
-mathematical review or full formal verification.
+- **Rohan Arun (@rohanarun):** corner geometry, reversed/fixed-basis composition,
+  exact checks and the final [#39](https://github.com/CrocSwap/integer-mult-bounds/pull/39) witness.
+- **icekylinx:** recursive batching, partial swaps, fixed projector profiles,
+  copied retained centers and the selected complex construction.
+- **Zhihao Chen (@jacklightChen):** controlled bases, translated frames,
+  semantic/bulk compatibility and two-stage integration.
+- **RaD project (@hipotures):** semantic precision, arbitrary-coordinate
+  routing, phase-cell inversion and bulk resampling.
+- **James Chang (@jamesyc):** reversed two-stage geometry and exact controls.
+- **Aurel Prosz (@Paureel) and Swapnil Jain:** attributed two-stage development
+  and the paid copied-stream endpoint construction.
+- **Dominik Scholz (@DominikScholz):** dimension, parameter and fixed-basis refinements.
+- **eumemic:** complex circuits, Gaussian resampling and source-frame work;
+  **Bortlesboat** and **dleen:** aligned pairing, retained totals and sharing.
 
-## Evidence and scope
+The [full contribution record](CONTRIBUTORS.md) also credits parallel,
+incremental, superseded and pending work, including princezuda's separate
+Lean certificate submission. Inclusion there does not claim incorporation
+or verification of every PR. Douglas Colkitt maintains the project and its
+original research, review and integration, with OpenAI Codex assistance.
+OpenAI's original manuscript and Harvey–van der Hoeven's analytic work retain
+their attribution. Contributor-specific AI disclosures remain in [NOTICE](NOTICE).
 
-| Component | Evidence |
-| --- | --- |
-| Finite-alphabet interchange | Written extension of the upstream recurrence |
-| Ternary coefficient identity and side sharing | General proof, full DAG counts and exact support keys |
-| Dirty auxiliary restoration and rational frames | General proof and complete small-instance checks |
-| Parameters, logarithms and final margins | Exact rational certificate |
-| Retained complex, movement and precision machinery | Earlier proofs and certificates, unchanged |
-| Source integration | Independent patch, reference checks and manuscript build |
-| Full upstream multiplication theorem | Assumed |
-| Independent review / full formalization | Not supplied |
+## Evidence and limits
 
-The [review guide](docs/research/ternary-review.md) maps each new obligation to
-its evidence. [Current status](docs/research/current-status.md) supersedes
-historical numerical claims in older notes. Earlier witnesses remain unchanged.
+The pinned contribution is PR #39 at `70ae24129649f6d6d4ec6360962a80c3c42a38f1`.
+It has passed the maintainer's conditional mathematical audit. The original
+#109 framework remains assumed; this is not full formal verification,
+independent human peer review, or a claim of worldwide priority or optimality.
+No complete practical multiplication-machine implementation is supplied.
+
+Validation includes 218 tests, 20 historical patch checks, fresh finite
+producers and profile certificates, Ubuntu/GCC reproduction and a three-version
+Linux Python matrix. A separate arithmetic checker confirms the two recursive
+moments and all seven margins without importing the candidate's checkers.
+The [audit](docs/research/community-final-audit.md) separates that executable
+evidence from the general proof arguments.
+
+The former **2^-30 checkpoint** remains preserved at `1a74950`, with its
+[proof note](artifacts/ternary-note.pdf), [certificate](certificates/ternary-side.json)
+and [review guide](docs/research/ternary-review.md). Earlier artifacts are
+historical witnesses, not descriptions of this release's construction.
+PR #40 and later work remain outside the pinned audit.
 
 ## Reproduce
 
-With Python 3.11 or newer, Git and Make:
+Requires Python 3.11 or newer, Git, Make and a C++17 compiler with unsigned
+128-bit integer support (tested with GCC and Clang). No third-party Python
+packages or network access are needed for verification.
 
 ```sh
 make verify
 git diff --exit-code -- certificates patches
 ```
 
-The checks use the Python standard library and require no network access.
-The new full-size audit constructs about 21 million addition nodes; allow
-several minutes and multiple gigabytes of memory. The second command checks
-exact regeneration on a clean checkout. A focused verification is:
+For the final witness and the independent arithmetic/source audit:
 
 ```sh
-python3 scripts/audit_ternary_side.py
-python3 scripts/make_ternary_patch.py
-python3 -m unittest tests.test_prime_core tests.test_ternary_side tests.test_ternary_patch -v
-git apply --check --directory=upstream patches/ternary-30.patch
+make copied-fixed-reversed-check
+make copied-fixed-reversed-producer
+make community-audit-check
 ```
 
-Build the note with `make ternary-note` using Tectonic. See the
-[reproduction instructions](docs/reproducibility.md) for a disposable
-manuscript preview. Passing these checks does not prove the full upstream
-multiplication theorem; no full multiplication-machine implementation is supplied.
+Allow several minutes and multiple gigabytes of memory for full producer
+rebuilds. See [reproduction details](docs/reproducibility.md).
 
-## Witnesses and independent patches
+## Historical witnesses and independent patches
+
 
 Each patch applies independently to the **unmodified** pinned source; they are
 alternatives, not a sequence to apply together. The
@@ -149,27 +143,13 @@ and scoped ceilings.
 | [complex-compression-31](patches/complex-compression-31.patch) | `2^-31` | Weighted complex circuits, binary phase frames and complete auxiliary sharing |
 | **[ternary-30](patches/ternary-30.patch)** | **`2^-30`** | **Ternary five-subset circuit, rational frames and fixed-alphabet interchange** |
 
-## Attribution, citation, and license
+## Citation and license
 
-Checkpoint author: **Douglas Colkitt**. The imported community work has its own
-authors, retained notices and [contribution record](CONTRIBUTORS.md). Local
-checkpoint research, implementation and drafting were performed
-with assistance from OpenAI Codex. The compact-control proposal originated
-with a separate research agent; the supplied note develops its tape, layout,
-repair and assembly arguments. AI assistance is not independent review or
-endorsement by OpenAI. No priority or unrestricted optimality claim is made. The earlier ternary
-submission by Zhihao Chen (jacklightChen) in PR #7 and related complex
-compression work by eumemic in PR #3 are acknowledged in the note and NOTICE.
-Their pending implementations are not imported or verified by this checkpoint.
-The [community contribution record](CONTRIBUTORS.md) also acknowledges parallel,
-incremental and superseded submissions across this interval and subsequent work.
+Use [CITATION.cff](CITATION.cff), cite the individual contributions used and
+include the repository version or commit. [CONTRIBUTORS.md](CONTRIBUTORS.md),
+[NOTICE](NOTICE) and source-specific manifests preserve the dependency credits.
 
-The original manuscript is by OpenAI, pinned at commit
-`adc7f1241b42e322a6451854ab7e4b4c146bf78a`. Source URLs and SHA-256 hashes are in
-[upstream/manifest.json](upstream/manifest.json). Files under `upstream/` remain
-unchanged; modifications are supplied as separate patches.
-
-Use [CITATION.cff](CITATION.cff) and also cite the
-[upstream manuscript](upstream/README.md). Until a release is archived, include
-the repository commit used. Licensed under [Apache-2.0](LICENSE); see
-[NOTICE](NOTICE) and [CONTRIBUTING.md](CONTRIBUTING.md).
+The project is [Apache-2.0](LICENSE). Bundled RaD sources retain their separate
+CC0 license and notices. The pinned original OpenAI manuscript remains unchanged
+under `upstream/`; its source hashes are in [upstream/manifest.json](upstream/manifest.json).
+This project is not an official OpenAI release or endorsement.

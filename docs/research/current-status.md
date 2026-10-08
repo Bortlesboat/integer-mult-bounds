@@ -1,4 +1,4 @@
-# Integration status: community witness conditionally accepted
+# Current release: community witness conditionally accepted
 
 The tested 2^-30 checkpoint is preserved at `1a74950`. This integration branch
 imports the community chain through PR #39, pinned at
@@ -7,8 +7,8 @@ imports the community chain through PR #39, pinned at
 research witness. The [final audit](community-final-audit.md) distinguishes
 the checked new arguments from the assumed original #109 framework and
 records the exact arithmetic cross-check. This is neither formal verification
-nor independent human peer review. Main remains at the published 2^-30
-checkpoint; the stronger result is on the integration branch. See the
+nor independent human peer review. The community release supersedes the 2^-30 headline while preserving that
+checkpoint and all earlier artifacts. See the
 [integration ledger](community-integration.md) and [community credits](../../CONTRIBUTORS.md).
 Do not treat a successful finite replay as verification of the full theorem.
 

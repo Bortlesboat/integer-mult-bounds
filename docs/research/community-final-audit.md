@@ -30,8 +30,9 @@ multitape multiplier. Constants and eventual thresholds are enormous; this
 is an exponent-saving comparison, not a practical speedup or a priority claim.
 
 The independently preserved public checkpoint remains `2^-30` at `1a74950`.
-This audit accepts the stronger integration candidate; it does not itself
-merge a new release onto main. PR40 and subsequent submissions are outside
+At completion this audit accepted the stronger integration candidate without
+changing main. The subsequent [community release](../releases/community-kappa-15.md)
+adopts the audited witness. PR40 and subsequent submissions are outside
 this pinned review.
 
 ## Finite calls and the two recursive interfaces

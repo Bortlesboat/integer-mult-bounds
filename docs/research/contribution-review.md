@@ -1,4 +1,12 @@
-# Incoming contribution review
+# Contribution review: release update and historical triage
+
+The selected PR #39 chain has now passed the [conditional maintainer audit](community-final-audit.md)
+and is incorporated in the community release at kappa=3.886675852e-5 > 2^-15.
+The dated snapshot and original triage below are preserved as historical records;
+their pending/non-import statements describe the earlier 2^-30 checkpoint.
+PR #40 and later submissions remain outside this audit.
+
+## Original triage record
 
 Snapshot taken October 8, 2026. This is a triage index, not acceptance of any
 submitted bound. No PR was merged, modified or commented on during release

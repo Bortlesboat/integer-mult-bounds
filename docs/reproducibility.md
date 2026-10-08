@@ -1,14 +1,15 @@
 # Reproducing the result
 
-The primary artifacts are the [complex-network note](../artifacts/complex-compression-note.pdf),
-[combined patch](../patches/ternary-30.patch), and
-[exact certificate](../certificates/complex-compression.json).
-They are conditional on the retained algorithmic interfaces and written
-extensions identified in the [review guide](research/complex-compression-review.md).
+The current artifacts are the [PR39 proof/reproduction guide](../research/copied-fixed-reversed/README.md),
+[exact certificate](../research/copied-fixed-reversed/certificate.json), and
+[completed maintainer audit](research/community-final-audit.md). The bound is
+conditional on the retained original #109 framework. The earlier notes and
+patches below remain historical reproduction targets.
 
 ## Requirements
 
-The verification path needs Python 3.11 or newer, Git, and Make, with no
+The verification path needs Python 3.11 or newer, Git, Make, and a C++17 compiler supporting
+unsigned 128-bit integers (GCC or Clang), with no
 third-party Python packages. Run commands from the repository root. All input
 source files are bundled, so verification runs without network access.
 

@@ -11,8 +11,10 @@ license is retained at upstream/LICENSE. The exact source URLs and hashes
 are recorded in upstream/manifest.json. Proposed modifications are supplied
 as separate files under patches/; upstream source files remain unchanged.
 
-The new research note, scripts, certificates, patches, and documentation
-were prepared by Douglas Colkitt with assistance from OpenAI Codex.
+The original local research note, scripts, certificates, patches, and
+documentation were prepared by Douglas Colkitt with assistance from OpenAI
+Codex. The community release incorporates work by the contributors identified
+in the notices below; it is not solely Douglas Colkitt's work.
 This project is not an official OpenAI release or an OpenAI endorsement.
 
 Related contributions (not imported in this checkpoint):
@@ -31,7 +33,7 @@ docs/research/contribution-snapshot.json. These acknowledgements do not imply
 joint authorship of the checkpoint, incorporation of pending code, or verification
 of submitted mathematical claims. Original source-specific notices remain in force.
 
-Community integration candidate (pending maintainer proof review):
+Community release (accepted by conditional maintainer audit):
 The following original contributor notices apply to the imported PR #39 chain.
 The preceding non-import statements describe the preserved 2^-30 checkpoint.
 

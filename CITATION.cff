@@ -1,25 +1,39 @@
 cff-version: 1.2.0
 message: >-
-  Please cite this project and the upstream manuscript. This is a conditional
-  research draft; include the repository commit used until a release is archived.
-  On the community integration branch also credit the imported contributors
-  identified in CONTRIBUTORS.md, NOTICE and the source-specific manifests.
+  Please cite the final contribution by Rohan Arun, this project, the upstream
+  manuscript and the constituent contributions used. Project-level authorship
+  here identifies the maintainer; it does not assign sole authorship of the
+  community result. See CONTRIBUTORS.md, NOTICE and source-specific manifests.
 title: "A sharper exponent for integer multiplication"
 authors:
   - family-names: Colkitt
     given-names: Douglas
 license: Apache-2.0
 type: software
+version: "community-kappa-15-2026-10-08"
+date-released: 2026-10-08
 repository-code: "https://github.com/CrocSwap/integer-mult-bounds"
 url: "https://github.com/CrocSwap/integer-mult-bounds"
 abstract: >-
-  A conditional integer-multiplication checkpoint with kappa = 2^-30,
-  using a ternary five-subset network, rational address frames, compact
-  controls and the retained compressed complex network. Includes exact
-  certificates, a proof note and an independent manuscript patch. The
-  upstream theorem and identified extensions remain assumptions. Earlier
-  related ternary work by Zhihao Chen in PR #7 is acknowledged; this
-  checkpoint makes no priority or strongest-known-bound claim.
+  A community integer-multiplication research result with conditional
+  kappa = 971668963/25000000000000 > 2^-15. Rohan Arun's final fixed-middle-basis
+  composition builds on the attributed batching, partial-swap, semantic/bulk,
+  two-stage and copied-center constructions. Includes written proofs, exact
+  certificates and a completed conditional maintainer audit. The original
+  OpenAI #109 framework remains assumed. No full formal verification,
+  independent human peer review or worldwide priority is claimed.
+preferred-citation:
+  type: unpublished
+  title: "Fixed middle basis with copied reversed corners"
+  authors:
+    - family-names: Arun
+      given-names: Rohan
+  year: 2026
+  url: "https://github.com/CrocSwap/integer-mult-bounds/pull/39"
+  notes: >-
+    Final composition with substantial OpenAI Codex assistance. Cite its
+    constituent contributions and the upstream manuscript as recorded in
+    NOTICE and CONTRIBUTORS.md; this entry does not replace those credits.
 keywords:
   - integer multiplication
   - computational complexity
