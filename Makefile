@@ -409,3 +409,15 @@ formal-matrix-verify:
 	python3 scripts/check_lean_axioms.py --project research/matrix-exponent-synthesis --audit research/matrix-exponent-synthesis/AuditAll.lean
 	python3 research/matrix-exponent-synthesis/run_checks.py --work build/matrix-synthesis
 	python3 scripts/audit_joint_candidate.py --check docs/research/community-round2-arithmetic.json
+
+.PHONY: pair-assembly-verify pair-assembly-producer pair-assembly-check
+pair-assembly-producer:
+	python3 research/pair-assembly/producer.py
+
+pair-assembly-check:
+	python3 research/pair-assembly/audit.py
+	python3 research/pair-assembly/verify.py --output research/pair-assembly/certificate.json
+	python3 research/pair-assembly/frame/frame_verify.py
+	cd research/pair-assembly && python3 -m unittest discover -s ../../tests -p 'test_pair_assembly.py' -v
+
+pair-assembly-verify: pair-assembly-producer pair-assembly-check
