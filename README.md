@@ -1,3 +1,25 @@
+# Conditional saving 4.529040672e-5 from paid whole-chain clones
+
+The [clone proof and reproduction note](research/skip-clones/PROOF.md) gives
+**κ = 141532521/3125000000000 = 4.529040672e-5 > 2^-15**, conditional on
+OpenAI's base theorem and the inherited analytic and fixed-tape interfaces.
+This is **0.686876% above PR #53** and **17.769260% above PR #36**.
+
+Starting from Avi Eisenberg's PR #53 skip-prefix graphs, 606 explicitly paid
+whole-chain clones retain the original core/cover envelopes. The actual
+weighted matchings yield R23=32693, R25=43056 and W=159592676. Every added
+operation is included in the exact profiles, and both complete dirty-basis
+orientations are replayed. The I+J geometry, all data pairs, copied centers,
+paid endpoint corrections and complex layer are inherited unchanged.
+The source-partition/whole-chain cloning construction is adapted from
+RaD / hipotures (PR #51); this original-envelope specialization and exact
+integration are by Chafik Boukhalfa with OpenAI Codex assistance.
+
+Run `make skip-clones-verify`; `make verify` retains the predecessor checks.
+There is no claim of global optimality or an unconditional multiplication theorem.
+
+---
+
 # Conditional saving 4.498144e-5 from skip-prefix strips
 
 The [proof and reproduction note](research/skip-strips/PROOF.md) gives
