@@ -6,6 +6,14 @@ refer to their historical stage. The [current status](current-status.md) and
 [repository overview](../../README.md) supersede numerical targets and open
 obligations that the compact-control construction has since addressed.
 
+## Ternary checkpoint
+
+The [ternary construction](ternary-review.md) supplies conditional kappa=2^-30
+with a separate F3 five-subset implementation. The earlier related motif in
+Zhihao Chen's PR #7 is acknowledged; that PR and later stronger submissions
+remain in the [review queue](contribution-review.md). This is an independently
+reproducible checkpoint, not a priority or frontier claim.
+
 ## Subsequent integrated checkpoints
 
 The compact-control construction removed the layer's spacing penalty and

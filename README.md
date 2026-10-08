@@ -1,105 +1,107 @@
 # A sharper exponent for integer multiplication
 
-**Research draft by Douglas Colkitt — conditional on the underlying manuscript
+**Research draft by Douglas Colkitt — conditional on the upstream manuscript
 and the written extensions supplied here.**
 
-This draft improves OpenAI's
-[*Integer multiplication below n log n*](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026)
-(result family #109). In its fixed finite-alphabet Turing-machine model with a
-fixed number of one-dimensional tapes, the strongest supplied witness is
+This checkpoint supplies
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\boxed{\kappa=2^{-31}\approx4.6566\times10^{-10}}.
+\boxed{\kappa=2^{-30}\approx9.31323\times10^{-10}}
 $$
 
-This integrated follow-up increases the exponent saving by approximately
-**5.61 times** over the preceding `83/10^12 > 2^-34` witness. Comparing the
-simpler dyadic statements gives `2^-31 / 2^-34 = 8`. The original manuscript
-uses `2^-182`. These compare asymptotic exponents, not practical runtimes.
+in the fixed finite-alphabet Turing-machine model with a fixed number of
+one-dimensional tapes used by OpenAI's
+[*Integer multiplication below n log n*](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026)
+(result family #109). It doubles the exponent saving of this repository's
+preceding local `2^-31` checkpoint. The original manuscript uses `2^-182`;
+this is a `2^152` ratio of exponent savings, not a runtime speedup.
 
-**[Read the complex-network proof note (PDF)](artifacts/complex-compression-note.pdf)** ·
-[Review the combined source patch](patches/complex-compression-31.patch) ·
-[Inspect the exact certificate](certificates/complex-compression.json) ·
-[Review guide and dependencies](docs/research/complex-compression-review.md)
+**[Proof note (PDF)](artifacts/ternary-note.pdf)** ·
+[Independent manuscript patch](patches/ternary-30.patch) ·
+[Exact construction certificate](certificates/ternary-side.json) ·
+[Review guide](docs/research/ternary-review.md)
 
-This is a research claim supported by written proofs and reproducible checks.
-The complete upstream theorem is assumed; the new arguments have not received
-independent mathematical review or formal verification.
+**Related contributions:** Zhihao Chen's earlier
+[PR #7](https://github.com/CrocSwap/integer-mult-bounds/pull/7) introduces the
+same ternary five-subset motif with a different circuit and stronger claimed
+bound. This release records a separate implementation and conditional
+checkpoint; it makes no priority or strongest-known-bound claim. Additional
+stronger contributions are pending review. See the
+[community contribution record](CONTRIBUTORS.md) and
+[contribution-review index](docs/research/contribution-review.md).
 
 ## What changed
 
-The preceding compact-control construction removed the movement penalty for
-spaced windows. This follow-up improves the **complex finite network** used
-inside that construction, keeping the bit network and compact-control proofs.
+The bit interchange circuit now computes over **F3**, while its address
+frames remain rational matrices. The fixed-alphabet extension preserves the
+interchange recurrence: recursive calls move whole symbols, and completed
+calls return the original bit data.
 
-Weighted rectangle circuits compress the disjoint-triple correction, while
-shared sums compress the intersection-two correction. Compatible binary
-phase frames, signed arithmetic and a transparent computation schedule preserve
-arbitrary auxiliary inputs. A matching reuses complete first/third-stage
-auxiliary banks without additional residual loss.
+Five-subsets of 29 points label the circuit. Pair incidence over F3 supplies
+the central map; shared common-pair sums supply its correction. Exact support
+identification merges equal sums across groups. Their rational source spans
+are nondegenerate, and a signed transparent schedule restores every arbitrary
+auxiliary input. A final sign correction and first/third-stage sharing satisfy
+the complete permutation and endpoint contract.
 
-At `h_c=26`, the complex saving is certified at `a_c=5e-9`, exceeding the
-retained bit saving `a_b=2.96e-9`. The combined patch integrates the new
-network, separate arities, scalar-operation guard charge, recurrence and
-final parameter witness. Its exact minimum assembly margin is
+The bit saving is `a_b=467/10^11`. The retained complex network has
+`a_c=5/10^9`; its precision guard and the compact-control movement proofs
+remain unchanged. All final margins are strict, with minimum
 
 $$
-G_* = \frac{5771}{10^{13}} = 5.771\times10^{-10}>2^{-31}.
+G_* = \frac{2332833}{2500000000000000} > 2^{-30}.
 $$
 
-The **bit interface now limits the result**. With that certified bit saving
-and the retained Gaussian assembly constraint, `kappa<a_b/5=5.92e-10<2^-30`.
-This is a scoped ceiling for the retained choices, not for other networks or
-integer multiplication in general. The new complex construction already
-supplies headroom for a stronger bit network.
-
-The preceding [compact-control note](artifacts/compact-control-note.pdf) and
-[patch](patches/compact-control-34.patch) remain unchanged.
+The full construction is regenerated as an integer DAG; small complete
+instances check every coefficient, arbitrary-input restoration, and rational
+frame transition. The general proofs, rather than extrapolation from those
+small tests, establish the larger construction. The full upstream theorem
+remains assumed, and the new arguments have not received independent
+mathematical review or full formal verification.
 
 ## Evidence and scope
 
 | Component | Evidence |
 | --- | --- |
-| Parameters, logarithm enclosures, final margins | Exact rational certificate |
-| Dirty-control identities, inverses and repair | Finite exhaustive cases and seeded tests |
-| Wider-control tape bound, reservations and recursion | Written general proofs |
-| Compressed complex circuit, binary phase frames and precision guard | Written proofs, exact scalar tests and accounting |
-| Source integration | Combined patch, reference checks and manuscript build |
+| Finite-alphabet interchange | Written extension of the upstream recurrence |
+| Ternary coefficient identity and side sharing | General proof, full DAG counts and exact support keys |
+| Dirty auxiliary restoration and rational frames | General proof and complete small-instance checks |
+| Parameters, logarithms and final margins | Exact rational certificate |
+| Retained complex, movement and precision machinery | Earlier proofs and certificates, unchanged |
+| Source integration | Independent patch, reference checks and manuscript build |
 | Full upstream multiplication theorem | Assumed |
 | Independent review / full formalization | Not supplied |
 
-The [review guide](docs/research/complex-compression-review.md) identifies the new
-proof obligations and their tests. [Current research status](docs/research/current-status.md)
-is authoritative when older notes describe superseded barriers or hypothetical
-witnesses. The earlier artifacts remain available and unchanged.
+The [review guide](docs/research/ternary-review.md) maps each new obligation to
+its evidence. [Current status](docs/research/current-status.md) supersedes
+historical numerical claims in older notes. Earlier witnesses remain unchanged.
 
 ## Reproduce
 
-With Python 3.11 or newer, Git and Make, run from the repository root:
+With Python 3.11 or newer, Git and Make:
 
 ```sh
 make verify
 git diff --exit-code -- certificates patches
 ```
 
-No third-party Python packages or network access are needed for these checks.
-They regenerate the certificates and patches, run the tests, verify upstream
-hashes, and check each patch against the pinned manuscript. The second command
-checks exact regeneration on a clean checkout.
-
-With Tectonic installed, rebuild the latest note using:
+The checks use the Python standard library and require no network access.
+The new full-size audit constructs about 21 million addition nodes; allow
+several minutes and multiple gigabytes of memory. The second command checks
+exact regeneration on a clean checkout. A focused verification is:
 
 ```sh
-make complex-note
+python3 scripts/audit_ternary_side.py
+python3 scripts/make_ternary_patch.py
+python3 -m unittest tests.test_prime_core tests.test_ternary_side tests.test_ternary_patch -v
+git apply --check --directory=upstream patches/ternary-30.patch
 ```
 
-The output is `artifacts/complex-compression-note.pdf`. The first PDF build may
-download TeX resources. See [reproducibility instructions](docs/reproducibility.md)
-for applying the combined patch in a disposable copy and building older notes.
-[GitHub Actions](.github/workflows/verify.yml) runs the arithmetic and patch checks.
-Passing tests does not establish the complete multiplication theorem; this
-repository contains no full multiplication-machine implementation.
+Build the note with `make ternary-note` using Tectonic. See the
+[reproduction instructions](docs/reproducibility.md) for a disposable
+manuscript preview. Passing these checks does not prove the full upstream
+multiplication theorem; no full multiplication-machine implementation is supplied.
 
 ## Witnesses and independent patches
 
@@ -127,7 +129,8 @@ and scoped ceilings.
 | [h46-shared-point](patches/h46-shared-point.patch) | `13*2^-66` | Cross-group sharing |
 | [h50-paired-59](patches/h50-paired-59.patch) | `2^-59` | Paired sums, stopped guard and tighter Gaussian setup |
 | **[compact-control-34](patches/compact-control-34.patch)** | **`83/10^12 > 2^-34`** | **Compact controls, complete reservations, local repair and separate complex arity** |
-| **[complex-compression-31](patches/complex-compression-31.patch)** | **`2^-31`** | **Weighted complex circuits, binary phase frames and complete auxiliary sharing** |
+| [complex-compression-31](patches/complex-compression-31.patch) | `2^-31` | Weighted complex circuits, binary phase frames and complete auxiliary sharing |
+| **[ternary-30](patches/ternary-30.patch)** | **`2^-30`** | **Ternary five-subset circuit, rational frames and fixed-alphabet interchange** |
 
 ## Attribution, citation, and license
 
@@ -135,7 +138,12 @@ Author: **Douglas Colkitt**. Research, implementation and drafting were performe
 with assistance from OpenAI Codex. The compact-control proposal originated
 with a separate research agent; the supplied note develops its tape, layout,
 repair and assembly arguments. AI assistance is not independent review or
-endorsement by OpenAI. No priority or unrestricted optimality claim is made.
+endorsement by OpenAI. No priority or unrestricted optimality claim is made. The earlier ternary
+submission by Zhihao Chen (jacklightChen) in PR #7 and related complex
+compression work by eumemic in PR #3 are acknowledged in the note and NOTICE.
+Their pending implementations are not imported or verified by this checkpoint.
+The [community contribution record](CONTRIBUTORS.md) also acknowledges parallel,
+incremental and superseded submissions across this interval and subsequent work.
 
 The original manuscript is by OpenAI, pinned at commit
 `adc7f1241b42e322a6451854ab7e4b4c146bf78a`. Source URLs and SHA-256 hashes are in

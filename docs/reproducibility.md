@@ -1,7 +1,7 @@
 # Reproducing the result
 
 The primary artifacts are the [complex-network note](../artifacts/complex-compression-note.pdf),
-[combined patch](../patches/complex-compression-31.patch), and
+[combined patch](../patches/ternary-30.patch), and
 [exact certificate](../certificates/complex-compression.json).
 They are conditional on the retained algorithmic interfaces and written
 extensions identified in the [review guide](research/complex-compression-review.md).
@@ -125,7 +125,7 @@ existing one. It leaves the bundled source untouched:
 mkdir -p build
 mkdir build/review
 cp -R upstream/build build/review/build
-git apply --directory=build/review patches/complex-compression-31.patch
+git apply --directory=build/review patches/ternary-30.patch
 ```
 
 Read `build/review/build/main.tex` and its included sections. The other patches
@@ -136,10 +136,10 @@ are alternatives based on the same original manuscript, not successive commits.
 With Tectonic installed:
 
 ```sh
-make complex-note
+make ternary-note
 ```
 
-The result is `artifacts/complex-compression-note.pdf`. Build the preceding
+The result is `artifacts/ternary-note.pdf`. Build the preceding
 compact-control note with `make compact-note`. Build the earlier
 parameter-only note with `make note`, producing `artifacts/parameter-note.pdf`.
 Build the separate routing audit
@@ -183,5 +183,18 @@ and [setup-python](https://github.com/actions/setup-python) actions, with
 read-only repository permissions. The PDF is supplied for readers and can be
 rebuilt locally using the command above.
 
-Build the latest note with `make complex-note`. The earlier notes and
+Build the latest note with `make ternary-note`. The earlier notes and
 patches remain available as independent witnesses.
+
+## Ternary construction
+
+The full `audit_ternary_side.py` constructs about 21 million addition nodes
+and uses multiple gigabytes of memory. It verifies exact support keys,
+pruning and role counts, and independently expands complete h=8,9 controls.
+`make_ternary_patch.py` checks the certificate's source hashes before generating
+the independent patch. Its twelve focused tests are in `test_prime_core.py`,
+`test_ternary_side.py`, and `test_ternary_patch.py`. The source-hash manifest
+includes the standalone exact Kronecker-product helper used by the compiler.
+
+No exploratory overnight search is required by this release. All prior
+certificates, patches and bundled upstream files are preserved unchanged.

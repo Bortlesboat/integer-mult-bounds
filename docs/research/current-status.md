@@ -1,8 +1,45 @@
 # Current contracts and research status
 
-Updated October 7, 2026. Author: Douglas Colkitt. All results remain conditional
-on the pinned upstream algorithmic interfaces and the identified written
-extensions. Nothing here asserts formal or independent verification.
+Updated October 8, 2026. Author: Douglas Colkitt.
+
+The latest included conditional witness is **kappa=2^-30**. Its
+[note](../../artifacts/ternary-note.pdf),
+[certificate](../../certificates/ternary-side.json), and
+[independent patch](../../patches/ternary-30.patch) are described in the
+[review guide](ternary-review.md). The previous 2^-31 construction and all
+older witnesses remain unchanged.
+
+The bit circuit uses F3 scalar arithmetic and rational frames on five-subset
+labels at h=29. Its complete counts are
+
+    m_b=24389, W_b=589493540769997500,
+    s_b=14377157287342062574725,
+    a_b=467/10^11.
+
+The complex circuit is retained at a_c=5/10^9. Parameters are
+
+    epsilon=1999/10000, c=1, beta=1/100, zeta=1/1000,
+    delta=1/10^6, C1=4961/1000,
+    lambda=1-4669/10^12, lambda'=1-4668/10^12,
+    kappa=2^-30.
+
+The exact minimum assembly margin is
+`2332833/2500000000000000 > 2^-30`. The bound remains conditional on the
+pinned upstream theorem and the retained written extensions. Finite checks
+and manuscript compilation are not independent mathematical verification.
+
+Zhihao Chen's earlier PR #7 contains the same ternary motif with a different
+producer and stronger claimed bound. Further pending contributions claim
+larger improvements. See the [contribution-review index](contribution-review.md)
+for attribution, dependency order and the distinction between a submitted
+claim and a reviewed result. This checkpoint asserts neither priority nor a
+strongest-known algorithm.
+
+## Previous 2^-31 integration record
+
+Everything below records the preceding integration. Numerical uses of
+“current,” “latest,” or “retained” in that historical record refer to 2^-31;
+the parameters above supersede them for this checkpoint.
 
 ## Current and earlier results
 

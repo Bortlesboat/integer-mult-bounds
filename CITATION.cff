@@ -11,13 +11,13 @@ type: software
 repository-code: "https://github.com/CrocSwap/integer-mult-bounds"
 url: "https://github.com/CrocSwap/integer-mult-bounds"
 abstract: >-
-  Exact rational certificates, source patches, and research notes for conditional
-  improvements to OpenAI's integer-multiplication manuscript. Compact dirty-control
-  fields remove the simultaneous layer's spacing penalty. Together with complete
-  temporary reservations, local exceptional repair, a compressed complex
-  network with compatible binary phase frames, and retained refinements, the supplied written proofs support
-  kappa = 2^-31. The complete upstream algorithmic theorem is assumed;
-  the new arguments are not independently reviewed or formally verified.
+  A conditional integer-multiplication checkpoint with kappa = 2^-30,
+  using a ternary five-subset network, rational address frames, compact
+  controls and the retained compressed complex network. Includes exact
+  certificates, a proof note and an independent manuscript patch. The
+  upstream theorem and identified extensions remain assumptions. Earlier
+  related ternary work by Zhihao Chen in PR #7 is acknowledged; this
+  checkpoint makes no priority or strongest-known-bound claim.
 keywords:
   - integer multiplication
   - computational complexity

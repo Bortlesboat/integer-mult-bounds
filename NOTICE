@@ -14,3 +14,19 @@ as separate files under patches/; upstream source files remain unchanged.
 The new research note, scripts, certificates, patches, and documentation
 were prepared by Douglas Colkitt with assistance from OpenAI Codex.
 This project is not an official OpenAI release or an OpenAI endorsement.
+
+Related contributions (not imported in this checkpoint):
+Zhihao Chen (jacklightChen), PR #7, supplied an earlier ternary five-subset
+motif, finite-alphabet transfer and a different compressed producer:
+https://github.com/CrocSwap/integer-mult-bounds/pull/7
+The present checkpoint claims no priority for that motif. Related compressed
+complex-network work was submitted by eumemic in PR #3:
+https://github.com/CrocSwap/integer-mult-bounds/pull/3
+The pending contributions and their stronger bounds require their own review;
+this notice does not represent adoption or verification of their claims.
+
+Additional community work, including parallel and superseded submissions, is
+acknowledged in CONTRIBUTORS.md, with pinned submission metadata in
+docs/research/contribution-snapshot.json. These acknowledgements do not imply
+joint authorship of the checkpoint, incorporation of pending code, or verification
+of submitted mathematical claims. Original source-specific notices remain in force.
