@@ -1,6 +1,7 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note fetch
 
 verify:
+	$(MAKE) skip-suffix-verify
 	$(MAKE) skip-strips-verify
 	$(MAKE) copied-fixed-verify
 	$(MAKE) copied-centers-verify
@@ -214,3 +215,14 @@ skip-strips-check:
 	cd research/skip-strips && python3 -m unittest discover -s ../../tests -p 'test_skip_strips.py' -v
 
 skip-strips-verify: skip-strips-producer skip-strips-check
+
+.PHONY: skip-suffix-verify skip-suffix-producer skip-suffix-check
+skip-suffix-producer:
+	python3 research/skip-suffix/producer.py
+
+skip-suffix-check:
+	python3 research/skip-suffix/audit.py
+	python3 research/skip-suffix/verify.py --output research/skip-suffix/certificate.json
+	cd research/skip-suffix && python3 -m unittest discover -s ../../tests -p 'test_skip_suffix.py' -v
+
+skip-suffix-verify: skip-suffix-producer skip-suffix-check

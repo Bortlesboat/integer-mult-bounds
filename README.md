@@ -1,3 +1,25 @@
+# Conditional saving $4.541011 \times 10^{-5}$ from dual skip-suffix strips
+
+The [proof and reproduction note](research/skip-suffix/PROOF.md) gives
+**$\kappa = 4541011/10^{11} > 2^{-15}$**, conditional on OpenAI's base theorem and
+retained analytic and fixed-tape interfaces. This is **$+10.255\%$** above
+PR #48 ($411862541/10^{13}$), **$+0.953\%$** above PR #53 ($4498144/10^{11}$),
+and cleanly surpasses PR #54 ($4.529040672 \times 10^{-5}$) without checking in clone tables.
+
+Only the scalar producer changes. Every vertex's leave-one-out strip sums use
+the dual skip-suffix layout $s_j = (A_{j-1} + v_{j+1}) + B_{j+2}$.
+When vertices are sorted in ascending support order, the intermediate sum
+$A_{j-1} + v_{j+1}$ maintains core popcount $\ge 2$ and compact cover size.
+This allows `SharedPointCircuit` to merge $530+$ additions across groups,
+increasing carrier matches to $12,894$ ($h=23$) and $17,051$ ($h=25$). Roles fall to
+$R_{23} = 32,541$ and $R_{25} = 43,049$. Physical wire volume drops from
+$160,799,739$ down to **$159,230,679$** ($-1,569,060$ below PR #53, $-361,997$ below PR #54).
+
+Run `make skip-suffix-verify` to rerun the full scalar, label, pinned-matching
+replay, fixed-profile, dirty-basis timeline, exhaustive data-pair, exact
+recovery and exact-fraction checks, plus adversarial tests. `make verify`
+includes this target.
+
 # Conditional saving 4.498144e-5 from skip-prefix strips
 
 The [proof and reproduction note](research/skip-strips/PROOF.md) gives
