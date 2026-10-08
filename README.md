@@ -1,3 +1,12 @@
+# Conditional saving 4.548671376e-5 from positive frames and clones on skip-prefix graphs
+
+**κ = 4548671376/10^14 = 4.548671376×10⁻⁵ > 2^-15**, conditional on OpenAI's
+base theorem and retained interfaces: **0.4334% above PR #54** and **1.1233%
+above PR #53**. It combines PR #53's skip-prefix strips with PR #51's
+backward-positive labels and paid whole-chain clones, plus exact optimal
+carrier matching. See [research/positive-skip](research/positive-skip/README.md)
+and run `make positive-skip-verify`.
+
 # Conditional saving 4.498144e-5 from skip-prefix strips
 
 The [proof and reproduction note](research/skip-strips/PROOF.md) gives
