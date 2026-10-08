@@ -301,3 +301,9 @@ skip-frame-verify:
 	python3 scripts/experiments/verify_skip_frame.py
 
 verify-community: skip-frame-verify
+
+.PHONY: joint-dual-verify
+joint-dual-verify:
+	python3 scripts/experiments/verify_joint_dual.py
+
+verify-community: joint-dual-verify

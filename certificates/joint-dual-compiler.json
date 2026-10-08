@@ -1,0 +1,222 @@
+{
+  "axes": {
+    "23": {
+      "compiled": {
+        "all_physical_frame_inclusions": true,
+        "baseline_pr48_roles": 36432,
+        "baseline_pr57_roles": 31416,
+        "complete_dirty_basis_both_orientations": true,
+        "dirty_basis_vectors": 34332,
+        "elementary_xors": 112498,
+        "h": 23,
+        "histogram": {
+          "0": 225013,
+          "1": 41898,
+          "10": 2524,
+          "11": 331,
+          "12": 2944,
+          "13": 84,
+          "14": 3180,
+          "15": 495,
+          "16": 1960,
+          "17": 170,
+          "18": 8239,
+          "19": 4477,
+          "2": 37738,
+          "21": 31,
+          "22": 23,
+          "3": 6430,
+          "4": 18239,
+          "5": 8016,
+          "6": 4649,
+          "7": 1435,
+          "8": 3915,
+          "9": 411
+        },
+        "mode": {
+          "matching": true,
+          "reclaim": true
+        },
+        "rank_mass": 708676,
+        "roles": 30790,
+        "scalar": {
+          "additions": 40099,
+          "all_additions_disjoint": true,
+          "all_partial_outputs_exact": true,
+          "circuit_sha256": "1b72f612aaf99fff5a34f2224cc747324a825032367ffd8b0eebc643d6266b47",
+          "every_node_has_common_point": true,
+          "h": 23,
+          "inputs": 1771,
+          "merged_additions": 5379,
+          "partial_outputs": 5336,
+          "roles": 45435
+        },
+        "source_pr55_head": "03e991aa79f9df1a935726213bb6a8631cd0d823",
+        "stats": {
+          "augmentations": 220,
+          "clearing_xors": 4248,
+          "matched": 11974,
+          "multi_node_regions": 4370,
+          "reclaimed": 1751,
+          "regions": 36626
+        }
+      },
+      "gzip_sha256": "4ddc30c2902ecd19ac9e2049e63f8bb07d9c5e88cbbaa2c664c323c279b39461",
+      "replay": {
+        "elementary_xors": 112498,
+        "full_basis_vectors": 34332,
+        "h": 23,
+        "histogram": {
+          "0": 121040,
+          "1": 41898,
+          "10": 2524,
+          "11": 331,
+          "12": 2944,
+          "13": 84,
+          "14": 3180,
+          "15": 495,
+          "16": 1960,
+          "17": 170,
+          "18": 8239,
+          "19": 4477,
+          "2": 37738,
+          "21": 31,
+          "22": 23,
+          "3": 6430,
+          "4": 18239,
+          "5": 8016,
+          "6": 4649,
+          "7": 1435,
+          "8": 3915,
+          "9": 411
+        },
+        "output_roles": 5336,
+        "rank_mass": 708676,
+        "roles": 30790,
+        "status": "independent serialized word, exact frames, full input and dirty basis both orientations PASS",
+        "word_length": 474786
+      },
+      "word_sha256": "184fbef6027cc7c142d47f8d31f4d79785aaf85ec286d61a0a0e8859c4c3f104"
+    },
+    "25": {
+      "compiled": {
+        "all_physical_frame_inclusions": true,
+        "baseline_pr48_roles": 48329,
+        "baseline_pr57_roles": 41264,
+        "complete_dirty_basis_both_orientations": true,
+        "dirty_basis_vectors": 45046,
+        "elementary_xors": 149289,
+        "h": 25,
+        "histogram": {
+          "0": 297774,
+          "1": 54638,
+          "10": 3023,
+          "11": 95,
+          "12": 3554,
+          "13": 314,
+          "14": 3206,
+          "15": 64,
+          "16": 4249,
+          "17": 559,
+          "18": 2554,
+          "19": 278,
+          "2": 49727,
+          "20": 10778,
+          "21": 5715,
+          "23": 42,
+          "24": 25,
+          "3": 8264,
+          "4": 24821,
+          "5": 10424,
+          "6": 4425,
+          "7": 2200,
+          "8": 5488,
+          "9": 653
+        },
+        "mode": {
+          "matching": true,
+          "reclaim": true
+        },
+        "rank_mass": 1011750,
+        "roles": 40446,
+        "scalar": {
+          "additions": 53175,
+          "all_additions_disjoint": true,
+          "all_partial_outputs_exact": true,
+          "circuit_sha256": "2344a4fbc7bd47f78d674d54a8b3e56d43918bbea5fe5deceb95e6fb4a655c21",
+          "every_node_has_common_point": true,
+          "h": 25,
+          "inputs": 2300,
+          "merged_additions": 7008,
+          "partial_outputs": 6925,
+          "roles": 60100
+        },
+        "source_pr55_head": "03e991aa79f9df1a935726213bb6a8631cd0d823",
+        "stats": {
+          "augmentations": 286,
+          "clearing_xors": 6183,
+          "matched": 16276,
+          "multi_node_regions": 6025,
+          "reclaimed": 2603,
+          "regions": 48675
+        }
+      },
+      "gzip_sha256": "fc0661ac62e4487e26d927f35ea14943228f1fc478418d62e517f20f3a32cf2e",
+      "replay": {
+        "elementary_xors": 149289,
+        "full_basis_vectors": 45046,
+        "h": 25,
+        "histogram": {
+          "0": 160078,
+          "1": 54638,
+          "10": 3023,
+          "11": 95,
+          "12": 3554,
+          "13": 314,
+          "14": 3206,
+          "15": 64,
+          "16": 4249,
+          "17": 559,
+          "18": 2554,
+          "19": 278,
+          "2": 49727,
+          "20": 10778,
+          "21": 5715,
+          "23": 42,
+          "24": 25,
+          "3": 8264,
+          "4": 24821,
+          "5": 10424,
+          "6": 4425,
+          "7": 2200,
+          "8": 5488,
+          "9": 653
+        },
+        "output_roles": 6925,
+        "rank_mass": 1011750,
+        "roles": 40446,
+        "status": "independent serialized word, exact frames, full input and dirty basis both orientations PASS",
+        "word_length": 629356
+      },
+      "word_sha256": "720f69400eca93563c381f39f8a1a23d32b565952dc982c61e85cfa01554f547"
+    }
+  },
+  "compiler_source": {
+    "author": "eumemic with substantial OpenAI Codex assistance",
+    "commit": "cd350f76c9bc01489ec83568bded532cb69be938",
+    "pull_request": 57
+  },
+  "source": {
+    "author": "Rohan Gupta / gupt1156 with Anthropic Claude assistance",
+    "commit": "03e991aa79f9df1a935726213bb6a8631cd0d823",
+    "files": {
+      "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "NOTICE": "40a3066696e0de23e46b565460d19e85b435990ba837da5c1ca925335f4ba829",
+      "research/skip-suffix/skip_graph.py": "7c4781dcc3c134befd8abf295d1e71a99fbbe932112fb56bd5d36e79896ca5f7"
+    },
+    "shared_dependency_manifest": "../pr48/SOURCE.json",
+    "shared_dependency_manifest_sha256": "6ccc673f88d3650d75ed600b082fe2fc2866dd88a172d182a38c1d0cd27d24b3",
+    "upstream": "https://github.com/CrocSwap/integer-mult-bounds/pull/55"
+  },
+  "status": "Exact finite scalar/frame words; complete replay and conditional arithmetic are separately verified"
+}

@@ -1,0 +1,35 @@
+{
+  "base_pr57_commit": "cd350f76c9bc01489ec83568bded532cb69be938",
+  "bit_saving": "1187740349/25000000000000",
+  "focused": {
+    "actual_word_transitions_and_exact_CRT_profiles": true,
+    "command": "make joint-dual-verify",
+    "exit_code": 0,
+    "log_sha256": "4dd8053960f2b352dbe610924237303633068be40204b5e66a6e409c8da85dba",
+    "margins": 7,
+    "next_bit_and_kappa_grid_rejected": true,
+    "producer_words_regenerated_and_matched": true,
+    "receipt_sha256": "84525a3ea394720f5bd6a6a586054746d11817eb221aa8519bf0818178ef2629",
+    "scalar_and_dirty_basis_both_orientations": true,
+    "strict_constraints": 47
+  },
+  "full_repository_verification": {
+    "command": "make verify",
+    "started_at": "2026-10-08T17:23:43.879689+00:00",
+    "status": "RUNNING"
+  },
+  "independent_audit": {
+    "adversarial-receipt.json": "65688a50c715e53a454f182cc2a7c1d4668de9d99ec5b386a23d60a0ccef63de",
+    "physical-receipt.json": "290a2be8c71c2f14a76548d8e15147d79b8c254fbaf599da07337173a96ecea2"
+  },
+  "kappa": "475073569/10000000000000",
+  "optimization_controls": {
+    "entry_points": 3,
+    "receipt_sha256": "62b6ce0e7eb9b67a7933a1187ffca520b44ab4fe5f8e33f69fc6481511b57460",
+    "rejected": true
+  },
+  "producer_pr55_commit": "03e991aa79f9df1a935726213bb6a8631cd0d823",
+  "scope": "Finite conditional witness; inherited all-size analytic, residual, routing, recovery and fixed-tape interfaces remain mathematical dependencies.",
+  "source_manifest_sha256": "7af117467d06baf9b073a081e62f928e4a06b074c1274f2479587e3400b428d8",
+  "status": "PASS: focused producer/replay/arithmetic and independent adversarial audit; complete repository verification RUNNING"
+}

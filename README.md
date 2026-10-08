@@ -28,6 +28,24 @@ AI-assistance disclosures remain credited in the source notices.
 [Maintainer review](docs/research/community-followup-review.md) ·
 [Integration record](docs/research/community-followup-integration.md)
 
+## Additional conditional composition: dual-skip strips with joint frames
+
+The [joint-dual proof and reproduction guide](research/joint-dual/README.md)
+gives **κ=475073569/10^13=4.75073569e-5**, approximately **1.7409637424%**
+above PR57's stated conditional saving. It composes **Rohan Gupta's PR55
+dual-skip graph** with **eumemic's PR57 joint frame compiler**, retaining the
+original-envelope pipeline, exact recovery and all predecessor credits.
+This is an additional conditional witness; it does not extend the scope
+of the maintainer-reviewed community result above.
+
+The physical roles are R23=30790 and R25=40446, giving W=150593466. The
+[exact certificate](certificates/joint-dual-kappa.json) checks the complete
+recursive child list and all 47 strict assembly inequalities/seven margins.
+`make joint-dual-verify` regenerates both physical words, replays every dirty
+basis vector, independently reconstructs transitions and recertifies the
+actual fixed-I+J profiles. `make verify` retains all preceding checks.
+Prepared by Chafik Boukhalfa with OpenAI Codex assistance.
+
 ## What changed
 
 The community work combines recursive batching and partial-swap frames with
