@@ -2,6 +2,7 @@
   "base_pr58_commit": "bc2f7ed4c20dc18898305ab17165c0c995cbb804",
   "base_pr58_head": "96c52fb81cab6e714768e00ca33ca7f004ebcac4",
   "bit_saving": "2382370177/50000000000000",
+  "completed_utc": "2026-10-08T17:50:33.626580+00:00",
   "focused": {
     "actual_word_transitions_and_exact_CRT_profiles": true,
     "certificate_sha256": "b6e1f3208886ac4c2c84de95d83cd079321206ac8cc79470857529403134c7f8",
@@ -17,11 +18,39 @@
     "strict_constraints": 47,
     "validation_receipt_sha256": "273865ad29d513a9267c8f3e2ffdcb41be6a8875668603296f44c4248b7be28a"
   },
+  "followup_changes": "This repository validation receipt only; construction sources, finite artifacts, exact certificate and SOURCE manifest are unchanged from the fully tested commit.",
   "full_repository_verification": {
+    "certificate_sha256": "b6e1f3208886ac4c2c84de95d83cd079321206ac8cc79470857529403134c7f8",
     "command": "make verify",
+    "completed_utc": "2026-10-08T17:50:33.626580+00:00",
+    "elapsed_seconds": 641.4973608339787,
+    "exit_code": 0,
+    "head_at_completion": "e7a492dd8bee4e6f574ced784a62af2ce735edc4",
+    "head_at_start": "96c52fb81cab6e714768e00ca33ca7f004ebcac4",
+    "historical_patch_checks": 20,
+    "integrated_tests": 256,
+    "log_sha256": "d1a1b397c8ef728f9a3fa7b3cd33388e1ecd6b557b66e6051f490961932804a0",
+    "provenance_note": "Verification started on the staged frozen construction tree while HEAD was still the PR58 parent; that identical tree was committed as the tested construction commit during the run.",
+    "source_files_verified": 51,
     "source_manifest_sha256": "65540a35ed4642cd444eb5ec1b20834f9f0dc3ee740f3cdbdbd7b7e514bd5146",
-    "started_utc": "2026-10-08T17:39:32.208619+00:00",
-    "status": "RUNNING"
+    "source_manifest_unchanged": true,
+    "source_pin_mismatches": [],
+    "started_utc": "2026-10-08T17:39:52.110847+00:00",
+    "status": "PASS",
+    "test_group_counts": [
+      12,
+      10,
+      10,
+      17,
+      5,
+      256
+    ],
+    "tested_commit": "e7a492dd8bee4e6f574ced784a62af2ce735edc4",
+    "tested_index_tree": "0d3045edd831057c2e46c601fe6b07d8cfc0e504",
+    "tested_staged_tree_equals_construction_commit_tree": true,
+    "tested_tree": "0d3045edd831057c2e46c601fe6b07d8cfc0e504",
+    "tracked_generated_diff": [],
+    "worktree_byte_clean_after_verification": true
   },
   "independent_audit": {
     "arithmetic-receipt.json": "28bad78602a1c2552a2a7a3e2bdf6e5eae822a596f43db430eda35e647da0f43",
@@ -39,5 +68,6 @@
   "prepared_utc": "2026-10-08T17:34:55.040687+00:00",
   "scope": "Finite conditional witness; inherited all-size analytic, residual, routing, recovery and fixed-tape interfaces remain mathematical dependencies.",
   "source_manifest_sha256": "65540a35ed4642cd444eb5ec1b20834f9f0dc3ee740f3cdbdbd7b7e514bd5146",
-  "status": "PASS focused producer regeneration, independent complete replay, exact arithmetic and adversarial controls; full repository verification RUNNING"
+  "status": "PASS: complete repository verification, focused producer/physical/arithmetic replay and independent adversarial controls on the tested construction",
+  "tested_commit": "e7a492dd8bee4e6f574ced784a62af2ce735edc4"
 }
