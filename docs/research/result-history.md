@@ -1,5 +1,9 @@
 # Earlier results and research chronology
 
+See also the [preserved intermediate research chronology](pre-community-research-history.md)
+and [research index](preserved-research.md). The selected bound is recorded in
+[current status](current-status.md).
+
 This page preserves the earlier README narrative through the published `2^-59`
 result and intervening research attempts. Statements such as “latest” below
 refer to their historical stage. The [current status](current-status.md) and

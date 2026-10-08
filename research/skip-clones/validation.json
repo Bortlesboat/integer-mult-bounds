@@ -143,5 +143,75 @@
   "scalar_dense_carrier_fixed_profile_and_complete_dirty_basis": "PASS on both axes, including weighted selected uses",
   "status": "PASS: complete make verify and independent finite/adversarial replay",
   "tested_commit": "7210de7d0f9ccaeb64c3f60f188419e02be08d95",
+  "upstream_research_integration": {
+    "bit_saving_unchanged": "1132311451/25000000000000",
+    "certificate_byte_identical_to_previous_head": true,
+    "completed_utc": "2026-10-08T18:02:33.827551+00:00",
+    "conflicts_resolved": [
+      ".github/workflows/verify.yml",
+      "docs/ci-verification.md"
+    ],
+    "followup_changes": "Only this validation receipt differs from the tested merged tree; numerical certificates, finite witnesses, source manifests and all upstream research artifacts are unchanged.",
+    "fresh_verification": {
+      "command": "make -j1 verify-research verify-skip verify-tests",
+      "exit_code": 0,
+      "focused_tests": {
+        "skip_clones": 11,
+        "skip_strips": 20
+      },
+      "historical_patch_checks": 20,
+      "integrated_tests": 450,
+      "log_sha256": "5cc6118ec28f372aa9fc39c98fdbc1aad052fc7382ca6b5308d3268302f0aeda",
+      "process_receipt_sha256": "32cdfa8df1a96780c9353a072f011ceddc30de6defca5bb8a599fe09279711da",
+      "recovered_research_audits": 28,
+      "tracked_regeneration_byte_clean": true
+    },
+    "integration": {
+      "all_upstream_python_and_patch_check_commands_preserved": true,
+      "ci_groups": [
+        "community",
+        "skip",
+        "producers",
+        "certificates",
+        "ternary",
+        "research",
+        "tests"
+      ],
+      "ci_python_versions": [
+        "3.11",
+        "3.13",
+        "3.14"
+      ],
+      "formal_ci_jobs_preserved": true,
+      "static_receipt_sha256": "2f3abca03b7817640b534d9fa1cf72a6c5650781c3206a2464354f9ddf39c016",
+      "upstream_added_files_preserved_byte_for_byte": 152
+    },
+    "kappa_unchanged": "141532521/3125000000000",
+    "merged_main": "d55bcd62ceb8f322bcf311a5a66e94c3ac7724f0",
+    "previous_published_head": "b1c704d7a92b60af4e50f09a0b049df09312d642",
+    "source_pin_checks": {
+      "copied-fixed": {
+        "entries": 56,
+        "manifest_unchanged": true,
+        "mismatches": 0,
+        "source_sha256": "2432832310377091f4bef6fc3bf2a334830af34ec26447ae256cdfa24977eff3"
+      },
+      "skip-clones": {
+        "entries": 113,
+        "manifest_unchanged": true,
+        "mismatches": 0,
+        "source_sha256": "f80930a97396003d6bf400596b7fb781d5b01168c0964b55524afc5876deaa26"
+      },
+      "skip-strips": {
+        "entries": 70,
+        "manifest_unchanged": true,
+        "mismatches": 0,
+        "source_sha256": "00677e810cfc107f788853c3e9c4994272e6f0d1edd6449564d970a8d583e980"
+      }
+    },
+    "status": "PASS: additive latest-main integration, recovered upstream audits, existing skip witnesses and all tests",
+    "tested_tree": "d11297c86814f7db0f8aa1d51710dba936811cae",
+    "verification_scope": "Fresh scoped integration verification. Prior complete make verify PASS records above remain tied to their original tested commits; no new full make verify or local Lean run is claimed."
+  },
   "verified_utc": "2026-10-08T16:40:53.036795+00:00"
 }
