@@ -1,4 +1,4 @@
-.PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note aligned-paired-note fetch
+.PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note aligned-paired-note compact-note complex-note ternary-note fetch
 
 verify:
 	python3 scripts/certify.py
@@ -24,6 +24,21 @@ verify:
 	python3 scripts/make_paired_patch.py
 	python3 scripts/aligned_paired_network.py
 	python3 scripts/make_aligned_paired_patch.py
+	python3 scripts/prepare_layers.py
+	python3 scripts/audit_sparse_fusion.py
+	python3 scripts/audit_fused_block.py
+	python3 scripts/audit_short_guards.py
+	python3 scripts/audit_gather_schedules.py
+	python3 scripts/audit_coded_carries.py
+	python3 scripts/audit_cancellation.py
+	python3 scripts/audit_joint_frames.py
+	python3 scripts/audit_compact_controls.py
+	python3 scripts/compact_control_layer.py
+	python3 scripts/make_compact_control_patch.py
+	python3 scripts/complex_compression.py
+	python3 scripts/make_complex_compression_patch.py
+	python3 scripts/audit_ternary_side.py
+	python3 scripts/make_ternary_patch.py
 	python3 scripts/audit_scratch_pooling.py
 	python3 scripts/reuse_network.py
 	python3 scripts/make_reuse_patch.py
@@ -45,6 +60,9 @@ verify:
 	git apply --check --directory=upstream patches/h46-shared-point.patch
 	git apply --check --directory=upstream patches/h50-paired-59.patch
 	git apply --check --directory=upstream patches/h50-aligned-paired.patch
+	git apply --check --directory=upstream patches/compact-control-34.patch
+	git apply --check --directory=upstream patches/complex-compression-31.patch
+	git apply --check --directory=upstream patches/ternary-30.patch
 
 note:
 	mkdir -p artifacts
@@ -81,6 +99,18 @@ paired-note:
 aligned-paired-note:
 	mkdir -p artifacts
 	tectonic --outdir artifacts notes/aligned-paired-note.tex
+
+compact-note:
+	mkdir -p artifacts
+	tectonic --outdir artifacts notes/compact-control-note.tex
+
+complex-note:
+	mkdir -p artifacts
+	tectonic --outdir artifacts notes/complex-compression-note.tex
+
+ternary-note:
+	mkdir -p artifacts
+	tectonic --outdir artifacts notes/ternary-note.tex
 
 fetch:
 	python3 scripts/fetch_upstream.py
