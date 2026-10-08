@@ -1,3 +1,12 @@
+## PR #58 parameter refinement: conditional κ = 4.75073569093336e-5
+
+The [new exact certificate and 11 concrete Lean proofs](research/matrix-exponent-synthesis/README.md)
+give a strict `9.3336e-15` improvement over PR #58's reported κ, reusing its
+verified construction and refining rational parameters. The
+[paper source](research/matrix-exponent-synthesis/matrix-exponent-synthesis.tex)
+also develops the author's matrix/parity tools and certified matching search.
+Inherited analytic and fixed-tape hypotheses remain explicit.
+
 # A sharper exponent for integer multiplication
 
 **Community research maintained by Douglas Colkitt — conditional on the original
