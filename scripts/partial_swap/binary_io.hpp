@@ -1,8 +1,14 @@
 // Copyright 2026 icekylinx. Apache-2.0; written with AI assistance.
 // The on-disk arrays are little endian, regardless of the host architecture.
 #pragma once
+#include <algorithm>
+#include <array>
+#include <cstddef>
+#include <cstdint>
+#include <fstream>
 #include <stdexcept>
 #include <type_traits>
+#include <vector>
 
 inline unsigned popcount64(uint64_t value) {
     unsigned count = 0;

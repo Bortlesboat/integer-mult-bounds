@@ -98,3 +98,19 @@ The [first transfer review](community-transfer-review.md) records the checked
 projector/block algebra, mixed-width induction, row-padding and scheduler
 extension, and larger-child semantic precision induction. Its scope is explicit:
 the selected geometry and the bulk analytic/tape composition are not yet accepted.
+
+## Linux portability follow-up
+
+The initial integration CI failed under GCC because `binary_io.hpp` used
+`std::reverse` without including `<algorithm>`. It also relied on caller includes
+for array, integer, stream and vector declarations. The header now includes its
+own dependencies; a standalone-header compilation regression checks this in the
+normal suite. Existing source notices remain unchanged.
+
+The original label-audit failure was reproduced in an isolated Ubuntu 24.04
+Linux aarch64 Docker container (GCC 13.3, Python 3.12). The fixed header and
+actual label-audit program compile there. Full Linux replay and the GitHub
+Python matrix are tracked by the fix commit's CI. Source-hash certificates
+were regenerated; their mathematical fields compare exactly with the preceding
+commit. This portability correction does not change the exponent or the
+outstanding mathematical review obligations.
