@@ -1,6 +1,7 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note fetch
 
 verify:
+	$(MAKE) structured-bulk-verify
 	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
 	$(MAKE) partial-swap-producer partial-swap-certificate
 	python3 scripts/prime_field_network.py
@@ -160,3 +161,22 @@ endif
 .PHONY: endpoint-gauge-verify
 endpoint-gauge-verify: endpoint-gauge-producer endpoint-gauge-certificate
 	python3 -m unittest discover -s tests -p 'test_endpoint_gauge.py' -v
+
+.PHONY: structured-bulk-producer structured-bulk-certificate structured-bulk-verify structured-bulk-note
+structured-bulk-producer:
+	python3 scripts/structured_bulk_producer.py
+
+structured-bulk-certificate:
+	python3 scripts/structured_bulk_network.py
+
+structured-bulk-verify: structured-bulk-producer structured-bulk-certificate
+
+structured-bulk-note:
+	mkdir -p artifacts
+ifeq ($(TEX_ENGINE),tectonic)
+	$(TECTONIC) -Z search-path=$(CURDIR) --outdir artifacts notes/structured-bulk-note.tex
+else
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/structured-bulk-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/structured-bulk-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/structured-bulk-note.tex
+endif

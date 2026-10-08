@@ -1,67 +1,53 @@
 # Reproducing the current result
 
-Run from the repository root with Python 3.11+, a C++17 compiler, Git, and Make.
+Run from the repository root with Python 3.11+, a C++ compiler supporting
+C++17 and unsigned 128-bit integers (GCC or Clang), Git, and Make.
 No third-party Python package or network access is required for verification.
 
 ```sh
-make endpoint-gauge-verify
+make structured-bulk-verify
 ```
 
-This regenerates the new binary and complex scalar producers at `(32,30,40)`,
-checks their supports, frame assignments, carrier matchings and complete rank
-histograms, and compares them with the selected input data. The bit construction
-uses the retained ordinary paired base threshold; the complex construction uses
-threshold two. These are distinct producers with distinct counts and losses.
+This incremental target checks the selected additions:
 
-The exact certificate reconstructs both recursive call lists, encloses both
-characteristic moments with rational arithmetic, checks the updated precision
-guard, and evaluates 29 strict constraints and seven assembly margins. Small
-exact algebra checks cover alternating and signed residuals and endpoint phase
-normalization. Basis checks cover coordinate prescriptions and both A5 trees;
-remaining generic-minor and interface arguments are in the proof.
+- Regenerates the original-envelope bit producers needed for the new h36
+  rank histogram and h30 fixed-basis profile. The unchanged h32 positive
+  producer counts are matched to the preceding verified certificate.
+- Reconstructs the h30 physical transition multiset, computes its exact
+  modular pivot profiles, and checks the bounded-minor CRT certificate.
+  This is deterministic exactness, not random sampling.
+- Regenerates the mixed-center complex producers `(h,d)=(30,19)` and `(40,35)`;
+  the first is used on two tensor axes. Checks supports, scalar coefficients,
+  binary frames, carrier counts and complete histograms.
+- Reconstructs both full recursive child lists and certifies their moments,
+  the semantic precision induction, product row stock, seven assembly margins
+  and all 47 strict inequalities with exact arithmetic.
 
-`make verify` runs the new checks together with all inherited producers, tests
-and historical patch checks. Unchanged inherited checks need not be repeated
-when validating only this extension.
-
-Large intermediate graph and label files are temporary. To retain them:
+The h30 profile computation is the largest new check and may take several
+minutes. It stores many 30-by-30 modular matrices. Intermediate graphs and
+executables are temporary by default; `--work-dir PATH` preserves them:
 
 ```sh
-python3 scripts/endpoint_gauge_producer.py --work-dir /tmp/endpoint-gauge-producers
+python3 scripts/structured_bulk_producer.py --work-dir /tmp/structured-bulk-producers
 ```
 
-Portable sources are in `scripts/endpoint_gauge/`, with inherited helpers in
-`scripts/partial_swap/` and the retained circuit modules. The selected counts
-are in `certificates/endpoint-gauge-bit-axes.json` and
-`certificates/endpoint-gauge-complex-input.json`.
+`make verify` runs this target and all inherited checks. Unchanged historical
+producers and regression suites are not rerun for the incremental target.
+For arithmetic alone, use `make structured-bulk-certificate`.
 
-For exact arithmetic alone:
+## Proof and dependencies
 
-```sh
-make endpoint-gauge-certificate
-```
+The current proof is supplied as [LaTeX source](../notes/structured-bulk-note.tex).
+This submission does not include a compiled PDF. Optional local compilation
+is available with `make structured-bulk-note`, using pdfLaTeX by default or
+`TEX_ENGINE=tectonic`.
 
-The certificate uses exact rational numbers. Rounded prose values are
-explanatory. On a committed checkout, generated artifacts can be checked with
-`git diff --exit-code -- certificates patches`.
+The [adopted proof sources](../references/semantic-bulk/README.md)
+include the selected PR #23, PR #21 and RaD arguments, their original notices,
+and a hash manifest. Generic simultaneous basis existence and the analytic
+interfaces are written proofs, separate from the finite checks.
 
-## Proof PDF
-
-```sh
-make endpoint-gauge-note
-# Alternatively:
-make endpoint-gauge-note TEX_ENGINE=tectonic
-```
-
-The target produces `artifacts/endpoint-gauge-note.pdf`; the default engine is
-pdfLaTeX. PDF bytes can differ across TeX environments. The standalone note is
-the current proof. The [combined manuscript patch](../PATCHING.md) remains
-the inherited #10 result.
-
-## Provenance
-
-[SOURCES.json](../SOURCES.json) records the new archive hash, parent commit,
-and retained source pins. The original archive and exploratory alternatives
-are preserved outside this submission. Copyright notices, licenses and the
-Gaussian scaling correction are retained. The GitHub workflow runs the full
-`make verify` target and checks certificate/patch reproducibility.
+[SOURCES.json](../SOURCES.json) pins the source commits, archive and immediate
+parent. Original archives, alternate constructions and exploratory files are
+kept outside the submission. The [historical manuscript patch](../PATCHING.md)
+remains the inherited #10 result.
