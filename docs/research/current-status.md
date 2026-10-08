@@ -1,4 +1,20 @@
-# Current release: community follow-up witness
+# Current release: joint-frame community checkpoint
+
+The selected conditional witness is **κ=59556416720821/1250000000000000000
+=4.76451333766568e-5 > 2^-15**, from the reviewed #53/#55/#57/#58/#60 construction
+chain and #61 parameter refinement. It is 15.54% above the previous #49 release.
+See the [review and contribution ledger](community-round2-review.md),
+[independent arithmetic](community-round2-arithmetic.json), and
+[selected certificate](../../research/matrix-exponent-synthesis/candidate/arithmetic.json).
+
+The original #109 framework and inherited all-size analytic/fixed-tape
+interfaces remain assumed. Scoped Lean checks do not prove the full algorithm.
+Submissions after #61 are not included in this review checkpoint.
+
+Everything below is historical; its numerical “current” and “latest” statements
+refer to the corresponding checkpoint.
+
+# Previous release: community follow-up witness
 
 The selected conditional witness is **κ=4123863984/10^14=4.123863984e-5 > 2^-15**,
 from PR #49 at `f95d2910e027495983b53cae1693cf535abf2569`. It improves the

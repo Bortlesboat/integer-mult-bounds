@@ -18,6 +18,10 @@ verify:
 	$(MAKE) verify-certificates
 	$(MAKE) verify-ternary
 	$(MAKE) verify-research
+	$(MAKE) verify-strips
+	$(MAKE) verify-clones
+	$(MAKE) verify-positive
+	$(MAKE) verify-joint
 	$(MAKE) verify-tests
 
 verify-community: community-audit-check community-followup-check copied-reversed-producer copied-reversed-check copied-fixed-reversed-producer copied-fixed-reversed-check
@@ -332,14 +336,12 @@ verify-research:
 skip-frame-verify:
 	python3 scripts/experiments/verify_skip_frame.py
 
-verify-community: skip-frame-verify
 
 .PHONY: joint-dual-verify
 joint-dual-verify:
 	python3 scripts/experiments/verify_joint_dual.py
 	python3 -m unittest discover -s tests -p 'test_joint_reclaim.py' -v
 
-verify-community: joint-dual-verify
 
 .PHONY: skip-strips-verify skip-strips-producer skip-strips-check
 skip-strips-producer:
@@ -354,7 +356,7 @@ skip-strips-verify: skip-strips-producer skip-strips-check
 
 .PHONY: positive-skip-verify positive-skip-build positive-skip-check
 positive-skip-build:
-	python3 research/positive-skip/build.py
+	python3 scripts/audit_positive_skip_exact.py
 
 positive-skip-check:
 	python3 research/positive-skip/witness.py --output research/positive-skip/certificate.json
@@ -393,3 +395,17 @@ skip-clones-check:
 	python3 -m unittest discover -s tests -p 'test_skip_clones.py' -v
 
 skip-clones-verify: skip-clones-producer skip-clones-check
+
+.PHONY: verify-strips verify-clones verify-positive verify-joint formal-matrix-verify
+verify-strips: skip-strips-verify skip-suffix-verify
+verify-clones: skip-clones-verify split-skip-verify
+verify-positive: positive-skip-verify
+verify-joint: skip-frame-verify joint-dual-verify
+	python3 scripts/audit_joint_candidate.py --check docs/research/community-round2-arithmetic.json
+
+formal-verify: formal-matrix-verify
+formal-matrix-verify:
+	cd research/matrix-exponent-synthesis && lake build
+	python3 scripts/check_lean_axioms.py --project research/matrix-exponent-synthesis --audit research/matrix-exponent-synthesis/AuditAll.lean
+	python3 research/matrix-exponent-synthesis/run_checks.py --work build/matrix-synthesis
+	python3 scripts/audit_joint_candidate.py --check docs/research/community-round2-arithmetic.json

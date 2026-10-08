@@ -271,3 +271,24 @@ with original envelopes retained here. The scalar base is Avi Eisenberg's
 PR #53 skip-prefix layout, prepared with Anthropic Claude assistance.
 All credited PR #43/#46/#48, PR #44 and earlier code/proof notices remain
 in force. This extension is provided under the repository's Apache-2.0 terms.
+
+Community review checkpoint #50–#61, 8 October 2026
+Maintainer integration and independent arithmetic: Douglas Colkitt, with OpenAI Codex.
+Avi Eisenberg / ikeboy: skip-prefix strip framework (#53), with Anthropic Claude.
+Rohan Gupta / gupt1156: parallel order search (#50, stated Antigravity assistance)
+and dual-suffix strips (#55, Anthropic Claude assistance).
+Eumemic: equal-frame joint compilation and paid signal reclamation (#57), with Codex.
+Chafik Boukhalfa: original-envelope paid clones (#54), composition (#58) and ranked
+reclamation (#60), with Codex. Rohan Arun: order search (#52) and positive-frame
+composition (#56), with Anthropic Claude and stated Codex validation assistance.
+RaD / hipotures: enlarged frames, source partitions and paid whole-chain clones
+(#51), with Codex. Rohan Garg / rohangar1: singleton/pair recursion and paid-clone
+composition (#59), with Codex. Alejandro Zarzuelo Urdiales: exact parameter
+refinement, scoped Lean arithmetic, matrix/parity and search tools (#61), with
+his disclosed multi-tool and Codex assistance.
+Parallel #50/#52 records are reviewed and credited without replacing the earlier
+climbed-48 implementation; their exact commit history is retained. The separate
+#51 witness is retained as research; its source-graph/negative-basis data proof
+has not received the same full replay as #56's consumed compiler machinery.
+See docs/research/community-round2-review.md for precise validation boundaries.
+All earlier licenses, contributions and notices remain applicable.

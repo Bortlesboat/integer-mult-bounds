@@ -92,7 +92,7 @@
     "research/skip-clones/timeline-25.json": "76d4ff96b4193f37fcdb92e45adac0da475bdbe18f5eedeef450d8a5299eb4f8",
     "research/skip-clones/witness.py": "9e0e972d957560015946b15452bf8d4b75aeecf0ce4a49999f9f913b21abbf89",
     "research/skip-strips/PROOF.md": "0fad3bfbd7062e1607fc95430170d12f9613cc6d850a18871f1cbc8c27434934",
-    "research/skip-strips/SOURCE.json": "00677e810cfc107f788853c3e9c4994272e6f0d1edd6449564d970a8d583e980",
+    "research/skip-strips/SOURCE.json": "d6819476cb69ad731db2c809844d672a8c8f367fb120ffe43467ac471dc8574d",
     "research/skip-strips/audit.py": "dd369a7a6e0be4354c05560d0e1d9750c14839928459f43beeb55970f86e0631",
     "research/skip-strips/balanced_assembly.py": "4d27575dcad2b45a281a34054d311409ecd954f373c0c3a62c29bcc843f06a86",
     "research/skip-strips/comparison-pr48.json": "36de96fd3aea4e0b335d3693434f004f05220bc33a4a165596288e038052734b",
@@ -129,5 +129,6 @@
     "author": "Chafik Boukhalfa with OpenAI Codex assistance",
     "construction": "Paid original-envelope whole-chain clones on the PR53 skip-prefix graph family; clone idea credited to RaD / hipotures PR51 with OpenAI Codex assistance"
   },
+  "integration_note": "Reconciled with main d55bcd6: retain the self-contained binary I/O header (six standard includes only), and the already reviewed skip-strips source manifest. Finite graph, geometry and selected matching are unchanged.",
   "scope": "Explicit reviewed source/input freeze. Certificates and run receipts are derived outputs."
 }

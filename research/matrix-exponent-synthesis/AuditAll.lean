@@ -34,8 +34,6 @@ import SharpQuotient
 #print axioms GaussianParity.mulPi_injective
 #print axioms GaussianParity.piIter_injective
 #print axioms GaussianParity.SameValue
-#print axioms GaussianParity.SameValue
-#print axioms GaussianParity.SameValue
 #print axioms GaussianParity.certifiedButterfly_contract
 #print axioms GaussianParity.certifiedButterfly_refines
 #print axioms GaussianParity.certifiedButterfly_exponent_bound
