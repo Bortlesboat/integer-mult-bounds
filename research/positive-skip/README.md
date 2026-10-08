@@ -11,8 +11,7 @@ W = 159,509,439 (PR #53: 160,799,739; PR #54: 159,592,676).
 
 ## Construction
 
-The two largest independent gains in this series are combined for the first
-time:
+This construction combines two previously proposed changes:
 
 1. **PR #53 (Avi Eisenberg): skip-prefix strips.** The scalar DAG is
    unchanged.
@@ -29,7 +28,7 @@ time:
    | h=25 roles | 43,409 | 43,009 (375 + 25 clones) |
 
    PR #51's alternative-partition stage finds nothing further.
-3. **PR #44's exact optimal carrier matching**, run under the positive-frame
+3. **PR #44's numerically weighted carrier matching**, run under the positive-frame
    adjacency.
 
 PR #54 independently applied paid clones to PR #53 with original-envelope
@@ -63,10 +62,11 @@ of the fallbacks) and the rest of its pipeline carry over unchanged.
 make positive-skip-verify
 ```
 
-**Still needed for review:** recompute both profiles with PR #51's exact
-Boost-based profiler (`pr51/positive_frame_profiles.cpp`, mode `fixed`) and
-run the full `make verify`. A finite search is not a claim of global
-optimality.
+**Full `make verify` passed** at research commit `bcb33f4fde2d07b11f0eee98f089e506dfc24e2f`: **211 tests**, four focused tests, fresh DAG/label/clone rebuilding and compiler checks, inherited producer and complete data-geometry replay, and **18 historical patch checks**. See [validation.json](validation.json). Separately, PR #51's exact Boost-based profiler in `fixed` mode reproduced both pinned `blocks` arrays exactly: 85,355 matrices and 10 primes at h23; 113,893 matrices and 11 primes at h25. See [exact-recertification.json](exact-recertification.json) for complete profiler outputs, source hash and comparisons. These finite checks leave the inherited general analytic and physical interfaces subject to mathematical review.
+
+Weighted matching is a numerical discovery procedure; the pinned output is
+checked exactly. No exact weighted-matching optimality or global optimality
+claim is made.
 
 ## Attribution
 
@@ -75,5 +75,8 @@ labels, clone search, rank-node matcher, compiler checker and profiler,
 copied in `pr51/` under Apache-2.0). Chafik Boukhalfa (PR #43/#46/#48/#54).
 icekylinx, James Chang, Dominik Scholz, Zhihao Chen, Aurel Prosz / Paureel,
 Swapnil Jain, eumemic, Douglas Colkitt, OpenAI, Harvey–van der Hoeven and
-all retained predecessors. Composition, optimal matching and certificate by
+all retained predecessors. Composition, weighted matching and certificate by
 Rohan Arun with Anthropic Claude assistance.
+
+OpenAI Codex independently replayed the local build, exact profile
+recertification and full repository verification.
