@@ -147,3 +147,16 @@ retained predecessors.
 Complete attribution and the conditional proof boundary are recorded in
 research/copied-fixed/PROOF.md; imported originals and source pins are retained.
 Original Apache-2.0 and CC0 notices remain applicable.
+
+Skip-prefix strip producer, 8 October 2026
+By Avi Eisenberg (ikeboy), with Anthropic Claude (Claude Opus 5.5)
+assistance. The skip-prefix leave-one-out strip layout in
+research/skip-strips/skip_graph.py is new. Everything else reuses Chafik
+Boukhalfa's PR #43/#46/#48 research/copied-fixed pipeline, its verification
+code, exact data recovery and support-order sorting, together with:
+- Rohan Arun's PR #44 weighted carrier matching optimizer;
+- RaD (hipotures) PR #41 alternating point order;
+- every predecessor credited above.
+Complete attribution and the conditional proof boundary are recorded in
+research/skip-strips/PROOF.md. Original Apache-2.0 and CC0 notices remain
+applicable.

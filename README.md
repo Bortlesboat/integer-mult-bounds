@@ -1,3 +1,31 @@
+# Conditional saving 4.498144e-5 from skip-prefix strips
+
+The [proof and reproduction note](research/skip-strips/PROOF.md) gives
+**κ = 4498144/10^11 > 2^-15**, conditional on OpenAI's base theorem and
+retained analytic and fixed-tape interfaces. This is **9.2146906%** above
+PR #48 (411862541/10^13), on which it is built, and **16.9658501%** above
+PR #36. For comparison, PR #49's later claim of 4.123863984e-5 is 9.0759544%
+below this value.
+
+Only the scalar producer changes. Every vertex's leave-one-out strip sums use
+the skip-prefix layout s_j = A_{j-2} + (v_{j-1} + B_{j+1}) instead of
+s_j = A_{j-1} + B_{j+1}. The two consumers of every prefix, and of every new
+suffix-side node, then have nested envelopes. The inherited carrier matching
+can therefore continue a retained carrier instead of allocating a fresh role.
+
+Carrier links rise from 6,002/7,715 to 12,719/16,991 at h=23/25 under PR #44's
+pinned weighted matching. Roles fall from 36,432/48,329 to 32,946/43,409. The
+physical wire count falls from **177,530,859** to **160,799,739**. Exact bounds
+show the PR #40–#48 networks fail at the new bit saving 4498347/10^11, while
+this network passes.
+
+Run `make skip-strips-verify` to rerun the full scalar, label, pinned-matching
+replay, fixed-profile, dirty-basis timeline, exhaustive data-pair, exact
+recovery and exact-fraction checks, plus 20 adversarial tests. `make verify`
+includes this target. Finite certification is not formal verification or
+external acceptance of the full theorem; no global optimality or measured
+speedup is claimed. The PR #48 result follows.
+
 # Conditional saving 4.11862541e-5 from reordered exclusion sums
 
 The [proof and reproduction note](research/copied-fixed/PROOF.md) gives

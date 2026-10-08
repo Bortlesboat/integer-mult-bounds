@@ -1,6 +1,7 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note fetch
 
 verify:
+	$(MAKE) skip-strips-verify
 	$(MAKE) copied-fixed-verify
 	$(MAKE) copied-centers-verify
 	$(MAKE) structured-bulk-verify
@@ -202,3 +203,14 @@ copied-fixed-check:
 	python3 -m unittest discover -s tests -p 'test_copied_fixed.py' -v
 
 copied-fixed-verify: copied-fixed-producer copied-fixed-check
+
+.PHONY: skip-strips-verify skip-strips-producer skip-strips-check
+skip-strips-producer:
+	python3 research/skip-strips/producer.py
+
+skip-strips-check:
+	python3 research/skip-strips/audit.py
+	python3 research/skip-strips/verify.py --output research/skip-strips/certificate.json
+	cd research/skip-strips && python3 -m unittest discover -s ../../tests -p 'test_skip_strips.py' -v
+
+skip-strips-verify: skip-strips-producer skip-strips-check
