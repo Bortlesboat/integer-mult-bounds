@@ -1,10 +1,14 @@
 {
   "adversarial": {
+    "clone_and_json_cases": 58,
+    "counts_receipt_sha256": "6e9bfc084f3927d4becfd16ba7a64c1b6adae0a8e78ab57ed724ecaa20027979",
     "receipt_sha256": "ccc40ae895196d4678341dd95499146cc4771930ad63403f0795012eaa61d9d2",
-    "rejected": 58,
-    "total": 58
+    "rejected": 65,
+    "total": 65,
+    "witness_count_cases": 7
   },
   "bit_saving": "1132311451/25000000000000",
+  "completed_utc": "2026-10-08T16:51:09.960483+00:00",
   "evidence_sha256": {
     "focused.log": "fef2558e9244993e59041d304bd387499150121bf092c9880ebe3cb9c20d09b8",
     "producer-replay.json": "0d4e0c8d7c2461d727e38b905cfeb3c0179a94528503965bc88dd8d0252cb279",
@@ -14,10 +18,23 @@
     "command": "python3 -m unittest discover -s tests -p 'test_skip_clones.py' -v",
     "passed": 11
   },
-  "full_repository_verification": "pending",
+  "followup_changes": "This validation receipt only; source, finite fixtures and arithmetic unchanged after the complete run.",
+  "full_repository_verification": {
+    "command": "make verify",
+    "exit_code": 0,
+    "focused_tests": {
+      "copied_fixed": 17,
+      "skip_clones": 11,
+      "skip_strips": 20
+    },
+    "historical_patch_checks": 18,
+    "integrated_tests": 218,
+    "log_sha256": "7f99daad7df965b3733d7818a6c72528358fa2cac02dd5cf03cc3f6abada2dbc"
+  },
   "kappa": "141532521/3125000000000",
   "proof_scope": "Conditional on the inherited base theorem and mathematical interfaces; no Lean or exact optimization claim",
   "scalar_dense_carrier_fixed_profile_and_complete_dirty_basis": "PASS on both axes, including weighted selected uses",
-  "status": "Exact witness and full local finite replay passed; full repository make verify pending",
+  "status": "PASS: complete make verify and independent finite/adversarial replay",
+  "tested_commit": "7210de7d0f9ccaeb64c3f60f188419e02be08d95",
   "verified_utc": "2026-10-08T16:40:53.036795+00:00"
 }
