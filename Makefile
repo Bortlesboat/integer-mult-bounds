@@ -372,3 +372,14 @@ split-skip-check:
 	python3 -m unittest discover -s tests -p 'test_split_skip.py' -v
 
 split-skip-verify: split-skip-producer split-skip-check
+
+.PHONY: skip-suffix-verify skip-suffix-producer skip-suffix-check
+skip-suffix-producer:
+	python3 research/skip-suffix/producer.py
+
+skip-suffix-check:
+	python3 research/skip-suffix/audit.py
+	python3 research/skip-suffix/verify.py --output research/skip-suffix/certificate.json
+	cd research/skip-suffix && python3 -m unittest discover -s ../../tests -p 'test_skip_suffix.py' -v
+
+skip-suffix-verify: skip-suffix-producer skip-suffix-check
