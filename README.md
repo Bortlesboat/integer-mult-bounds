@@ -1,11 +1,10 @@
-## PR #60 parameter refinement: conditional κ = 4.76451333766568e-5
+## PR #62 stacked-witness refinement: conditional κ = 5.1016920170078e-5
 
-The [exact certificate and 11 concrete Lean proofs](research/matrix-exponent-synthesis/README.md)
-give a strict `6.6568e-15` improvement over PR #60's reported κ, reusing its
-focused construction checks and refining rational parameters. The
-[paper source](research/matrix-exponent-synthesis/matrix-exponent-synthesis.tex)
-also develops the author's matrix/parity tools and certified matching search.
-Inherited analytic and fixed-tape hypotheses remain explicit.
+The [exact certificate and concrete Lean proofs](research/matrix-exponent-synthesis/README.md)
+give a strict `1.0170078e-11` improvement over PR #62's strongest stacked κ.
+The construction's finite checks are inherited; the rational parameter checks
+and 11 concrete Lean proofs are fresh. The [paper source](research/matrix-exponent-synthesis/matrix-exponent-synthesis.tex)
+also explains the author's matrix/parity tools and exact matching search.
 
 # A sharper exponent for integer multiplication
 
