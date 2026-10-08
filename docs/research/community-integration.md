@@ -33,8 +33,8 @@ credit to the people who supplied its constituent ideas or earlier checkpoints.
 | --- | --- | --- |
 | Combined repository | Fresh producer rebuilds, both checkpoint/candidate tests, source hashes and all independent patch checks | Passed: 217 tests, 20 patch checks |
 | Fast Gaussian resampling | Correlation packing, shifted input enclosure, Neumann bound and sequential tape cost | Initial text inspection only |
-| Batched transfer | One common controlled basis, contiguous physical blocks, exact child widths/volumes, remainders and dependency-path guard | Pending |
-| Semantic/bulk interface | Completed-child error induction, scalar charge, routing, precision, prime selection and product row reserves | Pending |
+| Batched transfer | One common controlled basis, contiguous physical blocks, exact child widths/volumes, remainders and dependency-path guard | Generic primitive/recurrence/row extension checked conditionally; selected basis pending |
+| Semantic/bulk interface | Completed-child error induction, scalar charge, routing, precision, prime selection and product row reserves | Larger-child semantic induction checked conditionally; actual charge and bulk dependencies pending |
 | Two-stage/copy schedules | Arbitrary scratch restoration, paid endpoint corrections, copied-center transforms and both orientations | Initial text inspection only |
 | Selected basis/rank profile | Rational nonvanishing, universal zeros, bounded-minor CRT and all physical transitions | Executable replay passed; proof review pending |
 | Final assembly | Strict exact margins using reviewed interfaces and constructive eventual cutoffs | Executable replay passed; proof review pending |
@@ -91,3 +91,10 @@ file counts, the sole JSON serialization change and the complete log hash.
 The selected candidate's general mathematical dependencies remain under review;
 these results support a reproducible integration candidate, not acceptance of
 its stronger multiplication bound.
+
+## Mathematical review in progress
+
+The [first transfer review](community-transfer-review.md) records the checked
+projector/block algebra, mixed-width induction, row-padding and scheduler
+extension, and larger-child semantic precision induction. Its scope is explicit:
+the selected geometry and the bulk analytic/tape composition are not yet accepted.
