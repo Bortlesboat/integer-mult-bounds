@@ -6,14 +6,25 @@ useful conclusions. Parallel work, small improvements and results later supersed
 remain part of this project's research record. A contribution need not win the
 headline to deserve acknowledgement.
 
-This record accompanies the conditional **2^-30 checkpoint**, following the last
-published exact witness **83/10^12 > 2^-34**. It covers submissions available on
-October 8, 2026, including earlier work on the 2^-59 family and newer claims beyond
-this checkpoint. It is not a ranking of contributors or a determination of priority.
+This record accompanies the conditional **kappa=3.886675852e-5 > 2^-15**
+community release and preserves the earlier **2^-30 checkpoint** credits. It
+covers submissions recorded on October 8, 2026, including earlier work on the
+2^-59 family and parallel contributions. The final witness is contributed by
+**Rohan Arun (@rohanarun), PR #39**, with its full dependency chain retained. It is not a ranking of contributors or a determination of priority.
 Descriptions below summarize the submitted work; inclusion does not imply that a
 PR's mathematics has been independently verified or its code incorporated.
 
-## The 2^-34 to 2^-30 interval
+## Reviewed community release
+
+The [completed maintainer audit](docs/research/community-final-audit.md) accepts
+the pinned PR #39 composition conditionally on the original #109 framework.
+Rohan Arun supplies the final fixed-middle-basis construction and proof package.
+The [README](README.md#attribution) identifies its principal incorporated
+predecessors; original source authorship and assistance disclosures remain in
+NOTICE. This acceptance concerns the selected dependency chain, not every
+claim in every contributor's submissions.
+
+## The historical 2^-34 to 2^-30 interval
 
 The local complex-compression checkpoint was committed at `1c09a58` on October 8
 at 01:10 UTC. eumemic's related complex construction in [#3](https://github.com/CrocSwap/integer-mult-bounds/pull/3)
@@ -59,8 +70,8 @@ The incoming two-stage work also credits **Swapnil Jain** for linked two-stage
 batching development, alongside Aurel Prosz's topology and endpoint correction;
 see [#29](https://github.com/CrocSwap/integer-mult-bounds/pull/29) and
 [#36](https://github.com/CrocSwap/integer-mult-bounds/pull/36) for their pinned
-external sources. This acknowledgement does not imply those sources have yet
-been imported or audited here.
+external sources. The imported source notices and the completed audit record the scope in which
+that development is used by the released composition.
 
 Closed [#11](https://github.com/CrocSwap/integer-mult-bounds/pull/11) records
 matching/prime-power generalizations and bounded negative screens without a new
@@ -90,3 +101,10 @@ The original manuscript and the underlying Harvey–van der Hoeven analytic work
 retain their existing attribution. Contributor-specific AI disclosures and
 licenses remain attached to their original submissions; acknowledgement here
 neither replaces those notices nor asserts independent human review.
+
+## Submissions received after the checkpoint snapshot
+
+Rohan Arun's [#40](https://github.com/CrocSwap/integer-mult-bounds/pull/40)
+extends the fixed-basis copied-corner work. It is queued separately; the current
+integration pass remains pinned to #39 so its review has a stable target.
+This addition does not rewrite the checkpoint's original 39-PR snapshot.

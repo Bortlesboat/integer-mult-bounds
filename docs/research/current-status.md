@@ -1,3 +1,20 @@
+# Current release: community witness conditionally accepted
+
+The tested 2^-30 checkpoint is preserved at `1a74950`. This integration branch
+imports the community chain through PR #39, pinned at
+`70ae24129649f6d6d4ec6360962a80c3c42a38f1`. The maintainer audit accepts
+`kappa=971668963/25000000000000=3.886675852e-5 > 2^-15` as a conditional
+research witness. The [final audit](community-final-audit.md) distinguishes
+the checked new arguments from the assumed original #109 framework and
+records the exact arithmetic cross-check. This is neither formal verification
+nor independent human peer review. The community release supersedes the 2^-30 headline while preserving that
+checkpoint and all earlier artifacts. See the
+[integration ledger](community-integration.md) and [community credits](../../CONTRIBUTORS.md).
+Do not treat a successful finite replay as verification of the full theorem.
+
+The remainder is the historical checkpoint baseline; its uses of “latest”
+and “current” refer to that checkpoint, not the accepted integration witness.
+
 # Current contracts and research status
 
 Updated October 8, 2026. Author: Douglas Colkitt.

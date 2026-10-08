@@ -1,6 +1,19 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note aligned-paired-note compact-note complex-note ternary-note fetch
+.DEFAULT_GOAL := verify
 
-verify:
+.PHONY: community-audit-check
+community-audit-check:
+	python3 scripts/audit_community_candidate.py --check docs/research/community-audit-arithmetic.json
+
+verify: community-audit-check
+	$(MAKE) copied-centers-verify
+	$(MAKE) structured-bulk-verify
+	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
+	$(MAKE) partial-swap-producer partial-swap-certificate
+	python3 scripts/prime_field_network.py
+	python3 scripts/complex_network.py
+	python3 scripts/fast_gaussian.py
+	$(MAKE) batched-certificate batched-patch
 	python3 scripts/certify.py
 	python3 scripts/search_network.py
 	python3 scripts/make_patch.py
@@ -63,6 +76,7 @@ verify:
 	git apply --check --directory=upstream patches/compact-control-34.patch
 	git apply --check --directory=upstream patches/complex-compression-31.patch
 	git apply --check --directory=upstream patches/ternary-30.patch
+	git apply --check --directory=upstream patches/batched-23.patch
 
 note:
 	mkdir -p artifacts
@@ -114,3 +128,116 @@ ternary-note:
 
 fetch:
 	python3 scripts/fetch_upstream.py
+
+.PHONY: batched-certificate batched-patch batched-note
+PDFLATEX ?= pdflatex
+TEX_ENGINE ?= pdflatex
+TECTONIC ?= tectonic
+
+batched-certificate:
+	python3 scripts/controlled_bit_rank_moment.py --output certificates/controlled-bit-rank-moment.json > /dev/null
+	python3 scripts/batched_network.py --output certificates/batched-network.json --summary
+
+batched-patch:
+	python3 scripts/make_batched_patch.py
+
+batched-note:
+	mkdir -p artifacts
+ifeq ($(TEX_ENGINE),tectonic)
+	$(TECTONIC) -Z search-path=$(CURDIR) --outdir artifacts notes/batched-23-note.tex
+else
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/batched-23-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/batched-23-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/batched-23-note.tex
+endif
+
+.PHONY: partial-swap-producer partial-swap-certificate partial-swap-note
+partial-swap-producer:
+	python3 scripts/partial_swap_producer.py
+
+partial-swap-certificate:
+	python3 scripts/partial_swap_network.py
+
+partial-swap-note:
+	mkdir -p artifacts
+ifeq ($(TEX_ENGINE),tectonic)
+	$(TECTONIC) -Z search-path=$(CURDIR) --outdir artifacts notes/partial-swap-note.tex
+else
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/partial-swap-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/partial-swap-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/partial-swap-note.tex
+endif
+
+.PHONY: endpoint-gauge-producer endpoint-gauge-certificate endpoint-gauge-note
+endpoint-gauge-producer:
+	python3 scripts/endpoint_gauge_producer.py
+
+endpoint-gauge-certificate:
+	python3 scripts/endpoint_gauge_network.py
+
+endpoint-gauge-note:
+	mkdir -p artifacts
+ifeq ($(TEX_ENGINE),tectonic)
+	$(TECTONIC) -Z search-path=$(CURDIR) --outdir artifacts notes/endpoint-gauge-note.tex
+else
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/endpoint-gauge-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/endpoint-gauge-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/endpoint-gauge-note.tex
+endif
+
+.PHONY: endpoint-gauge-verify
+endpoint-gauge-verify: endpoint-gauge-producer endpoint-gauge-certificate
+	python3 -m unittest discover -s tests -p 'test_endpoint_gauge.py' -v
+
+.PHONY: structured-bulk-producer structured-bulk-certificate structured-bulk-verify structured-bulk-note
+structured-bulk-producer:
+	python3 scripts/structured_bulk_producer.py
+
+structured-bulk-certificate:
+	python3 scripts/structured_bulk_network.py
+
+structured-bulk-verify: structured-bulk-producer structured-bulk-certificate
+
+structured-bulk-note:
+	mkdir -p artifacts
+ifeq ($(TEX_ENGINE),tectonic)
+	$(TECTONIC) -Z search-path=$(CURDIR) --outdir artifacts notes/structured-bulk-note.tex
+else
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/structured-bulk-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/structured-bulk-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/structured-bulk-note.tex
+endif
+
+.PHONY: copied-centers-producer copied-centers-certificate copied-centers-verify
+copied-centers-producer:
+	python3 scripts/copied_centers_producer.py
+
+copied-centers-certificate:
+	python3 scripts/copied_centers_network.py
+
+copied-centers-verify: copied-centers-producer copied-centers-certificate
+
+.PHONY: copied-reversed-check copied-reversed-producer
+copied-reversed-check:
+	python3 research/copied-reversed/geometry.py
+	python3 research/copied-reversed/witness.py
+	python3 -m unittest discover -s tests -p 'test_copied_reversed.py' -v
+
+copied-reversed-producer:
+	mkdir -p build/copied-reversed/producer
+	python3 scripts/copied_centers_producer.py --work-dir build/copied-reversed/producer --output build/copied-reversed/producer.json
+
+verify: copied-reversed-producer copied-reversed-check
+
+.PHONY: copied-fixed-reversed-check copied-fixed-reversed-producer
+copied-fixed-reversed-check:
+	python3 research/copied-fixed-reversed/geometry.py --full
+	python3 research/copied-fixed-reversed/witness.py
+	python3 -m unittest discover -s tests -p 'test_copied_fixed_reversed.py'
+
+copied-fixed-reversed-producer:
+	mkdir -p build/copied-fixed-reversed/producer
+	python3 research/copied-fixed-reversed/producer.py --work-dir build/copied-fixed-reversed/producer --output build/copied-fixed-reversed/producer.json
+	python3 research/copied-fixed-reversed/review/fixed25_copied_crt_audit.py --work-dir build/copied-fixed-reversed/producer --record build/copied-fixed-reversed/producer.json --profiler-source research/copied-fixed-reversed/full_profiles25.cpp --output build/copied-fixed-reversed/crt-audit.json
+
+verify: copied-fixed-reversed-producer copied-fixed-reversed-check
