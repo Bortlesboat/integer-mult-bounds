@@ -1,6 +1,7 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note fetch
 
 verify:
+	$(MAKE) copied-centers-verify
 	$(MAKE) structured-bulk-verify
 	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
 	$(MAKE) partial-swap-producer partial-swap-certificate
@@ -180,3 +181,12 @@ else
 	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/structured-bulk-note.tex
 	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/structured-bulk-note.tex
 endif
+
+.PHONY: copied-centers-producer copied-centers-certificate copied-centers-verify
+copied-centers-producer:
+	python3 scripts/copied_centers_producer.py
+
+copied-centers-certificate:
+	python3 scripts/copied_centers_network.py
+
+copied-centers-verify: copied-centers-producer copied-centers-certificate

@@ -8,8 +8,6 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <unordered_map>
-#include <cmath>
 using U=uint32_t;using V=uint64_t;
 #include "../partial_swap/binary_io.hpp"
 int main(int argc,char**argv){assert(argc==2||argc==3);std::ifstream f(argv[1],std::ios::binary);U hdr[4];read_array(f,hdr);U h=hdr[0],v=hdr[1],n=hdr[2],q=hdr[3];assert(h==30);
@@ -37,7 +35,7 @@ struct Frame{V core,cover;U rank;};std::vector<Frame>frames{{0,0,0},{0,0,h}};std
 for(U x=1;x<n;x++)if(active[x]){auto key=std::make_pair(core[x],cover[x]);auto z=frame_lookup.find(key);if(z==frame_lookup.end()){U id=frames.size();frames.push_back({core[x],cover[x],ranks[x]});frame_lookup[key]=id;fi[x]=id;}else fi[x]=z->second;}
 std::map<std::pair<U,U>,int64_t>transitions;int64_t singles=0;
 auto edge=[&](U a,U b,int64_t count){if(a==b)return;transitions[{a,b}]+=count;};
-for(U x=1;x<n;x++)if(active[x]){U r=ranks[x];if(args[x][0]){edge(0,fi[x],degree[x]-1);edge(fi[x],1,1);for(U y:args[x])edge(fi[y],fi[x],1);}else edge(0,fi[x],degree[x]);}
+for(U x=1;x<n;x++)if(active[x]){if(args[x][0]){edge(0,fi[x],degree[x]-1);edge(fi[x],1,1);for(U y:args[x])edge(fi[y],fi[x],1);}else edge(0,fi[x],degree[x]);}
 for(U j=0;j<q;j++){U r=ranks[roots[j]];if(kind[j]){edge(0,fi[roots[j]],1);edge(0,1,1);}else singles+=h-r;}
 for(U donor:donors)if(leftmatch[donor]){U e=uses[leftmatch[donor]-1],target=nd(e),value=e>>31?target:args[target][e&1];edge(fi[donor],1,-1);edge(0,fi[value],-1);edge(fi[value],fi[target],-1);edge(fi[donor],fi[target],1);}
 V p=2305843009213693951ULL;
@@ -52,7 +50,7 @@ auto matrix=[&](U id)->const std::vector<V>&{auto&A=matrix_cache[id];if(!A.empty
  for(U i=0;i<h;i++)for(U j=0;j<h;j++){V oi=(out>>i)&1,oj=(out>>j)&1,wi=3+((f.core>>i)&1),zj=((f.core>>j)&1)?3*(h+1)-10:p-10;
   V num=(mul(s*oi,zj)+3*(h+1)*s*wi*oj+mul(nn*wi,zj))%p;num=sub(num,3*(h+1)*(c-1)*oi*oj);A[i*h+j]=(V(i==j&&oi)+mul(num,inv))%p;
  }return A;};
-std::vector<int64_t>blocks(h+1);blocks[1]=singles;V done=0,matrices=0,crt_matrices=0,crt_disagreements=0;U longest=0;std::map<U,V>correction_hist;
+std::vector<int64_t>blocks(h+1);blocks[1]=singles;V done=0,matrices=0,crt_matrices=0,crt_disagreements=0;U longest=0;
 for(auto&[key,count]:transitions){if(!count)continue;assert(count>0);U aa=key.first,bb=key.second;U rr=frames[bb].rank-frames[aa].rank;assert(frames[bb].rank>=frames[aa].rank);if(!rr)continue;
  if(rr<=2){blocks[1]+=count*rr;continue;}if(aa==0&&bb==1){blocks[h]+=count;continue;}
  if(aa>1&&bb>1){
@@ -71,7 +69,8 @@ if(aa>1&&bb>1&&popcount64(frames[aa].core)==2&&popcount64(frames[bb].core)==1){
  assert(h==30);crt_matrices++;std::vector<std::vector<std::pair<U,U>>> all{pivots};
  for(V extra:{2147483647ULL,524287ULL}){p=extra;matrix_cache[aa].clear();matrix_cache[bb].clear();const auto&C=matrix(aa);const auto&D=matrix(bb);std::vector<V>Y(h*h);for(U z=0;z<h*h;z++)Y[z]=sub(D[z],C[z]);std::vector<std::pair<U,U>> pp;
   for(U i=0;i<h;i++){int j=h-1;while(j>=0&&!Y[i*h+j])j--;if(j<0)continue;pp.push_back({i,U(j)});V inv=power(Y[i*h+j],p-2);for(U k=i+1;k<h;k++){V z=mul(Y[k*h+j],inv);if(z)for(U col=0;col<=U(j);col++)Y[k*h+col]=sub(Y[k*h+col],mul(z,Y[i*h+col]));}}
-  if(pp!=pivots)crt_disagreements++;all.push_back(std::move(pp));
+  if(pp!=pivots){crt_disagreements++;}
+  all.push_back(std::move(pp));
  }
  p=2305843009213693951ULL;matrix_cache[aa].clear();matrix_cache[bb].clear();
  std::vector<int> corner((h+1)*(h+1));for(U i=0;i<h;i++)for(U j=0;j<h;j++){int best=0;for(auto&pp:all){int rank=0;for(auto [row,col]:pp)rank+=row<=i&&col>=j;best=std::max(best,rank);}corner[(i+1)*(h+1)+j]=best;}

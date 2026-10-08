@@ -170,5 +170,69 @@
         "commit": "ed90fd940279c336ebc45968631bdebfb087b505"
       }
     ]
+  },
+  "copied_centers_extension": {
+    "contributor": "icekylinx",
+    "parent_PR": "https://github.com/CrocSwap/integer-mult-bounds/pull/32",
+    "parent_commit": "0ef3aeb61f55cc0b321ce6a0ef00acee25cefe52",
+    "kappa": "384569/10000000000",
+    "archive": "integer_mult_round4_kappa_3_84569e-5_complete.zip",
+    "archive_sha256": "92faf75a96db227c5c49c2399f2a36502667e58951444c4bf1b23ee932ed8f83",
+    "proof": "notes/copied-centers-note.tex",
+    "certificate": "certificates/copied-centers-network.json",
+    "producer": "scripts/copied_centers_producer.py",
+    "dependency_manifest": "references/copied-centers/MANIFEST.json",
+    "assistance": "Substantial OpenAI GPT-6 Astra and Codex assistance.",
+    "scope": "Conditional on retained analytic and fixed-tape interfaces; exact finite moments and assembly.",
+    "curation": "Selected finite inputs, reproducible checks and necessary proof sources. Excludes alternatives, terminal-eligibility research metadata, raw graph dumps and duplicate history.",
+    "adopted": [
+      {
+        "contributor": "Aurel Prosz (Paureel)",
+        "commit": "c82d09eb4781b68435e3fa3eb6beea72fa900fab",
+        "role": "Two-stage topology and paid endpoint-copy interface"
+      },
+      {
+        "contributor": "Swapnil Jain",
+        "commit": "ae405eb474d1486b2d8aef90139869f927f4836a",
+        "role": "Linked two-stage development credited by PR29; no source code imported"
+      },
+      {
+        "contributor": "Zhihao Chen (jacklightChen)",
+        "pr": 29,
+        "commit": "9d963275075fa98f1da821e27757b238dafd6b3c",
+        "role": "Unequal two-stage compatibility, common basis, gauges and physical accounting"
+      },
+      {
+        "contributor": "Rohan Arun",
+        "pr": 31,
+        "commit": "02f68f95369c39955c5ffcfddbd75cd83e26b305",
+        "role": "Corner incidence method, symbolic zero partitions and rational pivot witnesses"
+      },
+      {
+        "contributor": "Dominik Scholz",
+        "pr": 33,
+        "commit": "a499a345c040aa15b68e984a0904eadc485c7a7e",
+        "role": "Parameterized corner generator specialized to (25,23)"
+      }
+    ],
+    "icekylinx_lineage": [
+      {
+        "pr": 10,
+        "commit": "62691e395a0458ce089a1c7b5d89e74291e95e29"
+      },
+      {
+        "pr": 18,
+        "commit": "f2ab41aebad47861caf6316282c1793e5513845e"
+      },
+      {
+        "pr": 24,
+        "commit": "ed90fd940279c336ebc45968631bdebfb087b505"
+      },
+      {
+        "pr": 32,
+        "commit": "0ef3aeb61f55cc0b321ce6a0ef00acee25cefe52"
+      }
+    ],
+    "continuing_analytic_dependencies": "See structured_bulk_extension.adopted and references/semantic-bulk/MANIFEST.json."
   }
 }

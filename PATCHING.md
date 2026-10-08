@@ -1,7 +1,7 @@
 # Applying the inherited manuscript patch
 
-This patch is the PR #10 baseline. The current structured-basis and bulk extension is
-presented in `notes/structured-bulk-note.tex`; it is not included
+This patch is the PR #10 baseline. The current copied-center extension is
+presented in `notes/copied-centers-note.tex`; it is not included
 in this historical combined manuscript patch.
 
 `patches/batched-23.patch` applies to the original manuscript snapshot at
