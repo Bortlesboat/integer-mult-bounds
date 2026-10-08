@@ -1,0 +1,93 @@
+# Community integration ledger
+
+## Pinned inputs and acceptance boundary
+
+- Preserved conditional 2^-30 checkpoint: `1a74950` (`release/ternary-30`).
+- Community candidate: [PR #39](https://github.com/CrocSwap/integer-mult-bounds/pull/39),
+  `70ae24129649f6d6d4ec6360962a80c3c42a38f1`.
+- Contributor's tested research commit: `50e54ece17afa4bd3cccd1927e9cdea5098038c2`.
+- Submitted saving: `971668963/25000000000000`, approximately `3.886675852e-5`.
+- Status: imported on a separate integration branch; full maintainer mathematical
+  review pending. No stronger release claim follows from the import alone.
+
+The merge preserves contributor Git history and scientific source files.
+The regenerated `endpoint-gauge-network.json` differs from its incoming snapshot
+only in numeric-key ordering; exact parsed JSON equality is checked. Keeping the
+generator's serialization makes the combined CI reproducibility check pass.
+Root documentation distinguishes checkpoint evidence from candidate claims.
+The Makefile takes the union of both verification suites and patch checks.
+Original notices, Apache-2.0/CC0 files and AI-assistance disclosures are retained.
+No incoming PR has been closed or commented on by this integration operation.
+
+## Attribution and parallel work
+
+[CONTRIBUTORS.md](../../CONTRIBUTORS.md) covers all 39 submissions at the checkpoint,
+including parallel implementations and closed #11/#30. It distinguishes credit
+from acceptance. Imported source-specific credits in NOTICE, SOURCES.json and
+references/ are additive to that record. A stronger final PR does not displace
+credit to the people who supplied its constituent ideas or earlier checkpoints.
+
+## Review gates
+
+| Gate | Required evidence | Maintainer status |
+| --- | --- | --- |
+| Combined repository | Fresh producer rebuilds, both checkpoint/candidate tests, source hashes and all independent patch checks | Passed: 217 tests, 20 patch checks |
+| Fast Gaussian resampling | Correlation packing, shifted input enclosure, Neumann bound and sequential tape cost | Initial text inspection only |
+| Batched transfer | One common controlled basis, contiguous physical blocks, exact child widths/volumes, remainders and dependency-path guard | Pending |
+| Semantic/bulk interface | Completed-child error induction, scalar charge, routing, precision, prime selection and product row reserves | Pending |
+| Two-stage/copy schedules | Arbitrary scratch restoration, paid endpoint corrections, copied-center transforms and both orientations | Initial text inspection only |
+| Selected basis/rank profile | Rational nonvanishing, universal zeros, bounded-minor CRT and all physical transitions | Executable replay passed; proof review pending |
+| Final assembly | Strict exact margins using reviewed interfaces and constructive eventual cutoffs | Executable replay passed; proof review pending |
+
+A failed gate should isolate the strongest surviving earlier checkpoint rather
+than trigger an unsupported all-or-nothing acceptance of the latest number.
+The independent 2^-30 checkpoint remains available throughout review.
+
+## Bounded mathematical inspection
+
+The projector-batching argument explicitly obtains a contiguous identity Schur
+block from the idempotent equation, rather than treating every matrix of a given
+rank as batchable. The mixed-width recurrence requires a strict weighted moment
+and every child width strictly below the parent. These are the changed interfaces
+that must carry through the full selected construction.
+
+The copied-center argument uses two physical streams: a paid transformed copy
+supplies read-only scatter, while the original goes directly to its cleanup
+frame. This reproduces both old scalar inputs for arbitrary dirty values. Its
+use on every actual producer terminal, and the complete sequential tape schedule,
+remain separate obligations; this local algebra is not an end-to-end audit.
+
+The semantic guard argues from the exact completed child operator, with only
+one active child's temporary precision overhead. It keeps the fine-grid encoding
+and does not insert intermediate rounding. Its composition with the bulk
+resampling and routing arguments still requires a full dependency review.
+
+## Initial observations
+
+The incoming batching and two-stage changes alter hypotheses of the previous
+singleton-call and three-stage ceilings. Stronger submitted exponents are not
+by themselves contradictions of those scoped ceilings.
+
+The copied-center lemma explicitly pays a rank-r transform on the temporary
+stream; it does not simply delete the original return cost. Its sequential
+copy/read/discard interface and complete role volume remain proof dependencies.
+The shifted Gaussian approximation includes the F=2^ceil(1.14 alpha^2) enclosure
+correction. These observations identify what to audit, not a completed proof.
+
+## Subsequent submissions
+
+PR #40 arrived during this replay and is credited in the community record.
+It remains queued; this pass keeps #39 pinned rather than changing the scientific
+input underneath a running verification.
+
+## Maintainer validation
+
+`make verify` passed on the combined tree: **217 tests and 20 independent
+upstream patch checks**, plus the candidate's 10- and 12-test focused runs.
+Fresh producer, label, geometry, CRT, moment and assembly rebuilding ran as part
+of that command. All checkpoint scientific files remain byte-identical. The
+[validation receipt](community-integration-validation.json) records source pins,
+file counts, the sole JSON serialization change and the complete log hash.
+The selected candidate's general mathematical dependencies remain under review;
+these results support a reproducible integration candidate, not acceptance of
+its stronger multiplication bound.

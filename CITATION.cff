@@ -2,6 +2,8 @@ cff-version: 1.2.0
 message: >-
   Please cite this project and the upstream manuscript. This is a conditional
   research draft; include the repository commit used until a release is archived.
+  On the community integration branch also credit the imported contributors
+  identified in CONTRIBUTORS.md, NOTICE and the source-specific manifests.
 title: "A sharper exponent for integer multiplication"
 authors:
   - family-names: Colkitt

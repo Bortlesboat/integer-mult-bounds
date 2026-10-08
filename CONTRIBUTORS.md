@@ -90,3 +90,10 @@ The original manuscript and the underlying Harvey–van der Hoeven analytic work
 retain their existing attribution. Contributor-specific AI disclosures and
 licenses remain attached to their original submissions; acknowledgement here
 neither replaces those notices nor asserts independent human review.
+
+## Submissions received after the checkpoint snapshot
+
+Rohan Arun's [#40](https://github.com/CrocSwap/integer-mult-bounds/pull/40)
+extends the fixed-basis copied-corner work. It is queued separately; the current
+integration pass remains pinned to #39 so its review has a stable target.
+This addition does not rewrite the checkpoint's original 39-PR snapshot.

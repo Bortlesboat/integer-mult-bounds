@@ -107,3 +107,8 @@ See [CONTRIBUTORS.md](../../CONTRIBUTORS.md) for contributions and parallel work
 | [#37](https://github.com/CrocSwap/integer-mult-bounds/pull/37) | rohanarun | open | Copied centers and reversed corners for conditional κ = 3.850771033e-5 > 2^-15 | `2f7578affce4` |
 | [#38](https://github.com/CrocSwap/integer-mult-bounds/pull/38) | DominikScholz | open | Copied centers with fixed local bases for conditional κ = 3.886224e-5 | `605323bab4ba` |
 | [#39](https://github.com/CrocSwap/integer-mult-bounds/pull/39) | rohanarun | open | Fixed middle basis and copied reversed corners: conditional κ = 3.886675852e-5 > 2^-15 | `70ae24129649` |
+
+## Later queue entries
+
+- [#40](https://github.com/CrocSwap/integer-mult-bounds/pull/40), rohanarun: Both fixed bases and copied reversed corners: conditional κ = 3.918734894e-5 > 2^-15.
+  Pinned `43f59ff533598762cbc43a5e14af2bbbc76fabbd`; not imported in the #39 integration pass.

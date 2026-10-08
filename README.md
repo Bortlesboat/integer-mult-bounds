@@ -1,6 +1,6 @@
 # A sharper exponent for integer multiplication
 
-**Research draft by Douglas Colkitt — conditional on the upstream manuscript
+**Research draft maintained by Douglas Colkitt, with community contributions — conditional on the upstream manuscript
 and the written extensions supplied here.**
 
 This checkpoint supplies
@@ -30,6 +30,20 @@ checkpoint; it makes no priority or strongest-known-bound claim. Additional
 stronger contributions are pending review. See the
 [community contribution record](CONTRIBUTORS.md) and
 [contribution-review index](docs/research/contribution-review.md).
+
+## Community integration branch
+
+This branch combines checkpoint `1a74950` with the submitted PR #39 chain at
+`70ae24129649f6d6d4ec6360962a80c3c42a38f1`. Its stronger conditional claim
+(kappa = 3.886675852e-5 > 2^-15) is **under maintainer review**; the checkpoint
+above remains the independently reproduced release baseline. Importing the
+candidate does not certify its complete analytic or tape arguments.
+
+Start with the [integration ledger](docs/research/community-integration.md),
+[contributor record](CONTRIBUTORS.md), and
+[candidate proof/reproduction guide](research/copied-fixed-reversed/README.md).
+Original source notices and licenses are retained. `make verify` covers both
+the checkpoint and the candidate chain.
 
 ## What changed
 
@@ -134,7 +148,9 @@ and scoped ceilings.
 
 ## Attribution, citation, and license
 
-Author: **Douglas Colkitt**. Research, implementation and drafting were performed
+Checkpoint author: **Douglas Colkitt**. The imported community work has its own
+authors, retained notices and [contribution record](CONTRIBUTORS.md). Local
+checkpoint research, implementation and drafting were performed
 with assistance from OpenAI Codex. The compact-control proposal originated
 with a separate research agent; the supplied note develops its tape, layout,
 repair and assembly arguments. AI assistance is not independent review or

@@ -1,3 +1,14 @@
+# Integration status: checkpoint retained, stronger candidate under review
+
+The tested 2^-30 checkpoint is preserved at `1a74950`. This integration branch
+imports the community chain through PR #39, pinned at
+`70ae24129649f6d6d4ec6360962a80c3c42a38f1`. Its conditional >2^-15 claim has
+not yet passed the maintainer's full dependency audit. See the
+[integration ledger](community-integration.md) and [community credits](../../CONTRIBUTORS.md).
+Do not treat a successful finite replay as verification of the full theorem.
+
+The remainder records the checkpoint baseline.
+
 # Current contracts and research status
 
 Updated October 8, 2026. Author: Douglas Colkitt.

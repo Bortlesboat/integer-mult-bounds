@@ -39,3 +39,9 @@ headline. We preserve credit for useful contributions that are superseded or not
 imported; see [CONTRIBUTORS.md](CONTRIBUTORS.md). Attribution corrections are
 welcome too. State which proof obligations remain open rather than presenting
 finite certificate checks as a complete theorem audit.
+
+On `integration/community`, `make verify` also covers the imported candidate
+chain. See [the integration ledger](docs/research/community-integration.md) for
+remaining proof obligations and [the batching guide](docs/research/batched-review.md)
+for the changed recursive interface. Preserve the historical checkpoint tests.
+Imported CC0 proof sources retain their source-specific license and notice.
