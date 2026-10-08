@@ -182,6 +182,18 @@
       "social_api": "https://api.github.com/users/pranavbalakri/social_accounts",
       "twitter_username": null,
       "social_accounts": []
+    },
+    {
+      "github": "michielkosters",
+      "github_profile": "https://github.com/michielkosters",
+      "profile_api": "https://api.github.com/users/michielkosters",
+      "twitter_username": null,
+      "social_accounts": [
+        {
+          "provider": "linkedin",
+          "url": "https://www.linkedin.com/in/michielkosters/"
+        }
+      ]
     }
   ],
   "scope": "Public profiles and directly inspected announcements, plus explicitly separated community posts and unresolved identity links. Post inspection verifies attribution and content, not mathematical claims. No messages sent.",
@@ -406,6 +418,24 @@
       "account": "_numinit",
       "github_candidate": null,
       "status": "announcement verified; no repository identity or submitted artifact established by the post"
+    }
+  ],
+  "supplied_suggestions": [
+    {
+      "contributor": "Michiel Kosters",
+      "account": "one_line_proof",
+      "repository": "https://github.com/michielkosters/mathematics_ai",
+      "source_commit": "2e0aa64ca09c87fc94f8575f59493f70cf929d71",
+      "announcement_url": null,
+      "identity_evidence": "Account association supplied by Douglas Colkitt; GitHub confirms the repository owner name but does not link this X handle.",
+      "review": "research/parallel-announcements/README.md"
+    },
+    {
+      "contributor": "Abe",
+      "account": "abe_asfaw",
+      "announcement_url": null,
+      "identity_evidence": "Suggestion and attribution supplied by Douglas Colkitt; no public post inspected.",
+      "review": "research/parallel-announcements/README.md"
     }
   ]
 }

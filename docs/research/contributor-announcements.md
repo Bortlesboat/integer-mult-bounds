@@ -62,3 +62,9 @@ to icekylinx, Zhihao Chen, RaD/hipotures, Avi Eisenberg, Dominik Scholz,
 James Chang, Rohan Gupta, Rohan Garg or David Leen without an account association.
 Their technical credit remains in the contributor ledger regardless of social
 visibility. In particular, no identity is inferred for Avi from his name alone.
+
+## Further suggestions supplied after the post survey
+
+**Michiel Kosters / @one_line_proof:** [pinned research package](https://github.com/michielkosters/mathematics_ai/tree/2e0aa64ca09c87fc94f8575f59493f70cf929d71/problems/integer-multiplication-109), supplied by Douglas with that account association. No specific post URL supplied. The 6.09e-10 candidate's finite checks were replayed; see the [review and line-ending finding](../../research/parallel-announcements/README.md).
+
+**Abe / @abe_asfaw:** Douglas supplied the rank-h dyadic-center suggestion and a historical κ=1.05e-10 claim. The scalar/count/assembly checks reproduce, but no public announcement URL was supplied. This is parallel historical credit, not a new frontier claim. The source is Douglas's supplied message, not a fetched X post.

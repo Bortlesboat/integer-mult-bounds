@@ -101,6 +101,14 @@ it does not imply their results supplied the selected construction.
 
     Source: [the announcement](https://x.com/_numinit/status/2108033292674990308). No patch, PR or repository is linked in this post; no mathematical audit or incorporated-code claim is implied. Keep this acknowledgement separate from reviewed submissions.
 
+21. **Michiel Kosters (@one_line_proof)** explored weighted-hypergraph compression, aligned bit pairing and fewer complex centers in a parallel construction. His finite candidate reached 6.09×10⁻¹⁰ against the earlier 8.3×10⁻¹¹ checkpoint.
+
+    Source: [the pinned research package](https://github.com/michielkosters/mathematics_ai/tree/2e0aa64ca09c87fc94f8575f59493f70cf929d71/problems/integer-multiplication-109). Douglas supplied the handle association; no specific announcement URL was supplied. Our [review](../../research/parallel-announcements/README.md) reproduces five tests and the full finite certificate after resolving a manifest line-ending mismatch. Complete transfer/precision integration remains open, as the source states.
+
+22. **Abe (@abe_asfaw)** independently suggested dropping a redundant complex center while preserving dyadic arithmetic. On the earlier construction, the resulting counts support a 26.5% improvement to κ=1.05×10⁻¹⁰. A useful parallel observation, even though later work overtook it.
+
+    Source: suggestion supplied by Douglas; no public post URL supplied. Our [exact check](../../research/parallel-announcements/README.md) verifies the h=24 scalar coefficients and historical assembly arithmetic. The rank-h center principle also appears in our preserved research notes. Credit the parallel contribution without assigning sole priority or describing it as an improvement to today's frontier.
+
 ## Closing
 
 Some contributions supplied the next headline. Others supplied a reusable idea, an independent check, or a parallel route that was later overtaken. All deserve credit. The repo preserves those contributions, their dependencies and their validation scope. More collaborators welcome.
