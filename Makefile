@@ -6,6 +6,8 @@ community-audit-check:
 	python3 scripts/audit_community_candidate.py --check docs/research/community-audit-arithmetic.json
 
 verify: community-audit-check
+	$(MAKE) copied-fixed-verify
+	$(MAKE) climbed-48-verify
 	$(MAKE) copied-centers-verify
 	$(MAKE) structured-bulk-verify
 	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
@@ -234,3 +236,24 @@ copied-fixed-reversed-producer:
 	python3 research/copied-fixed-reversed/review/fixed25_copied_crt_audit.py --work-dir build/copied-fixed-reversed/producer --record build/copied-fixed-reversed/producer.json --profiler-source research/copied-fixed-reversed/full_profiles25.cpp --output build/copied-fixed-reversed/crt-audit.json
 
 verify: copied-fixed-reversed-producer copied-fixed-reversed-check
+
+.PHONY: copied-fixed-verify copied-fixed-producer copied-fixed-check
+copied-fixed-producer:
+	python3 research/copied-fixed/producer.py
+
+copied-fixed-check:
+	python3 research/copied-fixed/audit.py
+	python3 research/copied-fixed/verify.py --output research/copied-fixed/certificate.json
+	python3 -m unittest discover -s tests -p 'test_copied_fixed.py' -v
+
+copied-fixed-verify: copied-fixed-producer copied-fixed-check
+
+.PHONY: climbed-48-verify climbed-48-producer climbed-48-check
+climbed-48-producer:
+	python3 research/climbed-48/producer.py
+
+climbed-48-check:
+	python3 research/climbed-48/witness.py --output research/climbed-48/certificate.json
+	python3 -m unittest discover -s tests -p 'test_climbed_48.py' -v
+
+climbed-48-verify: climbed-48-producer climbed-48-check

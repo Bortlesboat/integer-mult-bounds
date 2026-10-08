@@ -170,3 +170,19 @@ Rohan Arun, with substantial OpenAI Codex assistance. Composition and
 simultaneous-basis proof retain icekylinx PR32/36, James Chang PR34,
 Dominik Scholz PR35/38, Zhihao Chen, Paureel, Swapnil Jain, RaD/hipotures,
 eumemic and all preceding attribution and licenses. See research/copied-fixed-reversed.
+
+Changed-graph composition with copied centers and fixed bases, 8 October 2026
+Prepared with OpenAI Codex assistance.
+The new composition uses icekylinx PR36 copied centers and PR32 fixed-I+J
+projectors/profiler, Dominik Scholz PR35 two fixed factors and CRT argument,
+Zhihao Chen (jacklightChen) PR29/23 interfaces, Aurel Prosz (Paureel) and
+Swapnil Jain's two-stage development, Rohan Arun PR25/31 corner methods,
+Dominik Scholz PR33/38 dimension/composition work; James Chang (jamesyc)
+PR34 reversed geometry and balanced transfer; Rohan Arun PR37/39/40
+reversed integration, modular data tests and both-fixed baseline;
+RaD (hipotures) PR41 changed scalar DAGs, alternating point order and
+independent role compiler; RaD balanced routing/bulk interfaces, and all
+retained predecessors.
+Complete attribution and the conditional proof boundary are recorded in
+research/copied-fixed/PROOF.md; imported originals and source pins are retained.
+Original Apache-2.0 and CC0 notices remain applicable.
