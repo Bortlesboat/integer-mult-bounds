@@ -39,11 +39,20 @@ function `A` with `A(e) ≤ sA(e/m)+E` at internal nodes and `A(e) ≤ 8e` at le
 `A(e) ≤ s(8+E)d^(5-4β)` for every root `e ≤ d`, at most `m(1+1/ζ)d^ζ` base-m pieces,
 and `A_layer ≤ 9mB²(1+1/ζ)d^C1 + 18d ≤ C0 d^C1`, instantiated at the certified constants.
 
+`KappaCheck/Frames.lean` proves the paired circuit's label algebra for the form
+`I - J/9`: neighbor indicators are orthogonal, and any span of triples through a common
+point is anisotropic, hence nondegenerate. `formal/circuit/` checks that the actual
+R = 509194 circuit has exact outputs and a common point at every node.
+
+`KappaCheck/Movement.lean` proves the compact-control address algebra: the four-step
+parity identity, the later-source double pass, the no-carry guard with exact packed
+digit updates, and the repair permutation (`TS⁻¹` fixes good addresses, permutes bad).
+
 Everything depends only on `propext`, `Classical.choice` and `Quot.sound`:
 no `sorry`, no `native_decide`.
 
-Not covered: the written tape constructions, that the algorithm satisfies the two
-depth-recursion hypotheses (the retained upstream guard argument), the circuit producing
-R, and the upstream theorem. `Network.lean` holds the paper's count formulas (checked against the
+Not covered: the tape-machine level of the constructions (fixed tapes, streaming,
+running time), that the algorithm satisfies the two depth-recursion hypotheses (the
+retained upstream guard argument), and the upstream theorem. `Network.lean` holds the paper's count formulas (checked against the
 paper at h = 100 and the parameter note at h = 46) and `Certificates.lean` the generic
 exponent certificate.
