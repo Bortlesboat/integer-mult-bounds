@@ -51,8 +51,10 @@ toolchain (Lean 4.21.0/Mathlib v4.21.0 and Lean 4.31.0/Std respectively).
 
 The GitHub workflow runs the complete arithmetic/circuit suite on Ubuntu 24.04
 with Python 3.11, 3.13 and 3.14, plus separate historical and Gaussian formal
-jobs. The arithmetic allowance is 45 minutes to accommodate both the retained
-published producers and the new complete replays. Formal jobs check the
+jobs. Each Python version runs five isolated groups in parallel, with a
+20-minute allowance per group. All 94 leaf commands and their multiplicities
+are preserved; local `make verify` remains sequential. See the
+[CI timing and coverage note](../ci-verification.md). Formal jobs check the
 proofs, all listed theorem axiom dependencies, source bindings and finite
 reference computations. The historical package also rechecks the full h=50
 paired circuit.

@@ -9,13 +9,27 @@ community-audit-check:
 community-followup-check:
 	python3 scripts/audit_followup_candidate.py --candidate-root . --check docs/research/community-followup-arithmetic.json
 
-verify: community-audit-check community-followup-check
+.PHONY: verify-community verify-producers verify-certificates verify-ternary verify-tests
+# CI runs these in separate checkouts. Keep local verification sequential:
+# different groups regenerate certificates that another group may read.
+verify:
+	$(MAKE) verify-community
+	$(MAKE) verify-producers
+	$(MAKE) verify-certificates
+	$(MAKE) verify-ternary
+	$(MAKE) verify-tests
+
+verify-community: community-audit-check community-followup-check copied-reversed-producer copied-reversed-check copied-fixed-reversed-producer copied-fixed-reversed-check
 	$(MAKE) copied-fixed-verify
 	$(MAKE) climbed-48-verify
+
+verify-producers:
 	$(MAKE) copied-centers-verify
 	$(MAKE) structured-bulk-verify
 	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
 	$(MAKE) partial-swap-producer partial-swap-certificate
+
+verify-certificates:
 	python3 scripts/prime_field_network.py
 	python3 scripts/complex_network.py
 	python3 scripts/fast_gaussian.py
@@ -52,13 +66,17 @@ verify: community-audit-check community-followup-check
 	python3 scripts/audit_compact_controls.py
 	python3 scripts/compact_control_layer.py
 	python3 scripts/make_compact_control_patch.py
+	python3 scripts/audit_scratch_pooling.py
+	python3 scripts/reuse_network.py
+	python3 scripts/make_reuse_patch.py
+
+verify-ternary:
 	python3 scripts/complex_compression.py
 	python3 scripts/make_complex_compression_patch.py
 	python3 scripts/audit_ternary_side.py
 	python3 scripts/make_ternary_patch.py
-	python3 scripts/audit_scratch_pooling.py
-	python3 scripts/reuse_network.py
-	python3 scripts/make_reuse_patch.py
+
+verify-tests:
 	python3 -m unittest discover -s tests -v
 	git apply --check --directory=upstream patches/frozen-154.patch
 	git apply --check --directory=upstream patches/balanced-153.patch
@@ -226,7 +244,6 @@ copied-reversed-producer:
 	mkdir -p build/copied-reversed/producer
 	python3 scripts/copied_centers_producer.py --work-dir build/copied-reversed/producer --output build/copied-reversed/producer.json
 
-verify: copied-reversed-producer copied-reversed-check
 
 .PHONY: copied-fixed-reversed-check copied-fixed-reversed-producer
 copied-fixed-reversed-check:
@@ -239,7 +256,6 @@ copied-fixed-reversed-producer:
 	python3 research/copied-fixed-reversed/producer.py --work-dir build/copied-fixed-reversed/producer --output build/copied-fixed-reversed/producer.json
 	python3 research/copied-fixed-reversed/review/fixed25_copied_crt_audit.py --work-dir build/copied-fixed-reversed/producer --record build/copied-fixed-reversed/producer.json --profiler-source research/copied-fixed-reversed/full_profiles25.cpp --output build/copied-fixed-reversed/crt-audit.json
 
-verify: copied-fixed-reversed-producer copied-fixed-reversed-check
 
 .PHONY: copied-fixed-verify copied-fixed-producer copied-fixed-check
 copied-fixed-producer:

@@ -11,11 +11,12 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
         python-version: ['3.11', '3.13', '3.14']
+        group: [community, producers, certificates, ternary, tests]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -24,9 +25,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Check arithmetic, source hashes, finite identities, and patches
-        run: make verify
+        run: make verify-${{ matrix.group }}
       - name: Require reproducible certificates and patches
-        run: git diff --exit-code -- certificates patches research/copied-fixed research/climbed-48
+        run: git diff --exit-code
 
   formal:
     runs-on: ubuntu-24.04
