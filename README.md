@@ -1,3 +1,13 @@
+# Conditional saving 4.123863984e-5 from climbed orders on reordered exclusion sums
+
+**κ = 4123863984/10^14 = 4.123863984×10⁻⁵ > 2^-15**, conditional on OpenAI's
+base theorem and retained analytic and fixed-tape interfaces: **0.12719% above
+PR #48**. Pinned adjacent swaps in both the summand and the leave-one-out
+orders of PR #48's graphs remove more roles: R falls to 36,382 at h=23
+and 48,255 at h=25, each with an exact optimal carrier matching. See
+[research/climbed-48](research/climbed-48/README.md) and run
+`make climbed-48-verify`.
+
 # Conditional saving 4.11862541e-5 from reordered exclusion sums
 
 The [proof and reproduction note](research/copied-fixed/PROOF.md) gives
