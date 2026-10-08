@@ -340,3 +340,24 @@ joint-dual-verify:
 	python3 -m unittest discover -s tests -p 'test_joint_reclaim.py' -v
 
 verify-community: joint-dual-verify
+
+.PHONY: skip-strips-verify skip-strips-producer skip-strips-check
+skip-strips-producer:
+	python3 research/skip-strips/producer.py
+
+skip-strips-check:
+	python3 research/skip-strips/audit.py
+	python3 research/skip-strips/verify.py --output research/skip-strips/certificate.json
+	cd research/skip-strips && python3 -m unittest discover -s ../../tests -p 'test_skip_strips.py' -v
+
+skip-strips-verify: skip-strips-producer skip-strips-check
+
+.PHONY: positive-skip-verify positive-skip-build positive-skip-check
+positive-skip-build:
+	python3 research/positive-skip/build.py
+
+positive-skip-check:
+	python3 research/positive-skip/witness.py --output research/positive-skip/certificate.json
+	python3 -m unittest discover -s tests -p 'test_positive_skip.py' -v
+
+positive-skip-verify: positive-skip-build positive-skip-check
