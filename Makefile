@@ -214,3 +214,7 @@ skip-strips-check:
 	cd research/skip-strips && python3 -m unittest discover -s ../../tests -p 'test_skip_strips.py' -v
 
 skip-strips-verify: skip-strips-producer skip-strips-check
+
+.PHONY: skip-frame-verify
+skip-frame-verify:
+	python3 scripts/experiments/verify_skip_frame.py

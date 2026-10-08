@@ -160,16 +160,3 @@ code, exact data recovery and support-order sorting, together with:
 Complete attribution and the conditional proof boundary are recorded in
 research/skip-strips/PROOF.md. Original Apache-2.0 and CC0 notices remain
 applicable.
-
-Joint frame compilation of skip-prefix strips
-
-The local compiler and exact finite witnesses were prepared by eumemic with
-substantial OpenAI Codex assistance. Avi Eisenberg / ikeboy with Anthropic
-Claude assistance supplied the unmodified PR #53 skip-prefix producer.
-The pinned PR #48 pipeline is Chafik Boukhalfa's contribution, incorporating
-Rohan Arun, RaD / hipotures, icekylinx, Dominik Scholz, James Chang,
-Zhihao Chen, Aurel Prosz / Paureel, Swapnil Jain, eumemic, Douglas Colkitt,
-OpenAI, David Harvey, Joris van der Hoeven and the earlier contributors
-credited in the retained sources. See references/frame-compiler/pr48/NOTICE
-and references/frame-compiler/pr53/NOTICE for their original attribution.
-No authorship or review by those predecessors is claimed for this compiler.
