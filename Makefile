@@ -1,12 +1,35 @@
-.PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note fetch
+.PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note complex-note ternary-note fetch
+.DEFAULT_GOAL := verify
 
-verify: split-skip-verify
-	$(MAKE) skip-strips-verify
+.PHONY: community-audit-check
+community-audit-check:
+	python3 scripts/audit_community_candidate.py --check docs/research/community-audit-arithmetic.json
+
+.PHONY: community-followup-check
+community-followup-check:
+	python3 scripts/audit_followup_candidate.py --candidate-root . --check docs/research/community-followup-arithmetic.json
+
+.PHONY: verify-community verify-producers verify-certificates verify-ternary verify-tests
+# CI runs these in separate checkouts. Keep local verification sequential:
+# different groups regenerate certificates that another group may read.
+verify:
+	$(MAKE) verify-community
+	$(MAKE) verify-producers
+	$(MAKE) verify-certificates
+	$(MAKE) verify-ternary
+	$(MAKE) verify-tests
+
+verify-community: community-audit-check community-followup-check copied-reversed-producer copied-reversed-check copied-fixed-reversed-producer copied-fixed-reversed-check
 	$(MAKE) copied-fixed-verify
+	$(MAKE) climbed-48-verify
+
+verify-producers:
 	$(MAKE) copied-centers-verify
 	$(MAKE) structured-bulk-verify
 	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
 	$(MAKE) partial-swap-producer partial-swap-certificate
+
+verify-certificates:
 	python3 scripts/prime_field_network.py
 	python3 scripts/complex_network.py
 	python3 scripts/fast_gaussian.py
@@ -46,6 +69,14 @@ verify: split-skip-verify
 	python3 scripts/audit_scratch_pooling.py
 	python3 scripts/reuse_network.py
 	python3 scripts/make_reuse_patch.py
+
+verify-ternary:
+	python3 scripts/complex_compression.py
+	python3 scripts/make_complex_compression_patch.py
+	python3 scripts/audit_ternary_side.py
+	python3 scripts/make_ternary_patch.py
+
+verify-tests:
 	python3 -m unittest discover -s tests -v
 	git apply --check --directory=upstream patches/frozen-154.patch
 	git apply --check --directory=upstream patches/balanced-153.patch
@@ -64,6 +95,8 @@ verify: split-skip-verify
 	git apply --check --directory=upstream patches/h46-shared-point.patch
 	git apply --check --directory=upstream patches/h50-paired-59.patch
 	git apply --check --directory=upstream patches/compact-control-34.patch
+	git apply --check --directory=upstream patches/complex-compression-31.patch
+	git apply --check --directory=upstream patches/ternary-30.patch
 	git apply --check --directory=upstream patches/batched-23.patch
 
 note:
@@ -101,6 +134,14 @@ paired-note:
 compact-note:
 	mkdir -p artifacts
 	tectonic --outdir artifacts notes/compact-control-note.tex
+
+complex-note:
+	mkdir -p artifacts
+	tectonic --outdir artifacts notes/complex-compression-note.tex
+
+ternary-note:
+	mkdir -p artifacts
+	tectonic --outdir artifacts notes/ternary-note.tex
 
 fetch:
 	python3 scripts/fetch_upstream.py
@@ -193,6 +234,29 @@ copied-centers-certificate:
 
 copied-centers-verify: copied-centers-producer copied-centers-certificate
 
+.PHONY: copied-reversed-check copied-reversed-producer
+copied-reversed-check:
+	python3 research/copied-reversed/geometry.py
+	python3 research/copied-reversed/witness.py
+	python3 -m unittest discover -s tests -p 'test_copied_reversed.py' -v
+
+copied-reversed-producer:
+	mkdir -p build/copied-reversed/producer
+	python3 scripts/copied_centers_producer.py --work-dir build/copied-reversed/producer --output build/copied-reversed/producer.json
+
+
+.PHONY: copied-fixed-reversed-check copied-fixed-reversed-producer
+copied-fixed-reversed-check:
+	python3 research/copied-fixed-reversed/geometry.py --full
+	python3 research/copied-fixed-reversed/witness.py
+	python3 -m unittest discover -s tests -p 'test_copied_fixed_reversed.py'
+
+copied-fixed-reversed-producer:
+	mkdir -p build/copied-fixed-reversed/producer
+	python3 research/copied-fixed-reversed/producer.py --work-dir build/copied-fixed-reversed/producer --output build/copied-fixed-reversed/producer.json
+	python3 research/copied-fixed-reversed/review/fixed25_copied_crt_audit.py --work-dir build/copied-fixed-reversed/producer --record build/copied-fixed-reversed/producer.json --profiler-source research/copied-fixed-reversed/full_profiles25.cpp --output build/copied-fixed-reversed/crt-audit.json
+
+
 .PHONY: copied-fixed-verify copied-fixed-producer copied-fixed-check
 copied-fixed-producer:
 	python3 research/copied-fixed/producer.py
@@ -203,6 +267,37 @@ copied-fixed-check:
 	python3 -m unittest discover -s tests -p 'test_copied_fixed.py' -v
 
 copied-fixed-verify: copied-fixed-producer copied-fixed-check
+
+.PHONY: climbed-48-verify climbed-48-producer climbed-48-check
+climbed-48-producer:
+	python3 research/climbed-48/producer.py
+
+climbed-48-check:
+	python3 research/climbed-48/witness.py --output research/climbed-48/certificate.json
+	python3 -m unittest discover -s tests -p 'test_climbed_48.py' -v
+
+climbed-48-verify: climbed-48-producer climbed-48-check
+
+.PHONY: formal-verify formal-historical-verify formal-gaussian-verify
+formal-verify: formal-historical-verify formal-gaussian-verify
+
+formal-historical-verify:
+	cd formal/lean && lake build
+	python3 scripts/check_lean_axioms.py --project formal/lean --audit formal/lean/AuditAll.lean
+	python3 formal/lean/sources.py
+	python3 formal/open-prs/drift_A.py
+	python3 formal/open-prs/drift_B.py --selftest
+	python3 formal/open-prs/drift_C.py
+	mkdir -p build/formal
+	python3 formal/circuit/export_paired.py build/formal/paired50.json
+	python3 -I formal/circuit/check_paired.py build/formal/paired50.json
+
+formal-gaussian-verify:
+	$(MAKE) -C research/gaussian-parity-synthesis verify
+	python3 scripts/check_lean_axioms.py --project research/gaussian-parity-synthesis --audit research/gaussian-parity-synthesis/AuditAll.lean
+
+# Imported PR53 and the split-pair continuation participate in the CI producer group.
+verify-producers: skip-strips-verify split-skip-verify
 
 .PHONY: skip-strips-verify skip-strips-producer skip-strips-check
 skip-strips-producer:

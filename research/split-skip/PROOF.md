@@ -173,8 +173,7 @@ and inherited verification sources; `producer-receipt.json` and
 The original OpenAI multiplication framework, generic residual compiler,
 fixed finite-alphabet multitape recursion, analytic recovery, semantic
 precision, routing, bulk resampling, eligible prime/setup conditions and
-eventual thresholds remain inherited proof dependencies. Work after PR #39
-is outside the maintainer's published PR #39 audit. This continuation adds
+eventual thresholds remain inherited proof dependencies. This continuation is outside the maintainer's published release reviews. This continuation adds
 finite evidence and a written conditional argument, not a full formal proof,
 independent human peer review or an unconditional multiplication theorem.
 

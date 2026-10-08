@@ -1,26 +1,40 @@
 cff-version: 1.2.0
 message: >-
-  Please cite this project and the upstream manuscript. This is a conditional
-  research draft; include the repository commit used until a release is archived.
+  Please cite the final contribution by Rohan Arun, this project, the upstream
+  manuscript and the constituent contributions used. Project-level authorship
+  here identifies the maintainer; it does not assign sole authorship of the
+  community result. See CONTRIBUTORS.md, NOTICE and source-specific manifests.
 title: "A sharper exponent for integer multiplication"
 authors:
   - family-names: Colkitt
     given-names: Douglas
-  - family-names: Chen
-    given-names: Zhihao
-  - name: eumemic
-  - name: icekylinx
 license: Apache-2.0
 type: software
+version: "community-pr49-2026-10-08"
+date-released: 2026-10-08
 repository-code: "https://github.com/CrocSwap/integer-mult-bounds"
 url: "https://github.com/CrocSwap/integer-mult-bounds"
 abstract: >-
-  Conditional bulk-recursion improvement of the retained integer-multiplication
-  framework, with kappa = 6149999/50000000000000 > 2^-23. Controlled rational
-  projector blocks and whole complex residuals give mixed-width recurrences;
-  a dependency-path guard controls exact intermediate precision. The retained
-  Gaussian scaling enclosure is corrected without changing P=34p. Finite
-  checks and exact certificates do not formally verify the full theorem.
+  A community integer-multiplication research result with conditional
+  kappa = 4123863984/10^14 > 2^-15. Rohan Arun's climbed exclusion-sum
+  composition builds on the attributed batching, partial-swap, semantic/bulk,
+  two-stage and copied-center constructions. Includes written proofs, exact
+  certificates and a completed conditional maintainer audit. The original
+  OpenAI #109 framework remains assumed. No full formal verification,
+  independent human peer review or worldwide priority is claimed.
+preferred-citation:
+  type: unpublished
+  title: "Climbed orders on reordered exclusion sums"
+  authors:
+    - family-names: Arun
+      given-names: Rohan
+  year: 2026
+  url: "https://github.com/CrocSwap/integer-mult-bounds/pull/49"
+  notes: >-
+    Final order-search composition with Anthropic Claude assistance, building on
+    Chafik Boukhalfa and RaD/hipotures among the credited contributors. Cite its
+    constituent contributions and the upstream manuscript as recorded in
+    NOTICE and CONTRIBUTORS.md; this entry does not replace those credits.
 keywords:
   - integer multiplication
   - computational complexity

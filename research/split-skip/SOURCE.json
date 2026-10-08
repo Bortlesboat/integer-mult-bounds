@@ -7,10 +7,10 @@
   },
   "files": {
     "research/skip-strips/PROOF.md": "0fad3bfbd7062e1607fc95430170d12f9613cc6d850a18871f1cbc8c27434934",
-    "research/skip-strips/SOURCE.json": "5cae23859745d8b7b90a2ee40cf2c3e90a6c247a0b60ad17e75c8084b9339610",
+    "research/skip-strips/SOURCE.json": "d6819476cb69ad731db2c809844d672a8c8f367fb120ffe43467ac471dc8574d",
     "research/skip-strips/audit.py": "dd369a7a6e0be4354c05560d0e1d9750c14839928459f43beeb55970f86e0631",
     "research/skip-strips/balanced_assembly.py": "4d27575dcad2b45a281a34054d311409ecd954f373c0c3a62c29bcc843f06a86",
-    "research/skip-strips/certificate.json": "126e1f37b881334b68830c2943797eb7cd490df9509f4d8d162128a5f9993503",
+    "research/skip-strips/certificate.json": "9f5f094765d9478086634e71e79179376d8b4fbfc5a2f30d8055b9c137a58a8b",
     "research/skip-strips/comparison-pr40.json": "3cf55a63468df230b57089f66c4a97dbee25ca5a0771f53ef23c972774718060",
     "research/skip-strips/comparison-pr41.json": "58beeb816847707c6c866c72ce078b751f70ab65c5baa7c498f863005602e7a2",
     "research/skip-strips/comparison-pr42.json": "22d8c3347405a1df3bf970c199b5c58062c8fc34d5916c86c1353b97254c4461",
@@ -43,7 +43,7 @@
     "research/skip-strips/timeline-23.json": "1f7e9ca7efc96855ef64164d8c2ec1026b9e5f1ce95f0858ef6528aee81c150c",
     "research/skip-strips/timeline-25.json": "1e7a692e2e73465ecd0138cfe3429dec5a91f8c87998a6318d689ff600213441",
     "research/skip-strips/verify.py": "502543a9e331a30965f042ab40fbf67b72e79310f088d9c80000853d964203d0",
-    "research/split-skip/PROOF.md": "93fa63cc57ede93975cec1af0b23678b27f8d2fc9f5ac2e62eeb269c100b6797",
+    "research/split-skip/PROOF.md": "ce6bdb8d41209cfbceb499a1c6d564a8db359edad9c3ef173b42b1780936f881",
     "research/split-skip/clone-jobs-23.json": "2ee04d3f9e2c86f0ac9136cf5229939d99ec3f04454264caaadb2cdc2dd0b88b",
     "research/split-skip/clone-jobs-25.json": "555f5ef3eeb5b2af9e2a91d60a1c209def9b3803220e40c1864648794f6dbcb6",
     "research/split-skip/clone_io.py": "0d75053f455aa85a0da416bf1abdd85b8f7c7d92dafc8496ce48f1782d67537c",
@@ -135,7 +135,7 @@
     "scripts/paired_triple_circuit.py": "8f5f2de32fdbd8e0005154638660ff416e5a8cd59623bd0dc03f6f7f97ce2fb1",
     "scripts/partial_swap/__init__.py": "0438eaa34134600467a5864f93c3e15142eb025b35cef189c2e969cffea72a7f",
     "scripts/partial_swap/binary.py": "d32d7a23548cc738e974e8e55dd1fa2a8b11d2b80228515617ffe35410bb8805",
-    "scripts/partial_swap/binary_io.hpp": "7e143eb75bb342ac8f0c82a60005e7c35c9ec827de479bf6fb773151f3af5fa1",
+    "scripts/partial_swap/binary_io.hpp": "d0be783f61ac4b7981e7e48a8c1139b52572302ba76c191c0e9a1b16a1a05e0e",
     "scripts/partial_swap/graph.py": "fd8c567759e26a10d2bad05508fd0355eb70fb116664d4e06e1858d0d8cb2ef9",
     "scripts/partial_swap/match_exported_dag.cpp": "7901b0fb1b80b628a24cfd7fda57bbc32f58771594d08b318b90e4b8cdf0ef82",
     "scripts/partial_swap/match_positive_dag.cpp": "8a6d64e2d0ac2c69210fb0b8a5bd0d714ad40b3609f75a5fddfcba3291a3d552",
@@ -165,6 +165,24 @@
     "scripts/structured_bulk_network.py": "82608e2e7eb622f3ff78ce9bdc3e6c97087c6785aecd1a0eab947e389856600f",
     "scripts/structured_bulk_producer.py": "c20e04b5216b04b9343cb28f1b1d164c6ac42ceaac067d82d2850f908dd7d5f6",
     "scripts/tune_routing.py": "5728c848e23c905f37a9d77928283e64ace5e7b69c3572780c1291800d005e6e"
+  },
+  "main_integration": {
+    "commit": "64ed4cbf872b86b81c22f104967b88d24b8e4548",
+    "reason": "Merge current main, preserve its grouped CI, and retain include-only header fix; finite construction unchanged.",
+    "updated_dependency_hashes": {
+      "research/skip-strips/SOURCE.json": {
+        "after": "d6819476cb69ad731db2c809844d672a8c8f367fb120ffe43467ac471dc8574d",
+        "before": "5cae23859745d8b7b90a2ee40cf2c3e90a6c247a0b60ad17e75c8084b9339610"
+      },
+      "research/skip-strips/certificate.json": {
+        "after": "9f5f094765d9478086634e71e79179376d8b4fbfc5a2f30d8055b9c137a58a8b",
+        "before": "126e1f37b881334b68830c2943797eb7cd490df9509f4d8d162128a5f9993503"
+      },
+      "scripts/partial_swap/binary_io.hpp": {
+        "after": "d0be783f61ac4b7981e7e48a8c1139b52572302ba76c191c0e9a1b16a1a05e0e",
+        "before": "7e143eb75bb342ac8f0c82a60005e7c35c9ec827de479bf6fb773151f3af5fa1"
+      }
+    }
   },
   "parent_commit": "3ffd4021995c959ac02d12920e0279ae97dd03c7",
   "parent_pr": 53

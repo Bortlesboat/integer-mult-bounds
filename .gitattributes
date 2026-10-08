@@ -7,3 +7,4 @@ upstream/** -whitespace
 # Preserve the exact pinned third-party proof snapshots and notices.
 references/copied-centers/pr29/** -whitespace
 references/copied-centers/pr33/** -whitespace
+references/semantic-bulk/** -whitespace
