@@ -6,6 +6,36 @@ refer to their historical stage. The [current status](current-status.md) and
 [repository overview](../../README.md) supersede numerical targets and open
 obligations that the compact-control construction has since addressed.
 
+## Community release through PR #39
+
+The reviewed community composition gives conditional
+`kappa=971668963/25000000000000 > 2^-15`. Rohan Arun supplies the final
+fixed-middle-basis contribution, building on the community work credited in
+[the release notes](../releases/community-kappa-15.md). The
+[maintainer audit](community-final-audit.md) records acceptance and limits.
+The earlier checkpoints below remain preserved.
+
+## Ternary checkpoint
+
+The [ternary construction](ternary-review.md) supplies conditional kappa=2^-30
+with a separate F3 five-subset implementation. The earlier related motif in
+Zhihao Chen's PR #7 is acknowledged; that PR and later stronger submissions
+remain in the [review queue](contribution-review.md). This is an independently
+reproducible checkpoint, not a priority or frontier claim.
+
+## Subsequent integrated checkpoints
+
+The compact-control construction removed the layer's spacing penalty and
+supported `83/10^12 > 2^-34`; its [note](../../artifacts/compact-control-note.pdf)
+and [patch](../../patches/compact-control-34.patch) are preserved unchanged.
+
+The next [complex-network construction](complex-compression.md) compresses
+weighted side computations with compatible binary phase frames and shares
+complete auxiliary banks. At `h=26`, its certified complex saving `5e-9`
+exceeds the retained bit saving `2.96e-9`. The independent combined patch
+supports `kappa=2^-31`; the bit interface now binds. See the
+[integration review](complex-compression-review.md) for the current obligations.
+
 ## Paired sums and tighter downstream estimates: 2^-59
 
 For subsequent work toward the 30s, see the

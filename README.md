@@ -1,149 +1,193 @@
-# Conditional saving 4.529040672e-5 from paid whole-chain clones
+# A sharper exponent for integer multiplication
 
-The [clone proof and reproduction note](research/skip-clones/PROOF.md) gives
-**κ = 141532521/3125000000000 = 4.529040672e-5 > 2^-15**, conditional on
-OpenAI's base theorem and the inherited analytic and fixed-tape interfaces.
-This is **0.686876% above PR #53** and **17.769260% above PR #36**.
+**Community research maintained by Douglas Colkitt — conditional on the original
+OpenAI #109 framework.**
 
-Starting from Avi Eisenberg's PR #53 skip-prefix graphs, 606 explicitly paid
-whole-chain clones retain the original core/cover envelopes. The actual
-weighted matchings yield R23=32693, R25=43056 and W=159592676. Every added
-operation is included in the exact profiles, and both complete dirty-basis
-orientations are replayed. The I+J geometry, all data pairs, copied centers,
-paid endpoint corrections and complex layer are inherited unchanged.
-The source-partition/whole-chain cloning construction is adapted from
-RaD / hipotures (PR #51); this original-envelope specialization and exact
-integration are by Chafik Boukhalfa with OpenAI Codex assistance.
-
-Run `make skip-clones-verify`; `make verify` retains the predecessor checks.
-There is no claim of global optimality or an unconditional multiplication theorem.
-
----
-
-# Conditional saving 4.498144e-5 from skip-prefix strips
-
-The [proof and reproduction note](research/skip-strips/PROOF.md) gives
-**κ = 4498144/10^11 > 2^-15**, conditional on OpenAI's base theorem and
-retained analytic and fixed-tape interfaces. This is **9.2146906%** above
-PR #48 (411862541/10^13), on which it is built, and **16.9658501%** above
-PR #36. For comparison, PR #49's later claim of 4.123863984e-5 is 9.0759544%
-below this value.
-
-Only the scalar producer changes. Every vertex's leave-one-out strip sums use
-the skip-prefix layout s_j = A_{j-2} + (v_{j-1} + B_{j+1}) instead of
-s_j = A_{j-1} + B_{j+1}. The two consumers of every prefix, and of every new
-suffix-side node, then have nested envelopes. The inherited carrier matching
-can therefore continue a retained carrier instead of allocating a fresh role.
-
-Carrier links rise from 6,002/7,715 to 12,719/16,991 at h=23/25 under PR #44's
-pinned weighted matching. Roles fall from 36,432/48,329 to 32,946/43,409. The
-physical wire count falls from **177,530,859** to **160,799,739**. Exact bounds
-show the PR #40–#48 networks fail at the new bit saving 4498347/10^11, while
-this network passes.
-
-Run `make skip-strips-verify` to rerun the full scalar, label, pinned-matching
-replay, fixed-profile, dirty-basis timeline, exhaustive data-pair, exact
-recovery and exact-fraction checks, plus 20 adversarial tests. `make verify`
-includes this target. Finite certification is not formal verification or
-external acceptance of the full theorem; no global optimality or measured
-speedup is claimed. The PR #48 result follows.
-
-# Conditional saving 4.11862541e-5 from reordered exclusion sums
-
-The [proof and reproduction note](research/copied-fixed/PROOF.md) gives
-**κ = 411862541/10000000000000 > 2^-15**, conditional on OpenAI's base theorem
-and retained analytic and fixed-tape interfaces. This is **7.0971766%**
-above PR #36 and **0.4388585%** above our previous PR #46.
-
-Reorder the prefix/suffix construction of leave-one-out sums, restore their
-original output indices, and recompute the weighted carrier matching.
-The changed graphs retain 403 more carriers across the two local networks,
-reducing the physical wire count by **847,550** to **177,530,859**.
-Exact bounds show #46's network fails at the new bit saving while this
-network passes. Complete scalar, fixed-profile and dirty-basis replay
-checks the changed construction. All paid copies and data blocks remain.
-
-Run `make copied-fixed-verify` for full scalar, label, matching, fixed-profile,
-physical timeline, exhaustive data-pair and exact-fraction checks.
-`make verify` includes these and the inherited suite. The proof, exact
-search scores, source credits and limitations are included. Finite
-certification is not formal verification or external acceptance of the
-full theorem; no global optimality or measured speedup is claimed.
-The original PR #36 result follows for comparison.
-
-# Integer multiplication with conditional saving 3.84569e-5
+The reviewed community witness gives
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{384569}{10000000000}=3.84569\times10^{-5}.
+\boxed{\kappa=\frac{4123863984}{10^{14}}
+=4.123863984\times10^{-5}>2^{-15}}.
 $$
 
-Copied retained-center reads replace each local rank pair `(r,h)` by
-`(r,h-r)`, including the transformed copy. In the adopted two-stage topology,
-this reduces the total rank from `Wm-N+2L` to `Wm-N+L`.
+This uses the fixed finite-alphabet Turing-machine model with a fixed number of
+one-dimensional tapes in OpenAI's
+[*Integer multiplication below n log n*](https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Integer-multiplication-below-n-log-n-September-23-2026).
+The saving is **6.10% above our previous PR #39 release**, and still below 2^-14. These numbers compare
+asymptotic exponent savings, not practical running times.
 
-The selected bit construction uses dimensions `(25,23)` and the certified
-data profile `11 singletons; 21,15,481`. The complex construction uses
-`(28,28)` with mixed-center parameter `d=19`. Their strict savings are
-`384599/10000000000` and `717/10000000`, respectively. Semantic assembly
-uses `C1=1` and product row stock `p^2000`; the final absorption gap
-exceeds `4.0746e-11`.
+**Latest circuit contribution: [Rohan Arun (@rohanarun), PR #49](https://github.com/CrocSwap/integer-mult-bounds/pull/49).**
+This composes **Chafik Boukhalfa's** reordered exclusion sums and exact recovery,
+**RaD / hipotures's** alternating producers and physical compiler, and Rohan's
+weighted matching and order search. Their full dependency chain and
+AI-assistance disclosures remain credited in the source notices.
 
-The result remains conditional on the retained multiplication framework,
-the attributed analytic and tape interfaces, and their eventual thresholds.
-Finite checks support the written proofs; they do not constitute a formal
-verification or a complete multiplication implementation.
+**[Proof and reproduction guide](research/climbed-48/README.md)** ·
+[Exact certificate](research/climbed-48/certificate.json) ·
+[Maintainer review](docs/research/community-followup-review.md) ·
+[Integration record](docs/research/community-followup-integration.md)
 
-## Proof and reproduction
+## Additional conditional circuit result: PR #54
 
-- [Current proof source](notes/copied-centers-note.tex).
-- [Exact certificate](certificates/copied-centers-network.json): complete
-  child lists, moments, semantic precision and 47 strict constraints.
-- [Incremental producer and corner checks](scripts/copied_centers_producer.py).
-- [Adopted two-stage and corner proofs](references/copied-centers/README.md),
-  [analytic dependencies](references/semantic-bulk/README.md),
-  [reproduction instructions](docs/reproducibility.md) and [provenance](SOURCES.json).
+The [paid-clone construction](research/skip-clones/PROOF.md) gives
+**κ = 141532521/3125000000000 = 4.529040672e-5 > 2^-15**, conditional on
+OpenAI's base theorem and the retained analytic and fixed-tape interfaces.
+This branch result is additional to the maintainer-reviewed PR #49 witness
+above; it does not extend that review's scope or claim global optimality.
 
-```sh
-make copied-centers-verify
-```
+Starting from Avi Eisenberg's [PR #53 skip-prefix strips](research/skip-strips/PROOF.md),
+606 explicitly paid whole-chain clones preserve the original core/cover
+envelopes. The pinned weighted matchings give R23=32693, R25=43056 and
+W=159592676, with every added operation charged and both complete dirty-basis
+orientations replayed. The conditional saving is 0.686876% above PR #53.
+The source-partition/whole-chain operation is adapted from RaD / hipotures
+(PR #51); this original-envelope specialization is by Chafik Boukhalfa with
+OpenAI Codex assistance. All predecessor notices remain in force.
 
-This target checks the new mixed-center producer and exact corner witness,
-reuses the unchanged verified bit producers, and certifies the new assembly.
-`make verify` additionally runs inherited checks. Proofs are supplied as
-LaTeX source; no new PDF is included.
+PR #53 itself reassociates each leave-one-out strip as
+`s_j = A_(j-2) + (v_(j-1) + B_(j+1))`, preserving every scalar term while
+creating nested consumer envelopes. Its matched roles are R23=32946 and
+R25=43409, giving W=160799739 and conditional κ=4498144/10^11.
 
-## Contribution history
+Run `make verify-skip` for both complete producer replays and their exact
+arithmetic and adversarial checks, or `make skip-clones-verify` for PR #54.
+Local `make verify` and every Python-version CI matrix include these checks
+alongside all reviewed community and historical checks.
 
-The immediate parent is [PR #32](https://github.com/CrocSwap/integer-mult-bounds/pull/32),
-commit `0ef3aeb61f55cc0b321ce6a0ef00acee25cefe52`.
-The preceding contributions by **icekylinx** are:
+## What changed
 
-| PR | Conditional saving | Contribution |
-|---|---:|---|
-| [#10](https://github.com/CrocSwap/integer-mult-bounds/pull/10) | `1.2299998e-7` | Projector batching, controlled bases and mixed-width recursion |
-| [#18](https://github.com/CrocSwap/integer-mult-bounds/pull/18) | `1.884586e-6` | Partial-swap frames, binary triples and compatible positive labels |
-| [#24](https://github.com/CrocSwap/integer-mult-bounds/pull/24) | `5.98615e-6` | Endpoint gauges and general binary phase residuals |
-| [#32](https://github.com/CrocSwap/integer-mult-bounds/pull/32) | `1.2523415e-5` | Structured blocks, mixed centers and semantic/bulk composition |
+The community work combines recursive batching and partial-swap frames with
+semantic precision bounds, arbitrary-coordinate routing and bulk Gaussian
+resampling. Two-stage circuits, paid copied-center operations and improved
+contiguous blocks strengthen the finite networks. The latest increment
+reorders disjoint sums and retains more compatible carriers, with both local
+bases fixed and the entire physical circuit replayed exactly.
 
-The [combined manuscript patch](patches/batched-23.patch) remains the #10
-baseline; subsequent extensions have standalone proof sources.
+The selected bit network has m=575 and 177,284,805 roles. Its recursive saving
+is 4124034054/10^14; the unchanged complex network supplies 717/10^7.
+The assembly retains all seven strict exponent margins, including numerical,
+movement and normalization costs.
+
+Also incorporated: **Alejandro Zarzuelo Urdiales's Gaussian parity and finite
+tensor proofs (PR #45)** and **Ryan S's historical Lean certificates and circuit
+checks (PR #26)**. These strengthen verification within their stated scope;
+they do not change κ or formally verify the complete multiplication theorem.
 
 ## Attribution
 
-The copied retained-center schedule, complex endpoint transfer and selected
-composition are contributed by **icekylinx**, with substantial OpenAI GPT-6
-Astra and Codex assistance.
+This is a community result. Principal incorporated contributions include:
 
-This round adopts **Aurel Prosz (Paureel)**'s two-stage topology and paid
-endpoint copy, **Zhihao Chen (jacklightChen)**'s PR #29 unequal-axis
-composition, **Rohan Arun**'s PR #31 corner method and **Dominik Scholz**'s
-PR #33 parameterization. PR #29 also credits **Swapnil Jain**'s linked
-two-stage development. Semantic and analytic dependencies retain the
-PR #21/#23 and **RaD (hipotures)** credits.
+- **[Rohan Arun (@rohanarun)](https://github.com/rohanarun):** corner geometry,
+  fixed-basis composition, weighted matching and the latest [#49](https://github.com/CrocSwap/integer-mult-bounds/pull/49) circuit.
+- **[Chafik Boukhalfa (@chafreaky)](https://github.com/chafreaky):** exact data
+  recovery, independent checkers and reordered exclusion sums ([#43](https://github.com/CrocSwap/integer-mult-bounds/pull/43), [#46](https://github.com/CrocSwap/integer-mult-bounds/pull/46), [#48](https://github.com/CrocSwap/integer-mult-bounds/pull/48)).
+- **icekylinx:** recursive batching, partial swaps, fixed projector profiles,
+  copied retained centers and the selected complex construction.
+- **Zhihao Chen (@jacklightChen):** controlled bases, translated frames,
+  semantic/bulk compatibility and two-stage integration.
+- **RaD project (@hipotures):** semantic precision, arbitrary-coordinate
+  routing, phase-cell inversion, bulk resampling, alternating pair order and
+  the independent physical role compiler ([#41](https://github.com/CrocSwap/integer-mult-bounds/pull/41)).
+- **James Chang (@jamesyc):** reversed two-stage geometry and exact controls.
+- **Aurel Prosz (@Paureel) and Swapnil Jain:** attributed two-stage development
+  and the paid copied-stream endpoint construction.
+- **Dominik Scholz (@DominikScholz):** dimension, parameter and fixed-basis refinements.
+- **eumemic:** complex circuits, Gaussian resampling and source-frame work;
+  **Bortlesboat** and **dleen:** aligned pairing, retained totals and sharing.
+- **[Alejandro Zarzuelo Urdiales (@alejandrozu)](https://github.com/alejandrozu):**
+  Gaussian parity, finite tensor execution proofs and mixed-center reference
+  checks ([#45](https://github.com/CrocSwap/integer-mult-bounds/pull/45)).
+- **[Ryan S (@princezuda)](https://github.com/princezuda):** historical Lean
+  certificates, frame/movement lemmas and independent circuit checks
+  ([#26](https://github.com/CrocSwap/integer-mult-bounds/pull/26)).
 
-The framework and retained producers build on **Douglas Colkitt**, **eumemic**,
-**Bortlesboat**, **dleen**, and the other contributors recorded in [NOTICE](NOTICE).
-OpenAI's manuscript remains pinned at `adc7f1241b42e322a6451854ab7e4b4c146bf78a`.
-The repository retains Apache-2.0; imported RaD proof sources retain their
-separate CC0 terms and original notices.
+The [full contribution record](CONTRIBUTORS.md) also credits parallel,
+incremental, superseded and pending work. Inclusion there does not claim incorporation
+or verification of every PR. Douglas Colkitt maintains the project and its
+original research, review and integration, with OpenAI Codex assistance.
+OpenAI's original manuscript and Harvey–van der Hoeven's analytic work retain
+their attribution. Contributor-specific AI disclosures remain in [NOTICE](NOTICE).
+
+## Evidence and limits
+
+The selected contribution is PR #49 at `f95d2910e027495983b53cae1693cf535abf2569`.
+The [follow-up review](docs/research/community-followup-review.md) accepts its
+increment conditionally on the retained [PR #39 audit](docs/research/community-final-audit.md)
+and original #109 framework. This is not a claim of full formal verification,
+independent human peer review, worldwide priority or optimality. No complete
+practical multiplication-machine implementation is supplied.
+
+Validation includes fresh finite producers, exact rank profiles, full dirty
+workspace restoration, historical patch checks and an independent rational
+moment/assembly checker. Both formal submissions were built with their pinned
+Lean versions; their axiom audits accept only Lean's standard axioms.
+See the [review receipts](docs/research/community-followup-validation.json) and
+[combined integration record](docs/research/community-followup-integration.md).
+
+The earlier PR #39 release and **2^-30 checkpoint** (`1a74950`) remain preserved,
+with all earlier certificates, proofs, patches and contributor notices.
+
+## Reproduce
+
+Requires Python 3.11 or newer, Git, Make and a C++17 compiler with unsigned
+128-bit integer support (tested with GCC and Clang). No third-party Python
+packages or network access are needed for the arithmetic/circuit verification.
+The separate formal targets require Lean and an initial toolchain/Mathlib download.
+
+```sh
+make verify
+git diff --exit-code -- certificates patches
+```
+
+For the final witness and the independent arithmetic/source audit:
+
+```sh
+make copied-fixed-verify climbed-48-verify
+make community-followup-check
+make formal-verify
+```
+
+Allow several minutes and multiple gigabytes of memory for full producer
+rebuilds. See [reproduction details](docs/reproducibility.md).
+
+## Historical witnesses and independent patches
+
+
+Each patch applies independently to the **unmodified** pinned source; they are
+alternatives, not a sequence to apply together. The
+[result history](docs/research/result-history.md) records the earlier mechanisms
+and scoped ceilings.
+
+| Patch | Conditional saving | Scope |
+| --- | --- | --- |
+| [frozen-154](patches/frozen-154.patch) | `2^-154` | Original network and recurrence exponents |
+| [balanced-153](patches/balanced-153.patch) | `2^-153` | Balanced assembly parameters |
+| [same-network-129](patches/same-network-129.patch) | `2^-129` | Original network, sharper recurrence comparison |
+| [h46-111](patches/h46-111.patch) | `2^-111` | Smaller network, dyadic parameters |
+| [h46-109](patches/h46-109.patch) | `2^-109` | Rational recurrence saving, strict final margin |
+| [h46-108](patches/h46-108.patch) | `2^-108` | Variable stopping exponent |
+| [h46-rational](patches/h46-rational.patch) | `5.8e-33` | Strongest supplied parameter-only witness |
+| [nonadjacent-layout](patches/nonadjacent-layout.patch) | Original parameters retained | Routing proof and revised layout cost only |
+| [frozen-nonadjacent-107](patches/frozen-nonadjacent-107.patch) | `2^-107` | Direct routing, original network and recurrence exponents |
+| [h46-nonadjacent-78](patches/h46-nonadjacent-78.patch) | `2^-78` | Direct routing with the h = 46 network |
+| [h46-nonadjacent-76](patches/h46-nonadjacent-76.patch) | `2^-76` | Direct routing with tuned dimension and stopping parameters |
+| [h46-shared-side-75](patches/h46-shared-side-75.patch) | `2^-75` | Stage-1/stage-3 side-role sharing, routing, and parameter tuning |
+| [h46-incidence-67](patches/h46-incidence-67.patch) | `2^-67` | Rectangle incidence circuits, full auxiliary sharing, routing, and parameter tuning |
+| [h46-dag-63](patches/h46-dag-63.patch) | `2^-63` | Shared intermediate sums and reversible role allocation |
+| [h46-shared-point](patches/h46-shared-point.patch) | `13*2^-66` | Cross-group sharing |
+| [h50-paired-59](patches/h50-paired-59.patch) | `2^-59` | Paired sums, stopped guard and tighter Gaussian setup |
+| **[compact-control-34](patches/compact-control-34.patch)** | **`83/10^12 > 2^-34`** | **Compact controls, complete reservations, local repair and separate complex arity** |
+| [complex-compression-31](patches/complex-compression-31.patch) | `2^-31` | Weighted complex circuits, binary phase frames and complete auxiliary sharing |
+| **[ternary-30](patches/ternary-30.patch)** | **`2^-30`** | **Ternary five-subset circuit, rational frames and fixed-alphabet interchange** |
+
+## Citation and license
+
+Use [CITATION.cff](CITATION.cff), cite the individual contributions used and
+include the repository version or commit. [CONTRIBUTORS.md](CONTRIBUTORS.md),
+[NOTICE](NOTICE) and source-specific manifests preserve the dependency credits.
+
+The project is [Apache-2.0](LICENSE). Bundled RaD sources retain their separate
+CC0 license and notices. The pinned original OpenAI manuscript remains unchanged
+under `upstream/`; its source hashes are in [upstream/manifest.json](upstream/manifest.json).
+This project is not an official OpenAI release or endorsement.
