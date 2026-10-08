@@ -1,3 +1,31 @@
+# Conditional saving 4.986133e-5 from interval strips and pair assembly
+
+The [proof and reproduction note](research/pair-assembly/PROOF.md) gives
+**κ = 4986133/10^11 > 2^-15**, conditional on OpenAI's base theorem and
+retained analytic and fixed-tape interfaces. This is **6.782%** above PR #57
+(4669442391/10^14) and **10.849%** above PR #53, without PR #57's compiler.
+Stacked with PR #57's unchanged joint frame compiler, the same graph gives
+**κ = 5101691/10^11**, **9.257%** above PR #57.
+
+Only the scalar producer changes, in two ways. Every leave-one-out strip is
+built from cyclic intervals, each one item longer than an interval already
+built, so each interval can continue a retained carrier into the next one.
+Each group pair assembles its four outputs in a core-aware order, so the four
+far-plus-strip sums continue carriers too. Exact integer programs show both
+local layouts are optimal in their models: k−1 unmatched additions per strip
+for k ≤ 8, and 8 per group pair.
+
+Roles fall from 32,946/43,409 (PR #53) to 28,719/37,676 at h=23/25, and the
+physical wire count from 160,799,739 to **140,924,496**. Exact bounds show the
+PR #40–#57 networks fail at the new bit saving 4986382/10^11.
+
+Run `make pair-assembly-verify` to rerun the full scalar, label, pinned
+matching, fixed-profile, dirty-basis timeline, exhaustive data-pair, exact
+recovery and exact-fraction checks, the stacked frame-word replay, and 22
+tests. Finite certification is not formal verification or external acceptance
+of the full theorem; no global optimality or measured speedup is claimed. The
+PR #53 result follows.
+
 # Conditional saving 4.498144e-5 from skip-prefix strips
 
 The [proof and reproduction note](research/skip-strips/PROOF.md) gives
