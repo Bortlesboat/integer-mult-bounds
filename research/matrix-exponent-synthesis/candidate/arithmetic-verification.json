@@ -1,14 +1,16 @@
 {
   "status": "PASS fresh arithmetic refinement",
-  "source_commit": "bc2f7ed4c20dc18898305ab17165c0c995cbb804",
-  "kappa": "59384196136667/1250000000000000000",
-  "bit_saving": "475096139655209/10000000000000000000",
+  "source_commit": "e7a492dd8bee4e6f574ced784a62af2ce735edc4",
+  "kappa": "59556416720821/1250000000000000000",
+  "bit_saving": "476474035435537/10000000000000000000",
   "constraints": 47,
   "margins": 7,
   "exceeds_published_kappa": true,
   "exceeds_old_scoped_limit": true,
   "profile_unchanged": true,
-  "arithmetic_sha256": "c3341dce0a8d6ecee0335571c05cd629b293a5ec14a636cbf71833b4e4049a05",
+  "arithmetic_sha256": "8043378c6875913ad6a816681f0f230ecdaef322a31f1a5babd34b60a85198c3",
   "inherited_construction_replayed_here": false,
-  "scope": "Fresh exact moment, assembly and eventual-bound arithmetic; construction validation inherited from PR58; no new graph or full multiplication formalization claimed"
+  "scope": "Fresh exact moment, assembly and eventual-bound arithmetic; construction validation inherited from PR60; no new graph or full multiplication formalization claimed",
+  "metadata_correction_only": true,
+  "numeric_validation_unchanged": true
 }

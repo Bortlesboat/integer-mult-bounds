@@ -1,11 +1,11 @@
-# Strict parameter refinement above PR #58
+# Strict parameter refinement above PR #60
 
 The new conditional saving is
-`kappa = 59384196136667/1250000000000000000 = 4.75073569093336e-5`,
-strictly above PR #58's `475073569/10000000000000 = 4.75073569e-5`
-and its old scoped limit `1187740349/25001187740349`.
-The improvement is `9.3336e-15`. It uses finer certified bit saving
-`475096139655209/10000000000000000000` and positive backoff `h=1e-18`.
+`kappa = 59556416720821/1250000000000000000 = 4.76451333766568e-5`,
+strictly above PR #60's `4764513337/100000000000000 = 4.764513337e-5`
+and its old scoped limit `2382370177/50002382370177`.
+The improvement is `6.6568e-15`. It uses finer certified bit saving
+`476474035435537/10000000000000000000` and positive backoff `h=1e-18`.
 This is a parameter refinement of the same network. Matrix/parity constructions
 and all-cardinality matching certificates are additional research tools, with
 the precise applicability and remaining physical-child obstruction in the paper.
@@ -20,7 +20,7 @@ Read those current files before claiming a numerical frontier result.
 
 The exact 2,208-product matrix circuit is a mixed-input commutative scalar
 schedule. It is not tensor rank 2,208 or an uncharged replacement for a linear
-interchange child. The conditional exponent witness comes from a PR #58 inherited
+interchange child. The conditional exponent witness comes from a PR #60 inherited
 bit-network profile. Known Dumas-Pernet-Sedoglavic, Rosowski, Gaussian
 three-product and matching-duality ingredients retain their prior-work credit.
 
@@ -42,17 +42,17 @@ network is needed for these delivered arithmetic checks and dual replays.
 The matching discovery helpers use SciPy; discovery is excluded from the
 trusted integer/rational certificate replay.
 
-The current refinement uses PR #58 construction commit
-`bc2f7ed4c20dc18898305ab17165c0c995cbb804` (current PR head adds a
-validation receipt only). Run `python candidate/verify_refinement.py --upstream
-/path/to/pinned/pr58` for fresh parameter arithmetic. This does not replay the
+The current refinement uses PR #60 construction commit
+`e7a492dd8bee4e6f574ced784a62af2ce735edc4` (ranked retired-slot refinement). Run `python candidate/verify_refinement.py --upstream
+/path/to/pinned/pr60` for fresh parameter arithmetic. This does not replay the
 inherited physical graph, wrapped words or data sweep. Those checks are reused
-from PR #58, as stated in its public completion receipt.
+from PR #60's reported focused checks. Its full repository verification was
+still running at the draft announcement; it is not claimed as completed here.
 
 The 171 standalone theorem endpoints combine the unchanged, previously checked
 matrix/parity/search toolkit with 11 fresh concrete frontier theorems and the
 four generic rational-interface theorems. Historical matrix and catalogue
-receipts are background evidence; they are not fresh PR #58 network validation.
+receipts are background evidence; they are not fresh PR #60 network validation.
 The paper source is supplied without a newly compiled PDF.
 
 ## Concrete interfaces

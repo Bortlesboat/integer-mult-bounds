@@ -23,7 +23,7 @@ uncharged network ranks. A bounded search compares concrete producers against
 the changing community frontier. Arithmetic, finite network certification,
 and inherited analytic/tape hypotheses remain distinct. Reusing the current
 joint-dual frame construction, finer certified parameters give conditional
-$\kappa=4.75073569093336\times10^{-5}$, strictly above PR \#58's published
+$\kappa=4.76451333766568\times10^{-5}$, strictly above PR \#60's published
 witness and its previously stated scoped parameter limit. This is a small
 parameter refinement. The matrix arithmetic and the numerical exponent
 refinement are separate contributions. A further search contribution is an
@@ -51,11 +51,11 @@ cancellation. A certified two-level 48-product outer gives the better
 bilinear upper bound $48^2=2,304$. These are model comparisons, not optimality
 claims.
 
-The benchmark is the joint-dual frame construction in PR \#58, pinned at
-\texttt{bc2f7ed4c20dc18898305ab17165c0c995cbb804}. It reports
-$\kappa_0=4.75073569\times10^{-5}$ and bit saving
-$a_0=1187740349/25000000000000$. The current PR head adds only a validation receipt to this construction.
-The source certificate is unchanged; the construction commit is the proof pin. The comparison concerns explicit conditional
+The benchmark is the joint-dual frame construction in PR \#60, pinned at
+\texttt{e7a492dd8bee4e6f574ced784a62af2ce735edc4}. It reports
+$\kappa_0=4.764513337\times10^{-5}$ and bit saving
+$a_0=2382370177/50000000000000$. PR \#60 changes retired-slot priority to descending current frame rank.
+The construction commit and source certificate are the exact proof pins. The comparison concerns explicit conditional
 community witnesses, not unconditional peer-reviewed optimality.
 
 The community's binding quantity is instead its bit-network characteristic
@@ -176,28 +176,29 @@ restore output indices. Rank certificates, carrier-use legality and complete
 characteristics are checked before assembly; a lower wire count alone is
 not accepted as an exponent witness.
 
-The submitted numerical refinement reuses PR \#58's complete network,
-including its paid clones, carrier matching, data geometry and complex layer.
-Its physical width is 150,593,466 and total rank 86,589,396,050, with deficit
+The submitted numerical refinement reuses PR \#60's complete network,
+including its carrier matching, paid endpoints, data geometry and complex layer.
+Its physical width is 150,167,598 and total rank 86,344,521,950, with deficit
 1,846,900. Finer rational moment certification and a smaller positive
 assembly backoff give
 \[
- a_b=\frac{475096139655209}{10000000000000000000},\qquad h=10^{-18},
+ a_b=\frac{476474035435537}{10000000000000000000},\qquad h=10^{-18},
 \]
 \[
- \kappa=\frac{59384196136667}{1250000000000000000}
-       =4.75073569093336\times10^{-5}.
+ \kappa=\frac{59556416720821}{1250000000000000000}
+       =4.76451333766568\times10^{-5}.
 \]
-The increase over the published witness is $9.3336\times10^{-15}$.
+The increase over the published witness is $6.6568\times10^{-15}$.
 More strongly, the new value exceeds the old scoped limit
-$a_0/(1+a_0)=1187740349/25001187740349$. Thus the claim is not obtained
+$a_0/(1+a_0)=2382370177/50002382370177$. Thus the claim is not obtained
 solely by printing more digits of the old assembly witness. The change is
 parameter-only: there is no new producer or lower wire count in this
 submitted numerical certificate. The dyadic corollary remains $2^{-15}$.
 
-PR \#58 reports a full verification of its joint-dual graph, wrapped words,
+PR \#60 reports focused independent checks of its joint-dual graph, wrapped words,
 dirty-auxiliary restoration, fixed-basis rank profiles and exact data recovery
-at the pinned construction commit. We reuse those construction checks;
+at the pinned construction commit. The full repository sweep was still running
+when PR \#60 was announced as a draft. We reuse its reported focused checks;
 we do not claim a fresh independent replay of that inherited physical layer.
 The new rational moment upper envelope, all 47 assembly slacks, seven margins
 and strict comparisons are freshly checked. Eleven concrete Lean theorems
@@ -205,7 +206,7 @@ derive upward-rounded Pad\'e weights, their weighted envelope and all positive
 slacks in the kernel. Logarithm/exponential enclosures, source-to-profile linkage
 and the inherited all-size physical/analytic theorem remain explicit contracts.
 The smaller backoff increases eventual thresholds; no practical runtime claim
-follows. This improves the specified PR \#58 witness, with no global optimality
+follows. This improves the specified PR \#60 witness, with no global optimality
 or permanent live-frontier claim.
 
 For a fixed admissible carrier graph, a separate exact matching certificate
@@ -268,7 +269,7 @@ with a complete standalone axiom audit. Its catalogue checks coefficient domains
 block stability, terminal-only commutativity, paid modular lifts, literal
 factor lineage and fringe costs. Unreplayed advertised catalogue rows remain
 quarantined. Historical 45-endpoint Mathlib evidence, fresh matrix polynomial
-controls, fresh standalone proofs, and inherited PR \#58 physical-network checks are
+controls, fresh standalone proofs, and inherited PR \#60 physical-network checks are
 reported separately. No complete Python refinement or full multiplication
 theorem is asserted by the new formalization.
 
@@ -282,7 +283,8 @@ CrocSwap/Douglas Colkitt, icekylinx, RaD/hipotures, Rohan Arun, Chafik
 Boukhalfa, James Chang, Dominik Scholz, Zhihao Chen, Aurel Prosz, Swapnil
 Jain and retained predecessor notices. Full analytic, physical compiler,
 fixed-tape, setup and eventual-threshold hypotheses remain conditional.
-The numerical refinement retains Chafik Boukhalfa's PR \#58 composition, Rohan Gupta's
+The numerical refinement retains Chafik Boukhalfa's PR \#60 slot-priority refinement and
+PR \#58 composition, Rohan Gupta's
 dual-suffix layout, Eumemic's joint frame compiler and Avi Eisenberg's
 predecessor strip layout. The new matrix/parity arithmetic,
 exact search certificates and finite rational formalization retain their
@@ -296,6 +298,6 @@ archive: \url{https://github.com/alejandrozu/openmath-2026-judging}.
 community integration: \url{https://github.com/CrocSwap/integer-mult-bounds/pull/45}.
 \bibitem{community} Community reordered-producer and climbed-order
 benchmarks: \url{https://github.com/CrocSwap/integer-mult-bounds/pull/53},
-\url{https://github.com/CrocSwap/integer-mult-bounds/pull/58}.
+\url{https://github.com/CrocSwap/integer-mult-bounds/pull/60}.
 \end{thebibliography}
 \end{document}

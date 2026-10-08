@@ -1,9 +1,9 @@
-"""Fresh exact arithmetic only; inherited PR60 construction is not rerun."""
+"""Fresh exact arithmetic only; inherited PR58 construction is not rerun."""
 from pathlib import Path
 from fractions import Fraction as Q
 from hashlib import sha256
 import argparse,importlib.util,json,subprocess
-PIN='e7a492dd8bee4e6f574ced784a62af2ce735edc4'
+PIN='bc2f7ed4c20dc18898305ab17165c0c995cbb804'
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path)
@@ -30,9 +30,9 @@ def main():
         path=(root/record[prefix+'_path']).resolve();assert path.is_relative_to(root)
         assert sha256(path.read_bytes()).hexdigest()==record[prefix+'_sha256'],prefix+' changed'
     native=json.loads((root/record['source_certificate_path']).read_text())
-    assert record['source_profile']==native['bit'],'profile differs from pinned PR60 certificate'
-    math=load('pinned60_arithmetic',root/record['moment_code_path'])
-    assembly=load('pinned60_balanced',root/record['assembly_code_path'])
+    assert record['source_profile']==native['bit'],'profile differs from pinned PR58 certificate'
+    math=load('pinned58_arithmetic',root/record['moment_code_path'])
+    assembly=load('pinned58_balanced',root/record['assembly_code_path'])
     profile=native['bit'];ab=Q(record['bit_saving']);kappa=Q(record['kappa']);h=Q(record['h_backoff'])
     assert h==Q(1,10**18)
     rows={int(t):n for t,n in profile['child_multiplicities'].items()}
@@ -50,7 +50,7 @@ def main():
         exceeds_old_scoped_limit=True,profile_unchanged=True,
         arithmetic_sha256=sha256(a.arithmetic.read_bytes()).hexdigest(),
         inherited_construction_replayed_here=False,
-        scope='Fresh exact moment, assembly and eventual-bound arithmetic; construction validation inherited from PR60; no new graph or full multiplication formalization claimed')
+        scope='Fresh exact moment, assembly and eventual-bound arithmetic; construction validation inherited from PR58; no new graph or full multiplication formalization claimed')
     a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(receipt,indent=2)+'\n')
     print('PASS',kappa,'; 47 strict constraints; inherited construction not rerun')
 if __name__=='__main__':main()

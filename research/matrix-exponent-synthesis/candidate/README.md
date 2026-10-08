@@ -1,38 +1,40 @@
-# Exact parameter refinement of pinned PR58
+# Exact parameter refinement of pinned PR60
 
-This changes the certified numerical parameters, with the PR58 graph, words,
-profiles, and inherited algorithm left unchanged:
+The unchanged PR60 construction supports the freshly certified numerical
+witness
 
-    kappa = 59384196136667 / 1250000000000000000
+    kappa = 59556416720821 / 1250000000000000000
 
-It is strictly above PR58's published `475073569/10^13` and the scoped limit
-computed with its old bit saving. The backoff is explicitly `h=10^-18`.
-This is a small numerical-witness refinement, not a new multiplication graph,
-matrix tensor-rank result, practical speedup, or unconditional theorem.
+This exceeds PR60's published `4764513337/10^14` and the scoped ceiling
+computed using its old bit saving. The new backoff is explicitly `h=10^-18`.
+This is a small parameter refinement, not a new compiler, scalar graph,
+matrix tensor rank, practical speedup or unconditional theorem.
 
-The fresh check recomputes the rational moment enclosure, all 47 strict
-assembly inequalities and seven margins, and the eventual-bound arithmetic.
-The unchanged physical construction's validation is inherited from PR58;
-its producer, XOR words, dirty bases, CPP/CRT and data sweep were **not rerun**
-for this refinement. Separate Lean artifacts establish their stated arithmetic
-scope; this Python checker does not claim to compile or verify those artifacts.
+Fresh verification covers the rational moment, all 47 strict assembly
+inequalities, seven margins, and the eventual-bound arithmetic. The source
+certificate and arithmetic modules are hash-checked before evaluation.
+The unchanged PR60 graph, words, dirty bases, CPP/CRT profiles and data sweep
+are **inherited from its reported validation and were not rerun here**. Its
+announcement states that focused verification passed while the full upstream
+repository verification was running. Separate Lean artifacts have their
+explicit arithmetic scope; this Python checker does not compile those files.
 
 Python 3.11+ standard library and Git suffice:
 
 ```sh
 git clone https://github.com/chafreaky/integer-mult-bounds.git upstream
-git -C upstream checkout --detach bc2f7ed4c20dc18898305ab17165c0c995cbb804
+git -C upstream checkout --detach e7a492dd8bee4e6f574ced784a62af2ce735edc4
 python3 verify_refinement.py --upstream upstream
 ```
 
-Git HEAD, the exact source certificate, and the two arithmetic implementations
-are hash-checked before evaluation. This needs the explicit external pinned
-checkout; no external dependency download or inherited construction replay is
-performed. `arithmetic.json` contains the exact new witness and source hashes.
+The external pinned checkout is required. No dependency download or inherited
+physical construction replay occurs. `arithmetic.json` supplies exact values
+and source hashes; `arithmetic-verification.json` records the executed result.
 
-At the fine search grid, failure of the next **upper enclosure** to certify a
-point is not a proof that the actual network cannot satisfy that point. No
-global optimality or strongest-ever claim is made. The cited predecessor is
-[PR58](https://github.com/CrocSwap/integer-mult-bounds/pull/58), composed by
-Chafik Boukhalfa from Rohan Gupta's dual-suffix graphs and Eumemic's joint frame
-compiler, with all notices and predecessor credit retained.
+At the fine grid, a next-point upper enclosure above one shows that this
+enclosure does not certify that point. It does not exclude actual feasibility
+or prove global optimality. The compared predecessor is
+[PR60](https://github.com/CrocSwap/integer-mult-bounds/pull/60), Chafik
+Boukhalfa's retired-slot priority refinement of the PR58 composition. Eumemic's
+joint frame compiler, Rohan Gupta's dual-suffix layout, Avi Eisenberg's producer
+framework, and every retained contributor and license remain credited.
