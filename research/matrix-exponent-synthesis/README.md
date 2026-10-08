@@ -1,59 +1,24 @@
-# Strict parameter refinement above PR #60
+# Strict parameter refinement of PR #62's stacked witness
 
-The new conditional saving is
-`kappa = 59556416720821/1250000000000000000 = 4.76451333766568e-5`,
-strictly above PR #60's `4764513337/100000000000000 = 4.764513337e-5`
-and its old scoped limit `2382370177/50002382370177`.
-The improvement is `6.6568e-15`. It uses finer certified bit saving
-`476474035435537/10000000000000000000` and positive backoff `h=1e-18`.
-This is a parameter refinement of the same network. Matrix/parity constructions
-and all-cardinality matching certificates are additional research tools, with
-the precise applicability and remaining physical-child obstruction in the paper.
+`kappa = 25508460085039/500000000000000000 = 5.1016920170078e-5`, above `5101691/100000000000`
+by `1.0170078e-11`, and also above its old scoped limit `39859/781289859`.
+Bit saving is `102039046058023/2000000000000000000`; positive backoff is `h=1e-18`. This uses the same
+interval-strip/core-aware-pair graph with PR #57's joint frame compiler.
+It is a parameter refinement; no matrix arithmetic count is substituted for
+a physical wire profile. New concrete Lean proofs and fresh exact arithmetic
+checks accompany the witness; PR #62's reported finite construction validation
+is inherited and was not rerun. All-size analytic/compiler/tape hypotheses remain.
 
-# Matrix circuits, parity arithmetic and certified exponent search
+## Reproduce
 
-This package is the local review edition of Alejandro Zarzuelo Urdiales's
-matrix/parity synthesis. The paper source is `matrix-exponent-synthesis.tex`.
-The candidate's exact current witness, benchmark pin and verification status
-are in `candidate/README.md`, `candidate/arithmetic.json` and its receipts.
-Read those current files before claiming a numerical frontier result.
-
-The exact 2,208-product matrix circuit is a mixed-input commutative scalar
-schedule. It is not tensor rank 2,208 or an uncharged replacement for a linear
-interchange child. The conditional exponent witness comes from a PR #60 inherited
-bit-network profile. Known Dumas-Pernet-Sedoglavic, Rosowski, Gaussian
-three-product and matching-duality ingredients retain their prior-work credit.
-
-## Reproduce the arithmetic and certificate checks
-
-Requirements: Python 3.11+ standard library and Lean 4.31.0 with bundled Std.
-The original matrix proof archive uses its separate pinned Mathlib/Lean
-4.33.1 toolchain; its historical CI evidence is included, and is not described
-as a fresh local recompilation here.
-
-```
-lake build
-python run_checks.py --work work/recheck
-```
-
-Use a fresh work directory for another run: some independent audit receipts
-intentionally refuse to overwrite existing evidence. No SciPy, compiler or
-network is needed for these delivered arithmetic checks and dual replays.
-The matching discovery helpers use SciPy; discovery is excluded from the
-trusted integer/rational certificate replay.
-
-The current refinement uses PR #60 construction commit
-`e7a492dd8bee4e6f574ced784a62af2ce735edc4` (ranked retired-slot refinement). Run `python candidate/verify_refinement.py --upstream
-/path/to/pinned/pr60` for fresh parameter arithmetic. This does not replay the
-inherited physical graph, wrapped words or data sweep. Those checks are reused
-from PR #60's reported focused checks. Its full repository verification was
-still running at the draft announcement; it is not claimed as completed here.
-
-The 171 standalone theorem endpoints combine the unchanged, previously checked
-matrix/parity/search toolkit with 11 fresh concrete frontier theorems and the
-four generic rational-interface theorems. Historical matrix and catalogue
-receipts are background evidence; they are not fresh PR #60 network validation.
-The paper source is supplied without a newly compiled PDF.
+See `candidate/README.md` for the external immutable upstream checkout and
+fresh rational replay. `lake build` checks the 171 standalone theorem endpoints,
+including 11 concrete frontier theorems; no Mathlib or project axioms are needed.
+The original matrix source's separate Mathlib proofs retain historical CI scope.
+`python run_checks.py --work work/recheck` replays the matrix/search background.
+The matrix and matching receipts are historical checks, not a fresh PR #62
+physical network replay. The paper is supplied as LaTeX source without a new PDF.
+Earlier PR #58/#60 parameter witnesses are retained in the repository's `history/`.
 
 ## Concrete interfaces
 
@@ -90,7 +55,7 @@ Neither assertion proves global network or exponent optimality.
 explicit edge, row and column-partition contracts. `FeasibilityNormalForm.lean`
 proves the all-cardinality bookkeeping identity. The finite graph/source binding
 is independently checked by Python. `RefinedFrontierCertificate.lean` derives the
-actual rounded moment envelope and checks the 47 slacks and strict benchmark
+current rounded moment envelope and checks the 47 slacks and strict benchmark
 comparisons. `FiniteRationalChecks.lean` states the enclosure contracts; the full
 transcendental and physical interface scope is stated in the paper and candidate
 receipts. `AuditAll.lean` prints dependencies for every standalone theorem.
