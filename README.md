@@ -10,18 +10,18 @@ fixed number of one-dimensional tapes, the strongest supplied witness is
 
 $$
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\boxed{\kappa=\frac{83}{10^{12}}=8.3\times10^{-11}>2^{-34}}.
+\boxed{\kappa=2^{-31}\approx4.6566\times10^{-10}}.
 $$
 
-The simpler **`kappa = 2^-34`** is a corollary. The witness remains below
-`2^-33`. It increases the exponent saving by approximately **47.85 million
-fold** over our preceding published `2^-59` witness. The original manuscript
+This integrated follow-up increases the exponent saving by approximately
+**5.61 times** over the preceding `83/10^12 > 2^-34` witness. Comparing the
+simpler dyadic statements gives `2^-31 / 2^-34 = 8`. The original manuscript
 uses `2^-182`. These compare asymptotic exponents, not practical runtimes.
 
-**[Read the compact-control proof note (PDF)](artifacts/compact-control-note.pdf)** ·
-[Review the combined source patch](patches/compact-control-34.patch) ·
-[Inspect the exact certificate](certificates/compact-control-layer.json) ·
-[Review guide and dependencies](docs/research/compact-control-review.md)
+**[Read the complex-network proof note (PDF)](artifacts/complex-compression-note.pdf)** ·
+[Review the combined source patch](patches/complex-compression-31.patch) ·
+[Inspect the exact certificate](certificates/complex-compression.json) ·
+[Review guide and dependencies](docs/research/complex-compression-review.md)
 
 This is a research claim supported by written proofs and reproducible checks.
 The complete upstream theorem is assumed; the new arguments have not received
@@ -29,37 +29,33 @@ independent mathematical review or formal verification.
 
 ## What changed
 
-The new construction moves **compact control fields instead of entire spaced
-windows**. For `f` selected axes, it replaces the layer's movement cost
-`O(V*((f*K)^tau+1))` by
+The preceding compact-control construction removed the movement penalty for
+spaced windows. This follow-up improves the **complex finite network** used
+inside that construction, keeping the bit network and compact-control proofs.
+
+Weighted rectangle circuits compress the disjoint-triple correction, while
+shared sums compress the intersection-two correction. Compatible binary
+phase frames, signed arithmetic and a transparent computation schedule preserve
+arbitrary auxiliary inputs. A matching reuses complete first/third-stage
+auxiliary banks without additional residual loss.
+
+At `h_c=26`, the complex saving is certified at `a_c=5e-9`, exceeding the
+retained bit saving `a_b=2.96e-9`. The combined patch integrates the new
+network, separate arities, scalar-operation guard charge, recurrence and
+final parameter witness. Its exact minimum assembly margin is
 
 $$
-O\!\left(V\bigl((f\log p)^\tau+1\bigr)\right).
+G_* = \frac{5771}{10^{13}} = 5.771\times10^{-10}>2^{-31}.
 $$
 
-The proof reserves temporary fields from existing address coordinates,
-allows arbitrary initial temporary values, restores them exactly, and charges
-exceptional-address repair at every recursion node. The temporary ranges
-remain complete through padding and recursive row splitting.
+The **bit interface now limits the result**. With that certified bit saving
+and the retained Gaussian assembly constraint, `kappa<a_b/5=5.92e-10<2^-30`.
+This is a scoped ceiling for the retained choices, not for other networks or
+integer multiplication in general. The new complex construction already
+supplies headroom for a stronger bit network.
 
-Removing `K^tau` removes the restriction responsible for the preceding
-quadratic dependence on the finite-network saving. The bit network stays at
-`h=50`. The original complex network is separately instantiated at `h=25`,
-and a generalized stopping-depth guard completes the new parameter witness.
-This is a change to the movement construction and its proof, beyond parameter
-tuning of the preceding algorithm.
-
-The exact minimum assembly margin is
-
-$$
-G_* = \frac{333833}{4\cdot10^{15}}
-    = 8.345825\times10^{-11} > \kappa.
-$$
-
-The remaining bottleneck is the complex layer's saving. With the **fixed
-`h=25` complex motif and retained Gaussian/leaf inequalities**, the scoped
-ceiling is below `8.369598075e-11`, hence below `2^-33`. This is not a ceiling
-for other networks or integer multiplication in general.
+The preceding [compact-control note](artifacts/compact-control-note.pdf) and
+[patch](patches/compact-control-34.patch) remain unchanged.
 
 ## Evidence and scope
 
@@ -68,12 +64,12 @@ for other networks or integer multiplication in general.
 | Parameters, logarithm enclosures, final margins | Exact rational certificate |
 | Dirty-control identities, inverses and repair | Finite exhaustive cases and seeded tests |
 | Wider-control tape bound, reservations and recursion | Written general proofs |
-| Separate complex arity and precision guard | Written proofs and exact accounting |
+| Compressed complex circuit, binary phase frames and precision guard | Written proofs, exact scalar tests and accounting |
 | Source integration | Combined patch, reference checks and manuscript build |
 | Full upstream multiplication theorem | Assumed |
 | Independent review / full formalization | Not supplied |
 
-The [review guide](docs/research/compact-control-review.md) identifies the new
+The [review guide](docs/research/complex-compression-review.md) identifies the new
 proof obligations and their tests. [Current research status](docs/research/current-status.md)
 is authoritative when older notes describe superseded barriers or hypothetical
 witnesses. The earlier artifacts remain available and unchanged.
@@ -95,17 +91,17 @@ checks exact regeneration on a clean checkout.
 With Tectonic installed, rebuild the latest note using:
 
 ```sh
-make compact-note
+make complex-note
 ```
 
-The output is `artifacts/compact-control-note.pdf`. The first PDF build may
+The output is `artifacts/complex-compression-note.pdf`. The first PDF build may
 download TeX resources. See [reproducibility instructions](docs/reproducibility.md)
 for applying the combined patch in a disposable copy and building older notes.
 [GitHub Actions](.github/workflows/verify.yml) runs the arithmetic and patch checks.
 Passing tests does not establish the complete multiplication theorem; this
 repository contains no full multiplication-machine implementation.
 
-## Earlier witnesses and independent patches
+## Witnesses and independent patches
 
 Each patch applies independently to the **unmodified** pinned source; they are
 alternatives, not a sequence to apply together. The
@@ -131,6 +127,7 @@ and scoped ceilings.
 | [h46-shared-point](patches/h46-shared-point.patch) | `13*2^-66` | Cross-group sharing |
 | [h50-paired-59](patches/h50-paired-59.patch) | `2^-59` | Paired sums, stopped guard and tighter Gaussian setup |
 | **[compact-control-34](patches/compact-control-34.patch)** | **`83/10^12 > 2^-34`** | **Compact controls, complete reservations, local repair and separate complex arity** |
+| **[complex-compression-31](patches/complex-compression-31.patch)** | **`2^-31`** | **Weighted complex circuits, binary phase frames and complete auxiliary sharing** |
 
 ## Attribution, citation, and license
 

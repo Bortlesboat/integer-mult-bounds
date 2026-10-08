@@ -1,10 +1,10 @@
 # Reproducing the result
 
-The primary artifacts are the [compact-control note](../artifacts/compact-control-note.pdf),
-[combined patch](../patches/compact-control-34.patch), and
-[exact layer certificate](../certificates/compact-control-layer.json).
+The primary artifacts are the [complex-network note](../artifacts/complex-compression-note.pdf),
+[combined patch](../patches/complex-compression-31.patch), and
+[exact certificate](../certificates/complex-compression.json).
 They are conditional on the retained algorithmic interfaces and written
-extensions identified in the [review guide](research/compact-control-review.md).
+extensions identified in the [review guide](research/complex-compression-review.md).
 
 ## Requirements
 
@@ -84,6 +84,12 @@ This command performs these steps:
    written [compact-control proof](../notes/compact-control-note.tex).
    `scripts/make_compact_control_patch.py` generates the independent combined
    patch, including the changed global exceptional-stream accounting.
+   `scripts/complex_compression.py` records the follow-up weighted complex
+   circuit, binary phase-frame audit and conditional `2^-31` witness.
+   `scripts/make_complex_compression_patch.py` integrates that interface and
+   all downstream constants into an independent complete upstream patch.
+   The earlier compact-control certificate and source patch remain unchanged;
+   see the [construction and integration boundary](research/complex-compression.md).
    `scripts/research_networks.py` and `scripts/search_network_variants.py`
    record scoped family bounds and clearly marked exploratory scores.
 4. The standard-library unittest suite checks certificate boundaries, selected
@@ -119,7 +125,7 @@ existing one. It leaves the bundled source untouched:
 mkdir -p build
 mkdir build/review
 cp -R upstream/build build/review/build
-git apply --directory=build/review patches/compact-control-34.patch
+git apply --directory=build/review patches/complex-compression-31.patch
 ```
 
 Read `build/review/build/main.tex` and its included sections. The other patches
@@ -130,10 +136,11 @@ are alternatives based on the same original manuscript, not successive commits.
 With Tectonic installed:
 
 ```sh
-make compact-note
+make complex-note
 ```
 
-The result is `artifacts/compact-control-note.pdf`. Build the earlier
+The result is `artifacts/complex-compression-note.pdf`. Build the preceding
+compact-control note with `make compact-note`. Build the earlier
 parameter-only note with `make note`, producing `artifacts/parameter-note.pdf`.
 Build the separate routing audit
 with `make audit-note`, producing `artifacts/nonadjacent-axis-note.pdf`.
@@ -147,6 +154,8 @@ Build the shared-computation note with `make dag-note`, producing
 Build the cross-group and paired notes with `make shared-point-note` and
 `make paired-note`, producing `artifacts/shared-point-note.pdf` and
 `artifacts/paired-note.pdf`, respectively.
+Build the local complex-network follow-up with `make complex-note`, producing
+`artifacts/complex-compression-note.pdf`.
 The first run may download fonts
 and TeX packages; the numerical verification does not use them. PDF builds may
 differ in metadata or typesetting across TeX environments. The exact-byte
@@ -174,5 +183,5 @@ and [setup-python](https://github.com/actions/setup-python) actions, with
 read-only repository permissions. The PDF is supplied for readers and can be
 rebuilt locally using the command above.
 
-Build the latest note with `make compact-note`. The earlier notes and
+Build the latest note with `make complex-note`. The earlier notes and
 patches remain available as independent witnesses.

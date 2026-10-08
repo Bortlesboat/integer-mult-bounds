@@ -2,127 +2,113 @@
 
 Updated October 7, 2026. Author: Douglas Colkitt. All results remain conditional
 on the pinned upstream algorithmic interfaces and the identified written
-extensions. Nothing in this page asserts formal or independent verification.
+extensions. Nothing here asserts formal or independent verification.
 
 ## Current and earlier results
 
 | State | Exponent saving kappa | Artifacts |
 | --- | --- | --- |
-| Published baseline | `2^-59` | [paired note](../../artifacts/paired-note.pdf), [certificate](../../certificates/paired-network.json), [patch](../../patches/h50-paired-59.patch) |
-| Current conditional research draft | `83/10^12 = 8.3e-11 > 2^-34` | [proof note](../../artifacts/compact-control-note.pdf), [source](../../notes/compact-control-note.tex), [certificate](../../certificates/compact-control-layer.json), [patch](../../patches/compact-control-34.patch) |
+| Earlier published baseline | `2^-59` | [paired note](../../artifacts/paired-note.pdf), [patch](../../patches/h50-paired-59.patch) |
+| Published compact-control checkpoint | `83/10^12 > 2^-34` | [note](../../artifacts/compact-control-note.pdf), [certificate](../../certificates/compact-control-layer.json), [patch](../../patches/compact-control-34.patch) |
+| Integrated follow-up, pending publication | `2^-31` | [note](../../artifacts/complex-compression-note.pdf), [certificate](../../certificates/complex-compression.json), [patch](../../patches/complex-compression-31.patch) |
 
-The new witness increases kappa by approximately 47,846,242 times over the
-published `2^-59`. This compares asymptotic exponent savings, not practical
-runtime. The dyadic statement `kappa=2^-34` is a weaker convenient corollary.
-The witness remains below `2^-33`. The earlier published artifacts and pinned
-source remain unchanged.
+The latest witness increases kappa by approximately 5.61 times over the exact
+preceding witness; the dyadic comparison `2^-34` to `2^-31` is eightfold.
+These compare exponent savings, not practical runtime. All earlier certificates,
+patches and the pinned upstream source remain unchanged.
 
-## What changed
+## What changed and what is retained
 
-The finite bit network is unchanged: `h_b=50`, `m_b=125000`, with
-`a_b=1-tau=296/10^11`. The new movement construction swaps compact dirty
-control fields, rather than the full spaced slots. For f selected axes it
-costs `O(V*((f log p)^tau+1))`, including deterministic repair, under the
-layer's record regime and the supplied reservation layout.
+The [complex-network construction](complex-compression.md) uses weighted
+rectangles for disjoint triples, shared sums for intersection-two triples,
+and binary phase frames valid in both signed directions. Transparent computation
+restores arbitrary auxiliary inputs. A matching shares the complete first/third
+auxiliary banks. At `h_c=26`, it has
 
-Two front fields and one back field are carved out of already existing
-address chunks. Their selected kernels are processed individually first.
-They remain outside the row index divided among roles, so each child retains
-the complete compact ranges and still receives exactly `V/W` volume. The
-extra preprocessing is `O(V*(log d+d^(1-c) log p+1))` for the chosen `c<1`.
-No independent address coordinates, zero-temporary assumption, or free
-gathering operation are used.
+    m_c = 17576, W_c = 7082222160000,
+    s_c = 124477130005280000,
+    a_c = 1-sigma = 5/10^9.
 
-The complex network uses its original construction independently at `h_c=25`,
-`m_c=15625`, supporting `a_c=1-sigma=418/10^12`. The separate-arity proof is
-now integrated into the source patch. The generalized stopped-depth guard
-has `C1=5-4 beta+zeta`. Compact operations only permute complete coefficient
-encodings, so they do not increase the coefficient arithmetic depth.
+The bit network remains `h_b=50`, `m_b=125000`, with
+`a_b=1-tau=296/10^11`. Thus the complex interface now has the larger saving.
+The bit interface is the bottleneck.
+
+The retained compact-control construction moves compact dirty fields instead
+of spaced windows, at cost `O(V*((f log p)^tau+1))`. It reserves two front
+fields and one back field from existing address coordinates, preserves complete
+ranges in every recursive child, restores arbitrary values, and charges
+exceptional-address repair at every node. All three movement/layout/guard
+proof sources are embedded verbatim in the new patch.
 
 ## Exact current parameters and bottleneck
 
 The certificate uses
 
-    epsilon = 1999/10000, c = 1/5,
-    beta = 1/1000, zeta = 1/10000, delta = 1/10^6,
-    C1 = 49961/10000,
-    lambda = 1-1671/(4*10^12),
-    lambda' = 1-167/(4*10^11),
-    kappa = 83/10^12.
+    epsilon = 199/1000, c = 1,
+    beta = 1/100, zeta = 1/1000, delta = 1/10000,
+    C1 = 4961/1000,
+    lambda = 1-293/10^11,
+    lambda' = 1-29/10^10,
+    kappa = 2^-31.
 
-The internal, leaf and reservation exponents are respectively
+The internal, leaf and reservation exponents are
 
-    chi = tau+(1-beta)*max(sigma-tau,0),
+    chi = tau+(1-beta)*max(sigma-tau,0) = tau,
     leaf = sigma+beta*(1-sigma),
-    reserve = max(1-c,0).
+    reserve = max(1-c,0) = 0.
 
-All lie strictly below lambda' after the stated intermediate-lambda checks.
-All seven final margins exceed kappa. Their minimum is
+All required comparisons are strict. The seven assembly margins have minimum
 
-    G = g3 = 333833/(4*10^15),
-    G-kappa = 1833/(4*10^15) > 0.
+    G = g3 = 5771/10^13 = 5.771e-10 > 2^-31.
 
-The former quadratic restriction from `K^tau` has been removed by this
-construction. The remaining limiting margin is the completed layer's saving,
-controlled here by the complex network's stopped leaves. The unchanged h=25
-complex motif and retained Gaussian/leaf inequalities have the scoped upper
-bound `kappa < 8.369598075e-11 < 2^-33`. Our simple rational witness is above
-99% of that upper enclosure. It is not an unrestricted algorithmic ceiling.
+The explicit new scalar-operation count fits the generalized guard's node
+charge `E=64*(W_c+m_c+1)^3`. The guard still has
+`C1=5-4*beta+zeta`, and `epsilon*C1=987239/1000000<1`.
+Reserved-axis processing costs `O(V log p)` for `c=1`.
+
+The old quadratic restriction from `K^tau` is absent. With the **retained
+certified bit exponent and Gaussian assembly inequality**, the current scoped
+ceiling is `kappa<a_b/5=5.92e-10<2^-30`. This is not an all-network limitation.
+The new complex saving provides numerical headroom for `2^-30` if a stronger
+bit construction is supplied; that is not another established witness.
 
 ## Verification boundary
 
-The general proofs are in the four included construction sources:
+The [integration review guide](complex-compression-review.md) identifies each
+new obligation and its tests. General arguments are supplied in:
 
+- [compressed complex construction](../../notes/complex-compression.tex);
 - [movement and deterministic repair](../../notes/compact-control-movement.tex);
 - [reservations, row splitting and recurrence](../../notes/compact-control-layout.tex);
-- [generalized guard](../../notes/compact-control-guard.tex);
-- [independent complex interface](../../notes/independent-complex.tex).
+- [generalized guard](../../notes/compact-control-guard.tex).
 
-The [publication review guide](compact-control-review.md) maps each new
-obligation to its proof and tests. Release copy and citation metadata have
-been updated for this draft. This preparation is not independent review.
+The new certificate records all four source hashes. The combined patch applies
+directly to the pinned original and includes the full retained refinements.
+It updates every complex constant, the exponent ordering, scalar guard charge,
+final parameters and derived powers. It preserves the legacy wide-slot lemma
+for the appendix and retains the corrected local exceptional-stream sum.
 
-The certificate stores their SHA-256 hashes. The standalone note supplies
-the complete assembly comparison and scope. The combined patch also updates
-the old global exceptional-stream paragraph: a `p^-3` bad fraction is charged
-locally through the volume-weighted recurrence, rather than incorrectly
-reusing its old global `o(V)` argument based on `2^-K`.
+Finite tests check exact signed scalar maps with independent dirty variables,
+rectangle partitions, binary residual bases, phase identities, matching,
+parameter inequalities and source integration. They do not simulate the entire
+multiplication machine or replace independent proof review. The retained
+compact-control arguments have the same review dependencies as before.
 
-Finite tests cover dirty address algebra, both slot orders, modular inverses,
-bad-set invariance, exceptional repair, actual two-piece stream rotation,
-complete-field preservation through padding and recursive row splits,
-recurrence summation for all exponent orderings, and negative parameter cases.
-Source integration checks preserve legacy appendix references and distinguish
-the bit and complex arities. These checks support the written conditional
-proof; they do not prove the upstream theorem or replace mathematical review.
+Completion checks passed: 176 tests, 18 patch-application checks, exact
+certificate/patch regeneration, and both note and manuscript builds.
 
-Completion checks passed: all 163 tests, all 17 patch-application checks,
-the nine-page standalone note build, and the combined manuscript build.
-Publication preparation also ran the full suite in a separate snapshot with
-all proposed files and confirmed exact regeneration against its Git index.
-These are reproducibility and consistency checks, not independent proof review.
-
-Reproduce with `make verify` and `make compact-note`. The combined manuscript
-can be materialized with `make_compact_control_patch.patched_files()` into a
-copy of `upstream/build`, then compiled with Tectonic after omitting the three
-original pdfTeX-only metadata commands in that disposable copy, as described
-in [the reproduction instructions](../reproducibility.md). The pinned source
-itself must remain unchanged.
+Reproduce with `make verify` and `make complex-note`. See the
+[reproduction instructions](../reproducibility.md) for applying the patch and
+building a manuscript preview without changing the pinned source.
 
 ## Next research priority
 
-First seek independent review of the new primitive, especially the temporary
-layout invariant, local repair summation and uniform tape bounds. A substantive
-flaw in one of those steps would revoke the new headline.
+The complex construction is integrated. The next improvement should target
+the bit finite network, especially methods transferable from the new circuit
+compression or a new topology. More complex-network tuning alone cannot cross
+the present bit/Gaussian ceiling. Independent review remains valuable for both
+the new phase-frame transfer and the retained compact-control tape proof.
 
-If the proof survives, improving the complex finite network is the next route
-to a stronger dyadic bound. The incidence/shared-sum/paired bit constructions
-cannot simply be copied into it: the scalar coefficients, binary phase labels,
-residual orthonormal bases and signed endpoint corrections require a new audit.
-
-The previous [joint-frame obstruction](joint-frame-audit.md) remains valid
-within its fixed-boundary, grouped-gate scope. Splitting central gates or
-changing boundaries between invocations are still possible finite-network
-experiments, but the compact-control movement goal has succeeded conditionally
-without needing that fallback. Older research pages retain their chronology;
-use this page when interpreting their stale numerical targets or priorities.
+The previous [joint-frame obstruction](joint-frame-audit.md) remains scoped to
+its fixed-boundary, grouped-gate model. Older research pages retain their
+chronology; use this page when interpreting superseded targets and barriers.
