@@ -68,6 +68,16 @@
   "prepared_utc": "2026-10-08T17:34:55.040687+00:00",
   "scope": "Finite conditional witness; inherited all-size analytic, residual, routing, recovery and fixed-tape interfaces remain mathematical dependencies.",
   "source_manifest_sha256": "65540a35ed4642cd444eb5ec1b20834f9f0dc3ee740f3cdbdbd7b7e514bd5146",
-  "status": "PASS: complete repository verification, focused producer/physical/arithmetic replay and independent adversarial controls on the tested construction",
-  "tested_commit": "e7a492dd8bee4e6f574ced784a62af2ce735edc4"
+  "status": "Prior construction fully verified; current additive upstream merge awaits expanded full verification",
+  "tested_commit": "e7a492dd8bee4e6f574ced784a62af2ce735edc4",
+  "upstream_integration": {
+    "changed_certificate_fields": [
+      "source_manifest_sha256"
+    ],
+    "main_commit": "d55bcd6",
+    "mathematical_certificate_unchanged": true,
+    "source_manifest_sha256": "ee1922dd44d3b09ee40e7a010fbf25467fbc144a09e44977b452ff0875a66f41",
+    "status": "Expanded full make verify pending; prior complete construction result retained above",
+    "via_pr58_merge": "5cc5c0f7b61303f40ddbb7bdd76069e9c2d6bc00"
+  }
 }
