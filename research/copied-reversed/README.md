@@ -123,10 +123,12 @@ Negative controls address bad corner offsets, invalid rank cuts, omitted paid
 corrections, rank-preserving child-list corruption, old-prefix substitution and
 invalid precision/row constants.
 
-The PR is initially a **draft** while the full inherited repository rerun is
-pending. Its focused finite checks and proof reviews are separate from that
-rerun. These are independent agent reviews, not external expert acceptance or
-formal verification of the multiplication theorem.
+**Full verification passed** for research commit `cb86e50e9a07685068874d8e4174b2e6c209b95c`: 182 tests,
+fresh selected complex and inherited bit/label reconstructions, and 18 historical
+patch checks. The 12 focused tests also pass. The [validation receipt](validation.json)
+records the exact commit and log hash. These are independent agent reviews and
+executable checks, not external expert acceptance or formal verification of the
+multiplication theorem.
 
 The inherited Gaussian inverse and exact recovery, fixed tape/alphabet model,
 ordered climb and complete spectator contracts, native rational basis/prime

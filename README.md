@@ -5,9 +5,9 @@ Reversed two-stage corners composed with copied retained centers give
 hypotheses. This is approximately **0.1321% above PR #36**.
 
 See the [proof and reproduction guide](research/copied-reversed/README.md).
-Focused checks precede publication; the full repository rerun is pending and
-this contribution is initially a draft. Earlier results below are retained
-as dependencies and historical records.
+Full `make verify` passed: 182 tests, fresh producer/label checks and 18
+historical patch checks. See the [validation receipt](research/copied-reversed/validation.json).
+Earlier results below are retained as dependencies and historical records.
 
 # Integer multiplication with conditional saving 3.84569e-5
 

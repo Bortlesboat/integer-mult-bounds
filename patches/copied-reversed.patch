@@ -38,7 +38,7 @@ index 6fa7a7ec8280068c80405afafc3d1a09b3c49c1e..ee2580571bff70c5c739e7616ede1ca6
 +This is not a claim of formal verification, new foundational rank identities,
 +global optimality or measured runtime speedup.
 diff --git a/README.md b/README.md
-index 8a82d95cd9958403d40e24764d89760b96090886..9f2cb9f0f9b9fe445254ac01c26b826850567f98 100644
+index 8a82d95cd9958403d40e24764d89760b96090886..03f57d31459f3a9ed52c3809587593012acd3a5c 100644
 --- a/README.md
 +++ b/README.md
 @@ -1,3 +1,14 @@
@@ -49,19 +49,19 @@ index 8a82d95cd9958403d40e24764d89760b96090886..9f2cb9f0f9b9fe445254ac01c26b8268
 +hypotheses. This is approximately **0.1321% above PR #36**.
 +
 +See the [proof and reproduction guide](research/copied-reversed/README.md).
-+Focused checks precede publication; the full repository rerun is pending and
-+this contribution is initially a draft. Earlier results below are retained
-+as dependencies and historical records.
++Full `make verify` passed: 182 tests, fresh producer/label checks and 18
++historical patch checks. See the [validation receipt](research/copied-reversed/validation.json).
++Earlier results below are retained as dependencies and historical records.
 +
  # Integer multiplication with conditional saving 3.84569e-5
  
  $$
 diff --git a/research/copied-reversed/README.md b/research/copied-reversed/README.md
 new file mode 100644
-index 0000000000000000000000000000000000000000..f4cc785d78840d826946bc347811e8a29c92d55e
+index 0000000000000000000000000000000000000000..aaf71dc7fe72a936f64c6dfc75e8bee99c1ec472
 --- /dev/null
 +++ b/research/copied-reversed/README.md
-@@ -0,0 +1,150 @@
+@@ -0,0 +1,152 @@
 +# Reversed corners with copied retained centers
 +
 +Under the inherited analytic and fixed finite-alphabet multitape hypotheses,
@@ -187,10 +187,12 @@ index 0000000000000000000000000000000000000000..f4cc785d78840d826946bc347811e8a2
 +corrections, rank-preserving child-list corruption, old-prefix substitution and
 +invalid precision/row constants.
 +
-+The PR is initially a **draft** while the full inherited repository rerun is
-+pending. Its focused finite checks and proof reviews are separate from that
-+rerun. These are independent agent reviews, not external expert acceptance or
-+formal verification of the multiplication theorem.
++**Full verification passed** for research commit `cb86e50e9a07685068874d8e4174b2e6c209b95c`: 182 tests,
++fresh selected complex and inherited bit/label reconstructions, and 18 historical
++patch checks. The 12 focused tests also pass. The [validation receipt](validation.json)
++records the exact commit and log hash. These are independent agent reviews and
++executable checks, not external expert acceptance or formal verification of the
++multiplication theorem.
 +
 +The inherited Gaussian inverse and exact recovery, fixed tape/alphabet model,
 +ordered climb and complete spectator contracts, native rational basis/prime
@@ -5339,6 +5341,41 @@ index 0000000000000000000000000000000000000000..898ca600ef369f561b22eabeaa897758
 +not establish these. This audit identifies no new blocker in the BALANCED
 +TRANSFER itself and does not assert that all inherited hypotheses have been
 +independently re-proved.
+diff --git a/research/copied-reversed/validation.json b/research/copied-reversed/validation.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..ad843830ad8c6f5b5bae6ceb63a4218809aaacaf
+--- /dev/null
++++ b/research/copied-reversed/validation.json
+@@ -0,0 +1,29 @@
++{
++  "status": "PASS full repository verification",
++  "exit_code": 0,
++  "checked_commit": "cb86e50e9a07685068874d8e4174b2e6c209b95c",
++  "finished_at_utc": "2026-10-08T12:45:18.631002+00:00",
++  "log_sha256": "020a0bb269ff326b34056e893484eb408ce0c06c3cae9ced920f64ba1f491f2e",
++  "command": "make verify",
++  "python": "3.11",
++  "repository_test_count": 182,
++  "test_suite_seconds": "53.944",
++  "focused_test_count": 12,
++  "historical_patch_checks": 18,
++  "focused_patch_at_research_commit": {
++    "base": "11817ccacb564bb7f98789c20dc11d3fece207e3",
++    "source_files": 19,
++    "all_bytes_match": true,
++    "sha256": "987fde0ff4b70b8fd92950f9bcfb32aef2d6e265504aefdead622aed32c936ea"
++  },
++  "selected_complex": "Fresh h28 d19 scalar/frame/matching histogram reconstruction passed",
++  "inherited_bit_producers": "Fresh h25, h23, h57 scalar DAGs, matchings and positive label audits passed",
++  "inherited_complex": "Fresh historical complex h28 histogram passed",
++  "generated_file_difference": {
++    "path": "certificates/endpoint-gauge-network.json",
++    "kind": "JSON dictionary key ordering only",
++    "exact_parsed_equality": true,
++    "original_restored": true
++  },
++  "scope": "Full executable regression pass for research commit; conditional mathematical hypotheses remain. Documentation/validation-only follow-up does not alter checked scientific sources."
++}
 diff --git a/research/copied-reversed/witness.py b/research/copied-reversed/witness.py
 new file mode 100644
 index 0000000000000000000000000000000000000000..be459d6f5c6d52ea1fde8f25100c7d2be000d497
