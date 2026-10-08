@@ -4,9 +4,10 @@
 base theorem and retained analytic and fixed-tape interfaces: **0.15973% above
 PR #50**, 0.29455% above PR #49 and 0.42221% above PR #48. Longer parallel
 climbs of the summand and leave-one-out orders on PR #48's graphs lower R to
-36,203 at h=23 and 48,148 at h=25, each with an exact optimal
-carrier matching. See [research/climbed-48](research/climbed-48/README.md) and
-run `make climbed-48-verify`.
+36,203 at h=23 and 48,148 at h=25, each with numerically selected
+carrier matching checked by exact replay. See [research/climbed-48](research/climbed-48/README.md) and
+run `make climbed-48-verify`. Full `make verify` passed: 192 tests and 18 historical patch checks;
+see the [validation receipt](research/climbed-48/validation.json).
 
 # Conditional saving 4.11862541e-5 from reordered exclusion sums
 

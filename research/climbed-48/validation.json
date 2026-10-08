@@ -1,30 +1,28 @@
 {
   "command": "make verify",
-  "completed": "2026-10-08T15:44:38.918471+00:00",
-  "elapsed_seconds": 442.1991817909875,
+  "completed": "2026-10-08T16:30:23.656527+00:00",
+  "elapsed_seconds": 443.9345710420166,
   "exit_code": 0,
-  "generated_drift": [
-    "certificates/endpoint-gauge-network.json: key order only; semantic equality checked, archived and restored"
-  ],
+  "generated_drift": "Endpoint-gauge JSON key ordering only; semantic equality checked and pinned bytes restored.",
   "historical_patch_checks": 18,
-  "log_sha256": "f302a33b7f5660e54741fcc0454fca065754f191045caa7e689779bda5a74e90",
-  "producer_validation": "Fresh h23/h25 climbed exclusion-sum graphs, pinned matching admissibility, CRT profiles, independent recount, complete physical timeline and dirty basis in both orientations; full inherited data geometry with exact rational fallback recovery",
-  "research_commit": "9c9c198656c5b926de951292c111e81ccf191634",
-  "source_scope": "After this tested research commit, follow-up changes only README prose, the validation receipt and documentation hash manifest. Mathematical code, graphs, swap bits, pinned links and certificates are unchanged.",
-  "started": "2026-10-08T15:37:16.718235+00:00",
+  "log_sha256": "c8823c840e050e2c87f8a830cf91b07fd25b2d24f4070f1a6d04bc003c5ca429",
+  "producer_validation": "Fresh h23/h25 climbed exclusion-sum graphs, pinned matching admissibility, CRT profiles, independent recount, complete physical timelines and dirty basis in both orientations; inherited full data geometry with exact fallback recovery",
+  "research_commit": "8e097ccfe34763092d68f4dd03ffdaf9513ef478",
+  "source_scope": "Local follow-up changes only README prose, validation receipts and documentation hash manifest. The mathematical code, bits, links and certificates remain at the tested research commit.",
+  "started": "2026-10-08T16:22:59.722585+00:00",
   "status": "passed",
   "test_runs": [
     {
       "count": 17,
-      "seconds": "0.853"
+      "seconds": "0.846"
     },
     {
       "count": 5,
-      "seconds": "0.157"
+      "seconds": "0.159"
     },
     {
       "count": 192,
-      "seconds": "55.918"
+      "seconds": "55.441"
     }
   ]
 }

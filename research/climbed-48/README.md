@@ -58,10 +58,11 @@ The matching search uses floating-point logarithmic weights and SciPy assignment
 Exact replay checks the selected pinned output; neither exact weighted-matching
 optimality nor global optimality of the graph search is claimed.
 
-**v2 (this commit): focused producer replay, exact certificate and 5 tests pass; full `make verify` pending.** For the earlier PR #49 snapshot, full `make verify` passed at research commit `9c9c198656c5b926de951292c111e81ccf191634`: **192 tests**, five new focused tests, fresh producer/profile and complete physical dirty-basis checks, inherited data geometry with exact fallback recovery, and **18 historical patch checks**. See [validation.json](validation.json) for timing and the full log hash. The result remains conditional on inherited interfaces requiring mathematical review.
+**Full `make verify` passed** at research commit `8e097ccfe34763092d68f4dd03ffdaf9513ef478`: **192 tests**, five new focused tests, fresh producer/profile and complete physical dirty-basis checks, inherited data geometry with exact fallback recovery, and **18 historical patch checks**. See [validation.json](validation.json) for timing and the full log hash. The earlier #49 receipt is preserved as [validation-pr49.json](validation-pr49.json). The result remains conditional on inherited interfaces requiring mathematical review.
 
 ## Attribution
 
+Rohan Gupta / @gupt1156 (PR #50, contemporaneous comparison).
 Chafik Boukhalfa (PR #43/#46/#48: compositions, reordered exclusion sums,
 checkers, exact data recovery). RaD / hipotures (PR #41). icekylinx, James
 Chang, Dominik Scholz, Zhihao Chen, Aurel Prosz / Paureel, Swapnil Jain,
