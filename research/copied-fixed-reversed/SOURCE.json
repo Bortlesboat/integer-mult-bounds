@@ -7,7 +7,7 @@
   "parent_commit": "2f7578affce416ad4b6c41f3438ebb734f66a899",
   "scope": "Conditional composition; exact finite checks plus written common-basis/CRT arguments; inherited analytic and fixed-tape hypotheses retained",
   "sha256": {
-    "research/copied-fixed-reversed/README.md": "9f8b1fbe31716700b38bb148e743462c6d97953b82002335f8aa90b5c28aae8f",
+    "research/copied-fixed-reversed/README.md": "18589ce4ae40368d9b2c7d96c24b54a1fce850f70d47c4238fb79f0c8c162e9b",
     "research/copied-fixed-reversed/balanced_assembly.py": "4d27575dcad2b45a281a34054d311409ecd954f373c0c3a62c29bcc843f06a86",
     "research/copied-fixed-reversed/certificate.json": "5362e5a11a7ad6c595b061ee06c427b37bcd3a8123ef37bb40979271dea84a30",
     "research/copied-fixed-reversed/full_profiles25.cpp": "2f5f9c502338e0c68608f17cd9658e095428acab02d85d75a0795a9542c580bd",
@@ -26,6 +26,7 @@
     "research/copied-fixed-reversed/review/fixed25-copied-crt-audit.txt": "9915c79b48357eff81db3b736e8223aedcdc6e3fadf9f6e7713625cc79c14c24",
     "research/copied-fixed-reversed/review/fixed25-copied-crt-portable-replay.json": "847abda7b2ba3fcbfb3efd9044cbbaba0ab8d1e7ebcb54b3c6512abf8a1f68a1",
     "research/copied-fixed-reversed/review/fixed25_copied_crt_audit.py": "22072438165072116e1c896abee65b6c3b976f88e37a75a0da485b467351f3b2",
+    "research/copied-fixed-reversed/validation.json": "f89c7f05b5ed06eddaf9285c61ec1a72302fd2146026df0ae8535f6dc22571c4",
     "research/copied-fixed-reversed/witness.py": "1ecfd7dad2dd2abf515cd975bafd76959cc6b8e2ca817d8a447c83880e52d492"
   }
 }

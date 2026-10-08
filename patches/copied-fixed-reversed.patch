@@ -34,10 +34,10 @@ index ee25805..ec4888a 100644
 +Dominik Scholz PR35/38, Zhihao Chen, Paureel, Swapnil Jain, RaD/hipotures,
 +eumemic and all preceding attribution and licenses. See research/copied-fixed-reversed.
 diff --git a/README.md b/README.md
-index 03f57d3..f61aca1 100644
+index 03f57d3..93efa99 100644
 --- a/README.md
 +++ b/README.md
-@@ -1,3 +1,13 @@
+@@ -1,3 +1,12 @@
 +# Conditional multiplication saving 3.886675852 × 10^-5
 +
 +A fixed middle basis composed with copied reversed corners gives
@@ -45,18 +45,17 @@ index 03f57d3..f61aca1 100644
 +fixed-tape hypotheses. This is approximately **0.011627% above PR #38**.
 +
 +See the [proof and reproduction guide](research/copied-fixed-reversed/README.md).
-+The full inherited verification rerun is pending; this is a checked conditional
-+candidate for review. Earlier results below retain their own validation status.
++Full `make verify` passed: 192 tests, fresh producer/profile and geometry checks, and 18 historical patch checks. See the [validation receipt](research/copied-fixed-reversed/validation.json). Earlier results below retain their own validation status.
 +
  # Conditional multiplication saving 3.850771033 × 10^-5
  
  Reversed two-stage corners composed with copied retained centers give
 diff --git a/research/copied-fixed-reversed/README.md b/research/copied-fixed-reversed/README.md
 new file mode 100644
-index 0000000..d25b687
+index 0000000..f91f787
 --- /dev/null
 +++ b/research/copied-fixed-reversed/README.md
-@@ -0,0 +1,114 @@
+@@ -0,0 +1,112 @@
 +# Fixed middle basis with copied reversed corners
 +
 +Under the inherited analytic and fixed finite-alphabet multitape hypotheses,
@@ -155,9 +154,7 @@ index 0000000..d25b687
 +[patch](../../patches/copied-fixed-reversed.patch) applies to the pinned PR #37
 +commit. The inherited manuscripts are unchanged.
 +
-+**Draft validation status:** focused checks and independent agent audits
-+precede publication; the full inherited make verify rerun is pending. A
-+successful rerun will be recorded with its exact source commit and log hash.
++**Full verification passed** at research commit `50e54ece17afa4bd3cccd1927e9cdea5098038c2`: 192 tests, fresh producer/profile and geometry checks, and 18 historical patch checks. The ten focused tests also pass. The [validation receipt](validation.json) records the exact source commit and full log hash. This remains a conditional research result requiring mathematical review.
 +
 +## Attribution
 +
@@ -173,10 +170,10 @@ index 0000000..d25b687
 +notices and historical AI-assistance disclosures are preserved.
 diff --git a/research/copied-fixed-reversed/SOURCE.json b/research/copied-fixed-reversed/SOURCE.json
 new file mode 100644
-index 0000000..93e8e06
+index 0000000..8fc3606
 --- /dev/null
 +++ b/research/copied-fixed-reversed/SOURCE.json
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,32 @@
 +{
 +  "comparison": {
 +    "commit": "cc794077f6c103e24ec0939be765cd1521239aab",
@@ -186,7 +183,7 @@ index 0000000..93e8e06
 +  "parent_commit": "2f7578affce416ad4b6c41f3438ebb734f66a899",
 +  "scope": "Conditional composition; exact finite checks plus written common-basis/CRT arguments; inherited analytic and fixed-tape hypotheses retained",
 +  "sha256": {
-+    "research/copied-fixed-reversed/README.md": "9f8b1fbe31716700b38bb148e743462c6d97953b82002335f8aa90b5c28aae8f",
++    "research/copied-fixed-reversed/README.md": "18589ce4ae40368d9b2c7d96c24b54a1fce850f70d47c4238fb79f0c8c162e9b",
 +    "research/copied-fixed-reversed/balanced_assembly.py": "4d27575dcad2b45a281a34054d311409ecd954f373c0c3a62c29bcc843f06a86",
 +    "research/copied-fixed-reversed/certificate.json": "5362e5a11a7ad6c595b061ee06c427b37bcd3a8123ef37bb40979271dea84a30",
 +    "research/copied-fixed-reversed/full_profiles25.cpp": "2f5f9c502338e0c68608f17cd9658e095428acab02d85d75a0795a9542c580bd",
@@ -205,6 +202,7 @@ index 0000000..93e8e06
 +    "research/copied-fixed-reversed/review/fixed25-copied-crt-audit.txt": "9915c79b48357eff81db3b736e8223aedcdc6e3fadf9f6e7713625cc79c14c24",
 +    "research/copied-fixed-reversed/review/fixed25-copied-crt-portable-replay.json": "847abda7b2ba3fcbfb3efd9044cbbaba0ab8d1e7ebcb54b3c6512abf8a1f68a1",
 +    "research/copied-fixed-reversed/review/fixed25_copied_crt_audit.py": "22072438165072116e1c896abee65b6c3b976f88e37a75a0da485b467351f3b2",
++    "research/copied-fixed-reversed/validation.json": "f89c7f05b5ed06eddaf9285c61ec1a72302fd2146026df0ae8535f6dc22571c4",
 +    "research/copied-fixed-reversed/witness.py": "1ecfd7dad2dd2abf515cd975bafd76959cc6b8e2ca817d8a447c83880e52d492"
 +  }
 +}
@@ -18439,6 +18437,46 @@ index 0000000..dafe0ea
 +
 +
 +if __name__=='__main__':main()
+diff --git a/research/copied-fixed-reversed/validation.json b/research/copied-fixed-reversed/validation.json
+new file mode 100644
+index 0000000..add611d
+--- /dev/null
++++ b/research/copied-fixed-reversed/validation.json
+@@ -0,0 +1,34 @@
++{
++  "command": "make verify",
++  "commit": "50e54ece17afa4bd3cccd1927e9cdea5098038c2",
++  "completed": "2026-10-08T13:04:26.754768+00:00",
++  "exit_code": 0,
++  "focused_patch_check": {
++    "base": "2f7578affce416ad4b6c41f3438ebb734f66a899",
++    "byte_reconstruction": true,
++    "files": 25,
++    "patch_sha256": "a8d09e24b3de9d069326a4566f015f5361bde3edb5a618475cc4ba0b1750ae3a"
++  },
++  "generated_drift": "Endpoint-gauge JSON key ordering only; semantic equality proved and generated bytes archived before restoring pinned serialization",
++  "geometry_validation": "All2300 triples and108100 prefixes, inherited all-weight rank cuts and25 copied-center complements",
++  "historical_patch_checks": 18,
++  "log_sha256": "1afbaa5f78c44640d18f4e6186357c6c190ab2602542fd0feed7728bf5af5ddf",
++  "producer_validation": "Fresh base-two h25 complete five-prime profile, scalar/original/positive matching and labels, all copied-center CRT controls; inherited h23/h25/h57 and complex rebuilds",
++  "source_scope": "Validation followup changes documentation/receipts/source manifest and focused patch only; research files remain at tested commit",
++  "started": "2026-10-08T12:58:51.573862+00:00",
++  "status": "passed",
++  "test_runs": [
++    {
++      "count": 10,
++      "seconds": "0.027"
++    },
++    {
++      "count": 12,
++      "seconds": "0.105"
++    },
++    {
++      "count": 192,
++      "seconds": "55.240"
++    }
++  ]
++}
 diff --git a/research/copied-fixed-reversed/witness.py b/research/copied-fixed-reversed/witness.py
 new file mode 100644
 index 0000000..c5ac74f

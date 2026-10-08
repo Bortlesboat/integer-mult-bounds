@@ -5,8 +5,7 @@ A fixed middle basis composed with copied reversed corners gives
 fixed-tape hypotheses. This is approximately **0.011627% above PR #38**.
 
 See the [proof and reproduction guide](research/copied-fixed-reversed/README.md).
-The full inherited verification rerun is pending; this is a checked conditional
-candidate for review. Earlier results below retain their own validation status.
+Full `make verify` passed: 192 tests, fresh producer/profile and geometry checks, and 18 historical patch checks. See the [validation receipt](research/copied-fixed-reversed/validation.json). Earlier results below retain their own validation status.
 
 # Conditional multiplication saving 3.850771033 × 10^-5
 

@@ -96,9 +96,7 @@ geometry, exact moments, constraints and negative controls. The focused
 [patch](../../patches/copied-fixed-reversed.patch) applies to the pinned PR #37
 commit. The inherited manuscripts are unchanged.
 
-**Draft validation status:** focused checks and independent agent audits
-precede publication; the full inherited make verify rerun is pending. A
-successful rerun will be recorded with its exact source commit and log hash.
+**Full verification passed** at research commit `50e54ece17afa4bd3cccd1927e9cdea5098038c2`: 192 tests, fresh producer/profile and geometry checks, and 18 historical patch checks. The ten focused tests also pass. The [validation receipt](validation.json) records the exact source commit and full log hash. This remains a conditional research result requiring mathematical review.
 
 ## Attribution
 
