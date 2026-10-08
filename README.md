@@ -1,3 +1,15 @@
+# Local research continuation: split-pair skip-prefix networks
+
+Conditional saving **κ = 4598878089/10^14 = 0.00004598878089**, approximately
+**1.542% above PR #54**. See [the proof and reproduction guide](research/split-skip/PROOF.md)
+and [exact certificate](research/split-skip/certificate.json). Run `make split-skip-verify`.
+This is a new conditional research candidate, outside the maintainer's PR #39 audit.
+PR #58 subsequently claimed a stronger saving with a different compiler. This
+contribution records the grouping/order refinement and its verified composition.
+Full original source attribution and assumptions are retained below.
+
+---
+
 # Conditional saving 4.498144e-5 from skip-prefix strips
 
 The [proof and reproduction note](research/skip-strips/PROOF.md) gives

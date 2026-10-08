@@ -1,6 +1,6 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note fetch
 
-verify:
+verify: split-skip-verify
 	$(MAKE) skip-strips-verify
 	$(MAKE) copied-fixed-verify
 	$(MAKE) copied-centers-verify
@@ -214,3 +214,14 @@ skip-strips-check:
 	cd research/skip-strips && python3 -m unittest discover -s ../../tests -p 'test_skip_strips.py' -v
 
 skip-strips-verify: skip-strips-producer skip-strips-check
+
+.PHONY: split-skip-producer split-skip-check split-skip-verify
+split-skip-producer:
+	python3 research/split-skip/producer.py --work-dir build/split-skip --output build/split-skip-receipt.json
+
+split-skip-check:
+	python3 research/split-skip/witness.py
+	python3 research/split-skip/independent_arithmetic.py
+	python3 -m unittest discover -s tests -p 'test_split_skip.py' -v
+
+split-skip-verify: split-skip-producer split-skip-check
