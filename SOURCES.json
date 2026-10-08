@@ -108,5 +108,17 @@
     "scope": "Partial-swap construction with kappa=942293/500000000000; inherits the corrected analytic and tape interfaces from PR #10.",
     "curation": "Import selected producer sources, exact data and proof; regenerate large binaries, omit exploratory alternatives and duplicate baseline snapshot.",
     "assistance": "Substantial OpenAI GPT-6 Astra and Codex assistance."
+  },
+  "endpoint_gauge_extension": {
+    "contributor": "icekylinx",
+    "parent_commit": "f2ab41aebad47861caf6316282c1793e5513845e",
+    "archive": "integer_mult_endpoint_gauge_3_176x_complete.zip",
+    "archive_sha256": "1c2e8fa0d80597d6f0b02d707651a3b0477ff99d799614cf30b24931969def84",
+    "proof": "artifacts/endpoint-gauge-note.pdf",
+    "certificate": "certificates/endpoint-gauge-network.json",
+    "producer": "scripts/endpoint_gauge_producer.py",
+    "scope": "Conditional kappa=119723/20000000000; inherits the partial-swap construction and corrected PR #10 analytic and tape interfaces.",
+    "curation": "Selected producers, counts and proof only; large graphs are regenerated. Omit exploratory variants, duplicate previous-round snapshot and obsolete comparison claims.",
+    "assistance": "Substantial OpenAI GPT-6 Astra and Codex assistance."
   }
 }

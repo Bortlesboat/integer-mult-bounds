@@ -67,3 +67,14 @@ This extension directly inherits PR #10, commit
 62691e395a0458ce089a1c7b5d89e74291e95e29. The portable producer adapters
 modify the retained paired-exclusion and shared-point implementations credited
 above. The original licenses, attribution, and Gaussian correction are retained.
+
+Endpoint-gauge extension, 8 October 2026
+Copyright 2026 icekylinx
+
+The complementary auxiliary endpoint gauges, (32,30,40) controlled basis,
+general nondegenerate binary phase residuals, retained-center complex producer,
+updated path guard and exact assembly are contributed by icekylinx with
+substantial OpenAI GPT-6 Astra and Codex assistance. This extension inherits
+f2ab41aebad47861caf6316282c1793e5513845e and its PR #10 ancestry. New portable
+adapters retain the paired-exclusion and shared-point contributions credited
+above. Original licenses, notices and the Gaussian correction are retained.

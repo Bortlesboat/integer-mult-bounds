@@ -1,6 +1,7 @@
 .PHONY: verify note audit-note tuned-note reuse-note incidence-note dag-note shared-point-note paired-note compact-note fetch
 
 verify:
+	$(MAKE) endpoint-gauge-producer endpoint-gauge-certificate
 	$(MAKE) partial-swap-producer partial-swap-certificate
 	python3 scripts/prime_field_network.py
 	python3 scripts/complex_network.py
@@ -138,3 +139,24 @@ else
 	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/partial-swap-note.tex
 	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/partial-swap-note.tex
 endif
+
+.PHONY: endpoint-gauge-producer endpoint-gauge-certificate endpoint-gauge-note
+endpoint-gauge-producer:
+	python3 scripts/endpoint_gauge_producer.py
+
+endpoint-gauge-certificate:
+	python3 scripts/endpoint_gauge_network.py
+
+endpoint-gauge-note:
+	mkdir -p artifacts
+ifeq ($(TEX_ENGINE),tectonic)
+	$(TECTONIC) -Z search-path=$(CURDIR) --outdir artifacts notes/endpoint-gauge-note.tex
+else
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/endpoint-gauge-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/endpoint-gauge-note.tex
+	$(PDFLATEX) -interaction=nonstopmode -halt-on-error -output-directory=artifacts notes/endpoint-gauge-note.tex
+endif
+
+.PHONY: endpoint-gauge-verify
+endpoint-gauge-verify: endpoint-gauge-producer endpoint-gauge-certificate
+	python3 -m unittest discover -s tests -p 'test_endpoint_gauge.py' -v

@@ -2,60 +2,66 @@
 
 Run from the repository root with Python 3.11+, a C++17 compiler, Git, and Make.
 No third-party Python package or network access is required for verification.
-The inherited full h28 support check uses about 1.2 GB of memory.
 
 ```sh
-make verify
+make endpoint-gauge-verify
 ```
 
-This retains the #10 checks and additionally regenerates the selected
-`(25,23,57)` scalar graphs, original carrier dependencies, positive labels,
-final carrier matches and full rank histograms. The complex h28 histogram is
-reconstructed from its retained producer. The new rational certificate
-rebuilds the recursive width multiset, checks both moments and the precision
-guard, and evaluates all 29 strict constraints and seven assembly margins.
-Basis checks cover the prescribed coordinate compatibility and both A5 trees.
-The remaining generic-minor and interface arguments are in the proof.
+This regenerates the new binary and complex scalar producers at `(32,30,40)`,
+checks their supports, frame assignments, carrier matchings and complete rank
+histograms, and compares them with the selected input data. The bit construction
+uses the retained ordinary paired base threshold; the complex construction uses
+threshold two. These are distinct producers with distinct counts and losses.
 
-All large intermediate graph and label files are temporary. To retain them:
+The exact certificate reconstructs both recursive call lists, encloses both
+characteristic moments with rational arithmetic, checks the updated precision
+guard, and evaluates 29 strict constraints and seven assembly margins. Small
+exact algebra checks cover alternating and signed residuals and endpoint phase
+normalization. Basis checks cover coordinate prescriptions and both A5 trees;
+remaining generic-minor and interface arguments are in the proof.
+
+`make verify` runs the new checks together with all inherited producers, tests
+and historical patch checks. Unchanged inherited checks need not be repeated
+when validating only this extension.
+
+Large intermediate graph and label files are temporary. To retain them:
 
 ```sh
-python3 scripts/partial_swap_producer.py --work-dir /tmp/partial-swap-producers
+python3 scripts/endpoint_gauge_producer.py --work-dir /tmp/endpoint-gauge-producers
 ```
 
-The portable producer sources are in `scripts/partial_swap/`. They adapt the
-retained paired-exclusion and shared-point circuits with base threshold two,
-aligned point ordering, retained totals, and dependency-preserving labels.
-The selected data in `certificates/partial-swap-input.json` are compared with
-regeneration; they are not accepted as the sole producer justification.
+Portable sources are in `scripts/endpoint_gauge/`, with inherited helpers in
+`scripts/partial_swap/` and the retained circuit modules. The selected counts
+are in `certificates/endpoint-gauge-bit-axes.json` and
+`certificates/endpoint-gauge-complex-input.json`.
 
 For exact arithmetic alone:
 
 ```sh
-make partial-swap-certificate
+make endpoint-gauge-certificate
 ```
 
-The output certificate uses exact rational numbers. Rounded decimal values in
-the prose are explanatory. On a committed checkout, generated artifacts can
-be checked with `git diff --exit-code -- certificates patches`.
+The certificate uses exact rational numbers. Rounded prose values are
+explanatory. On a committed checkout, generated artifacts can be checked with
+`git diff --exit-code -- certificates patches`.
 
 ## Proof PDF
 
 ```sh
-make partial-swap-note
+make endpoint-gauge-note
 # Alternatively:
-make partial-swap-note TEX_ENGINE=tectonic
+make endpoint-gauge-note TEX_ENGINE=tectonic
 ```
 
-The target produces `artifacts/partial-swap-note.pdf`. The default engine is
+The target produces `artifacts/endpoint-gauge-note.pdf`; the default engine is
 pdfLaTeX. PDF bytes can differ across TeX environments. The standalone note is
-the current proof; the [combined manuscript patch](../PATCHING.md) and its
-generator remain the inherited #10 result.
+the current proof. The [combined manuscript patch](../PATCHING.md) remains
+the inherited #10 result.
 
 ## Provenance
 
-[SOURCES.json](../SOURCES.json) records the handoff archive hash, #10 parent,
+[SOURCES.json](../SOURCES.json) records the new archive hash, parent commit,
 and retained source pins. The original archive and exploratory alternatives
-are kept outside this submission. Existing copyright notices and the Gaussian
-scaling correction are preserved. The GitHub workflow runs `make verify` and
-checks certificate/patch reproducibility.
+are preserved outside this submission. Copyright notices, licenses and the
+Gaussian scaling correction are retained. The GitHub workflow runs the full
+`make verify` target and checks certificate/patch reproducibility.

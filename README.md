@@ -1,16 +1,15 @@
-# Integer multiplication with conditional saving 1.884586e-6
+# Integer multiplication with conditional saving 5.98615e-6
 
 \[
 T(n)=O\!\left(n(\log n)^{1-\kappa}\right),\qquad
-\kappa=\frac{942293}{500000000000}=1.884586\times10^{-6}.
+\kappa=\frac{119723}{20000000000}=5.98615\times10^{-6}.
 \]
 
-This construction extends [PR #10](https://github.com/CrocSwap/integer-mult-bounds/pull/10).
-Partial-swap frames remove the source rank penalty. A retained-total triple
-producer over the binary field, compatible carrier reuse, positive frames,
-and a common rational basis give the selected tensor dimensions `(25,23,57)`.
-The paired auxiliary boundary uses five recursive blocks. Whole-residual
-batching also improves the retained complex network.
+Complementary auxiliary endpoint gauges combine the middle-stage entrance
+and exit without increasing their total rank. A compatible rational basis
+and positive binary producer frames give the selected dimensions `(32,30,40)`.
+A general binary quadratic-phase normal form permits whole-residual complex
+calls, including alternating residuals, with the same dimensions.
 
 The result remains conditional on the pinned upstream analytic and tape
 interfaces. Exact finite calculations support the written construction;
@@ -18,35 +17,38 @@ they do not constitute formal verification of the complete theorem.
 
 ## Proof and reproduction
 
-- [Current proof](artifacts/partial-swap-note.pdf) and [LaTeX source](notes/partial-swap-note.tex).
-- [Exact certificate](certificates/partial-swap-network.json): both moments,
+- [Current proof](artifacts/endpoint-gauge-note.pdf) and [LaTeX source](notes/endpoint-gauge-note.tex).
+- [Exact certificate](certificates/endpoint-gauge-network.json): both moments,
   the precision guard, 29 strict constraints, and seven assembly margins.
-- [Producer reconstruction](scripts/partial_swap_producer.py) and
-  [finite input data](certificates/partial-swap-input.json).
+- [Producer reconstruction](scripts/endpoint_gauge_producer.py) and
+  [finite input data](certificates/endpoint-gauge-input.json).
 - [Reproduction instructions](docs/reproducibility.md) and [source provenance](SOURCES.json).
 
 ```sh
-make verify
-make partial-swap-note
+make endpoint-gauge-verify
+make endpoint-gauge-note
 ```
 
-Verification requires Python 3.11+, a C++17 compiler, Git, and Make.
-Selected producer graphs, carrier matches and positive frames are rebuilt
-from source in temporary storage. No large binary graph dumps are committed.
-For only the current exact arithmetic, run `make partial-swap-certificate`.
+Verification requires Python 3.11+, a C++17 compiler, Git, and Make. The new
+producer graphs, carrier matches and frames are rebuilt in temporary storage.
+No large binary graph dumps are committed. `make verify` additionally runs all
+inherited checks; `make endpoint-gauge-certificate` runs only the new arithmetic.
 
-The component savings are `188459/50000000000` (bit) and `417/100000000`
-(complex). The final strict absorption margin exceeds `4.4822e-13`.
+The component savings are `2993093/250000000000` (bit) and `3/125000`
+(complex). The final strict absorption margin exceeds `1.6569e-13`.
 The corrected Gaussian input enclosure from #10 is retained with `P=34p`.
 
+This extension inherits the [partial-swap proof](artifacts/partial-swap-note.pdf)
+at commit `f2ab41aebad47861caf6316282c1793e5513845e`, which extends
+[PR #10](https://github.com/CrocSwap/integer-mult-bounds/pull/10).
 The [#10 proof](artifacts/batched-23-note.pdf) and
-[combined manuscript patch](patches/batched-23.patch) remain the inherited
-baseline. The new standalone proof supplies the stronger construction and
-parameters; the older patch does not contain this extension.
+[combined manuscript patch](patches/batched-23.patch) remain historical
+baselines. The current standalone proof supplies the stronger construction;
+the older patch does not contain these extensions.
 
 ## Attribution
 
-The partial-swap construction and integration are contributed by **icekylinx**,
+The endpoint-gauge construction and integration are contributed by **icekylinx**,
 with substantial OpenAI GPT-6 Astra and Codex assistance. This work builds on
 **Douglas Colkitt**'s framework, **Zhihao Chen (jacklightChen)**'s finite network
 and paired producers, and contributions by **Bortlesboat**, **eumemic**, and
